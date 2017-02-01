@@ -160,6 +160,10 @@
       "value": "1.2.3.4"
     },
     {
+      "var": "MinEDVersion",
+      "value": "5.3.0.0"
+    },
+    {
       "var": "Location",
       "value": "Actions"
     }
