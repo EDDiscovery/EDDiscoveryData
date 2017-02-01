@@ -1,0 +1,24 @@
+{
+ "Install": [
+    {
+      "var": "LongDescription",
+      "value": "This is the a test video"
+    },
+    {
+      "var": "ShortDescription",
+      "value": "Test video file"
+    },
+    {
+      "var": "Version",
+      "value": "2.1.1.1"
+    },
+    {
+      "var": "Location",
+      "value": "Flights"
+    }
+    {
+      "var": "OtherFile1",
+      "value": "t1.flight;Flights"
+    }
+  ]
+}
