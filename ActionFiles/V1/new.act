@@ -145,7 +145,7 @@
       }
     ]
   },
-  "Enabled": false,
+  "Enabled": true,
   "Install": [
     {
       "var": "LongDescription",
@@ -153,21 +153,19 @@
     },
     {
       "var": "ShortDescription",
-      "value": "Test file"
+      "value": "Test new file"
     },
     {
       "var": "Version",
-      "value": "2.0.1.0"
+      "value": "1.9.0.5"
+    },
+    {
+      "var": "MinEDVersion",
+      "value": "3.1.0.0"
     },
     {
       "var": "Location",
       "value": "Actions"
-    },
-   {
-      "var": "MinEDVersion",
-      "value": "3.1.0.0"
-    },
-
-
+    }
   ]
 }
