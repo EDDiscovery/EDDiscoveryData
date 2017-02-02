@@ -1,0 +1,3211 @@
+{
+  "Conditions": {
+    "FilterSet": [
+      {
+        "EventName": "ApproachSettlement",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Bounty",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "BuyAmmo",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "BuyDrones",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "BuyExplorationData",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "BuyTradeData",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CapShipBond",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CockpitBreached",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "HighVolume=1",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CollectCargo",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CommitCrime",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "CommitCrime",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CommunityGoalDiscard",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CommunityGoalJoin",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CommunityGoalReward",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CrewAssign",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CrewFire",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "CrewHire",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DatalinkScan",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DatalinkVoucher",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DataScanned",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Died",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Docked",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockFighter",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockingCancelled",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockingDenied",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockingGranted",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockingRequested",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockingTimeout",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "DockSRV",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "EjectCargo",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "EngineerApply",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "EngineerCraft",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "EngineerProgress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "EscapeInterdiction",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "FactionKillBond",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "FetchRemoteModule",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "FSDJump",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "FSDResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "FuelScoop",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "HeatDamage",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "HeatWarning",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "HullDamage",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "HullDamage",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Interdicted",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Interdiction",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Interdiction",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "JetConeBoost",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "JetConeDamage",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "LaunchFighter",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "LaunchSRV",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Liftoff",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MarketBuy",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MarketSell",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "MarketSell",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MassModuleStore",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MaterialCollected",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MaterialDiscarded",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MaterialDiscovered",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MiningRefined",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MissionAbandoned",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MissionAccepted",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MissionCompleted",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "MissionFailed",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleBuy",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleRetrieve",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleSell",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleSellRemote",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleStore",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ModuleSwap",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "onRefreshEnd",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "onRefreshEnd",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "onStartup",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "onStartup",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PayFines",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PayLegacyFines",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayCollect",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayDefect",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayDeliver",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayFastTrack",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayJoin",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayLeave",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplaySalary",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayVote",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PowerplayVoucher",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Promotion",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "PVPKill",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RebootRepair",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ReceiveText",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ReceiveText",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RedeemVoucher",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RefuelAll",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RefuelPartial",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Repair",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RepairAll",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "RestockVehicle",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Resurrect",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Scan",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Scan",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ScientificResearch",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Screenshot",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SelfDestruct",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SellDrones",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SellExplorationData",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "SellExplorationData",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SendText",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShieldState",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ShieldState",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShipyardBuy",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShipyardNew",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShipyardSell",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShipyardSwap",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "ShipyardTransfer",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SupercruiseEntry",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "SupercruiseExit",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Synthesis",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Touchdown",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "Undocked",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "USSDrop",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "VehicleSwitch",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "WingAdd",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "WingJoin",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "WingLeave",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "onShutdown",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "onShutdown",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      }
+    ]
+  },
+  "Programs": {
+    "ProgramSet": [
+      {
+        "Name": "onStartup",
+        "Steps": [
+          {
+            "StepName": "Call",
+            "StepUC": "SetUpLanguage",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%version(1) < 5",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"Warning This voice pack requires version 5 of elite dangerous discovery at a minimum.\", Volume=100",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%(say_welcome)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Voice Pack installed, running on EDD Version %version(1).%version(2).%version(3).%version(4)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "SetUpLanguage",
+        "Steps": [
+          {
+            "StepName": "rem",
+            "StepUC": "do these.. If %(CurrentCulture) Contains sv",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "call",
+            "StepUC": "SetUpLanguageEnglish",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "onRefreshEnd",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "%(RefreshCount) <= 1",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Event",
+            "StepUC": "PREFIX LAST_ LAST",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Ledger",
+            "StepUC": "PREFIX LED_ AtOrBefore %(LAST_JID)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Event",
+            "StepUC": "PREFIX RK_ LAST Rank",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%expand(say_refresh)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "GenericResponse",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars Speech*",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Set",
+            "StepUC": "v = say_%(EventJS_event)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "HighVolume IsPresent",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%indirect(v)\", Volume=100",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%indirect(v)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "ReceiveText",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars *",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "EventJS_Channel NotContains npc",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_textrx)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "HullDamage",
+        "Steps": [
+          {
+            "StepName": "Let",
+            "StepUC": "health100 = %(EventClass_Health)*100,health = \"%floor(health100,N0)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "health > 40",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_HullDamage)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_CriticalHullDamage)\", Volume=100",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "ShieldState",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "EventClass_ShieldsUp IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_shieldsup)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_shieldsdown)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "CommitCrime",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "EventClass_Bounty IsNotEmpty",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_CommitCrimeBounty)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_CommitCrimeFine)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "FSDResponse",
+        "Steps": [
+          {
+            "StepName": "Set",
+            "StepUC": "v = say_%(EventJS_event)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%indirect(v)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "EventClass_FuelLevel <= 4",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%(say_FuelWarning)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "Scan",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars EventClass*",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars say_Scan*",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_IsStar) IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "print",
+            "StepUC": "%(say_ScanStar)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech = %expand(say_ScanStar)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_nOrbitalPeriod) > 0",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "period = %(EventClass_nOrbitalPeriod)/86400",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanStarInOrbit)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "gravity = %(EventClass_nSurfaceGravity)/9.8",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "rotation = %(EventClass_nRotationPeriod)/86400",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "period = %(EventClass_nOrbitalPeriod)/86400",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech = %expand(say_ScanPlanet)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_IsLandable) IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetLandable)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_TerraformState) IsNotEmpty",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetTerraform)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_Atmosphere) IsNotEmpty",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetAtmosphere)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_Volcanism) IsNotEmpty",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetVolcanism)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_nTidalLock) $== 1",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetTidallyLocked)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetRotation)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetOrbitalPeriod)",
+            "StepLevelUp": 1,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_nMassEM) < 0.01",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "moonmass = %(EventClass_nMassEM)/0.0123",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetMoonMass)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetMass)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetGravity)",
+            "StepLevelUp": 1,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetTemperature)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "if",
+            "StepUC": "%(EventClass_nSurfacePressure) IsNotEmpty And %(EventClass_nSurfacePressure) > 0",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "let",
+            "StepUC": "atpressure = %(EventClass_nSurfacePressure)/101.325",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetPressure)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "set",
+            "StepUC": "speech += %expand(say_ScanPlanetNoSurfacePressure)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%(speech)",
+            "StepLevelUp": 2,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "TestVars",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "Dumpvars E*",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "SellExplorationData",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars E*",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_SellExplorationData)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "EventClass_Discovered_Length >= 1",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"%expand(say_SellExplorationDataBonus)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "Interdiction",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "EventClass_Success IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%expand(say_InterdictionSuccess)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%expand(say_InterdictionFailure)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "MarketSell",
+        "Steps": [
+          {
+            "StepName": "Let",
+            "StepUC": "profit = (%(EventClass_SellPrice)-%(EventClass_AvgPricePaid))*%(EventClass_Count)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "%expand(say_MarketSell)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "onShutdown",
+        "Steps": [
+          {
+            "StepName": "Say",
+            "StepUC": "%expand(say_shutdown), Wait=1",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "SetUpLanguageEnglish",
+        "Steps": [
+          {
+            "StepName": "Global",
+            "StepUC": "say_welcome $= \"This is Elite Dangerous Discovery, Voice Pack 1\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_shutdown $= \"Bye Bye Commander, till next time;Elite Dangerous Discovery closing;Fly safe commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_refresh $= \"Welcome %(RK_Class_Combat) Commander %(Commander), %ifcontains(LAST_ShipType,\\\"Buggy\\\",\\\"driving\\\",\\\"flying\\\") a %(LAST_ShipType) with %(LED_Credits) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ApproachSettlement $= \"Approaching %(EventClass_Name);Settlement %(EventClass_Name) approaching\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Bounty $= \"Bounty for that ship is %(EventClass_TotalReward) credits, faction was %(EventClass_VictimFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_BuyAmmo $= \"Ammunition bought, %(EventJS_Cost) credits;That cost %(EventJS_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_BuyExplorationData $= \"Bought map of star system %(EventClass_System) for %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_BuyDrones $= \"Bought %(EventClass_Count) %(EventClass_Type) at a total cost of %(EventClass_TotalCost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CriticalHullDamage $= \"Alert, Alert, Damage is critical at %(health) %\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CockpitBreached $= \"Alert, Alert, Cockpit breached. Head for station now;Emergency, loss of Cockpit Canopy, abort;Emergency, Cockpit Canopy is breached\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CollectCargo $= \"Picked up cargo of type %(EventClass_Type), %iftrue(EventClass_Stolen,\\\"Warning commander, this cargo is stolen\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CommitCrimeFine $= \"Fine committed commander, %sc(EventClass_CrimeType) on %(EventClass_Faction), cost %(EventClass_Fine) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CommitCrimeBounty $= \"Crime committed commander, %sc(EventClass_CrimeType) on %(EventClass_Faction), bounty on you is %(EventClass_Bounty) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CommunityGoalJoin $= \"Joining the community goal %sc(EventClass_Name), located at system %(EventClass_System)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CommunityGoalReward $= \"Community goal %sc(EventClass_Name), located at system %(EventClass_System), rewarded you with %(EventClass_Reward) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CommunityGoalDiscard $= \"Opting out of community goal %sc(EventClass_Name), located at system %(EventClass_System)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DatalinkVoucher $= \"Scanned datalink, voucher received is worth %(EventClass_Reward) credits from %sc(EventClass_PayeeFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DataScanned $= \"Scanned data of type %sc(EventClass_Type)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Died $= \"Here lies the bones of commander %(Commander), dead and buried; Your dead and buried commander %(Commander)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Docked $= \"Docked at %(EventClass_StationName), %(EventClass_StationType) type. This is a %(EventClass_Economy_Localised) station\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockSRV $= \"Surface Recon Vehicle back on board Commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockingDenied $= \"%(EventClass_StationName) has denied docking;Docking is denied at %(EventClass_StationName)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockingGranted $= \"Commander, docking granted, proceed to landing pad %(EventClass_LandingPad)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockingRequested $= \"Sent docking request;Requested docking\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockingTimeout $= \"Too late commander, permission has been withdrawn to dock;Too to long commander, permission to dock withdrawn\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockingCancelled $= \"Docking cancelled;Cancelled docking request\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EjectCargo $= \"%iftrue(EventClass_Abandoned,\\\"Abandon\\\",\\\"Eject\\\") %(EventClass_Count) units of %(EventClass_Type) to space\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FetchRemoteModule $= \"Module %sc(EventClass_StoredItemLocalised) being retrieved, cost %(EventClass_TransferCost) credits, on ship %sc(EventClass_Ship) from storage slot %sc(EventClass_StorageSlot)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EngineerProgressRank $= \"Congratulations, you've made rank %(EventClass_Rank), with Engineer %(EventClass_Engineer)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EngineerProgressState $= \"Engineer %(EventClass_Engineer) has set your state to %(EventClass_Progress)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EngineerProgress $= \"%ifnotempty(EventClass_Progress,say_EngineerProgressState,say_EngineerProgressRank)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EngineerApply $= \"Applied blueprint %sc(EventClass_Blueprint) to ship, from Engineer %(EventClass_Engineer).  This is a level %(EventClass_Level) effect. %ifnotempty(EventClass_Override,\\\"%(EventClass_Override) was applied\\\") \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EngineerCraft $= \"Crafted blueprint %sc(EventClass_Blueprint), from Engineer %(EventClass_Engineer).  This is a level %(EventClass_Level) effect. Ready to apply \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EscapeInterdiction $= \"Evaded interdiction by %iftrue(EventClass_IsPlayer,say_EscapeInterdictionPlayer) %iffalse(EventClass_IsPlayer,say_EscapeInterdictionNPC)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EscapeInterdictionPlayer $= \"Commander %(EventClass_Interdictor)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_EscapeInterdictionNPC $= \" N P C %(EventClass_Interdictor)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FSDJump $= \"Jumping to %(EventClass_StarSystem), jump distance %round(EventClass_JumpDist,1,0.0) light years, Fuel used %round(EventClass_FuelUsed,1,0.0) tons, Fuel left %round(EventClass_FuelLevel,1,0.0) tons %ifnotempty(EventClass_Faction,say_FSDJumpFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FSDJumpFaction $= \", System controlled by %(EventClass_Faction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FuelWarning $= \"Alert commander, fuel level is low\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FuelScoop $= \"Refueled %round(EventClass_Scooped,2,0.##) tons of fuel, level is now %round(EventClass_Total,2,0.##) tons\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_HullDamage $= \"Warning Commander, Hull Damage is at %(health) %\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_HeatWarning $= \"Warning Commander, gaining heat;Its hot in here, watch out;Heating up Commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_HeatDamage $= \"Warning Commander, damage from heat sustained\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionSuccess $= \"%iftrue(EventClass_IsPlayer,say_InterdictionSuccessPlayer) %iffalse(EventClass_IsPlayer,say_InterdictionSuccessNPC)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionSuccessPlayer $= \"Interdicted Human %(EventClass_CombatRank) Commander %(EventClass_Interdicted)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionSuccessNPC $= \"Interdicted N P C %(EventClass_Interdicted) %ifnotempty(EventClass_Faction,say_InterdictedFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionFailure $= \"%iftrue(EventClass_IsPlayer,say_InterdictionFailurePlayer) %iffalse(EventClass_IsPlayer,say_InterdictionFailureNPC)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionFailurePlayer $= \"Failed to interdict Human %(EventClass_CombatRank) Commander %(EventClass_Interdicted)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictionFailureNPC $= \"Failed to inderdict N P C %(EventClass_Interdicted) %ifnotempty(EventClass_Faction,say_InterdictedFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Interdicted $= \"%iftrue(EventClass_IsPlayer,say_InterdictedPlayer) %iffalse(EventClass_IsPlayer,say_InterdictedNPC)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictedPlayer $= \"Human Commander Alert!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdiction by %(EventClass_CombatRank) Commander %(EventClass_Interdictor)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictedNPC $= \"N P C Alert!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdiction by %(EventClass_Interdictor) , %ifnotempty(EventClass_Faction,say_InterdictedFaction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictedFaction $= \", of faction %(EventClass_Faction)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_InterdictedSubmitted $= \"Submitted to \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Liftoff $= \"Liftoff from planet;Ship is free of surface\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_LaunchSRV $= \"Launch Surface Recon Vehicle with loadout %(EventClass_Loadout)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MaterialCollected $= \"Collected material %(EventClass_Name)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MaterialDiscarded $= \"Discarded material %(EventClass_Name)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MaterialDiscovered $= \"Discoveryed new material %(EventClass_Name)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MarketBuy $= \"Bought %(EventClass_Count) of %(EventClass_Type), buy price is %(EventClass_BuyPrice) credits, total cost is %(EventClass_TotalCost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MarketSell $= \"Sold %(EventClass_Count) of %(EventClass_Type), Sell price is %(EventClass_SellPrice) credits, total sale is %(EventClass_TotalSale) credits, you made %(profit) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MiningRefined $= \"Refined %(EventClass_Type)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAbandoned $= \"%sc(EventClass_Name) has been abandoned\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $= \"%sc(EventClass_Name) accepted %ifnotempty(EventClass_Faction,\\\"from faction %(EventClass_Faction),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_DestinationSystem,\\\" Mission destination is %(EventClass_DestinationSystem),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_DestinationStation,\\\" station %(EventClass_DestinationStation),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_Target,\\\" target is %(EventClass_Target),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %(EventClass_TargetFaction) faction,\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_PassengerType,\\\"taking %(EventClass_PassengerCount) passengers of type %(EventClass_PassengerType).\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_Expiry,\\\" This mission expires on %date(EventClass_Expiry,longdatetime),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionCompleted $= \"%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\\\"from faction %(EventClass_Faction),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionCompleted $+= \"%ifnotempty(EventClass_Target,\\\" target was %(EventClass_Target),\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionCompleted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %(EventClass_TargetFaction) faction,\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionCompleted $+= \"%ifnonzero(EventClass_Reward,\\\"Rewards is %(EventClass_Reward) credits,\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MissionFailed $= \"%sc(EventClass_Name) has failed\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleBuy $= \"Module %sc(EventClass_BuyItemLocalised) fitted, cost %(EventClass_BuyPrice) credits, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleBuy $+= \"%ifnotempty(EventClass_SellItemLocalised,\\\"  Sold Module %(EventClass_SellItemLocalised) for %(EventClass_SellPrice) credits.\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleSell $= \"Module %sc(EventClass_SellItemLocalised) removed, reimbursement price is %(EventClass_SellPrice) credits, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleStore $= \"Module %sc(EventClass_StoredItemLocalised) removed, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot). %ifnonzero(EventClass_Cost,\\\"Store cost is %(EventClass_Cost)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleSwap $= \"Module swap %sc(EventClass_FromItemLocalised) in %sc(EventClass_FromSlot), to %ifnotequal(EventClass_ToItem,\\\"null\\\",\\\"%sc(EventClass_ToItemLocalised) in\\\") %sc(EventClass_ToSlot)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleRetrieve $= \"Module retrieve %sc(EventClass_RetrievedItemLocalised) on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ModuleSellRemote $= \"Sold Module %sc(EventClass_SellItemLocalised) remotely on ship %sc(EventClass_Ship) to storage slot %sc(EventClass_Slot), sell price %(EventClass_SellPrice) credits.\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_MassModuleStore $= \"Store multiple modules on ship %sc(EventClass_Ship)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PayFines $= \"Paid %(EventClass_Amount) credits in fines Commander, %ifnonzero(EventClass_BrokerPercentage,\\\", with a commission to the broker of %(EventClass_BrokerPercentage) percent\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PayLegacyFines $= \"Paid %(EventClass_Amount) credits in legacy fines Commander, %ifnonzero(EventClass_BrokerPercentage,\\\", with a commision to the broker of %(EventClass_BrokerPercentage) percent\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $= \"Congratulations, you've been promoted! \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $+= \"%ifnotempty(EventClass_Combat,\\\", Combat rank to %sc(EventClass_Combat)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $+= \"%ifnotempty(EventClass_Trade,\\\", Trade rank to %sc(EventClass_Trade)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $+= \"%ifnotempty(EventClass_Explore,\\\", Explorer rank to %sc(EventClass_Explore)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $+= \"%ifnotempty(EventClass_Federation,\\\", Federation rank to %sc(EventClass_Federation)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Promotion $+= \"%ifnotempty(EventClass_Empire,\\\", Empire rank to %sc(EventClass_Empire)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PVPKill $= \"Congratulations, that scum %(EventClass_CombatRank) Commander %(EventClass_Victim) is pushing up the weeds now in heaven or hell;%(EventClass_CombatRank) Commander %(EventClass_Victim) despatched to another world\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RedeemVoucher $= \"That made %(EventClass_Amount) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Repair $= \"Repaired Ship Commander;Ship Repaired\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RepairAll $= \"Ship fully repaired, ready for action Commander;Fixed all damage\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RefuelAll $= \"Ship fully refuelled, cost %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RefuelPartial $= \"Ship partially refuelled, cost %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RestockVehicle $= \"Bought %(EventClass_Count) %(EventClass_Type) of type %(EventClass_Loadout), Cost %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Resurrect $= \"As if by magic, your alive again Commander %(Commander), cost was %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_Screenshot $= \"Screen shot captured of %(EventClass_System) system, body %(EventClass_Body)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_SellExplorationData $= \"Sold %(EventClass_Systems_Length) star systems for %(EventClass_BaseValue) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_SellExplorationDataBonus $= \", and discovered %(EventClass_Discovered_Length) bodies for %(EventClass_BaseValue) bonus credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanStar $= \"Scanned Star %(EventClass_BodyName), %(EventClass_StarType) class star, %round(EventClass_nStellarMass,1,0.#) stellar masses\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanStar $+= \", Absolute Magnitude %round(EventClass_nAbsoluteMagnitude,1,M0.#)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanStarInOrbit $+= \", Star is in orbit, period %round(period,1,0.#) days\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanet $= \"Scanned %(EventClass_BodyName), %(EventClass_PlanetClass) planet, Distance from arrival %round(EventClass_DistanceFromArrivalLS,1,#.0) light seconds, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetLandable $= \"Landable, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetTerraform $= \"Terraformable %(EventClass_TerraformState), \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetAtmosphere $= \"Atmosphere is a %(EventClass_Atmosphere), \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetVolcanism $= \"%(EventClass_Volcanism), \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetTidallyLocked $= \"Tidally locked, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetRotation $= \"Rotation Period %round(rotation,1,0.#) days, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetOrbitalPeriod $= \"Orbital Period %round(period,1,0.#) days, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetMass $= \"Mass %round(EventClass_nMassEM,3,0.###) earth masses, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetMoonMass $= \"Mass %round(moonmass,4,0.####) moon masses, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetGravity $+= \"Gravity %roundnz(gravity,1,0.#,4) gee, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetTemperature $+= \"Temperature %round(EventClass_nSurfaceTemperature,0,0.#) kelvins, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetPressure $= \"Pressure %roundnz(EventClass_nSurfacePressure,1,0.#,4) Pascals, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ScanPlanetNoSurfacePressure $= \"No surface pressure, \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_SellDrones $= \"Sold %(EventClass_Count) %(EventClass_Type) for %(EventClass_TotalSale) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_SelfDestruct $= \"Preparing for launch of escape capsule commander, vehicle self destructing\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ScientificResearch $= \"Contributed to scientific research %sc(EventClass_Name), %(EventClass_Count) items, %sc(EventClass_Category) category\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ShipyardBuy $= \"Bought ship %sc(EventClass_ShipType) at %(EventClass_ShipPrice) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_StoreOldShip,\\\", Stored ship %sc(EventClass_StoreOldShip) in hangar\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_SellOldShip,\\\", Sold ship %sc(EventClass_SellOldShip) for %(EventClass_SellPrice) credits\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ShipyardSell $= \"Sold ship %sc(EventClass_ShipType) for %(EventClass_ShipPrice) credits at system %(EventClass_System)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ShipyardNew $= \"Congratulations on buying a brand new %(EventClass_ShipType) ship\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ShipyardSwap $= \"Swapped ship %sc(EventClass_StoreOldShip) for a new ship %sc(EventClass_ShipType)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_ShipyardTransfer $= \"Ordered the transfer of ship %sc(EventClass_ShipType) to system %(EventClass_System) at %roundscale(EventClass_Distance,2,0.##,4,1.05772e-16) light years, cost will be %(EventClass_TransferPrice) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_SupercruiseEntry $= \"Warp engines on;Supercruise engaged\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_SupercruiseExit $= \"Exiting supercruise;Normal space commander;Warp engines off, Impulse engaged\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_shieldsdown $= \"Alert shields are down, evasive manoeuvres;Shields are down;Danger no shields, run\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_shieldsup $= \"Shields restored;Shields back on line commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Synthesis $= \"Synthesis of %sc(EventClass_Name) performed\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_textrx $= \"Text received from %(EventClass_From), %(EventClass_Message)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Touchdown $= \";Landing successful commander at Lattitude %round(EventClass_Latitude,2,M0.##) , Longitude %round(EventClass_Longitude,2,M0.##); , well done commander; , Engines off; , Prepare for surface operations\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_Undocked $= \"Undocked from %(EventClass_StationName) fly safe commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_USSDrop $= \"Dropped into U S S type %(EventClass_USSTypeLocalised), threat level is %(EventClass_USSThreat)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_VehicleSwitch $= \"Switching to %sc(EventClass_To)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_WingAdd $= \"Commander %sc(EventClass_Name) has joined the wing\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_WingJoin $= \"Joined wing with Commander %expandarray(EventClass_Others,\\\", Commander \\\", 0, 32)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_WingLeave $= \"Leaving wing Commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_BuyTradeData $= \"Bought trade data for system %(EventClass_System), cost %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CapShipBond $= \"Reward for capital ship combat from faction %sc(EventClass_AwardingFaction) against %sc(EventClass_VictimFaction), %(EventClass_Reward) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CrewAssign $= \"Crew member %(EventClass_Name), %ifequal(EventClass_Role,\\\"Active\\\",\\\" reporting for duty\\\",\\\" placed on %(EventClass_Role)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CrewFire $= \";Crew member %(EventClass_Name) ;fired;dismissed;is paid off, goodbye\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_CrewHire $= \";Hired new crew member %(EventClass_Name) %ifnotempty(EventClass_Faction,\\\", of faction %(EventClass_Faction)\\\"), rank %(EventClass_CombatRank), costing %(EventClass_Cost) credits; welcome to the team; welcome onboard\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DatalinkScan $= \"Scanned data link, %(EventClass_MessageLocalised)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_DockFighter $= \"Fighter docked with mothership Commander;Fighter back on board;Fighter docked succesfully, Commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FactionKillBond $= \"Reward for combat from faction %sc(EventClass_AwardingFaction) against %sc(EventClass_VictimFaction), %(EventClass_Reward) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_JetConeBoost $= \"Frame Shift Drive super charged by %round(EventClass_BoostValue,2,0.##) times; Drive boosted by %round(EventClass_BoostValue,2,0.##) times\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_JetConeDamage $= \";Alert Commander, neutron star jet cone has damaged module %(EventClass_Localised),; Take immediate evasive manoeuvre; Escape from cone immediately\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_LaunchFighter $= \"Fighter is launching commander, %iftrue(EventClass_PlayerControlled,\\\" prepare to take controls\\\", \\\" crew member is taking command\\\") \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_RebootRepair $= \"Rebooting and repairing modules %expandarray(EventClass_Modules,\\\", \\\",0,20,splitcaps)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_SendText $= \"Text sent to %(EventClass_To) commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayCollect $= \"Collected power play commodities for delivery for %(EventClass_Power), %sc(EventClass_Type), %(EventClass_Count) items\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayDefect $= \"Defecting from %(EventClass_FromPower) to %(EventClass_ToPower)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayDeliver $= \"Delivering power play commodities for power %(EventClass_Power), %sc(EventClass_Type), %(EventClass_Count) items\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayFastTrack $= \"Fast track payment to power %(EventClass_Power), cost is %(EventClass_Cost) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayJoin $= \"Joining %(EventClass_Power), good luck commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayLeave $= \"Leaving %(EventClass_Power)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplaySalary $= \"Power play salary received from %(EventClass_Power) of %(EventClass_Amount) credits\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayVote $= \"Voted for power %(EventClass_Power) to take over system %(EventClass_System), votes are currently %(EventClass_Votes)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_PowerplayVoucher $= \"Reward for Power Play combat from %(EventClass_power) in systems %expandarray(EventClass_Systems,\\\", \\\",0,20,splitcaps)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "English Language Selected",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Enabled": true,
+  "Install": [
+    {
+      "var": "LongDescription",
+      "value": "This is the first edition of the voice pack for EDD version 6.\\r\\n\\r\\nIt vocalises most events which are received, and welcomes you at the start and exit of the program.  \\r\\n\\r\\nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\\r\\n\\r\\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\\r\\nThe ED Discovery team hope you enjoy this new feature.\\r\\n\\r\\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\\r\\n\\r\\n"
+    },
+    {
+      "var": "ShortDescription",
+      "value": "Voice file for ED"
+    },
+    {
+      "var": "Version",
+      "value": "0.9.0.0"
+    },
+    {
+      "var": "MinEDVersion",
+      "value": "5.0.0.0"
+    },
+    {
+      "var": "Location",
+      "value": "Actions"
+    }
+  ]
+}
