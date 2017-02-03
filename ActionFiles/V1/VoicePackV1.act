@@ -2307,7 +2307,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_Docked $= \"Docked at %(EventClass_StationName), %(EventClass_StationType) type. This is a %(EventClass_Economy_Localised) station\"",
+            "StepUC": "say_Docked $= \"Docked at %(EventClass_StationName), %ifnotempty(EventClass_StationType,\\\"%(EventClass_StationType) type\\\"). This is a %(EventClass_Economy_Localised) station\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2355,7 +2355,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_FetchRemoteModule $= \"Module %sc(EventClass_StoredItemLocalised) being retrieved, cost %(EventClass_TransferCost) credits, on ship %sc(EventClass_Ship) from storage slot %sc(EventClass_StorageSlot)\"",
+            "StepUC": "say_FetchRemoteModule $= \"Module %sc(EventClass_StoredItemLocalised) being retrieved, cost %(EventClass_TransferCost) credits, on ship %ship(EventClass_Ship) from storage slot %sc(EventClass_StorageSlot)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2643,7 +2643,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ModuleBuy $= \"Module %sc(EventClass_BuyItemLocalised) fitted, cost %(EventClass_BuyPrice) credits, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepUC": "say_ModuleBuy $= \"Module %sc(EventClass_BuyItemLocalised) fitted, cost %(EventClass_BuyPrice) credits, on ship %ship(EventClass_Ship) in %sc(EventClass_Slot).\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2655,13 +2655,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ModuleSell $= \"Module %sc(EventClass_SellItemLocalised) removed, reimbursement price is %(EventClass_SellPrice) credits, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepUC": "say_ModuleSell $= \"Module %sc(EventClass_SellItemLocalised) removed, reimbursement price is %(EventClass_SellPrice) credits, on ship %ship(EventClass_Ship) in %sc(EventClass_Slot).\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ModuleStore $= \"Module %sc(EventClass_StoredItemLocalised) removed, on ship %sc(EventClass_Ship) in %sc(EventClass_Slot). %ifnonzero(EventClass_Cost,\\\"Store cost is %(EventClass_Cost)\\\")\"",
+            "StepUC": "say_ModuleStore $= \"Module %sc(EventClass_StoredItemLocalised) removed, on ship %ship(EventClass_Ship) in %sc(EventClass_Slot). %ifnonzero(EventClass_Cost,\\\"Store cost is %(EventClass_Cost)\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2673,19 +2673,19 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ModuleRetrieve $= \"Module retrieve %sc(EventClass_RetrievedItemLocalised) on ship %sc(EventClass_Ship) in %sc(EventClass_Slot).\"",
+            "StepUC": "say_ModuleRetrieve $= \"Module retrieve %sc(EventClass_RetrievedItemLocalised) on ship %ship(EventClass_Ship) in %sc(EventClass_Slot).\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ModuleSellRemote $= \"Sold Module %sc(EventClass_SellItemLocalised) remotely on ship %sc(EventClass_Ship) to storage slot %sc(EventClass_Slot), sell price %(EventClass_SellPrice) credits.\"",
+            "StepUC": "say_ModuleSellRemote $= \"Sold Module %sc(EventClass_SellItemLocalised) remotely on ship %ship(EventClass_Ship) to storage slot %sc(EventClass_Slot), sell price %(EventClass_SellPrice) credits.\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MassModuleStore $= \"Store multiple modules on ship %sc(EventClass_Ship)\"",
+            "StepUC": "say_MassModuleStore $= \"Store multiple modules on ship %ship(EventClass_Ship)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2925,25 +2925,25 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ShipyardBuy $= \"Bought ship %sc(EventClass_ShipType) at %(EventClass_ShipPrice) credits\"",
+            "StepUC": "say_ShipyardBuy $= \"Bought ship %ship(EventClass_ShipType) at %(EventClass_ShipPrice) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_StoreOldShip,\\\", Stored ship %sc(EventClass_StoreOldShip) in hangar\\\")\"",
+            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_StoreOldShip,\\\", Stored ship %ship(EventClass_StoreOldShip) in hangar\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_SellOldShip,\\\", Sold ship %sc(EventClass_SellOldShip) for %(EventClass_SellPrice) credits\\\")\"",
+            "StepUC": "say_ShipyardBuy $+= \"%ifnotempty(EventClass_SellOldShip,\\\", Sold ship %ship(EventClass_SellOldShip) for %(EventClass_SellPrice) credits\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ShipyardSell $= \"Sold ship %sc(EventClass_ShipType) for %(EventClass_ShipPrice) credits at system %(EventClass_System)\"",
+            "StepUC": "say_ShipyardSell $= \"Sold ship %ship(EventClass_ShipType) for %(EventClass_ShipPrice) credits at system %(EventClass_System)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2955,13 +2955,13 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_ShipyardSwap $= \"Swapped ship %sc(EventClass_StoreOldShip) for a new ship %sc(EventClass_ShipType)\"",
+            "StepUC": "say_ShipyardSwap $= \"Swapped ship %ship(EventClass_StoreOldShip) for a new ship %ship(EventClass_ShipType)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "global",
-            "StepUC": "say_ShipyardTransfer $= \"Ordered the transfer of ship %sc(EventClass_ShipType) to system %(EventClass_System) at %roundscale(EventClass_Distance,2,0.##,4,1.05772e-16) light years, cost will be %(EventClass_TransferPrice) credits\"",
+            "StepUC": "say_ShipyardTransfer $= \"Ordered the transfer of ship %ship(EventClass_ShipType) to system %(EventClass_System) at %roundscale(EventClass_Distance,2,0.##,4,1.05772e-16) light years, cost will be %(EventClass_TransferPrice) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3197,11 +3197,11 @@
     },
     {
       "var": "Version",
-      "value": "0.9.0.0"
+      "value": "1.0.0.0"
     },
     {
       "var": "MinEDVersion",
-      "value": "5.0.0.0"
+      "value": "6.0.0.0"
     },
     {
       "var": "Location",
