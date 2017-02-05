@@ -2301,7 +2301,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_Died $= \"Here lies the bones of commander %(Commander), dead and buried; Your dead and buried commander %(Commander)\"",
+            "StepUC": "say_Died $= \"Here lies the bones of commander %(Commander), dead and buried; Your dead and buried commander %(Commander);I'll send for the under taker commander %(Commander);Ashes to ashes, dust to dust, your toast Commander %(Commander)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3176,8 +3176,14 @@
             "StepWhitespace": 1
           },
           {
+            "StepName": "Global",
+            "StepUC": "SpeechDefinitionFile = SetUpLanguageEnglish",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
             "StepName": "Print",
-            "StepUC": "English Language Selected",
+            "StepUC": "English Language Selected!",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           }
@@ -3197,7 +3203,7 @@
     },
     {
       "var": "Version",
-      "value": "1.0.0.0"
+      "value": "1.0.0.1"
     },
     {
       "var": "MinEDVersion",
