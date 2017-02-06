@@ -1670,12 +1670,6 @@
         "Name": "GenericResponse",
         "Steps": [
           {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars Speech*",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
-          {
             "StepName": "Set",
             "StepUC": "v = say_%(EventJS_event)",
             "StepLevelUp": 0,
@@ -1710,12 +1704,6 @@
       {
         "Name": "ReceiveText",
         "Steps": [
-          {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars *",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
           {
             "StepName": "If",
             "StepUC": "EventJS_Channel NotContains npc",
@@ -1855,18 +1843,6 @@
       {
         "Name": "Scan",
         "Steps": [
-          {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars EventClass*",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
-          {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars say_Scan*",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
           {
             "StepName": "if",
             "StepUC": "%(EventClass_IsStar) IsTrue",
@@ -2105,12 +2081,6 @@
       {
         "Name": "SellExplorationData",
         "Steps": [
-          {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars E*",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
           {
             "StepName": "Say",
             "StepUC": "\"%expand(say_SellExplorationData)\"",
@@ -3203,7 +3173,7 @@
     },
     {
       "var": "Version",
-      "value": "1.0.0.1"
+      "value": "1.0.0.2"
     },
     {
       "var": "MinEDVersion",
