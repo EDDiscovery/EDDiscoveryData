@@ -1,0 +1,96 @@
+{
+  "Conditions": {
+    "FilterSet": [
+      {
+        "EventName": "ShieldState",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "file=RedAlert.mp3",
+        "Filters": [
+          {
+            "Item": "EventClass_ShieldsUp",
+            "Content": "",
+            "Matchtype": "IsFalse"
+          }
+        ]
+      },
+      {
+        "EventName": "HullDamage",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "GenericResponse",
+        "ActionData": "file=RedAlert.mp3",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      }
+    ]
+  },
+  "Programs": {
+    "ProgramSet": [
+      {
+        "Name": "ShieldState",
+        "Steps": [
+          {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars *",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "play %(SoundEffectPath)\\%(TriggerName).mp3",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Play",
+            "StepUC": "%(SoundEffectPath)\\%(TriggerName).mp3, EchoMix=50,EchoFeedback=50,EchoDelay=100",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "GenericResponse",
+        "Steps": [
+          {
+            "StepName": "Play",
+            "StepUC": "%(SoundEffectPath)\\%(file)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Enabled": false,
+  "Install": [
+    {
+      "var": "LongDescription",
+      "value": "Experimental sound effects file.  Set a global SoundEffectPath to the location of the MP3 files"
+    },
+    {
+      "var": "ShortDescription",
+      "value": "Experimental sound effect"
+    },
+    {
+      "var": "Version",
+      "value": "0.1.0.0"
+    },
+    {
+      "var": "MinEDVersion",
+      "value": "6.0.1.0"
+    },
+    {
+      "var": "Location",
+      "value": "Actions"
+    }
+  ]
+
+}
