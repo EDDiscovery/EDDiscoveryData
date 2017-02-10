@@ -1698,6 +1698,12 @@
             "StepUC": "%indirect(v)",
             "StepLevelUp": 0,
             "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Returned",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
           }
         ]
       },
@@ -1850,6 +1856,12 @@
             "StepWhitespace": 0
           },
           {
+            "StepName": "Pragma",
+            "StepUC": "DumpVars *",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
             "StepName": "print",
             "StepUC": "%(say_ScanStar)",
             "StepLevelUp": 0,
@@ -1863,7 +1875,7 @@
           },
           {
             "StepName": "if",
-            "StepUC": "%(EventClass_nOrbitalPeriod) > 0",
+            "StepUC": "EventClass_nOribitalPeriod IsPresent And EventClass_nOribitalPeriod IsNotEmpty And EventClass_nOribitalPeriod > 0",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3173,7 +3185,7 @@
     },
     {
       "var": "Version",
-      "value": "1.0.0.2"
+      "value": "1.0.0.5"
     },
     {
       "var": "MinEDVersion",
