@@ -2391,7 +2391,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_FSDJump $= \"Jumping to %(EventClass_StarSystem), jump distance %round(EventClass_JumpDist,1,0.0) light years, Fuel used %round(EventClass_FuelUsed,1,0.0) tons, Fuel left %round(EventClass_FuelLevel,1,0.0) tons %ifnotempty(EventClass_Faction,say_FSDJumpFaction)\"",
+            "StepUC": "say_FSDJump $= \"Arrived at %(EventClass_StarSystem), jump distance %round(EventClass_JumpDist,1,0.0) light years, Fuel used %round(EventClass_FuelUsed,1,0.0) tons, Fuel left %round(EventClass_FuelLevel,1,0.0) tons %ifnotempty(EventClass_Faction,say_FSDJumpFaction)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2805,7 +2805,7 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_ScanPlanet $= \"Scanned %(EventClass_BodyName), %(EventClass_PlanetClass) planet, Distance from arrival %round(EventClass_DistanceFromArrivalLS,1,#.0) light seconds, \"",
+            "StepUC": "say_ScanPlanet $= \"Scanned %(EventClass_BodyName), %(EventClass_PlanetClass), Distance from arrival %round(EventClass_DistanceFromArrivalLS,1,#.0) light seconds, \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3185,7 +3185,7 @@
     },
     {
       "var": "Version",
-      "value": "1.0.0.5"
+      "value": "1.0.1.0"
     },
     {
       "var": "MinEDVersion",
