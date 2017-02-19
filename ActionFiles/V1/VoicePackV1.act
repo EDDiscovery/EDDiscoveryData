@@ -1856,12 +1856,6 @@
             "StepWhitespace": 0
           },
           {
-            "StepName": "Pragma",
-            "StepUC": "DumpVars *",
-            "StepLevelUp": 0,
-            "StepWhitespace": 0
-          },
-          {
             "StepName": "print",
             "StepUC": "%(say_ScanStar)",
             "StepLevelUp": 0,
@@ -3185,7 +3179,7 @@
     },
     {
       "var": "Version",
-      "value": "1.0.1.0"
+      "value": "1.0.5.0"
     },
     {
       "var": "MinEDVersion",
