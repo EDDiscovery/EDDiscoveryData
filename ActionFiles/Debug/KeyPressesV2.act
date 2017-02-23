@@ -1,0 +1,1049 @@
+{
+  "Conditions": {
+    "FilterSet": [
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=topmost",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Alt+F1",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=normalz",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Alt+F2",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=showintaskbar",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Alt+F3",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=notshowintaskbar",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Alt+F4",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=ConfigureVoice",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Alt+F8",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab history\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+1",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab journal\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+2",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab Trilateration\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+3",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab screenshots\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+4",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab route\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+5",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab routes/expeditions\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+6",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab Export/Import\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+7",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ProgramWindow",
+        "ActionData": "cmd=\"tab Settings\"",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+8",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePanel",
+        "ActionData": "panel=bottom",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+comma",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=stardistance",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+D",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=exploration",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+E",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=ManageAddOns",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+F6",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=ledger",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+G",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=travelhistory",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+H",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=screenshot",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+I",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=journalhistory",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+J",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=log",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+L",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=materials",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+M",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=notepanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+N",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=commodities",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+O",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=scan",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+P",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePanel",
+        "ActionData": "panel=bottom-right",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+Period",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=stats",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+Q",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePanel",
+        "ActionData": "panel=middle-right",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+Question",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=routetracker",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+R",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=spanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+S",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "TogglePopout",
+        "ActionData": "panel=trippanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Ctrl+T",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "CurrentEvent",
+        "ActionData": "Command=Ross",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F10",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=edsm",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F11",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=Refresh",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F12",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=2dmap",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F2",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=3dmap",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F3",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "LastAction",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F5",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=EditAddOns",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F8",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "CurrentEvent",
+        "ActionData": "Command=edsm",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "F9a",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=stardistance",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+D",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=exploration",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+E",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=ledger",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+G",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=travelhistory",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+H",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=screenshot",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+I",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=journalhistory",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+J",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=log",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+L",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=materials",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+M",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=notepanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+N",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=commodities",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+O",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=scan",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+P",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=stats",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+Q",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=routetracker",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+R",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=spanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+S",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "ToggleMinimise",
+        "ActionData": "panel=trippanel",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+Ctrl+T",
+            "Matchtype": "Equals"
+          }
+        ]
+      },
+      {
+        "EventName": "onKeyPress",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Perform",
+        "ActionData": "Perform=editlasttext",
+        "Filters": [
+          {
+            "Item": "KeyPress",
+            "Content": "Shift+F8",
+            "Matchtype": "Equals"
+          }
+        ]
+      }
+    ]
+  },
+  "Programs": {
+    "ProgramSet": [
+      {
+        "Name": "TogglePopout",
+        "Steps": [
+          {
+            "StepName": "if",
+            "StepUC": "KeyPanel NotPresent Or KeyPanel $== Complete",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel)1 status",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(P_Exists) IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel)1 toggle",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel) toggle",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "else",
+            "StepUC": "",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Pragma",
+            "StepUC": "ignoreerrors",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Historytab",
+            "StepUC": "%(KeyPanel) %(panel)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "LastError NotPresent",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Switch panel %(panel) to %(KeyPanel)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "KeyPanel = Complete",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "ToggleMinimise",
+        "Steps": [
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel)1 status",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Pop Minimize %(panel) %(P_Exists)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(P_Exists) IsTrue",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(P_WindowState) $== Minimized",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel)1 normal",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Popout",
+            "StepUC": "%(panel)1 minimize",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "TogglePanel",
+        "Steps": [
+          {
+            "StepName": "Global",
+            "StepUC": "KeyPanel = %(panel)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "Perform",
+        "Steps": [
+          {
+            "StepName": "Perform",
+            "StepUC": "%(Perform)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "LastEvent",
+        "Steps": [
+          {
+            "StepName": "Event",
+            "StepUC": "THPOS",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(EC_JID) != 0",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Event",
+            "StepUC": "FROM %(EC_JID) %(Command)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "CurrentEvent",
+        "Steps": [
+          {
+            "StepName": "Event",
+            "StepUC": "THPOS",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(EC_JID) != 0",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Event",
+            "StepUC": "FROM %(EC_JID) %(Command)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "End of CurrentEvent",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "LastAction",
+        "Steps": [
+          {
+            "StepName": "Event",
+            "StepUC": "THPOS",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "%(EC_JID) $!= 0",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Event",
+            "StepUC": "FROM %(EC_JID) ACTION",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "ProgramWindow",
+        "Steps": [
+          {
+            "StepName": "ProgramWindow",
+            "StepUC": "%(cmd)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      }
+    ]
+  },
+  "Enabled": true,
+  "Install": [
+    {
+      "var": "LongDescription",
+      "value": "This is the standard keyboard pack for ED Discovery, Version 2.\\r\\n\\r\\nIt adds control key functions to control the pop ups and the three configurable views on the travel page\\r\\n\\r\\nIt adds new function key mappings as well.\\r\\n\\r\\nSee the EDDiscovery help for keyboard mappings\\r\\n\\r\\nEnjoy!\\r\\n\\r\\n"
+    },
+    {
+      "var": "ShortDescription",
+      "value": "Key Definition file"
+    },
+    {
+      "var": "Version",
+      "value": "2.0.0.0"
+    },
+    {
+      "var": "MinEDVersion",
+      "value": "6.1.0.0"
+    },
+    {
+      "var": "Location",
+      "value": "Actions"
+    }
+  ]
+}

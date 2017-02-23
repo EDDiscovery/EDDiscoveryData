@@ -28,6 +28,48 @@
             "Matchtype": "AlwaysTrue"
           }
         ]
+      },
+      {
+        "EventName": "onInstall",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "onInstall",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "onStartup",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "onStartup",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "",
+            "Content": "",
+            "Matchtype": "AlwaysTrue"
+          }
+        ]
+      },
+      {
+        "EventName": "onMenuItem",
+        "ICond": "Or",
+        "OCond": "Or",
+        "Actions": "Menus",
+        "ActionData": "",
+        "Filters": [
+          {
+            "Item": "MenuName",
+            "Content": "WaveMenu",
+            "Matchtype": "Contains"
+          }
+        ]
       }
     ]
   },
@@ -60,8 +102,136 @@
         "Name": "GenericResponse",
         "Steps": [
           {
+            "StepName": "If",
+            "StepUC": "SoundEffectPath IsPresent",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
             "StepName": "Play",
             "StepUC": "%(SoundEffectPath)\\%(file)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "onInstall",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "(InstallList Contains SoundEffects) Or (InstallList Contains SoundBlaster)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Installing Sound Blaster Pack",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "FileDialog",
+            "StepUC": "folder,\"Enter the folder where the MP3s are stored\",MyComputer",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "If",
+            "StepUC": "FolderName IsNotEmpty",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "PersistentGlobal",
+            "StepUC": "SoundEffectPath = %(FolderName)",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Say",
+            "StepUC": "\"Sound Blaster pack installed\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Call",
+            "StepUC": "Initialise",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Else",
+            "StepUC": "",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "DeleteVariable",
+            "StepUC": "SoundEffectPath",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "MessageBox",
+            "StepUC": "\"Sound Effect Path is not set.\\r\\nThis will disable the sound blaster pack\",\"WARNING Path not set\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "onStartup",
+        "Steps": [
+          {
+            "StepName": "Call",
+            "StepUC": "Initialise",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "Initialise",
+        "Steps": [
+          {
+            "StepName": "MenuItem",
+            "StepUC": "WaveMenuConfigureWave,add-ons,\"Configure Sound Blaster\",speaker",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "MenuItem",
+            "StepUC": "WaveMenuShowHelp,help,\"Sound Blaster\",speaker",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          }
+        ]
+      },
+      {
+        "Name": "Menus",
+        "Steps": [
+          {
+            "StepName": "If",
+            "StepUC": "MenuName Contains ConfigureWave",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Perform",
+            "StepUC": "ConfigureWave \"Configure Sound Blaster Defaults\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "If",
+            "StepUC": "MenuName Contains ShowHelp",
+            "StepLevelUp": 1,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "MessageBox",
+            "StepUC": "\"Soubd Blaster V1 (C) ED Discovery team\\r\\n\\r\\nUse Add-Ons | Manage to enable or disable this\\r\\nUse the speech and wave menu items in the Add-Ons menu to configure defaults\",\"Sound Blaster Pack\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           }
@@ -69,11 +239,11 @@
       }
     ]
   },
-  "Enabled": false,
+  "Enabled": true,
   "Install": [
     {
       "var": "LongDescription",
-      "value": "Experimental sound effects file.  Set a global SoundEffectPath to the location of the MP3 files"
+      "value": "Experimental sound effects file. More to come."
     },
     {
       "var": "ShortDescription",
@@ -92,5 +262,4 @@
       "value": "Actions"
     }
   ]
-
 }
