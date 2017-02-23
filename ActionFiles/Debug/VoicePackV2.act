@@ -4215,7 +4215,7 @@
   "Install": [
     {
       "var": "LongDescription",
-      "value": "This is the second edition of the voice pack for EDD, for version 6.1+\\r\\n\\n***This will disable all previous voice packs***\\r\\n\\r\\n\\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \\nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\\r\\n\\r\\n\\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\\r\\n\\r\\n\\nThe ED Discovery team hope you enjoy this feature.\\r\\n\\r\\n\\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery."
+      "value": "This is the second edition of the voice pack for EDD, for version 6.1+\\r\\n***This will disable all previous voice packs***\\r\\n\\r\\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \\nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\\r\\n\\r\\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\\r\\n\\r\\nThe ED Discovery team hope you enjoy this feature.\\r\\n\\r\\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery."
     },
     {
       "var": "ShortDescription",

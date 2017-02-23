@@ -188,6 +188,12 @@
             "StepUC": "Initialise",
             "StepLevelUp": 0,
             "StepWhitespace": 0
+          },
+          {
+            "StepName": "Print",
+            "StepUC": "Sound Blaster pack installed",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
           }
         ]
       },
