@@ -2697,7 +2697,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanstarinfo $= \"%(type) %(name), Type %(startype), Mass %roundnz(mass,1,0.#,4), %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
+            "StepUC": "say_edsmscanstarinfo $= \"%(type) %(name), Type %(startype), Mass %roundnz(mass,1,0.#,4) Sols, %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2715,13 +2715,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscannoinfo $= \"No information on system. \"",
+            "StepUC": "say_edsmscannoinfo $= \"No other information on system. \"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanbodystarinfo $= \"%(pname), %sc(stype), stellar mass %roundnz(mass,1,0.#,4). \"",
+            "StepUC": "say_edsmscanbodystarinfo $= \"%(pname), %sc(stype), mass %roundnz(mass,1,0.#,4) Sols. \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2818,6 +2818,12 @@
           {
             "StepName": "Global",
             "StepUC": "say_EscapeInterdictionNPC $= \" N P C %(EventClass_Interdictor)\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FuelScoop $= \"Refueled %round(EventClass_Scooped,2,0.##) tons of fuel, level is now %round(EventClass_Total,2,0.##) tons\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3507,7 +3513,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_SupercruiseExit $= \"Exiting supercruise;Normal space commander;Warp engines off, Impulse engaged\"",
+            "StepUC": "say_SupercruiseExit $= \"{Exiting supercruise;Normal space commander;Warp engines off, Impulse engaged}%ifnotempty(EventClass_BodyType,\\\", Arrived at %sc(EventClass_BodyType)\\\")%ifnotempty(EventClass_Body,\\\", %sc(EventClass_Body)\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3643,7 +3649,7 @@
           },
           {
             "StepName": "Timer",
-            "StepUC": "ScanDelay,\"%eval(\\\"%random(10)*10+200\\\")\"",
+            "StepUC": "ScanDelay,\"%eval(\\\"%random(10)*1000+2000\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -4223,7 +4229,7 @@
     },
     {
       "var": "Version",
-      "value": "2.0.0.0"
+      "value": "2.0.1.0"
     },
     {
       "var": "MinEDVersion",
