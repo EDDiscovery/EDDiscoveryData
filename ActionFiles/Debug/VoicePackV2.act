@@ -1989,7 +1989,7 @@
           },
           {
             "StepName": "Set",
-            "StepUC": "speech += %expand(say_FuelWarning)",
+            "StepUC": "speech += %expand(say_FSDJumpFuelWarning)",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2529,7 +2529,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_Bounty $= \"Bounty for that ship is %(EventClass_TotalReward) credits, faction was %(EventClass_VictimFaction)\"",
+            "StepUC": "say_Bounty $= \"Bounty for that ship is %(EventClass_TotalReward) credits, faction was %rs(EventClass_VictimFaction,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2541,7 +2541,7 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_BuyExplorationData $= \"Bought map of star system %(EventClass_System) for %(EventClass_Cost) credits\"",
+            "StepUC": "say_BuyExplorationData $= \"Bought map of star system %rs(EventClass_System,say_ss) for %(EventClass_Cost) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2553,13 +2553,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_BuyTradeData $= \"Bought trade data for system %(EventClass_System), cost %(EventClass_Cost) credits\"",
+            "StepUC": "say_BuyTradeData $= \"Bought trade data for system %rs(EventClass_System,say_ss), cost %(EventClass_Cost) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CapShipBond $= \"Reward for capital ship combat from faction %sc(EventClass_AwardingFaction) against %sc(EventClass_VictimFaction), %(EventClass_Reward) credits\"",
+            "StepUC": "say_CapShipBond $= \"Reward for capital ship combat from faction %rs(EventClass_AwardingFaction,say_ss) against %rs(EventClass_VictimFaction,say_ss), %(EventClass_Reward) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2577,31 +2577,31 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CommitCrimeFine $= \"Fine committed commander, %sc(EventClass_CrimeType) on %sc(EventClass_Faction), cost %(EventClass_Fine) credits\"",
+            "StepUC": "say_CommitCrimeFine $= \"Fine committed commander, %sc(EventClass_CrimeType) on %rs(EventClass_Faction,say_ss), cost %(EventClass_Fine) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CommitCrimeBounty $= \"Crime committed commander, %sc(EventClass_CrimeType) on %sc(EventClass_Faction), bounty on you is %(EventClass_Bounty) credits\"",
+            "StepUC": "say_CommitCrimeBounty $= \"Crime committed commander, %sc(EventClass_CrimeType) on %rs(EventClass_Faction,say_ss), bounty on you is %(EventClass_Bounty) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CommunityGoalJoin $= \"Joining the community goal %sc(EventClass_Name), located at system %(EventClass_System)\"",
+            "StepUC": "say_CommunityGoalJoin $= \"Joining the community goal %sc(EventClass_Name), located at system %rs(EventClass_System,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CommunityGoalReward $= \"Community goal %sc(EventClass_Name), located at system %(EventClass_System), rewarded you with %(EventClass_Reward) credits\"",
+            "StepUC": "say_CommunityGoalReward $= \"Community goal %sc(EventClass_Name), located at system %rs(EventClass_System,say_ss), rewarded you with %(EventClass_Reward) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CommunityGoalDiscard $= \"Opting out of community goal %sc(EventClass_Name), located at system %(EventClass_System)\"",
+            "StepUC": "say_CommunityGoalDiscard $= \"Opting out of community goal %sc(EventClass_Name), located at system %rs(EventClass_System,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2619,13 +2619,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_CrewHire $= \"{Hired new crew member %(EventClass_Name) %ifnotempty(EventClass_Faction,\\\", of faction %(EventClass_Faction)\\\"), rank %(EventClass_CombatRank), costing %(EventClass_Cost) credits}welcome to the team;welcome onboard\"",
+            "StepUC": "say_CrewHire $= \"{Hired new crew member %(EventClass_Name) %ifnotempty(EventClass_Faction,\\\", of faction %rs(EventClass_Faction,say_ss)\\\"), rank %(EventClass_CombatRank), costing %(EventClass_Cost) credits}welcome to the team;welcome onboard\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
           {
             "StepName": "Global",
-            "StepUC": "say_DatalinkVoucher $= \"Scanned datalink, voucher received is worth %(EventClass_Reward) credits from %sc(EventClass_PayeeFaction)\"",
+            "StepUC": "say_DatalinkVoucher $= \"Scanned datalink, voucher received is worth %(EventClass_Reward) credits from %rs(EventClass_PayeeFaction,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2643,7 +2643,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_Docked $= \"Docked at %(EventClass_StationName), %ifnotempty(EventClass_StationType,\\\"%(EventClass_StationType) type\\\"). This is a %(EventClass_Economy_Localised) station\"",
+            "StepUC": "say_Docked $= \"{Docked at %(EventClass_StationName), %ifnotempty(EventClass_StationType,\\\"%(EventClass_StationType) type\\\").}This is a %(EventClass_Economy_Localised) station;Station economy is %(EventClass_Economy_Localised)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2697,19 +2697,19 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanstarinfo $= \"%(type) %(name), Type %(startype), Mass %roundnz(mass,1,0.#,4) Sols, %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
+            "StepUC": "say_edsmscanstarinfo $= \"%(type) %rs(name,say_ss), Type %(startype), Mass %roundnz(mass,1,0.#,4) Sols, %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanstarnoinfo $= \"No information on %(type) %(ownname), %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
+            "StepUC": "say_edsmscanstarnoinfo $= \"No information on %(type) %rs(ownname,say_ss), %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanstarbarycentre $= \"Barycentre %(ownname), %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
+            "StepUC": "say_edsmscanstarbarycentre $= \"Barycentre %rs(ownname,say_ss), %ifnonzero(planets,\\\" %(planets) planets\\\"). \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2721,13 +2721,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanbodystarinfo $= \"%(pname), %sc(stype), mass %roundnz(mass,1,0.#,4) Sols. \"",
+            "StepUC": "say_edsmscanbodystarinfo $= \"%rs(pname,say_ss), %sc(stype), mass %roundnz(mass,1,0.#,4) Sols. \"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscanbodyinfo $= \"%(pname), %(terraform)%(class)%ifnotcontains(landable,\\\"Not \\\",\\\", Landable\\\")\"",
+            "StepUC": "say_edsmscanbodyinfo $= \"%rs(pname,say_ss), %(terraform)%(class)%ifnotcontains(landable,\\\"Not \\\",\\\", Landable\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2769,7 +2769,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_FactionKillBond $= \"Reward for combat from faction %sc(EventClass_AwardingFaction) against %sc(EventClass_VictimFaction), %(EventClass_Reward) credits\"",
+            "StepUC": "say_FactionKillBond $= \"Reward for combat from faction %rs(EventClass_AwardingFaction,say_ss) against %rs(EventClass_VictimFaction,say_ss), %(EventClass_Reward) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2829,7 +2829,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_FSDJump $= \"Arrived at %(EventClass_StarSystem), %(visit)%ifnonzero(EventEDDBPopulation,\\\"Populated, \\\") jump distance %round(EventClass_JumpDist,1,0.0) light years\"",
+            "StepUC": "say_FSDJump $= \"Arrived at %rs(EventClass_StarSystem,say_ss), %(visit)%ifnonzero(EventEDDBPopulation,\\\"Populated, \\\") jump distance %round(EventClass_JumpDist,1,0.0) light years\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2847,7 +2847,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_FSDJumpFaction $= \", System controlled by %(EventClass_Faction) %ifnotempty(EventClass_FactionState,\\\"in %(EventClass_FactionState)\\\")\"",
+            "StepUC": "say_FSDJumpFaction $= \", System controlled by %rs(EventClass_Faction,say_ss) %ifnotempty(EventClass_FactionState,\\\"in %(EventClass_FactionState)\\\")\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_FSDJumpFuelWarning $= \"Alert commander, fuel level is low;Fuel level is low;Warning, running low on gas here\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2859,7 +2865,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_HullDamage $= \"Warning Commander, Hull Damage is at %(health) %\"",
+            "StepUC": "say_HullDamage $= \"{Warning Commander, ;Commander, Alert, }Hull Damage is at %(health) %\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -2871,7 +2877,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_HeatDamage $= \"Warning Commander, damage from heat sustained\"",
+            "StepUC": "say_HeatDamage $= \"Warning Commander, damage from heat sustained;Heat damage sustained\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -2931,7 +2937,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_InterdictedFaction $= \", of faction %(EventClass_Faction)\"",
+            "StepUC": "say_InterdictedFaction $= \", of faction %rs(EventClass_Faction,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3015,13 +3021,13 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MissionAccepted $= \"%sc(EventClass_Name) accepted %ifnotempty(EventClass_Faction,\\\"from faction %(EventClass_Faction),\\\")\"",
+            "StepUC": "say_MissionAccepted $= \"%sc(EventClass_Name) accepted %ifnotempty(EventClass_Faction,\\\"from faction %rs(EventClass_Faction,say_ss),\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_DestinationSystem,\\\" Mission destination is %(EventClass_DestinationSystem),\\\")\"",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_DestinationSystem,\\\" Mission destination is %rs(EventClass_DestinationSystem,say_ss),\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3039,7 +3045,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %(EventClass_TargetFaction) faction,\\\")\"",
+            "StepUC": "say_MissionAccepted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %rs(EventClass_TargetFaction,say_ss) faction,\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3057,7 +3063,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MissionCompleted $= \"{Congratulations,;Well done Commander,}%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\\\"from faction %(EventClass_Faction),\\\")\"",
+            "StepUC": "say_MissionCompleted $= \"{Congratulations,;Well done Commander,}%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\\\"from faction %rs(EventClass_Faction,say_ss),\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3069,7 +3075,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_MissionCompleted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %(EventClass_TargetFaction) faction,\\\")\"",
+            "StepUC": "say_MissionCompleted $+= \"%ifnotempty(EventClass_TargetFaction,\\\"of %rs(EventClass_TargetFaction,say_ss) faction,\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3225,7 +3231,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_PowerplayVote $= \"Voted for power %(EventClass_Power) to take over system %(EventClass_System), votes are currently %(EventClass_Votes)\"",
+            "StepUC": "say_PowerplayVote $= \"Voted for power %(EventClass_Power) to take over system %rs(EventClass_System,say_ss), votes are currently %(EventClass_Votes)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3309,7 +3315,7 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_ScanStar $= \"Scanned Star %(EventClass_BodyName), %(EventClass_StarTypeText)\"",
+            "StepUC": "say_ScanStar $= \"Scanned Star %rs(EventClass_BodyName,say_ss), %(EventClass_StarTypeText)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3345,7 +3351,7 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_ScanPlanet $= \"Scanned %(EventClass_BodyName), %sc(EventClass_TerraformState) %sc(EventClass_PlanetClass)\"",
+            "StepUC": "say_ScanPlanet $= \"Scanned %rs(EventClass_BodyName,say_ss), %sc(EventClass_TerraformState) %rs(EventClass_PlanetClass,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3441,7 +3447,7 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_Screenshot $= \"Screen shot captured of %(EventClass_System) system, body %(EventClass_Body)\"",
+            "StepUC": "say_Screenshot $= \"Screen shot captured of %rs(EventClass_System,say_ss) system, body %(EventClass_Body)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3483,7 +3489,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_ShipyardSell $= \"Sold ship %ship(EventClass_ShipType) for %(EventClass_ShipPrice) credits at system %(EventClass_System)\"",
+            "StepUC": "say_ShipyardSell $= \"Sold ship %ship(EventClass_ShipType) for %(EventClass_ShipPrice) credits at system %rs(EventClass_System,say_ss)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3501,19 +3507,19 @@
           },
           {
             "StepName": "global",
-            "StepUC": "say_ShipyardTransfer $= \"Ordered the transfer of ship %ship(EventClass_ShipType) to system %(EventClass_System) at %roundscale(EventClass_Distance,2,0.##,4,1.05772e-16) light years, cost will be %(EventClass_TransferPrice) credits\"",
+            "StepUC": "say_ShipyardTransfer $= \"Ordered the transfer of ship %ship(EventClass_ShipType) to system %rs(EventClass_System,say_ss) at %roundscale(EventClass_Distance,2,0.##,4,1.05772e-16) light years, cost will be %(EventClass_TransferPrice) credits\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
           {
             "StepName": "Global",
-            "StepUC": "say_SupercruiseEntry $= \"Warp engines on;Supercruise engaged\"",
+            "StepUC": "say_SupercruiseEntry $= \"Warp engines on;Supercruise engaged;Frame shift drive engaged;Hold on tight, Supercruising\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
           {
             "StepName": "Global",
-            "StepUC": "say_SupercruiseExit $= \"{Exiting supercruise;Normal space commander;Warp engines off, Impulse engaged}%ifnotempty(EventClass_BodyType,\\\", Arrived at %sc(EventClass_BodyType)\\\")%ifnotempty(EventClass_Body,\\\", %sc(EventClass_Body)\\\")\"",
+            "StepUC": "say_SupercruiseExit $= \"{Exiting supercruise;Normal space commander;Warp engines off, Impulse engaged}%ifnotempty(EventClass_BodyType,\\\", Arrived at %sc(EventClass_BodyType)\\\")%ifnotempty(EventClass_Body,\\\", %rs(EventClass_Body,say_ss)\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3549,7 +3555,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_Undocked $= \"Undocked from %(EventClass_StationName) fly safe commander\"",
+            "StepUC": "say_Undocked $= \"Undocked from %sc(EventClass_StationName) fly safe commander;Ship ready, your in control Commander; Engines on, departing %sc(EventClass_StationName)\"",
             "StepLevelUp": 0,
             "StepWhitespace": 0
           },
@@ -3580,6 +3586,54 @@
           {
             "StepName": "Global",
             "StepUC": "say_WingLeave $= \"Leaving wing Commander\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "REM",
+            "StepUC": "subsitution patterns (ss1,ss2 etc) for faction and body name fields",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ss1 $= \"-; dash \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ssn1 $= \" I ; 1 \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ssn2 $= \" II ; 2 \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ssn3 $= \" III ; 3 \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ssn4 $= \" IV ; 4 \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "Global",
+            "StepUC": "say_ssn5 $= \" V ; 5 \"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
+            "StepName": "REM",
+            "StepUC": "say subsitution patterns, applied after the phrase has been made, are called say_txN in the same form as above.",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -4229,7 +4283,7 @@
     },
     {
       "var": "Version",
-      "value": "2.0.1.0"
+      "value": "2.0.2.0"
     },
     {
       "var": "MinEDVersion",
