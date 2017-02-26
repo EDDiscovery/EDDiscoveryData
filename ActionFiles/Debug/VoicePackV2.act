@@ -2715,7 +2715,7 @@
           },
           {
             "StepName": "Global",
-            "StepUC": "say_edsmscannoinfo $= \"No other information on system. \"",
+            "StepUC": "say_edsmscannoinfo $= \"No other information on system.;Ship computer has no other information on this system;Lookup of Wiki Pedia has failed! I can't find anything on this system; Google search on this system indicates no information available;Microsoft search crashed, as usual.  No information on this system\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -3638,6 +3638,18 @@
             "StepWhitespace": 1
           },
           {
+            "StepName": "global",
+            "StepUC": "say_tx1 $= \"terraforming; Terra Forming\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 0
+          },
+          {
+            "StepName": "global",
+            "StepUC": "say_tx1 $= \"terraformable; Terra Formable\"",
+            "StepLevelUp": 0,
+            "StepWhitespace": 1
+          },
+          {
             "StepName": "Global",
             "StepUC": "SpeechDefinitionFile = SetUpLanguageEnglish",
             "StepLevelUp": 0,
@@ -3739,7 +3751,7 @@
           },
           {
             "StepName": "set",
-            "StepUC": "speech += %expand(say_edsmscannoinfo)",
+            "StepUC": "speech += \"%phrase(\\\"%expand(say_edsmscannoinfo)\\\")\"",
             "StepLevelUp": 0,
             "StepWhitespace": 1
           },
@@ -4283,7 +4295,6 @@
     },
     {
       "var": "Version",
-      "value": "2.0.2.0"
     },
     {
       "var": "MinEDVersion",
