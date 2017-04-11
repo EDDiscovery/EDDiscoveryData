@@ -3835,7 +3835,7 @@
   "Install": [
     {
       "var": "LongDescription",
-      "value": "This is the third edition of the voice pack for EDD, for version 6.2+\\r\\n***This will disable all previous voice packs***\\r\\n\\r\\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \\nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\\r\\n\\r\\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\\r\\n\\r\\nThe ED Discovery team hope you enjoy this feature.\\r\\n\\r\\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery."
+      "value": "This is the third edition of the voice pack for EDD, for version 7.0+\\r\\n***This will disable all previous voice packs***\\r\\n\\r\\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \\nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\\r\\n\\r\\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\\r\\n\\r\\nThe ED Discovery team hope you enjoy this feature.\\r\\n\\r\\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery."
     },
     {
       "var": "ShortDescription",
@@ -3847,7 +3847,7 @@
     },
     {
       "var": "MinEDVersion",
-      "value": "6.2.0.0"
+      "value": "7.0.0.0"
     },
     {
       "var": "Location",
@@ -3856,6 +3856,10 @@
     {
       "var": "DisableOther",
       "value": "VoicePackV2"
+    },
+    {
+      "var": "DisableOther",
+      "value": "VoicePackV1"
     }
   ]
 }
