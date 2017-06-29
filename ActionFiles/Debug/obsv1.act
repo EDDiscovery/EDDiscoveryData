@@ -1,0 +1,158 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This is the first edition of the OBS pack for EDD, for version 8.1+\r\n\r\nIt writes files, at a selectable location, with information that you can use to display on the OBS screen."
+INSTALL ShortDescription="OBS Pack for ED"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=8.1.0.0
+INSTALL Location=Actions
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT All, Event, "", TriggerType IsOneOf onNewEntry
+EVENT onRefreshEnd, onRefreshEnd, "", Condition AlwaysTrue
+EVENT onMenuItem, Menus, "", MenuName Contains OBSV1
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+If OBSFilePath IsPresent
+    Print OBS Pack Installed, Files will be written to %(OBSFilePath)
+    Call Initialise
+Else 
+    Print OBS Pack Error: output file path not set.  Disable then re-enable the pack to select the path
+Print 
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains OBSV1
+    Print Installing OBS Pack
+    FileDialog folder,"Enter the folder where the output files are stored",MyComputer
+    If FolderName IsNotEmpty
+        PersistentGlobal OBSFilePath = %(FolderName)
+        Print OBS Installed, Files will be written to %(OBSFilePath)
+        Call Initialise
+        Call WriteFiles
+    Else 
+        DeleteVariable OBSFilePath
+        MessageBox "OBS File Path is not set.\r\nThis will disable this pack.  Disable and re-enable to try again","WARNING Path not set"
+
+END PROGRAM
+
+//*************************************************************
+// Initialise
+//*************************************************************
+PROGRAM Initialise
+
+MenuItem OBSV1Help,help,"OBS"
+
+END PROGRAM
+
+//*************************************************************
+// Event
+// Events: All?(TriggerType IsOneOf onNewEntry)
+//*************************************************************
+PROGRAM Event
+
+Call WriteFiles
+
+END PROGRAM
+
+//*************************************************************
+// onRefreshEnd
+// Events: onRefreshEnd
+//*************************************************************
+PROGRAM onRefreshEnd
+
+Call WriteFiles
+
+END PROGRAM
+
+//*************************************************************
+// WriteFiles
+//*************************************************************
+PROGRAM WriteFiles
+
+Event LAST
+// EVENT THPOS
+// pragma dumpvars EC*
+
+If EC_JID != 0 And OBSFilePath IsPresent
+    // Print Update files %(OBSFilePath)
+
+    Call WriteFile(file="EDposition.txt",text="%(EC_xpos),%(EC_ypos),%(EC_zpos)")
+    Call WriteFile(file="EDstarsystem.txt",text="%(EC_StarSystem)")
+    Call WriteFile(file="EDbody.txt",text="%(EC_WhereAmI)")
+    Call WriteFile(file="EDdocked.txt",text="%iftrue(EC_DockedState,\"Docked\",\"\")")
+    Call WriteFile(file="EDlanded.txt",text="%iftrue(EC_LandedState,\"Landed\",\"\")")
+    Call WriteFile(file="EDlanded.txt",text="%iftrue(EC_LandedState,\"Landed\",\"\")")
+
+    If EC_WhereAmI Contains %(EC_StarSystem)
+        Call WriteFile(file="EDsystembody.txt",text="%(EC_WhereAmI)")
+    Else 
+        Call WriteFile(file="EDsystembody.txt",text="%(EC_StarSystem) | %(EC_WhereAmI)")
+
+    Call WriteFile(file="EDeconomy.txt",text="%(EC_EDDBGovernment)")
+    Call WriteFile(file="EDallegiance.txt",text="%(EC_EDDBAllegiance)")
+    Call WriteFile(file="EDeconomy.txt",text="%(EC_EDDBPrimaryEconomy)")
+    Call WriteFile(file="EDfaction.txt",text="%(EC_EDDBFaction)")
+    Call WriteFile(file="EDstate.txt",text="%(EC_EDDBState)")
+
+    Call WriteFile(file="EDship.txt",text="%(EC_ShipType)")
+    Call WriteFile(file="EDshipname.txt",text="%(EC_Ship_Name)")
+    If EC_ShipType $== %(EC_Ship_Name)
+        Call WriteFile(file="EDshipnametype.txt",text="%EC_Ship_Ident) %(EC_Ship_Name)")
+    Else 
+        Call WriteFile(file="EDshipnametype.txt",text="%(EC_ShipType) %(EC_Ship_Ident) %(EC_Ship_Name)")
+    Call WriteFile(file="EDshipident.txt",text="%(EC_Ship_Ident)")
+    Call WriteFile(file="EDsubvehicle.txt",text="%(EC_Ship_SubVehicle)")
+    Call WriteFile(file="EDfuelcap.txt",text="%(EC_Ship_FuelCapacity)")
+    Call WriteFile(file="EDfuellevel.txt",text="%(EC_Ship_FuelLevel)")
+    Call WriteFile(file="EDfuelcaplevel.txt",text="%(EC_Ship_FuelLevel)/%(EC_Ship_FuelCapacity) t")
+    Call WriteFile(file="EDcargocap.txt",text="%(EC_Ship_CargoCapacity)")
+
+    Call WriteFile(file="EDlastevent.txt",text="%(EC_EventSummary) %(EC_EventDescription)")
+    Call WriteFile(file="EDlasteventdetailed.txt",text="%(EC_EventSummary) %(EC_EventDescription) %(EC_EventDetailedInfo)")
+
+// EVENT PREFIX I_ FROM %(EC_JID) INFO
+// pragma dumpvars I_*
+// EVENT PREFIX M_ FROM %(EC_JID) MISSIONS
+// pragma dumpvars M_*
+
+END PROGRAM
+
+//*************************************************************
+// WriteFile
+//*************************************************************
+PROGRAM WriteFile
+
+Set fullpath = %(OBSFilePath)\%(file)
+Let success = "%openfile(h1,fullpath,create)"
+If success IsTrue
+    Expr %write(h1,text)
+    Expr %closefile(h1)
+    // print write %(fullpath) with %(text)
+
+END PROGRAM
+
+//*************************************************************
+// Menus
+// Events: onMenuItem?(MenuName Contains OBSV1)
+//*************************************************************
+PROGRAM Menus
+
+If MenuName Contains Help
+    MessageBox "OBS Pack (C) ED Discovery team\r\n\r\nUse Add-Ons | Manage to enable or disable this\r\nWrites files to %(OBSFilePath) for use by OBS","OBS Pack"
+
+END PROGRAM
+

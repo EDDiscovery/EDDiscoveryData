@@ -1,0 +1,82 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This is the first edition of the Sound Blaster pack for EDD, for version 8.1+\r\n\r\nFor an event, it looks for a MP3 file with that event name, and plays it if found."
+INSTALL ShortDescription="Sound Blaster Pack"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=8.1.0.0
+INSTALL Location=Actions
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT All, Event, "", TriggerType IsOneOf onNewEntry,UserRightClick
+EVENT onMenuItem, Menus, "", MenuName Contains SoundBlasterV1
+
+//*************************************************************
+// Event
+// Events: All?(TriggerType IsOneOf onNewEntry,UserRightClick)
+//*************************************************************
+PROGRAM Event
+
+If SoundEffectPath IsPresent
+    Set file = %(SoundEffectPath)\%(TriggerName).mp3
+    // Print SB path %(file)
+    If %fileexists(file) IsTrue
+        Play %(file)
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains SoundBlasterV1
+    Print Installing Sound Blaster Pack
+    FileDialog folder,"Enter the folder where the MP3s are stored",MyComputer
+    If FolderName IsNotEmpty
+        PersistentGlobal SoundEffectPath = %(FolderName)
+        Call Initialise
+    Else 
+        DeleteVariable SoundEffectPath
+        MessageBox "Sound Effect Path is not set.\r\nThis will disable the sound blaster pack","WARNING Path not set"
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call Initialise
+Print Sound Blaster pack installed
+
+END PROGRAM
+
+//*************************************************************
+// Initialise
+//*************************************************************
+PROGRAM Initialise
+
+MenuItem SoundBlasterV1Wave,add-ons,"Configure Sound Blaster",speaker
+MenuItem SoundBlasterV1Help,help,"Sound Blaster",speaker
+
+END PROGRAM
+
+//*************************************************************
+// Menus
+// Events: onMenuItem?(MenuName Contains SoundBlasterV1)
+//*************************************************************
+PROGRAM Menus
+
+If MenuName Contains Wave
+    Perform ConfigureWave "Configure Sound Blaster Defaults"
+
+If MenuName Contains Help
+    MessageBox "Sound Blaster V1 (C) ED Discovery team\r\n\r\nUse Add-Ons | Manage to enable or disable this\r\nUse the wave menu items in the Add-Ons menu to configure defaults","Sound Blaster Pack"
+
+END PROGRAM
+
