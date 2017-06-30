@@ -23,9 +23,9 @@ PROGRAM onStartup
 If OBSFilePath IsPresent
     Print OBS Pack Installed, Files will be written to %(OBSFilePath)
     Call Initialise
-Else 
+Else
     Print OBS Pack Error: output file path not set.  Disable then re-enable the pack to select the path
-Print 
+Print
 
 END PROGRAM
 
@@ -37,13 +37,13 @@ PROGRAM onInstall
 
 If InstallList Contains OBSV1
     Print Installing OBS Pack
-    FileDialog folder,"Enter the folder where the output files are stored",MyComputer
+    FileDialog folder,"Enter the folder where OBS will store the output files",MyComputer
     If FolderName IsNotEmpty
         PersistentGlobal OBSFilePath = %(FolderName)
         Print OBS Installed, Files will be written to %(OBSFilePath)
         Call Initialise
         Call WriteFiles
-    Else 
+    Else
         DeleteVariable OBSFilePath
         MessageBox "OBS File Path is not set.\r\nThis will disable this pack.  Disable and re-enable to try again","WARNING Path not set"
 
@@ -99,7 +99,7 @@ If EC_JID != 0 And OBSFilePath IsPresent
 
     If EC_WhereAmI Contains %(EC_StarSystem)
         Call WriteFile(file="EDsystembody.txt",text="%(EC_WhereAmI)")
-    Else 
+    Else
         Call WriteFile(file="EDsystembody.txt",text="%(EC_StarSystem) | %(EC_WhereAmI)")
 
     Call WriteFile(file="EDeconomy.txt",text="%(EC_EDDBGovernment)")
@@ -112,7 +112,7 @@ If EC_JID != 0 And OBSFilePath IsPresent
     Call WriteFile(file="EDshipname.txt",text="%(EC_Ship_Name)")
     If EC_ShipType $== %(EC_Ship_Name)
         Call WriteFile(file="EDshipnametype.txt",text="%EC_Ship_Ident) %(EC_Ship_Name)")
-    Else 
+    Else
         Call WriteFile(file="EDshipnametype.txt",text="%(EC_ShipType) %(EC_Ship_Ident) %(EC_Ship_Name)")
     Call WriteFile(file="EDshipident.txt",text="%(EC_Ship_Ident)")
     Call WriteFile(file="EDsubvehicle.txt",text="%(EC_Ship_SubVehicle)")
