@@ -20,94 +20,94 @@ EVENT onSayFinished, FinishSpeech, "", EventName $== JKMFinish
 //*************************************************************
 PROGRAM SetUpLanguageEnglish
 
-Global jkm_install $= "You have installed Elite Dangerous Discovery, Joystick, Keyboard, Mouse Pack 1, English version"
-Global jkm_ShipSpotLightToggle $= "Toggle ship lights"
+Static jkm_install $= "You have installed Elite Dangerous Discovery, Joystick, Keyboard, Mouse Pack 1, English version"
+Static jkm_ShipSpotLightToggle $= "Toggle ship lights"
 
-Global jkm_ToggleDriveAssist $= "Toggle drive assist"
-Global jkm_AutoBreakBuggyButton $= "Toggle SRV brake"
-Global jkm_ToggleBuggyTurretButton $= "Toggle SRV turret"
+Static jkm_ToggleDriveAssist $= "Toggle drive assist"
+Static jkm_AutoBreakBuggyButton $= "Toggle SRV brake"
+Static jkm_ToggleBuggyTurretButton $= "Toggle SRV turret"
 
 Rem no power, cause it just goes crazy.. instead just plop them under a single POWER entry
-// Global jkm_IncreaseEnginesPower_Buggy $= "Increase power to Engines"
-// Global jkm_IncreaseWeaponsPower_Buggy $= "Increase power to Weapons"
-// Global jkm_IncreaseSystemsPower_Buggy $= "Increase power to Systems"
-// Global jkm_ResetPowerDistribution_Buggy = "Reset SRV power system"
-// Global jkm_IncreaseEnginesPower $= "Increase power to Engines"
-// Global jkm_IncreaseWeaponsPower $= "Increase power to Weapons"
-// Global jkm_IncreaseSystemsPower $= "Increase power to Systems"
-// Global jkm_ResetPowerDistribution $= "Reset ship power distribution"
-Global jkm_powerbindings $= "IncreaseEnginesPower_Buggy,IncreaseSystemsPower_Buggy,IncreaseWeaponsPower_Buggy,ResetPowerDistribution_Buggy,IncreaseEnginesPower,IncreaseWeaponsPower,IncreaseSystemsPower,ResetPowerDistribution"
-Global jkm_Power = "Adjusting power;Changing power allocation"
+// Static jkm_IncreaseEnginesPower_Buggy $= "Increase power to Engines"
+// Static jkm_IncreaseWeaponsPower_Buggy $= "Increase power to Weapons"
+// Static jkm_IncreaseSystemsPower_Buggy $= "Increase power to Systems"
+// Static jkm_ResetPowerDistribution_Buggy = "Reset SRV power system"
+// Static jkm_IncreaseEnginesPower $= "Increase power to Engines"
+// Static jkm_IncreaseWeaponsPower $= "Increase power to Weapons"
+// Static jkm_IncreaseSystemsPower $= "Increase power to Systems"
+// Static jkm_ResetPowerDistribution $= "Reset ship power distribution"
+Static jkm_powerbindings $= "IncreaseEnginesPower_Buggy,IncreaseSystemsPower_Buggy,IncreaseWeaponsPower_Buggy,ResetPowerDistribution_Buggy,IncreaseEnginesPower,IncreaseWeaponsPower,IncreaseSystemsPower,ResetPowerDistribution"
+Static jkm_Power = "Adjusting power;Changing power allocation"
 
-// Global jkm_ToggleFlightAssist $= ""
-Global jkm_LandingGearToggle $= "Toggle Landing Gear"
-Global jkm_ToggleButtonUpInput $= "Toggle silent running"
-Global jkm_ToggleCargoScoop $= "Toggle Cargo Scoop"
-Global jkm_TargetNextRouteSystem $= "Selected existing route"
-Global jkm_OrbitLinesToggle $= "Toggle orbit lines"
-Global jkm_GalaxyMapOpen $= "Toggle galaxy map"
-Global jkm_SystemMapOpen $= "Toggle system map"
+// Static jkm_ToggleFlightAssist $= ""
+Static jkm_LandingGearToggle $= "Toggle Landing Gear"
+Static jkm_ToggleButtonUpInput $= "Toggle silent running"
+Static jkm_ToggleCargoScoop $= "Toggle Cargo Scoop"
+Static jkm_TargetNextRouteSystem $= "Selected existing route"
+Static jkm_OrbitLinesToggle $= "Toggle orbit lines"
+Static jkm_GalaxyMapOpen $= "Toggle galaxy map"
+Static jkm_SystemMapOpen $= "Toggle system map"
 
-Global jkm_SetSpeedMinus100 $= "Full astern"
-Global jkm_SetSpeedMinus75 $= "75 percent astern"
-Global jkm_SetSpeedMinus50 $= "50 percent astern"
-Global jkm_SetSpeedMinus25 $= "25 percent astern"
-Global jkm_SetSpeedZero $= "Engines off"
-Global jkm_SetSpeed25 $= "25 percent ahead;Quarter speed captain"
-Global jkm_SetSpeed50 $= "50 percent ahead;Half ahead captain"
-Global jkm_SetSpeed75 $= "75 percent ahead;Three quarters Ahead captain"
-Global jkm_SetSpeed100 $= "Full ahead;Full speed"
-Global jkm_UseBoostJuice $= Boosting
-Global jkm_EngineColourToggle $= "Toggling engine colour"
+Static jkm_SetSpeedMinus100 $= "Full astern"
+Static jkm_SetSpeedMinus75 $= "75 percent astern"
+Static jkm_SetSpeedMinus50 $= "50 percent astern"
+Static jkm_SetSpeedMinus25 $= "25 percent astern"
+Static jkm_SetSpeedZero $= "Engines off"
+Static jkm_SetSpeed25 $= "25 percent ahead;Quarter speed captain"
+Static jkm_SetSpeed50 $= "50 percent ahead;Half ahead captain"
+Static jkm_SetSpeed75 $= "75 percent ahead;Three quarters Ahead captain"
+Static jkm_SetSpeed100 $= "Full ahead;Full speed"
+Static jkm_UseBoostJuice $= Boosting
+Static jkm_EngineColourToggle $= "Toggling engine colour"
 
-Global jkm_DeployHardpointToggle $= "Toggling weapons"
-Global jkm_CycleFireGroupPrevious $= "Fire Group back"
-Global jkm_CycleFireGroupNext $= "Fire Group next"
-Global jkm_CycleNextSubsystem $= "Next target subsystem"
-Global jkm_CyclePreviousSubsystem $= "Previous target subsystem"
-Global jkm_CycleNextTarget $= "Next target"
-Global jkm_CyclePreviousTarget $= "Previous target"
-Global jkm_SelectTarget $= "Selecting target"
-Global jkm_CycleNextHostileTarget $= "Next Hostile"
-Global jkm_CyclePreviousHostileTarget $= "Previous Hostile"
-Global jkm_SelectHighestThreat $= "Highest Threat"
-Global jkm_WeaponColourToggle $= "Toggline weapons colour"
+Static jkm_DeployHardpointToggle $= "Toggling weapons"
+Static jkm_CycleFireGroupPrevious $= "Fire Group back"
+Static jkm_CycleFireGroupNext $= "Fire Group next"
+Static jkm_CycleNextSubsystem $= "Next target subsystem"
+Static jkm_CyclePreviousSubsystem $= "Previous target subsystem"
+Static jkm_CycleNextTarget $= "Next target"
+Static jkm_CyclePreviousTarget $= "Previous target"
+Static jkm_SelectTarget $= "Selecting target"
+Static jkm_CycleNextHostileTarget $= "Next Hostile"
+Static jkm_CyclePreviousHostileTarget $= "Previous Hostile"
+Static jkm_SelectHighestThreat $= "Highest Threat"
+Static jkm_WeaponColourToggle $= "Toggline weapons colour"
 
-Global jkm_DeployHeatSink $= "Fire heatshink"
-Global jkm_UseShieldCell $= "Discharging Shield Cell"
-Global jkm_FireChaffLauncher $= "Fire chaff"
-Global jkm_ChargeECM $= "Charging ECM"
+Static jkm_DeployHeatSink $= "Fire heatshink"
+Static jkm_UseShieldCell $= "Discharging Shield Cell"
+Static jkm_FireChaffLauncher $= "Fire chaff"
+Static jkm_ChargeECM $= "Charging ECM"
 
-Global jkm_TargetWingman0 $= "Select wingman 1"
-Global jkm_TargetWingman1 $= "Select wingman 2"
-Global jkm_TargetWingman2 $= "Select wingman 3"
-Global jkm_SelectTargetsTarget $= "Select wingman target"
-Global jkm_WingNavLock $= "Toggle wingman navigational lock"
+Static jkm_TargetWingman0 $= "Select wingman 1"
+Static jkm_TargetWingman1 $= "Select wingman 2"
+Static jkm_TargetWingman2 $= "Select wingman 3"
+Static jkm_SelectTargetsTarget $= "Select wingman target"
+Static jkm_WingNavLock $= "Toggle wingman navigational lock"
 
-Global jkm_MicrophoneMute $= "Toggling microphone mute"
+Static jkm_MicrophoneMute $= "Toggling microphone mute"
 
-Global jkm_FocusLeftPanel $= "Toggling target panel"
-Global jkm_FocusRightPanel $= "Toggling system panel"
-Global jkm_FocusRadarPanel $= "Toggling role panel"
-Global jkm_QuickCommsPanel $= "Quick Communication panel"
-Global jkm_FocusCommsPanel $= "Communication panel"
-Global jkm_UIFocus $= "Toggle panel"
-Global jkm_HeadLookToggle $= "Toggle head look"
-Global jkm_FriendsMenu $= "Toggle Friend menu"
-Global jkm_PhotoCameraToggle $= "Toggle camera mode"
+Static jkm_FocusLeftPanel $= "Toggling target panel"
+Static jkm_FocusRightPanel $= "Toggling system panel"
+Static jkm_FocusRadarPanel $= "Toggling role panel"
+Static jkm_QuickCommsPanel $= "Quick Communication panel"
+Static jkm_FocusCommsPanel $= "Communication panel"
+Static jkm_UIFocus $= "Toggle panel"
+Static jkm_HeadLookToggle $= "Toggle head look"
+Static jkm_FriendsMenu $= "Toggle Friend menu"
+Static jkm_PhotoCameraToggle $= "Toggle camera mode"
 
-Global jkm_OrderRequestDock $= "Request Fighter dock"
-Global jkm_OrderDefensiveBehaviour $= "Defensive mode"
-Global jkm_OrderAggressiveBehaviour $= "Agressive mode"
-Global jkm_OrderFocusTarget $= "Attack selected target"
-Global jkm_OrderHoldFire $= "Hold fire"
-Global jkm_OrderHoldPosition $= "Hold position"
-Global jkm_OrderFollow $= "Follow me"
-Global jkm_OpenOrders $= "Open orders"
+Static jkm_OrderRequestDock $= "Request Fighter dock"
+Static jkm_OrderDefensiveBehaviour $= "Defensive mode"
+Static jkm_OrderAggressiveBehaviour $= "Agressive mode"
+Static jkm_OrderFocusTarget $= "Attack selected target"
+Static jkm_OrderHoldFire $= "Hold fire"
+Static jkm_OrderHoldPosition $= "Hold position"
+Static jkm_OrderFollow $= "Follow me"
+Static jkm_OpenOrders $= "Open orders"
 
-Global jkm_UI $= "UI_Select,UI_Up,UI_Down,UI_Left,UI_Right,CyclePreviousPanel,CycleNextPanel"
+Static jkm_UI $= "UI_Select,UI_Up,UI_Down,UI_Left,UI_Right,CyclePreviousPanel,CycleNextPanel"
 
-Global jkmSpeechCulture = en-gb
+Static jkmSpeechCulture = en-gb
 
 END PROGRAM
 
@@ -169,9 +169,9 @@ END PROGRAM
 PROGRAM Initialise
 
 Perform EnableEliteInputNoAxis
-Global jkm_lastbinding = None
-Global jkm_lastbindingtime = 0
-Global jkm_speaking = 0
+Static jkm_lastbinding = None
+Static jkm_lastbindingtime = 0
+Static jkm_speaking = 0
 
 Perform listeliteinput
 Print %(EliteInputCheck)
@@ -204,7 +204,7 @@ PROGRAM TurnOn
 
 Event Last
 If EC_DockedState IsPresent And EC_DockedState IsTrue           // Docked, don't do anything
-    End 
+    End
 
 If Binding IsOneOf %(jkm_powerbindings)
     Set Binding = Power
@@ -218,10 +218,10 @@ If %(v) IsPresent And %(v) IsNotEmpty
         Set speech = "%phrase(\"%indirect(v)\")"                // now expand any phrases in it
         Call speak(speech="%(speech)",Priority="Low")
         // print Say %(speech)  %TickCount() %(jkm_lastbindingtime)
-        Global jkm_lastbinding = %(Binding)
-        Global jkm_lastbindingtime = %TickCount()
-    Else 
-        Global jkm_lastbindingtime = %TickCount()
+        Static jkm_lastbinding = %(Binding)
+        Static jkm_lastbindingtime = %TickCount()
+    Else
+        Static jkm_lastbindingtime = %TickCount()
         // Print rejected due to duplicate binding in less than X second %TickCount() %(jkm_lastbindingtime)
 
 END PROGRAM
@@ -240,14 +240,14 @@ If SpeechOptions IsPresent And SpeechOptions Contains PrintOnly;
     Set ds = 1
 
 Say %(speech), Literal=1, Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="JKMFinish" , Wait="%existsdefault(Wait,\"0\")"
-Global jkm_speaking = 1
+Static jkm_speaking = 1
 
 // Print Say %(speech)
 
 If SpeechLog IsPresent And SpeechLog IsNotEmpty
     If SpeechOptions IsPresent And SpeechOptions Contains LogLastOnly;
         Let success = "%openfile(h1,SpeechLog,create)"
-    Else 
+    Else
         Let success = "%openfile(h1,SpeechLog,append)"
 
     If success IsTrue
@@ -256,7 +256,7 @@ If SpeechLog IsPresent And SpeechLog IsNotEmpty
 
         Expr %writeline(h1,speech)
         Expr %closefile(h1)
-    Else 
+    Else
         Print Cannot write to speech log file '%(SpeechLog)'
 
 END PROGRAM
@@ -268,7 +268,7 @@ END PROGRAM
 PROGRAM FinishSpeech
 
 // Holding this for later work
-Global jkm_speaking = 0
+Static jkm_speaking = 0
 
 END PROGRAM
 
