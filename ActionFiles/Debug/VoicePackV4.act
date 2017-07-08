@@ -37,7 +37,7 @@ EVENT Died, GenericResponse, "", Condition AlwaysTrue
 EVENT Docked, GenericResponse, "", Condition AlwaysTrue
 EVENT DockFighter, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingCancelled, GenericResponse, "", Condition AlwaysTrue
-EVENT DockingDenied, GenericDelayedResponse, Delay=10000, Condition AlwaysTrue
+EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingGranted, GenericDelayedResponse, Delay=10000, Condition AlwaysTrue
 EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
@@ -279,7 +279,7 @@ Static say_MissionAccepted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rs(Ev
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_PassengerType,\"taking %(EventClass_PassengerCount) passengers of type %(EventClass_PassengerType).\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Expiry,\" This mission expires on %date(EventClass_Expiry,longdatetime),\")"
 
-Static say_MissionCompleted $= "{Congratulations, ;Well done Commander, }%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\"from faction %rs(EventClass_Faction,say_ss),\")"
+Static say_MissionCompleted $= "{Congratulations, ;Well done Commander, ;Good Job, ;Splendid! }%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\"from faction %rs(EventClass_Faction,say_ss),\")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Target,\" target was %(EventClass_Target),\")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rs(EventClass_TargetFaction,say_ss) faction,\")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Reward,\"Reward is %(EventClass_Reward) credits,\")"
@@ -329,7 +329,7 @@ Static say_SellExplorationData $= "Sold %(EventClass_Systems_Length) star system
 Static say_SellExplorationDataBonus $= "And discovered %(EventClass_Discovered_Length) bodies for %(EventClass_Bonus) bonus credits"
 Static say_SendText $= "Message sent to %Alt(EventClass_To_Localised,EventClass_To)"
 
-Static say_Scanned $= "Warning, %(EventClass_ScanType) scan detected;A Ship is performing a %(EventClass_ScanType) scan on us;%(EventClass_ScanType) scan detected commander"
+Static say_Scanned $= "Warning, %(EventClass_ScanType) scan detected;A Ship is performing a %(EventClass_ScanType) scan on us;%(EventClass_ScanType) scan detected commander;We are being scanned for %(EventClass_ScanType);%(EventClass_ScanType) scan detected"
 Static say_ScanStar $= "Scanned Star %rs(EventClass_BodyName,say_ss), %(EventClass_StarTypeText)"
 Static say_ScanStarMassMag $= ", %roundnz(EventClass_nStellarMass,1,0.#,4) stellar masses"
 Static say_ScanStarMassMag $+= ", Absolute Magnitude %round(EventClass_nAbsoluteMagnitude,1,M0.#)"
@@ -409,15 +409,16 @@ Rem say subsitution patterns, applied after the phrase has been made, are called
 Static say_tx1 $= "terraforming; Terra Forming"
 Static say_tx2 $= "terraformable; Terra Formable"
 Static say_tx3 $= "CMDR ;Commander "
+Static say_tx4 $= " Cr ; Credits "
 
 Static SpeechDefinitionFile = SetUpLanguageEnglish
 Static SpeechCulture = en-gb
 
-if SpeechControls IsNotPresent
+If SpeechControls NotPresent
     Print ****
     Print Setting voice pack control to default values, use the Add-On menu Voice Pack Configuration to reconfigure
     Print ****
-    PersistentGlobal SpeechControls=NPCVoicesEnable;FirstJumpOnly;FSDFactionDisable;ScanHabZoneEnable;EDSMSummaryEnable;EDSMMoonsEnable;EDSMSubMoonsEnable;EDSMAtmosphereEnable;EDSMVolcanismEnable;
+    PersistentGlobal SpeechControls = NPCVoicesEnable;FirstJumpOnly;FSDFactionDisable;ScanHabZoneEnable;EDSMSummaryEnable;EDSMMoonsEnable;EDSMSubMoonsEnable;EDSMAtmosphereEnable;EDSMVolcanismEnable;
 
 END PROGRAM
 
@@ -504,68 +505,68 @@ END PROGRAM
 //*************************************************************
 PROGRAM ReceiveText
 
-if EventClass_Channel $!= "npc"
+If EventClass_Channel $!= npc
     Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
     Set speech = "%phrase(\"%indirect(v)\")"                    // now expand any phrases in it
     Call speak(speech="%(speech)")
-else If SpeechControls IsPresent And SpeechControls Contains NPCChatterDisable;
+Else If SpeechControls IsPresent And SpeechControls Contains NPCChatterDisable;
     Rem Print no NPC chatter
-else If SpeechControls IsNotPresent Or SpeechControls NotContains NPCVoicesEnable;
+Else If SpeechControls NotPresent Or SpeechControls NotContains NPCVoicesEnable;
     Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
     Set speech = "%phrase(\"%indirect(v)\")"                    // now expand any phrases in it
     Call speak(speech="%(speech)")
-else
-    set from = "%Alt(EventClass_FromLocalised,EventClass_From)"
-    set npcvar = "say_npc_%SafeVarName(\"%(from)_%(EventWhereAmI)\")"
-    //print Looking up NPCVar: %(npcvar)
-    if %exist("%(npcvar)") IsTrue
-        set voice = %indirect(npcvar)
-        set pitchshift = "%indirect(\"%(npcvar)_pitch\")"
-        set rate = "%indirect(\"%(npcvar)_rate\")"
-    else
-        perform voicenames
-        let voicecount = %WordListCount(VoiceNames)
-        let rnvoice = %Random(voicecount)
-        //print %(VoiceNames) count %(voicecount) pick %(rnvoice)
-        set voice = "%WordListEntry(VoiceNames,rnvoice)"
+Else
+    Set from = "%Alt(EventClass_FromLocalised,EventClass_From)"
+    Set npcvar = "say_npc_%SafeVarName(\"%(from)_%(EventWhereAmI)\")"
+    // print Looking up NPCVar: %(npcvar)
+    If "%exist(\"%(npcvar)\")" IsTrue
+        Set voice = %indirect(npcvar)
+        Set pitchshift = "%indirect(\"%(npcvar)_pitch\")"
+        Set rate = "%indirect(\"%(npcvar)_rate\")"
+    Else
+        Perform voicenames
+        Let voicecount = %WordListCount(VoiceNames)
+        Let rnvoice = %Random(voicecount)
+        // print %(VoiceNames) count %(voicecount) pick %(rnvoice)
+        Set voice = "%WordListEntry(VoiceNames,rnvoice)"
 
-        if SpeechVoice IsPresent and voice $== %(SpeechVoice)
-            if %Random(2) == 0
-                let pitchshift = 70+%Random(20)
-            else
-                let pitchshift = 110+%Random(10)
-        else
-            let pitchshift = 70+%Random(40)
+        If SpeechVoice IsPresent And voice $== %(SpeechVoice)
+            If %Random(2) == 0
+                Let pitchshift = 70+%Random(20)
+            Else
+                Let pitchshift = 107+%Random(10)
+        Else
+            Let pitchshift = 70+%Random(40)
 
-        if pitchshift < 80
-            let rate = "%Random(3)+1"
-        else if pitchshift < 101
-            let rate = "%Random(4)-1"
-        else
-            let rate = "%Random(4)-2"
+        If pitchshift < 80
+            Let rate = %Random(3)+1
+        Else If pitchshift < 101
+            Let rate = %Random(4)-1
+        Else
+            Let rate = %Random(4)-2
         Static %(npcvar) = %(voice)
         Static %(npcvar)_pitch = %(pitchshift)
         Static %(npcvar)_rate = %(rate)
+        print for %(from) chose %(voice) at pitch %(pitchshift) rate %(rate)
 
-    //if ( EventClass_Channel $== "npc" ) And (EventClass_From $== "%(EventWhereAmI)" Or EventClass_FromLocalised $== "%(EventWhereAmI)" )
-    //    print from station
+    // if ( EventClass_Channel $== "npc" ) And (EventClass_From $== "%(EventWhereAmI)" Or EventClass_FromLocalised $== "%(EventWhereAmI)" )
+    // print from station
 
-    //print for %(from) chose %(voice) at pitch %(pitchshift) rate %(rate)
 
-    set effectspath = %systempath(EDDSOUNDFOLDER)
-    set presound = "%(effectspath)\\npcprefix.mp3"
-    set postsound = "%(effectspath)\\npcpostfix.mp3"
-    set mixsound = "%(effectspath)\\npcmix.mp3"
+    Set effectspath = %systempath(EDDSOUNDFOLDER)
+    Set presound = %(effectspath)\\npcprefix.mp3
+    Set postsound = %(effectspath)\\npcpostfix.mp3
+    Set mixsound = %(effectspath)\\npcmix.mp3
 
-    //print %(presound) %(postsound)
-    if %fileexists(presound) IsFalse
-        set presound = ""
-    if %fileexists(postsound) IsFalse
-        set postsound = ""
-    if %fileexists(mixsound) IsFalse
-        set mixsound = ""
+    // print %(presound) %(postsound)
+    If %fileexists(presound) IsFalse
+        Set presound = ""
+    If %fileexists(postsound) IsFalse
+        Set postsound = ""
+    If %fileexists(mixsound) IsFalse
+        Set mixsound = ""
 
-    //print Result %(presound) %(postsound) %(mixsound)
+    // print Result %(presound) %(postsound) %(mixsound)
 
     Set speech = "%Alt(EventClass_MessageLocalised,EventClass_Message)"
 
@@ -1023,7 +1024,7 @@ If MenuName Contains ConfigureVerbosity
             Call SetSO(ctrl="CBEVC",flag="EDSMVolcanismEnable;")
             Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
 
-            //print %(SpeechControls)
+            // print %(SpeechControls)
 
             DialogControl D1,Get TBSTAR
             PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
@@ -1122,7 +1123,7 @@ Set ds = 0
 If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
     Set ds = 1
 
-//Print SAY: %(speech)
+// Print SAY: %(speech)
 
 Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , PitchShift ="%existsdefault(PitchShift,\"100\")" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 

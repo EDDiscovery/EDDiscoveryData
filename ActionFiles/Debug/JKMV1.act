@@ -239,7 +239,9 @@ Set ds = 0
 If SpeechOptions IsPresent And SpeechOptions Contains PrintOnly;
     Set ds = 1
 
-Say %(speech), Literal=1, Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="JKMFinish" , Wait="%existsdefault(Wait,\"0\")"
+// Real time, don't bother if its more than 3s of queued speech
+
+Say %(speech), QueueLimit=3000, Literal=1, Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="JKMFinish" , Wait="%existsdefault(Wait,\"0\")"
 Static jkm_speaking = 1
 
 // Print Say %(speech)
