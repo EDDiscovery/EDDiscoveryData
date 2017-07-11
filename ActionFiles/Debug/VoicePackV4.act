@@ -936,7 +936,7 @@ If MenuName Contains ConfigureSpeechFile
     Perform EditSpeechText
 
 If MenuName Contains ShowHelp
-    MessageBox "Voice Pack (C) ED Discovery team\r\n\r\nUse Add-Ons | Manage to enable or disable this\r\nUse the speech and wave menu items in the Add-Ons menu to configure defaults","Voice Pack"
+    MessageBox "Voice Pack (C) ED Discovery team\r\n\r\nUse Add-Ons | Manage to enable or disable this\r\nUse the speech configuration options in the Add-Ons menu to configure voice\r\nand set voice pack options","Voice Pack"
 
 If MenuName Contains ConfigureVerbosity
 
