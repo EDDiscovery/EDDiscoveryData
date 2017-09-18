@@ -581,8 +581,8 @@ END PROGRAM
 //*************************************************************
 PROGRAM HullDamage
 
-Let health100 = %(EventClass_Health)*100
-Let health = %floor(health100,N0)
+Let health100 = "%(EventClass_Health)*100"
+Let health = "%floor(health100,N0)"
 
 If health < 50
     Set speech = "%phrase(\"%expand(say_HullDamageCritical)\")"
