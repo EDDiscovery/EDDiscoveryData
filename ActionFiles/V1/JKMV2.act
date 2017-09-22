@@ -1,0 +1,287 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This is the second edition of the Joystick,Keyboard, Mouse pack for EDD, for version 8.3+\r\n\r\nIt vocalises events caused by joystick, key and mouse bindings."
+INSTALL ShortDescription="JKM Pack for ED"
+INSTALL Version=2.0.0.0
+INSTALL MinEDVersion=8.3.0.0
+INSTALL Location=Actions
+INSTALL DisableOther1=JKMV1
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onPostStartup, onPostStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onMenuItem, Menus, "", MenuName Contains jkmMenu
+EVENT onEliteInput, TurnOn, "", Condition AlwaysTrue
+EVENT onSayFinished, FinishSpeech, "", EventName $== JKMFinish
+
+//*************************************************************
+// SetUpLanguageEnglish
+//*************************************************************
+PROGRAM SetUpLanguageEnglish
+
+Static jkm_install $= You have installed Elite Dangerous Discovery, Joystick, Keyboard, Mouse Pack 2, English version
+
+Rem naming convention jkm_Bindingname or jmk_N_Bindingname or jmp_H_Bindingname.  Use N = normal space only, H = hyperspace only
+
+Static jkm_N_ShipSpotLightToggle $= Toggle ship lights
+Static jkm_N_ToggleDriveAssist $= Toggle drive assist
+Static jkm_N_AutoBreakBuggyButton $= Toggle SRV brake
+Static jkm_N_ToggleBuggyTurretButton $= Toggle SRV turret
+
+Rem no power, cause it just goes crazy.. instead just plop them under a single POWER entry
+// Static jkm_IncreaseEnginesPower_Buggy $= "Increase power to Engines"
+// Static jkm_IncreaseWeaponsPower_Buggy $= "Increase power to Weapons"
+// Static jkm_IncreaseSystemsPower_Buggy $= "Increase power to Systems"
+// Static jkm_ResetPowerDistribution_Buggy = "Reset SRV power system"
+// Static jkm_IncreaseEnginesPower $= "Increase power to Engines"
+// Static jkm_IncreaseWeaponsPower $= "Increase power to Weapons"
+// Static jkm_IncreaseSystemsPower $= "Increase power to Systems"
+// Static jkm_ResetPowerDistribution $= "Reset ship power distribution"
+Static jkm_powerbindings $= IncreaseEnginesPower_Buggy,IncreaseSystemsPower_Buggy,IncreaseWeaponsPower_Buggy,ResetPowerDistribution_Buggy,IncreaseEnginesPower,IncreaseWeaponsPower,IncreaseSystemsPower,ResetPowerDistribution
+Static jkm_Power = Adjusting power;Changing power allocation
+
+// Static jkm_ToggleFlightAssist $= ""
+Static jkm_N_LandingGearToggle $= Toggle Landing Gear
+Static jkm_N_ToggleButtonUpInput $= Toggle silent running
+Static jkm_N_ToggleCargoScoop $= Toggle Cargo Scoop
+Static jkm_TargetNextRouteSystem $= Selected existing route
+Static jkm_OrbitLinesToggle $= Toggle orbit lines
+Static jkm_GalaxyMapOpen $= Toggle galaxy map
+Static jkm_SystemMapOpen $= Toggle system map
+
+Static jkm_SetSpeedMinus100 $= Full astern
+Static jkm_SetSpeedMinus75 $= 75 percent astern
+Static jkm_SetSpeedMinus50 $= 50 percent astern
+Static jkm_SetSpeedMinus25 $= 25 percent astern
+Static jkm_SetSpeedZero $= Engines off
+Static jkm_SetSpeed25 $= 25 percent ahead;Quarter speed captain
+Static jkm_SetSpeed50 $= 50 percent ahead;Half ahead captain
+Static jkm_SetSpeed75 $= 75 percent ahead;Three quarters Ahead captain
+Static jkm_SetSpeed100 $= Full ahead;Full speed
+Static jkm_N_UseBoostJuice $= Boosting
+Static jkm_EngineColourToggle $= Toggling engine colour
+
+Static jkm_DeployHardpointToggle $= Toggling weapons
+Static jkm_CycleFireGroupPrevious $= Fire Group back
+Static jkm_CycleFireGroupNext $= Fire Group next
+Static jkm_CycleNextSubsystem $= Next target subsystem
+Static jkm_CyclePreviousSubsystem $= Previous target subsystem
+Static jkm_CycleNextTarget $= Next target
+Static jkm_CyclePreviousTarget $= Previous target
+Static jkm_SelectTarget $= Selecting target
+Static jkm_CycleNextHostileTarget $= Next Hostile
+Static jkm_CyclePreviousHostileTarget $= Previous Hostile
+Static jkm_SelectHighestThreat $= Highest Threat
+Static jkm_WeaponColourToggle $= Toggline weapons colour
+
+Static jkm_DeployHeatSink $= Fire heatshink
+Static jkm_N_UseShieldCell $= Discharging Shield Cell
+Static jkm_N_FireChaffLauncher $= Fire chaff
+Static jkm_N_ChargeECM $= Charging ECM
+
+Static jkm_TargetWingman0 $= Select wingman 1
+Static jkm_TargetWingman1 $= Select wingman 2
+Static jkm_TargetWingman2 $= Select wingman 3
+Static jkm_SelectTargetsTarget $= Select wingman target
+Static jkm_WingNavLock $= Toggle wingman navigational lock
+
+Static jkm_MicrophoneMute $= Toggling microphone mute
+
+Static jkm_FocusLeftPanel $= Toggling target panel
+Static jkm_FocusRightPanel $= Toggling system panel
+Static jkm_FocusRadarPanel $= Toggling role panel
+Static jkm_QuickCommsPanel $= Quick Communication panel
+Static jkm_FocusCommsPanel $= Communication panel
+Static jkm_UIFocus $= Toggle panel
+Static jkm_HeadLookToggle $= Toggle head look
+Static jkm_FriendsMenu $= Toggle Friend menu
+Static jkm_PhotoCameraToggle $= Toggle camera mode
+
+Static jkm_N_OrderRequestDock $= Request Fighter dock
+Static jkm_N_OrderDefensiveBehaviour $= Defensive mode
+Static jkm_N_OrderAggressiveBehaviour $= Agressive mode
+Static jkm_N_OrderFocusTarget $= Attack selected target
+Static jkm_N_OrderHoldFire $= Hold fire
+Static jkm_N_OrderHoldPosition $= Hold position
+Static jkm_N_OrderFollow $= Follow me
+Static jkm_N_OpenOrders $= Open orders
+
+Static jkm_UI $= UI_Select,UI_Up,UI_Down,UI_Left,UI_Right,CyclePreviousPanel,CycleNextPanel
+
+Static jkmSpeechCulture = en-gb
+
+END PROGRAM
+
+//*************************************************************
+// SetUpLanguage
+//*************************************************************
+PROGRAM SetUpLanguage
+
+Rem do these.. If %(CurrentCulture) Contains sv
+Call SetUpLanguageEnglish
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Print JKM Pack installed, running on EDD Version %version(1).%version(2).%version(3).%version(4)
+
+Call SetUpLanguage
+Call Initialise
+
+END PROGRAM
+
+//*************************************************************
+// onPostStartup
+// Events: onPostStartup
+//*************************************************************
+PROGRAM onPostStartup
+
+MenuItem VoiceMenuConfigureVoice                                // see of voice menu installed..
+If MenuPresent IsFalse
+    MenuItem jkmMenuVoice,add-ons,"Voice Synthesis Configuration",speaker
+
+MenuItem jkmMenuJoystick,add-ons,"List Joystick and Binding Information",speaker
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains JKMV1
+    Call SetUpLanguage
+    Call Initialise
+    Say %(jkm_install)
+    MenuItem jkmMenuVoice,add-ons,"Voice Synthesis Configuration",speaker
+    MessageBox "Due to the inability to determine the UI Mode of Elite (Normal, Galaxy map, system menu etc) accurately,\r\nit is neccessary to disable voice for bindings which are mapped onto the same UI keys.\r\n\r\nYou may also hear vocal prompts if you map keys used in galaxy/planetary maps, Holo-Me \r\nonto keys used in normal mode which are vocalised.\r\n\r\nAll voice prompts are disabled when docked.", "UI Key Warning", OK, Warning
+
+END PROGRAM
+
+//*************************************************************
+// Initialise
+//*************************************************************
+PROGRAM Initialise
+
+Perform EnableEliteInputNoAxis
+Static jkm_lastbinding = None
+Static jkm_lastbindingtime = 0
+Static jkm_speaking = 0
+
+Perform listeliteinput
+Print %(EliteInputCheck)
+
+END PROGRAM
+
+//*************************************************************
+// Menus
+// Events: onMenuItem?(MenuName Contains jkmMenu)
+//*************************************************************
+PROGRAM Menus
+
+If MenuName Contains jkmMenuVoice
+    Perform ConfigureVoice "Configure Voice Synthesis"
+If MenuName Contains jkmMenuJoystick
+    EliteBindings *
+    Perform listeliteinput
+    InfoBox "Check:\r\n%(EliteInputCheck)\r\nBindings:\r\n%(EB_Text)\r\nDevices:\r\n%(EliteInput)", "Elite Bindings and Joystick information"
+
+END PROGRAM
+
+//*************************************************************
+// TurnOn
+// Events: onEliteInput
+//*************************************************************
+PROGRAM TurnOn
+
+// Print
+// Print %(Device), %(Binding), List: %(BindingList), EventName:%(EventName) Pressed:%(Pressed) Value:%(Value)
+
+// Debug this. Use Event THPOS and move the cursor to check various points.
+Event Last
+
+If EC_DockedState IsPresent And EC_DockedState IsTrue           // Docked, don't do anything
+    End
+
+If Binding IsOneOf %(jkm_powerbindings)                         // if power binding, alter to generic name
+    Set Binding = Power
+
+Set v = jkm_%(Binding)                                          // make up variable name from event name
+
+If %(v) NotPresent And EC_Hyperspace IsPresent                  // if not present, and we have a hyperspace flag (just in case)
+    If EC_Hyperspace IsFalse                                    // select alternate name of hyperspace flag
+        Set v = jkm_N_%(Binding)
+    Else
+        Set v = jkm_H_%(Binding)
+
+If %(v) IsPresent And %(v) IsNotEmpty                           // we have a binding
+    If BindingList AnyOfAny %(jkm_UI)
+        // Print Key is a UI key - can't tell what mode we are in. ignoring
+    Else If Binding $!= %(jkm_lastbinding) Or "%eval(\"%TickCount()-%(jkm_lastbindingtime)\")" > 2000
+        Set speech = "%phrase(\"%indirect(v)\")"                // now expand any phrases in it
+        Call speak(speech="%(speech)",Priority="Low")
+        // print Say %(speech)  %TickCount() %(jkm_lastbindingtime)
+        Static jkm_lastbinding = %(Binding)
+        Static jkm_lastbindingtime = %TickCount()
+    Else
+        Static jkm_lastbindingtime = %TickCount()
+        // Print rejected due to duplicate binding in less than X second %TickCount() %(jkm_lastbindingtime)
+
+END PROGRAM
+
+//*************************************************************
+// speak
+//*************************************************************
+PROGRAM speak
+
+Rem speech always, optional: Volume, Priority, FinishEvent, Wait
+
+Set speech = "%replacevar(speech,\"jkm_tx\")"
+
+Set ds = 0
+If SpeechOptions IsPresent And SpeechOptions Contains PrintOnly;
+    Set ds = 1
+
+// Real time, don't bother if its more than 3s of queued speech
+
+Say %(speech), QueueLimit=3000, Literal=1, Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="JKMFinish" , Wait="%existsdefault(Wait,\"0\")"
+Static jkm_speaking = 1
+
+// Print Say %(speech)
+
+If SpeechLog IsPresent And SpeechLog IsNotEmpty
+    If SpeechOptions IsPresent And SpeechOptions Contains LogLastOnly;
+        Let success = %openfile(h1,SpeechLog,create)
+    Else
+        Let success = %openfile(h1,SpeechLog,append)
+
+    If success IsTrue
+        If SpeechOptions IsPresent And SpeechOptions Contains LogTimeDate;
+            Expr %write(h1,"%datetimenow(tolocal):")
+
+        Expr %writeline(h1,speech)
+        Expr %closefile(h1)
+    Else
+        Print Cannot write to speech log file '%(SpeechLog)'
+
+END PROGRAM
+
+//*************************************************************
+// FinishSpeech
+// Events: onSayFinished?(EventName $== JKMFinish)
+//*************************************************************
+PROGRAM FinishSpeech
+
+// Holding this for later work
+Static jkm_speaking = 0
+
+END PROGRAM
+
