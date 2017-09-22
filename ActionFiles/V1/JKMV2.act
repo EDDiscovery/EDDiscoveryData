@@ -157,7 +157,7 @@ END PROGRAM
 //*************************************************************
 PROGRAM onInstall
 
-If InstallList Contains JKMV1
+If InstallList Contains JKMV
     Call SetUpLanguage
     Call Initialise
     Say %(jkm_install)
