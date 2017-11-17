@@ -383,6 +383,7 @@ END PROGRAM
 PROGRAM onInstall
 
 If InstallList Contains FreeVoiceControl
+    Call SetUpLanguage
     Say %(say_install)
     Call Initialise
 
