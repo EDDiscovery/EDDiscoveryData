@@ -67,8 +67,10 @@ EVENT onVoiceInput, VoiceInput_Role_Panel, "", VoiceInput MatchSemicolonList "[O
 EVENT onVoiceInput, VoiceInput_Communication_Panel, "", VoiceInput MatchSemicolonList "[Open] Communication Panel;[Open] Comms Panel"
 EVENT onVoiceInput, VoiceInput_Close_Panel, "", VoiceInput MatchSemicolonList "Close Panel;Focus;Front View"
 EVENT onVoiceInput, VoiceInput_Quick_Comms, "", VoiceInput MatchSemicolonList "[Open] Quick Comms"
-EVENT onVoiceInput, VoiceInput_Galaxy_Map, "", VoiceInput MatchSemicolonList "Open|Close|[] Galaxy Map"
-EVENT onVoiceInput, VoiceInput_System_Map, "", VoiceInput MatchSemicolonList "Open|Close|[] System Map"
+EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map, "", VoiceInput MatchSemicolonList "[Open] Galaxy Map"
+EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map, "", VoiceInput MatchSemicolonList "Close Galaxy Map"
+EVENT onVoiceInput, VoiceInput_Open_System_Map, "", VoiceInput MatchSemicolonList "[Open] System Map"
+EVENT onVoiceInput, VoiceInput_Close_System_Map, "", VoiceInput MatchSemicolonList "Close System Map"
 EVENT onVoiceInput, VoiceInput_Head_Look, "", VoiceInput MatchSemicolonList "Head Look On|Off"
 EVENT onVoiceInput, VoiceInput_Game_Menu, "", VoiceInput MatchSemicolonList "[Open] Game Menu"
 EVENT onVoiceInput, VoiceInput_Friends_Menu, "", VoiceInput MatchSemicolonList "[Open] Friends Menu"
@@ -98,8 +100,8 @@ EVENT onVoiceInput, VoiceInput_Toggle_Headlights, "", VoiceInput MatchSemicolonL
 EVENT onVoiceInput, VoiceInput_Headlights_On, "", VoiceInput MatchSemicolonList "Head Lights on"
 EVENT onVoiceInput, VoiceInput_Headlights_Off, "", VoiceInput MatchSemicolonList "Head Lights off"
 EVENT onVoiceInput, VoiceInput_Toggle_Turret, "", VoiceInput MatchSemicolonList "Toggle Turret;Turret Toggle"
-EVENT onVoiceInput, VoiceInput_Turret_On, "", VoiceInput MatchSemicolonList "Turret Up;Extend Turret"
-EVENT onVoiceInput, VoiceInput_Turret_Off, "", VoiceInput MatchSemicolonList "Turrent Down;Retract turret"
+EVENT onVoiceInput, VoiceInput_Turret_On, "", VoiceInput MatchSemicolonList "Enter Turret"
+EVENT onVoiceInput, VoiceInput_Turret_Off, "", VoiceInput MatchSemicolonList "Leave Turrent"
 
 GROUP Fighters
 EVENT onVoiceInput, VoiceInput_Fighter_Dock, "", VoiceInput MatchSemicolonList "Fighter Dock"
@@ -119,9 +121,9 @@ EVENT onVoiceInput, VoiceInput_Ship_Follow, "", VoiceInput MatchSemicolonList "S
 EVENT onVoiceInput, VoiceInput_Ship_Open, "", VoiceInput MatchSemicolonList "Ship Open orders"
 
 GROUP Power Control
-EVENT onVoiceInput, VoiceInput_Increase_Engine_Power, "", VoiceInput MatchSemicolonList "Increase Engine Power;More Engines;Engines Up;Increase Engines"
-EVENT onVoiceInput, VoiceInput_Increase_Weapons_Power, "", VoiceInput MatchSemicolonList "Increase Engine Weapons;More Weapons;Weapons Up;Increase Weapons"
-EVENT onVoiceInput, VoiceInput_Increase_Systems_Power, "", VoiceInput MatchSemicolonList "Increase Shield Power;More Shields;Shields Up;Increase Shields"
+EVENT onVoiceInput, VoiceInput_Increase_Engine_Power, "", VoiceInput MatchSemicolonList "Increase|More Engine Power;More Engines;Engines Up;Increase Engines"
+EVENT onVoiceInput, VoiceInput_Increase_Weapons_Power, "", VoiceInput MatchSemicolonList "Increase|More Engine Weapons;More Weapons;Weapons Up;Increase Weapons"
+EVENT onVoiceInput, VoiceInput_Increase_Systems_Power, "", VoiceInput MatchSemicolonList "Increase|More Shield Power;More Shields;Shields Up;Increase Shields;More|Increase Systems Power"
 EVENT onVoiceInput, VoiceInput_Reset_Power, "", VoiceInput MatchSemicolonList "Reset Power"
 EVENT onVoiceInput, VoiceInput_Weapons_WS, "", VoiceInput MatchSemicolonList "Weapons and Shields;Shields and Weapons"
 EVENT onVoiceInput, VoiceInput_Weapons_SpeedAttack, "", VoiceInput MatchSemicolonList "Speed Attack"
@@ -146,213 +148,56 @@ EVENT onVoiceInput, VoiceInput_Toggle_Engine_Colour, "", VoiceInput MatchSemicol
 EVENT onVoiceInput, VoiceInput_Toggle_Orbit_Lines, "", VoiceInput MatchSemicolonList "[Toggle] Orbit Lines;Orbit Lines on|off"
 EVENT onVoiceInput, VoiceInput_Rotational_Correction_Toggle, "", VoiceInput MatchSemicolonList "Rotational Correction Toggle|On|Off"
 EVENT onVoiceInput, VoiceInput_Resume_Route, "", VoiceInput MatchSemicolonList "Resume|Replot Route"
-EVENT onVoiceInput, VoiceInput_Silent_Running, "", VoiceInput MatchSemicolonList "Silent Running;Cooling On|Off"
+EVENT onVoiceInput, VoiceInput_Silent_Running, "", VoiceInput MatchSemicolonList "Silent Running On|Off"
 EVENT onVoiceInput, VoiceInput_Reset_Head_Position, "", VoiceInput MatchSemicolonList "Reset Head Position"
 EVENT onVoiceInput, VoiceInput_Screenshot, "", VoiceInput MatchSemicolonList "Take Photo;[Take] Screen shot"
 
 GROUP Camera
-EVENT onVoiceInput, VoiceInput_Camera, "", VoiceInput MatchSemicolonList "Toggle Camera;Camera On|Off|Mode"
+EVENT onVoiceInput, VoiceInput_Camera, "", VoiceInput MatchSemicolonList "Toggle Camera [Mode];Camera On|Off|Mode"
+EVENT onVoiceInput, VoiceInput_Camera_Free, "", VoiceInput MatchSemicolonList "[Toggle]|Enter Free [Camera] Mode"
+EVENT onVoiceInput, VoiceInput_Camera_PreviousCam, "", VoiceInput MatchSemicolonList "Previous Camera"
+EVENT onVoiceInput, VoiceInput_Camera_NextCam, "", VoiceInput MatchSemicolonList "Next Camera"
+EVENT onVoiceInput, VoiceInput_Camera_One, "", VoiceInput MatchSemicolonList "Camera One;Front Cockpit Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Two, "", VoiceInput MatchSemicolonList "Camera Two;Rear Cockpit Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Three, "", VoiceInput MatchSemicolonList "Camera Three;Pilot Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Four, "", VoiceInput MatchSemicolonList "Camera Four;Secondary Pilot Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Five, "", VoiceInput MatchSemicolonList "Camera Five;[Co] Pilot One Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Six, "", VoiceInput MatchSemicolonList "Camera Six;[Co] Pilot Two Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Seven, "", VoiceInput MatchSemicolonList "Camera Seven;Front Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Eight, "", VoiceInput MatchSemicolonList "Camera Eight;Rear Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Nine, "", VoiceInput MatchSemicolonList "Camera Nine;Low [Rear] Camera"
+EVENT onVoiceInput, VoiceInput_Camera_Hud, "", VoiceInput MatchSemicolonList "Toggle HUD;Toggle Head Up Display"
+EVENT onVoiceInput, VoiceInput_Camera_IncrSpeed, "", VoiceInput MatchSemicolonList "Increase Camera Speed"
+EVENT onVoiceInput, VoiceInput_Camera_DecrSpeed, "", VoiceInput MatchSemicolonList "Decrease Camera Speed"
+EVENT onVoiceInput, VoiceInput_Camera_Stabiliser, "", VoiceInput MatchSemicolonList "Toggle Camera Stabiliser|Stabilizer"
+EVENT onVoiceInput, VoiceInput_Camera_ShipControls, "", VoiceInput MatchSemicolonList "Toggle Camera Ship Controls"
+EVENT onVoiceInput, VoiceInput_Camera_Attach, "", VoiceInput MatchSemicolonList "Toggle Camera [World] Attach|World"
+EVENT onVoiceInput, VoiceInput_Camera_ExitFree, "", VoiceInput MatchSemicolonList "Exit Free Camera"
+EVENT onVoiceInput, VoiceInput_Camera_IncrZoom, "", VoiceInput MatchSemicolonList "Increase [Camera] Zoom; Zoom Camera In"
+EVENT onVoiceInput, VoiceInput_Camera_DecrZoom, "", VoiceInput MatchSemicolonList "Decrease [Camera] Zoom;Zoom Camera Out"
+EVENT onVoiceInput, VoiceInput_Camera_IncrBlur, "", VoiceInput MatchSemicolonList "Increase [Camera] Blur"
+EVENT onVoiceInput, VoiceInput_Camera_DecrBlur, "", VoiceInput MatchSemicolonList "Decrease [Camera] Blur"
+
+GROUP PopOuts
+EVENT onVoiceInput, VoiceInput_Summary_Panel_toggle, "", VoiceInput MatchSemicolonList "Toggle Summary Panel"
+EVENT onVoiceInput, VoiceInput_Summary_Panel_on, "", VoiceInput MatchSemicolonList "Summary Panel On"
+EVENT onVoiceInput, VoiceInput_Summary_Panel_off, "", VoiceInput MatchSemicolonList "Summary Panel Off"
+EVENT onVoiceInput, VoiceInput_Trippanel_Panel_toggle, "", VoiceInput MatchSemicolonList "Toggle Trip Panel"
+EVENT onVoiceInput, VoiceInput_Trippanel_Panel_on, "", VoiceInput MatchSemicolonList "Trip Panel On"
+EVENT onVoiceInput, VoiceInput_Trippanel_Panel_off, "", VoiceInput MatchSemicolonList "Trip Panel Off"
+EVENT onVoiceInput, VoiceInput_Notepanel_Panel_toggle, "", VoiceInput MatchSemicolonList "Toggle Note Panel"
+EVENT onVoiceInput, VoiceInput_Notepanel_Panel_on, "", VoiceInput MatchSemicolonList "Note Panel On"
+EVENT onVoiceInput, VoiceInput_Notepanel_Panel_off, "", VoiceInput MatchSemicolonList "Note Panel Off"
+EVENT onVoiceInput, VoiceInput_RouteTracker_Panel_toggle, "", VoiceInput MatchSemicolonList "Toggle Route Tracker"
+EVENT onVoiceInput, VoiceInput_RouteTracker_Panel_on, "", VoiceInput MatchSemicolonList "Route Tracker On"
+EVENT onVoiceInput, VoiceInput_RouteTracker_Panel_off, "", VoiceInput MatchSemicolonList "Route Tracker Off"
 
 GROUP Initialisation
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
 EVENT onPostStartup, onPostStartup, "", Condition AlwaysTrue
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
 EVENT onMenuItem, Menus, "", MenuName Contains FVC
-
-//*************************************************************
-// SetUpLanguageEnglish
-//*************************************************************
-PROGRAM SetUpLanguageEnglish
-
-Static say_welcome $= Free Voice Control Version 1 running
-Static say_install $= You have installed Free Voice Control English Version 1
-
-// Defense
-Static say_firechaff $= Firing chaff;Chaffing;Acknowledge
-Static say_shieldcell $= Shield Cell;Firing Cell;Regarding Cells;Acknowledge
-Static say_deployheatsink $= Heat sink away;Deploying heat sink;Launching heat sink;Acknowledge
-Static say_chargeecm $= Charging ECM;ECM on;ECM active;Acknowledge
-
-// Flight
-Static say_flightassisttoggle $= Toggling flight assist;Acknowledge
-Static say_flightassiston $= Assist on;Flight Assist on;Flight Assist;Acknowledge
-Static say_flightassistoff $= Assist off;Flight Assist off;Acknowledge
-Static say_boost $= Boosting
-Static say_hypersuper $= Preparing to warp;Preparing to jump;Aye Aye Commander;Hold on tight, charging
-Static say_drop $= Dropping to normal space;Preparing to drop;Acknowledge;Acknowledge commander
-Static say_supercruise $= Preparing for supercruise;Drive charging;Supercruise charging
-Static say_minus100 $= Acknowledge Thull|Full Reverse Commander;Thull|Full Reverse;Reverse thrust;Acknowledge
-Static say_minus75 $= Aye Aye, Three Quarters Astern;75 percent astern;Acknowledge
-Static say_minus50 $= One Half Astern;50 percent thrust astern;Acknowledge
-Static say_minus25 $= One Quarter Astern;25 percent thrust astern;Acknowledge
-Static say_zero $= Thull|Full Stop;Acknowledge;Thrust off;Engines Off Sir;Stopping ship
-Static say_25 $= One Quarter Ahead;25 percent thrust set;Acknowledge
-Static say_50 $= One half Ahead;50 percent thrust set;Acknowledge;One half forward
-Static say_75 $= Three Quarters Ahead;75 percent thrust set;Acknowledge;75 percent forward
-Static say_100 $= Thull|Full Thrust;Acknowledge;Engines to Maximum;Maximum Thrust Commander
-
-// Targeting
-Static say_selecttarget $= Selecting target;Targetting
-Static say_nexttarget $= Next target;Selecting next;Acknowledge
-Static say_previoustarget $= Previous target;Selecting previous;Acknowledge
-Static say_highestthreat $= Highest hostile;Most hostile;Acknowledge
-Static say_nexthostile $= Next hostile;Selecting next hostile;Acknowledge
-Static say_previoushostile $= Previous hostile;Selecting previous hostile;Acknowledge
-Static say_targetwingman1 $= Target wing man 1;Acknowledge;Wing man 1 selected
-Static say_targetwingman2 $= Target wing man 2;Acknowledge;Wing man 2 selected
-Static say_targetwingman3 $= Target wing man 3;Acknowledge;Wing man 3 selected
-Static say_wingmantarget $= Select wing man target;Targetting wing man target
-Static say_wingmannavlock $= Toggling Wing man Navigational lock
-Static say_nextsubsystem $= Next subsystem
-Static say_previoussubsystem $= Previous subsystem
-Static say_nextfiregroup $= Next group;Selected;Acknowledge
-Static say_previousfiregroup $= Previous group;Selected;Acknowledge
-
-// Weapons
-Static say_deployweapons $= Deploying weapons;Weapons out
-Static say_retractweapons $= Retracting weapons;Weapons away
-
-// Sensors
-Static say_increaseradar $= Increase Range;Sensor range increased
-Static say_decreaseradar $= Decrease Range;Sensor range decreased
-Static say_longrangeradar $= Long Range;Sensor to long range
-Static say_shortrangeradar $= Short Range;Sensor to short range
-Static say_mediumrangeradar $= Medium Range;Sensor to medium range
-
-// UI
-Static say_systemspanel $= Systems Panel;Acknowledge;Selecting panel;Opening
-Static say_targetpanel $= Target Panel;Acknowledge;Selecting panel;Opening
-Static say_rolepanel $= Role Panel;Acknowledge;Selecting panel;Opening
-Static say_commspanel $= Comms Panel;Acknowledge;Selecting panel;Opening
-Static say_closepanel $= Closing Panel;Closing
-Static say_quickcomms $= Quick Comms Panel;Acknowledge;Selecting panel;Opening
-Static say_galaxymap $= Opening map;Galaxy map opening;Acknowledge
-Static say_systemmap $= Opening map;System map opening;Acknowledge
-Static say_headlook $= Toggling head look mode
-Static say_gamemenu $= Game menu
-Static say_friendmenu $= Friend menu selected
-Static say_nextpanel $= Next panel;Select next panel;Acknowledge
-Static say_previouspanel $= Previous panel;Select previous panel;Acknowledge
-
-// Headlook
-Static say_headlookreset $= View forward;Reset view;Acknowledge
-Static say_headlookup $= View up;Acknowledge
-Static say_headlookdown $= View down;Acknowledge
-Static say_headlookleft $= View left;Acknowledge
-Static say_headlookright $= View right;Acknowledge
-Static say_headlookfullleft $= View to left cockpit;Acknowledge
-Static say_headlookfullright $= View to right cockpit;Acknowledge
-Static say_headlookfullup $= View to above;Acknowledge
-
-// SRV
-Static say_recallship $= Recall ship;Hailing ship to return;Acknowledge
-Static say_dismissship $= Dismissing ship;Bon voyage;Acknowledge
-Static say_toggledriveassist $= Toggle drive assist
-Static say_driveassiston $= Drive assist on;Assist On;Acknowledge
-Static say_driveassistoff $= Drive assist off;Assist Off;Acknowledge
-Static say_togglehandbrake $= Toggle drive assist
-Static say_handbrakeon $= Hand brake on;Brake On;Acknowledge
-Static say_handbrakeoff $= Hand brake off;Brake Off;Acknowledge
-Static say_toggleheadlights $= Toggle head lights
-Static say_headlightson $= Head Lights on;Lights On;Acknowledge
-Static say_headlightsoff $= Head lights off;Lights Off;Acknowledge
-Static say_toggleturret $= Toggling turret
-Static say_turretup $= Turret Up;Acknowledge
-Static say_turretdown $= Turrent Down;Acknowledge
-
-// Fighters
-Static say_fighterdock $= Fighter, redock;Fighter to redock;Acknowledge
-Static say_fighterdefensive $= Fighter, defensive;Fighter to defensive mode;Acknowledge
-Static say_fighteragressive $= Fighter, aggressive;Fighter to aggressive mode;Acknowledge
-Static say_fightertarget $= Fighter, attack target;Acknowledge
-Static say_fighterholdfire $= Fighter, hold fire;Fighter to hold fire;Acknowledge
-Static say_fighterholdposition $= Fighter, hold position;Fighter to hold position;Acknowledge
-Static say_fighterfollow $= Fighter, follow me;Fighter to follow;Acknowledge
-Static say_fighteropenorders $= Fighter, open orders;Fighter free patrol;Acknowledge
-
-Static say_shipdefensive $= Ship, defensive;ship to defensive mode;Acknowledge
-Static say_shipagressive $= Ship, aggressive;ship to aggressive mode;Acknowledge
-Static say_shiptarget $= Ship, attack target;Acknowledge
-Static say_shipholdfire $= Ship, hold fire;ship to hold fire;Acknowledge
-Static say_shipholdposition $= Ship, hold position;ship to hold position;Acknowledge
-Static say_shipfollow $= Ship, follow me;ship to follow;Acknowledge
-Static say_shipopenorders $= Ship, open orders;ship free patrol;Acknowledge
-
-// Power Control
-Static say_increaseengine $= Power to engine;More engine power;Acknowledge
-Static say_increaseweapons $= Power to weapons;More weapons power;Acknowledge
-Static say_increasesystems $= Power to systems;More system power;Acknowledge
-Static say_resetpower $= Balanced power;Power reset;Acknowledge
-Static say_powerws $= Power balanced to shields and weapons;Acknowledge
-Static say_powerspeedattack $= Speed attack set;Power set to speed attack;Acknowledge
-Static say_powermaxweapons $= Power diverted to weapons;Power to weapons;Acknowledge
-Static say_powermaxshields $= Power diverted to shields;Power to shields;Acknowledge
-Static say_powermaxengines $= Power diverted to engines;Power to engines;Acknowledge
-Static say_powerbalanced $= Balanced power selected;Acknowledge
-Static say_powerattackmode $= Power attack set;Power set to attack mode;Acknowledge
-Static say_powerfastattack $= Fast attack set;Power set to fast mode;Acknowledge
-Static say_escape $= Oh Bleep;Escaping;Max power to engines;Emergency Escape Set
-
-// Misc
-Static say_landinggeartoggle $= Acknowledged Commander;Toggling landing gear
-Static say_landinggeardown $= Acknowledged Commander;Landing Gear Down;Deploying landing gear
-Static say_landinggearup $= Acknowledged Commander;Landing Gear Up;Retracting landing gear
-Static say_shiplightson $= Lights on;Ship Lights on Commander;Aye Aye Commander;Acknowledge
-Static say_shiplightsoff $= Lights off;Ship Lights off Commander;Aye Aye Commander;Acknowledge
-Static say_shiplightstoggle $= Toggling lights;Acknowledge
-Static say_deploycargoscoop $= Scoop Out;Cargo scoop deployed;Scoop deploying;Acknowledge
-Static say_retractcargoscoop $= Scoop retracting;Cargo scoop retracting;Scoop up;Acknowledge
-Static say_microphonemute $= Toggle microphone mute;Acknowledge
-Static say_toggleweaponscolour $= Toggling weapons colour;Acknowledge
-Static say_toggleenginecolour $= Toggling engine colour;Acknowledge
-Static say_orbitlines $= Orbit lines toggling;Toggle orbit lines;Acknowledge
-Static say_rotationalcorrection $= Rotational correction toggled
-Static say_resumeroute $= Resuming route planned;Route set Commander
-Static say_silentrunning $= Toggling silent running
-Static say_resethead $= Head display reset
-Static say_screenshot $= Snap;Photo taken;Screen shot taken
-
-// Camera
-Static say_camera $= Toggling Camera Mode
-// TODO
-Static say_previouscamera $= ""
-Static say_nextcamera $= ""
-Static say_freecamera $= ""
-Static say_cameracockpitfront $= ""
-Static say_cameracockpitback $= ""
-Static say_cameracmdr1 $= ""
-Static say_cameracmdr2 $= ""
-Static say_cameracopilot1 $= ""
-Static say_cameracopilot2 $= ""
-Static say_camerafront $= ""
-Static say_cameraback $= ""
-Static say_cameralow $= ""
-Static say_camerahud $= ""
-Static say_cameraincrspd $= ""
-Static say_cameradecrspd $= ""
-Static say_camerastabiliser $= ""
-Static say_camerashipcontrols $= ""
-Static say_cameraattach $= ""
-Static say_cameraexitfree $= ""
-Static say_cameraincrzoom $= ""
-Static say_cameradecrzoom $= ""
-Static say_cameraincrblur $= ""
-Static say_cameradecrblur $= ""
-
-Static SpeechCulture = en-gb
-Static SpeechPriority = Low                                     // anything else going on, don't add to speech queue.
-
-END PROGRAM
-
-//*************************************************************
-// SetUpLanguage
-//*************************************************************
-PROGRAM SetUpLanguage
-
-Rem do these.. If %(CurrentCulture) Contains sv
-Call SetUpLanguageEnglish
-
-END PROGRAM
+EVENT onVoiceInputFailed, VoiceInput_Failed, "", Condition AlwaysTrue
 
 //*************************************************************
 // onStartup
@@ -383,7 +228,8 @@ END PROGRAM
 PROGRAM onInstall
 
 If InstallList Contains FreeVoiceControl
-    Call SetUpLanguage
+    Static SpeechCulture = en-gb
+    Static say_install $= You have installed Free Voice Control Version 1
     Say %(say_install)
     Call Initialise
 
@@ -394,10 +240,12 @@ END PROGRAM
 //*************************************************************
 PROGRAM Initialise
 
-Call SetUpLanguage
+Static SpeechPriority = Low                                     // anything else going on, don't add to speech queue.
+Static SpeechCulture = en-gb
 
 Static TagAnnounciate = AnnounciateError;
 Static TagWelcome = WelcomeDisable;
+Static TagShowFailed = ShowFailed;
 
 If FVCControls NotPresent
     Print ****
@@ -405,12 +253,13 @@ If FVCControls NotPresent
     Print ****
     PersistentGlobal FVCControls = %(TagAnnounciate)
     PersistentGlobal FVCConfidence = 94
-    PersistentGlobal FVCTarget = elitedangerous
+    PersistentGlobal FVCTarget = elitedangerous64
     PersistentGlobal FVCSilentError = Report Once
     PersistentGlobal FVCEndTimeout = 150
     PersistentGlobal FVCEndTimeoutAmbiguous = 500
 
 If FVCControls NotContains %(TagWelcome)
+    Static say_welcome $= Free Voice Control Version 1 running
     Say %(say_welcome)
 
 Perform EnableVoiceRecognition %(SpeechCulture)
@@ -420,8 +269,10 @@ Perform BeginVoiceRecognition
 
 MenuItem FVCMenuConfigure,add-ons,"Free Voice Control Configuration",speaker
 MenuItem FVCMenuShowHelp,help,"Free Voice Control Help",speaker
+MenuItem FVCMenuEditPack,add-ons,"Free Voice Control Edit Phrases",speaker
 
 Static KeyProcessTo = %(FVCTarget)                              // programs using Key in here pick up global KeyProcessTo, set it to the perisistent for ours
+Static KeyDelay = 20
 
 Call SetKeyVariables
 
@@ -439,7 +290,7 @@ If FVCSilentError $== "Report Once"
     Static KeySilentOnError = 1
 Else If FVCSilentError $== "Never Report"
     Static KeySilentOnError = 2
-Else
+Else 
     Static KeySilentOnError = 0
 
 END PROGRAM
@@ -453,6 +304,9 @@ PROGRAM Menus
 If MenuName Contains FVCConfigureVoice
     Perform ConfigureVoice "Configure Voice Synthesis"
 
+If MenuName Contains EditPack
+    Perform EditPack %(ActionPackName)
+
 If MenuName Contains ShowHelp
     Set help = Free Voice Control For EDDiscovery (C) EDDiscovery Team\r\n\r\n
     Set help += Use Add-Ons | Manage to enable or disable this pack\r\n\r\n
@@ -460,7 +314,7 @@ If MenuName Contains ShowHelp
     Set help += Use the Voice synthesis configuration options in the Add-Ons menu to configure the voice output\r\n\r\n
     Set help += Free Voice Control understands the following phrases:\r\n\r\n
     Perform VoiceRecognitionPhrases
-	Set help += %(Phrases)
+    Set help += %(Phrases)
     InfoBox "%replaceescapechar(help)","Free Voice Control Help"
 
 If MenuName Contains FVCMenuConfigure
@@ -481,6 +335,7 @@ If MenuName Contains FVCMenuConfigure
 
     Set dvar5a = "L3,Label,\"General\",10,+40,80,20,\"\""
     Set dvar5b = "CBWEL,CheckBox,\"Disable Welcome Message\",100,+0,200,20,\"Disable the welcome voice message\",%IsPresent(FVCControls,TagWelcome,0)"
+    Set dvar5c = "CBFAIL,CheckBox,\"Show failed voice recognition\",100,+30,200,20,\"Show any failed voice recognition attempts\",%IsPresent(FVCControls,TagShowFailed,0)"
 
     Set dvar6a = "L2,Label,\"End Timeout\",10,+40,80,20,\"\""
     Set dvar6b = "TBET,TextBox,\"%existsdefault(FVCEndTimeout,'150')\",100,+0,220,20,\"Time to wait if speech is unambigious before recognising the phrase (ms)\""
@@ -501,7 +356,7 @@ If MenuName Contains FVCMenuConfigure
             If res $== NAN
                 MessageBox "Number is not an integer","Confidence Level"
                 Let good = 0
-            Else
+            Else 
                 PersistentGlobal FVCConfidence = %(res)
                 Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100')
 
@@ -536,12 +391,13 @@ If MenuName Contains FVCMenuConfigure
                 PersistentGlobal FVCControls = ""
                 Call SetSO(ctrl="CBWEL",flag="%(TagWelcome)")
                 Call SetSO(ctrl="CBANN",flag="%(TagAnnounciate)")
+                Call SetSO(ctrl="CBFAIL",flag="%(TagShowFailed)")
 
                 If updatetimeouts IsTrue
                     Perform VoiceRecognitionParameters 0,0,%(FVCEndTimeout),%(FVCEndTimeoutAmbiguous)
 
                 Call SetKeyVariables
-                Break
+                Break 
 
         DialogControl D1,Continue
 
@@ -572,6 +428,17 @@ Say "Voice Input %(VoiceInput) recognised"
 END PROGRAM
 
 //*************************************************************
+// VoiceInput_Failed
+// Events: onVoiceInputFailed
+//*************************************************************
+PROGRAM VoiceInput_Failed
+
+If FVCControls Contains %(TagShowFailed)
+    Print Failed voice recognition with %(VoiceInput) at %(VoiceConfidence)%
+
+END PROGRAM
+
+//*************************************************************
 // VoiceInput_Landing_GearToggle
 // Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Landing Gear")
 //*************************************************************
@@ -579,7 +446,7 @@ PROGRAM VoiceInput_Landing_GearToggle
 
 Rem Autogenerated V1
 Key {LandingGearToggle}
-Say %(say_landinggeartoggle)
+Say "Acknowledged Commander;Toggling landing gear"
 
 END PROGRAM
 
@@ -591,7 +458,7 @@ PROGRAM VoiceInput_Landing_GearUp
 
 Rem Autogenerated V1
 Key {LandingGearToggle}
-Say %(say_landinggearup)
+Say "Acknowledged Commander;Landing Gear Up;Retracting landing gear"
 
 END PROGRAM
 
@@ -603,7 +470,7 @@ PROGRAM VoiceInput_Landing_GearDown
 
 Rem Autogenerated V1
 Key {LandingGearToggle}
-Say %(say_landinggeardown)
+Say "Acknowledged Commander;Landing Gear Down;Deploying landing gear"
 
 END PROGRAM
 
@@ -615,7 +482,7 @@ PROGRAM VoiceInput_Chaff
 
 Rem Autogenerated V1
 Key {FireChaffLauncher}
-Say %(say_firechaff)
+Say "Firing chaff;Chaffing;Acknowledge"
 
 END PROGRAM
 
@@ -627,7 +494,7 @@ PROGRAM VoiceInput_Shield_Cell
 
 Rem Autogenerated V1
 Key {UseShieldCell}
-Say %(say_shieldcell)
+Say "Shield Cell;Firing Cell;Regarding Cells;Acknowledge"
 
 END PROGRAM
 
@@ -639,7 +506,7 @@ PROGRAM VoiceInput_Lights_On
 
 Rem Autogenerated V1
 Key {ShipSpotLightToggle}
-Say %(say_shiplightson)
+Say "Lights on;Ship Lights on Commander;Aye Aye Commander;Acknowledge"
 
 END PROGRAM
 
@@ -651,7 +518,7 @@ PROGRAM VoiceInput_Lights_Off
 
 Rem Autogenerated V1
 Key {ShipSpotLightToggle}
-Say %(say_shiplightsoff)
+Say "Lights off;Ship Lights off Commander;Aye Aye Commander;Acknowledge"
 
 END PROGRAM
 
@@ -663,7 +530,7 @@ PROGRAM VoiceInput_Lights_Toggle
 
 Rem Autogenerated V1
 Key {ShipSpotLightToggle}
-Say %(say_shiplightstoggle)
+Say "Toggling lights;Acknowledge"
 
 END PROGRAM
 
@@ -675,7 +542,7 @@ PROGRAM VoiceInput_Heat_Sink
 
 Rem Autogenerated V1
 Key {DeployHeatSink}
-Say %(say_deployheatsink)
+Say "Heat sink away;Deploying heat sink;Launching heat sink;Acknowledge"
 
 END PROGRAM
 
@@ -687,7 +554,7 @@ PROGRAM VoiceInput_Deploy_Cargo_Scoop
 
 Rem Autogenerated V1
 Key {ToggleCargoScoop}
-Say %(say_deploycargoscoop)
+Say "Scoop Out;Cargo scoop deployed;Scoop deploying;Acknowledge"
 
 END PROGRAM
 
@@ -699,7 +566,7 @@ PROGRAM VoiceInput_Retract_Cargo_Scoop
 
 Rem Autogenerated V1
 Key {ToggleCargoScoop}
-Say %(say_retractcargoscoop)
+Say "Scoop retracting;Cargo scoop retracting;Scoop up;Acknowledge"
 
 END PROGRAM
 
@@ -711,7 +578,7 @@ PROGRAM VoiceInput_Microphone_Mute
 
 Rem Autogenerated V1
 Key {MicrophoneMute}
-Say %(say_microphonemute)
+Say "Toggle microphone mute;Acknowledge"
 
 END PROGRAM
 
@@ -723,7 +590,7 @@ PROGRAM VoiceInput_Charge_ECM
 
 Rem Autogenerated V1
 Key {ChargeECM}
-Say %(say_chargeecm)
+Say "Charging ECM;ECM on;ECM active;Acknowledge"
 
 END PROGRAM
 
@@ -735,7 +602,7 @@ PROGRAM VoiceInput_Toggle_Weapons_Colour
 
 Rem Autogenerated V1
 Key {WeaponColourToggle}
-Say %(say_toggleweaponscolour)
+Say "Toggling weapons colour;Acknowledge"
 
 END PROGRAM
 
@@ -747,7 +614,7 @@ PROGRAM VoiceInput_Toggle_Engine_Colour
 
 Rem Autogenerated V1
 Key {EngineColourToggle}
-Say %(say_toggleenginecolour)
+Say "Toggling engine colour;Acknowledge"
 
 END PROGRAM
 
@@ -759,7 +626,7 @@ PROGRAM VoiceInput_Toggle_Flight_Assist
 
 Rem Autogenerated V1
 Key {ToggleFlightAssist}
-Say %(say_flightassisttoggle)
+Say "Toggling flight assist;Acknowledge"
 
 END PROGRAM
 
@@ -771,7 +638,7 @@ PROGRAM VoiceInput_Flight_Assist_On
 
 Rem Autogenerated V1
 Key {ToggleFlightAssist}
-Say %(say_flightassiston)
+Say "Assist on;Flight Assist on;Flight Assist;Acknowledge"
 
 END PROGRAM
 
@@ -783,7 +650,7 @@ PROGRAM VoiceInput_Flight_Assist_Off
 
 Rem Autogenerated V1
 Key {ToggleFlightAssist}
-Say %(say_flightassistoff)
+Say "Assist off;Flight Assist off;Acknowledge"
 
 END PROGRAM
 
@@ -795,7 +662,7 @@ PROGRAM VoiceInput_Boost
 
 Rem Autogenerated V1
 Key {UseBoostJuice}
-Say %(say_boost)
+Say "Boosting"
 
 END PROGRAM
 
@@ -807,7 +674,7 @@ PROGRAM VoiceInput_Hyperspace
 
 Rem Autogenerated V1
 Key {HyperSuperCombination}
-Say %(say_hypersuper)
+Say "Preparing to warp;Preparing to jump;Aye Aye Commander;Hold on tight, charging"
 
 END PROGRAM
 
@@ -819,7 +686,7 @@ PROGRAM VoiceInput_Drop
 
 Rem Autogenerated V1
 Key {Supercruise}
-Say %(say_drop)
+Say "Dropping to normal space;Preparing to drop;Acknowledge;Acknowledge commander"
 
 END PROGRAM
 
@@ -831,7 +698,7 @@ PROGRAM VoiceInput_Supercruise
 
 Rem Autogenerated V1
 Key {Supercruise}
-Say %(say_supercruise)
+Say "Preparing for supercruise;Drive charging;Supercruise charging"
 
 END PROGRAM
 
@@ -843,7 +710,7 @@ PROGRAM VoiceInput_Toggle_Orbit_Lines
 
 Rem Autogenerated V1
 Key {OrbitLinesToggle}
-Say %(say_orbitlines)
+Say "Orbit lines toggling;Toggle orbit lines;Acknowledge"
 
 END PROGRAM
 
@@ -855,7 +722,7 @@ PROGRAM VoiceInput_Select_Target
 
 Rem Autogenerated V1
 Key {SelectTarget}
-Say %(say_selecttarget)
+Say "Selecting target;Targetting"
 
 END PROGRAM
 
@@ -867,7 +734,7 @@ PROGRAM VoiceInput_Minus100
 
 Rem Autogenerated V1
 Key {SetSpeedMinus100}
-Say %(say_minus100)
+Say "Acknowledge Thull|Full Reverse Commander;Thull|Full Reverse;Reverse thrust;Acknowledge"
 
 END PROGRAM
 
@@ -879,7 +746,7 @@ PROGRAM VoiceInput_Minus75
 
 Rem Autogenerated V1
 Key {SetSpeedMinus75}
-Say %(say_minus75)
+Say "Aye Aye, Three Quarters Astern;75 percent astern;Acknowledge"
 
 END PROGRAM
 
@@ -891,7 +758,7 @@ PROGRAM VoiceInput_Minus50
 
 Rem Autogenerated V1
 Key {SetSpeedMinus50}
-Say %(say_minus50)
+Say "One Half Astern;50 percent thrust astern;Acknowledge"
 
 END PROGRAM
 
@@ -903,7 +770,7 @@ PROGRAM VoiceInput_Minus25
 
 Rem Autogenerated V1
 Key {SetSpeedMinus25}
-Say %(say_minus25)
+Say "One Quarter Astern;25 percent thrust astern;Acknowledge"
 
 END PROGRAM
 
@@ -915,7 +782,7 @@ PROGRAM VoiceInput_Stop
 
 Rem Autogenerated V1
 Key {SetSpeedZero}
-Say %(say_zero)
+Say "Full Stop;Acknowledge;Thrust off;Engines Off Sir;Stopping ship"
 
 END PROGRAM
 
@@ -927,7 +794,7 @@ PROGRAM VoiceInput_25
 
 Rem Autogenerated V1
 Key {SetSpeed25}
-Say %(say_25)
+Say "One Quarter Ahead;25 percent thrust set;Acknowledge"
 
 END PROGRAM
 
@@ -939,7 +806,7 @@ PROGRAM VoiceInput_50
 
 Rem Autogenerated V1
 Key {SetSpeed50}
-Say %(say_50)
+Say "One half Ahead;50 percent thrust set;Acknowledge;One half forward"
 
 END PROGRAM
 
@@ -951,7 +818,7 @@ PROGRAM VoiceInput_75
 
 Rem Autogenerated V1
 Key {SetSpeed75}
-Say %(say_75)
+Say "Three Quarters Ahead;75 percent thrust set;Acknowledge;75 percent forward"
 
 END PROGRAM
 
@@ -963,7 +830,7 @@ PROGRAM VoiceInput_100
 
 Rem Autogenerated V1
 Key {SetSpeed100}
-Say %(say_100)
+Say "Full Thrust;Acknowledge;Engines to Maximum;Maximum Thrust Commander"
 
 END PROGRAM
 
@@ -975,7 +842,7 @@ PROGRAM VoiceInput_Rotational_Correction_Toggle
 
 Rem Autogenerated V1
 Key {DisableRotationCorrectToggle}
-Say %(say_rotationalcorrection)
+Say "Rotational correction toggled"
 
 END PROGRAM
 
@@ -987,7 +854,7 @@ PROGRAM VoiceInput_Next_Target
 
 Rem Autogenerated V1
 Key {CycleNextTarget}
-Say %(say_nexttarget)
+Say "Next target;Selecting next;Acknowledge"
 
 END PROGRAM
 
@@ -999,7 +866,7 @@ PROGRAM VoiceInput_Previous_target
 
 Rem Autogenerated V1
 Key {CyclePreviousTarget}
-Say %(say_previoustarget)
+Say "Previous target;Selecting previous;Acknowledge"
 
 END PROGRAM
 
@@ -1011,7 +878,7 @@ PROGRAM VoiceInput_Highest_Threat
 
 Rem Autogenerated V1
 Key {SelectHighestThreat}
-Say %(say_highestthreat)
+Say "Highest hostile;Most hostile;Acknowledge"
 
 END PROGRAM
 
@@ -1023,7 +890,7 @@ PROGRAM VoiceInput_Next_Hostile
 
 Rem Autogenerated V1
 Key {CycleNextHostileTarget}
-Say %(say_nexthostile)
+Say "Next hostile;Selecting next hostile;Acknowledge"
 
 END PROGRAM
 
@@ -1035,7 +902,7 @@ PROGRAM VoiceInput_Previous_Hostile
 
 Rem Autogenerated V1
 Key {CyclePreviousHostileTarget}
-Say %(say_previoushostile)
+Say "Previous hostile;Selecting previous hostile;Acknowledge"
 
 END PROGRAM
 
@@ -1047,7 +914,7 @@ PROGRAM VoiceInput_Target_Wing_man_1
 
 Rem Autogenerated V1
 Key {TargetWingman0}
-Say %(say_targetwingman1)
+Say "Target wing man 1;Acknowledge;Wing man 1 selected"
 
 END PROGRAM
 
@@ -1059,7 +926,7 @@ PROGRAM VoiceInput_Target_Wing_man_2
 
 Rem Autogenerated V1
 Key {TargetWingman1}
-Say %(say_targetwingman2)
+Say "Target wing man 2;Acknowledge;Wing man 2 selected"
 
 END PROGRAM
 
@@ -1071,7 +938,7 @@ PROGRAM VoiceInput_Target_Wing_man_3
 
 Rem Autogenerated V1
 Key {TargetWingman2}
-Say %(say_targetwingman3)
+Say "Target wing man 3;Acknowledge;Wing man 3 selected"
 
 END PROGRAM
 
@@ -1083,7 +950,7 @@ PROGRAM VoiceInput_Select_Wing_man_target
 
 Rem Autogenerated V1
 Key {SelectTargetsTarget}
-Say %(say_wingmantarget)
+Say "Select wing man target;Targetting wing man target"
 
 END PROGRAM
 
@@ -1095,7 +962,7 @@ PROGRAM VoiceInput_Wingman_Nav_Lock
 
 Rem Autogenerated V1
 Key {WingNavLock}
-Say %(say_wingmannavlock)
+Say "Toggling Wing man Navigational lock"
 
 END PROGRAM
 
@@ -1107,7 +974,7 @@ PROGRAM VoiceInput_Next_Subsystem
 
 Rem Autogenerated V1
 Key {CycleNextSubsystem}
-Say %(say_nextsubsystem)
+Say "Next subsystem;Acknowledge"
 
 END PROGRAM
 
@@ -1119,7 +986,7 @@ PROGRAM VoiceInput_Previous_Subsystem
 
 Rem Autogenerated V1
 Key {CyclePreviousSubsystem}
-Say %(say_previoussubsystem)
+Say "Previous subsystem:Acknowledge"
 
 END PROGRAM
 
@@ -1131,7 +998,7 @@ PROGRAM VoiceInput_Resume_Route
 
 Rem Autogenerated V1
 Key {TargetNextRouteSystem}
-Say %(say_resumeroute)
+Say "Resuming planned route;Route set Commander"
 
 END PROGRAM
 
@@ -1143,7 +1010,7 @@ PROGRAM VoiceInput_Next_Fire_Group
 
 Rem Autogenerated V1
 Key {CycleFireGroupNext}
-Say %(say_nextfiregroup)
+Say "Next group;Selected;Acknowledge"
 
 END PROGRAM
 
@@ -1155,7 +1022,7 @@ PROGRAM VoiceInput_Previous_Fire_Group
 
 Rem Autogenerated V1
 Key {CycleFireGroupPrevious}
-Say %(say_previousfiregroup)
+Say "Previous group;Selected;Acknowledge"
 
 END PROGRAM
 
@@ -1167,7 +1034,7 @@ PROGRAM VoiceInput_Deploy_Weapons
 
 Rem Autogenerated V1
 Key {DeployHardpointToggle}
-Say %(say_deployweapons)
+Say "Deploying weapons;Weapons out"
 
 END PROGRAM
 
@@ -1179,19 +1046,19 @@ PROGRAM VoiceInput_Retract_Weapons
 
 Rem Autogenerated V1
 Key {DeployHardpointToggle}
-Say %(say_retractweapons)
+Say "Retracting weapons;Weapons away"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Silent_Running
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Silent Running;Cooling On|Off")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Silent Running On|Off")
 //*************************************************************
 PROGRAM VoiceInput_Silent_Running
 
 Rem Autogenerated V1
 Key {ToggleButtonUpInput}
-Say %(say_silentrunning)
+Say "Toggling silent running;Acknowledge"
 
 END PROGRAM
 
@@ -1203,7 +1070,7 @@ PROGRAM VoiceInput_Increase_Radar_Range
 
 Rem Autogenerated V1
 Key {RadarIncreaseRange}
-Say %(say_increaseradar)
+Say "Increase Range;Sensor range increased"
 
 END PROGRAM
 
@@ -1215,7 +1082,7 @@ PROGRAM VoiceInput_Decrease_Radar_Range
 
 Rem Autogenerated V1
 Key {RadarDecreaseRange}
-Say %(say_decreaseradar)
+Say "Decrease Range;Sensor range decreased"
 
 END PROGRAM
 
@@ -1227,7 +1094,7 @@ PROGRAM VoiceInput_Long_Range_Scan
 
 Rem Autogenerated V1
 Key "{RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange}"
-Say %(say_longrangeradar)
+Say "Long Range;Sensor to long range"
 
 END PROGRAM
 
@@ -1239,7 +1106,7 @@ PROGRAM VoiceInput_Short_Range_Scan
 
 Rem Autogenerated V1
 Key "{RadarDecreaseRange} {RadarDecreaseRange} {RadarDecreaseRange} {RadarDecreaseRange}"
-Say %(say_shortrangeradar)
+Say "Short Range;Sensor to short range"
 
 END PROGRAM
 
@@ -1251,7 +1118,7 @@ PROGRAM VoiceInput_Medium_Range_Scan
 
 Rem Autogenerated V1
 Key "{RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarDecreaseRange}"
-Say %(say_mediumrangeradar)
+Say "Medium Range;Sensor to medium range"
 
 END PROGRAM
 
@@ -1263,7 +1130,7 @@ PROGRAM VoiceInput_Reset_Head_Position
 
 Rem Autogenerated V1
 Key {HMDReset}
-Say %(say_resethead)
+Say "Head display reset;Acknowledge"
 
 END PROGRAM
 
@@ -1275,7 +1142,7 @@ PROGRAM VoiceInput_Target_Panel
 
 Rem Autogenerated V1
 Key {FocusLeftPanel}
-Say %(say_targetpanel)
+Say "Target Panel;Acknowledge;Selecting panel;Opening"
 
 END PROGRAM
 
@@ -1287,7 +1154,7 @@ PROGRAM VoiceInput_Systems_Panel
 
 Rem Autogenerated V1
 Key {FocusRightPanel}
-Say %(say_systemspanel)
+Say "Systems Panel;Acknowledge;Selecting panel;Opening"
 
 END PROGRAM
 
@@ -1299,7 +1166,7 @@ PROGRAM VoiceInput_Role_Panel
 
 Rem Autogenerated V1
 Key {FocusRadarPanel}
-Say %(say_rolepanel)
+Say "Role Panel;Acknowledge;Selecting panel;Opening"
 
 END PROGRAM
 
@@ -1311,7 +1178,7 @@ PROGRAM VoiceInput_Communication_Panel
 
 Rem Autogenerated V1
 Key {FocusCommsPanel}
-Say %(say_commspanel)
+Say "Comms Panel;Acknowledge;Selecting panel;Opening"
 
 END PROGRAM
 
@@ -1323,7 +1190,7 @@ PROGRAM VoiceInput_Close_Panel
 
 Rem Autogenerated V1
 Key {UIFocus}
-Say %(say_closepanel)
+Say "Closing Panel;Closing"
 
 END PROGRAM
 
@@ -1335,31 +1202,55 @@ PROGRAM VoiceInput_Quick_Comms
 
 Rem Autogenerated V1
 Key {QuickCommsPanel}
-Say %(say_quickcomms)
+Say "Quick Comms Panel;Acknowledge;Selecting panel;Opening"
 
 END PROGRAM
 
 //*************************************************************
-// VoiceInput_Galaxy_Map
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Open|Close|[] Galaxy Map")
+// VoiceInput_Open_Galaxy_Map
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Open] Galaxy Map")
 //*************************************************************
-PROGRAM VoiceInput_Galaxy_Map
+PROGRAM VoiceInput_Open_Galaxy_Map
 
 Rem Autogenerated V1
 Key {GalaxyMapOpen}
-Say %(say_galaxymap)
+Say "Opening map;Galaxy map opening;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
-// VoiceInput_System_Map
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Open|Close|[] System Map")
+// VoiceInput_Close_Galaxy_Map
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Close Galaxy Map")
 //*************************************************************
-PROGRAM VoiceInput_System_Map
+PROGRAM VoiceInput_Close_Galaxy_Map
+
+Rem Autogenerated V1
+Key {GalaxyMapOpen}
+Say "Closing map;Galaxy map Closing;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_System_Map
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Open] System Map")
+//*************************************************************
+PROGRAM VoiceInput_Open_System_Map
 
 Rem Autogenerated V1
 Key {SystemMapOpen}
-Say %(say_systemmap)
+Say "Opening map;System map opening;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_System_Map
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Close System Map")
+//*************************************************************
+PROGRAM VoiceInput_Close_System_Map
+
+Rem Autogenerated V1
+Key {SystemMapOpen}
+Say "Closing map;System map Closing;Acknowledge"
 
 END PROGRAM
 
@@ -1371,7 +1262,7 @@ PROGRAM VoiceInput_Head_Look
 
 Rem Autogenerated V1
 Key {HeadLookToggle}
-Say %(say_headlook)
+Say "Toggling head look mode"
 
 END PROGRAM
 
@@ -1383,7 +1274,7 @@ PROGRAM VoiceInput_Game_Menu
 
 Rem Autogenerated V1
 Key {Pause}
-Say %(say_gamemenu)
+Say "Game menu"
 
 END PROGRAM
 
@@ -1395,7 +1286,7 @@ PROGRAM VoiceInput_Friends_Menu
 
 Rem Autogenerated V1
 Key {FriendsMenu}
-Say %(say_friendmenu)
+Say "Friend menu selected;Acknowledge"
 
 END PROGRAM
 
@@ -1407,7 +1298,7 @@ PROGRAM VoiceInput_Next_Panel
 
 Rem Autogenerated V1
 Key {CycleNextPanel}
-Say %(say_nextpanel)
+Say "Next panel;Select next panel;Acknowledge"
 
 END PROGRAM
 
@@ -1419,7 +1310,7 @@ PROGRAM VoiceInput_Previous_Panel
 
 Rem Autogenerated V1
 Key {CyclePreviousPanel}
-Say %(say_previouspanel)
+Say "Previous panel;Select previous panel;Acknowledge"
 
 END PROGRAM
 
@@ -1431,7 +1322,7 @@ PROGRAM VoiceInput_Head_Look_Reset
 
 Rem Autogenerated V1
 Key {HeadLookReset}
-Say %(say_headlookreset)
+Say "View forward;Reset view;Acknowledge"
 
 END PROGRAM
 
@@ -1443,7 +1334,7 @@ PROGRAM VoiceInput_Head_Look_Up
 
 Rem Autogenerated V1
 Key {HeadLookPitchUp}
-Say %(say_headlookup)
+Say "View up;Acknowledge"
 
 END PROGRAM
 
@@ -1455,7 +1346,7 @@ PROGRAM VoiceInput_Head_Look_Down
 
 Rem Autogenerated V1
 Key {HeadLookPitchDown}
-Say %(say_headlookdown)
+Say "View down;Acknowledge"
 
 END PROGRAM
 
@@ -1467,7 +1358,7 @@ PROGRAM VoiceInput_Head_Look_Left
 
 Rem Autogenerated V1
 Key {HeadLookYawLeft}
-Say %(say_headlookleft)
+Say "View left;Acknowledge"
 
 END PROGRAM
 
@@ -1479,7 +1370,7 @@ PROGRAM VoiceInput_Head_Look_Right
 
 Rem Autogenerated V1
 Key {HeadLookYawRight}
-Say %(say_headlookright)
+Say "View right;Acknowledge"
 
 END PROGRAM
 
@@ -1490,8 +1381,8 @@ END PROGRAM
 PROGRAM VoiceInput_Head_Look_FullLeft
 
 Rem Autogenerated V1
-Key "{HeadLookYawLeft} {HeadLookYawLeft} {HeadLookYawLeft} {HeadLookYawLeft}"
-Say %(say_headlookfullleft)
+Key "{HeadLookYawLeft} {HeadLookYawLeft} {HeadLookYawLeft}"
+Say "Left View;Acknowledge"
 
 END PROGRAM
 
@@ -1502,8 +1393,8 @@ END PROGRAM
 PROGRAM VoiceInput_Head_Look_FullRight
 
 Rem Autogenerated V1
-Key "{HeadLookYawRight} {HeadLookYawRight} {HeadLookYawRight} {HeadLookYawRight}"
-Say %(say_headlookfullright)
+Key "{HeadLookYawRight} {HeadLookYawRight} {HeadLookYawRight}"
+Say "Right View;Acknowledge"
 
 END PROGRAM
 
@@ -1515,7 +1406,7 @@ PROGRAM VoiceInput_Head_Look_FullUp
 
 Rem Autogenerated V1
 Key "{HeadLookPitchUp} {HeadLookPitchUp} {HeadLookPitchUp} {HeadLookPitchUp}"
-Say %(say_headlookfullup)
+Say "Look up;Acknowledge"
 
 END PROGRAM
 
@@ -1527,7 +1418,7 @@ PROGRAM VoiceInput_Recall_Ship
 
 Rem Autogenerated V1
 Key {RecallDismissShip}
-Say %(say_recallship)
+Say "Recall ship;Hailing ship to return;Acknowledge"
 
 END PROGRAM
 
@@ -1539,7 +1430,7 @@ PROGRAM VoiceInput_Dismiss_Ship
 
 Rem Autogenerated V1
 Key {RecallDismissShip}
-Say %(say_dismissship)
+Say "Dismissing ship;Bon voyage;Acknowledge"
 
 END PROGRAM
 
@@ -1551,7 +1442,7 @@ PROGRAM VoiceInput_Toggle_Drive_Assist
 
 Rem Autogenerated V1
 Key {ToggleDriveAssist}
-Say %(say_toggledriveassist)
+Say "Toggle drive assist;Acknowledge"
 
 END PROGRAM
 
@@ -1563,7 +1454,7 @@ PROGRAM VoiceInput_Drive_Assist_On
 
 Rem Autogenerated V1
 Key {ToggleDriveAssist}
-Say %(say_driveassiston)
+Say "Drive assist on;Assist On;Acknowledge"
 
 END PROGRAM
 
@@ -1575,7 +1466,7 @@ PROGRAM VoiceInput_Drive_Assist_Off
 
 Rem Autogenerated V1
 Key {ToggleDriveAssist}
-Say %(say_driveassistoff)
+Say "Drive assist off;Assist Off;Acknowledge"
 
 END PROGRAM
 
@@ -1587,7 +1478,7 @@ PROGRAM VoiceInput_Fighter_Dock
 
 Rem Autogenerated V1
 Key {OrderRequestDock}
-Say %(say_fighterdock)
+Say "Fighter, redock;Fighter to redock;Acknowledge"
 
 END PROGRAM
 
@@ -1599,7 +1490,7 @@ PROGRAM VoiceInput_Fighter_Defensive
 
 Rem Autogenerated V1
 Key {OrderDefensiveBehaviour}
-Say %(say_fighterdefensive)
+Say "Fighter, defensive;Fighter to defensive mode;Acknowledge"
 
 END PROGRAM
 
@@ -1611,7 +1502,7 @@ PROGRAM VoiceInput_Fighter_Aggressive
 
 Rem Autogenerated V1
 Key {OrderAggressiveBehaviour}
-Say %(say_fighteragressive)
+Say "Fighter, aggressive;Fighter to aggressive mode;Acknowledge"
 
 END PROGRAM
 
@@ -1623,7 +1514,7 @@ PROGRAM VoiceInput_Fighter_Target
 
 Rem Autogenerated V1
 Key {OrderFocusTarget}
-Say %(say_fightertarget)
+Say "Fighter, attack target;Acknowledge"
 
 END PROGRAM
 
@@ -1635,7 +1526,7 @@ PROGRAM VoiceInput_Fighter_HoldFire
 
 Rem Autogenerated V1
 Key {OrderHoldFire}
-Say %(say_fighterholdfire)
+Say "Fighter, hold fire;Fighter to hold fire;Acknowledge"
 
 END PROGRAM
 
@@ -1647,7 +1538,7 @@ PROGRAM VoiceInput_Fighter_HoldPosition
 
 Rem Autogenerated V1
 Key {OrderHoldPosition}
-Say %(say_fighterholdposition)
+Say "Fighter, hold position;Fighter to hold position;Acknowledge"
 
 END PROGRAM
 
@@ -1659,7 +1550,7 @@ PROGRAM VoiceInput_Fighter_Follow
 
 Rem Autogenerated V1
 Key {OrderFollow}
-Say %(say_fighterfollow)
+Say "Fighter, follow me;Fighter to follow;Acknowledge"
 
 END PROGRAM
 
@@ -1671,7 +1562,7 @@ PROGRAM VoiceInput_Fighter_Open
 
 Rem Autogenerated V1
 Key {OpenOrders}
-Say %(say_fighteropenorders)
+Say "Fighter, open orders;Fighter free patrol;Acknowledge"
 
 END PROGRAM
 
@@ -1683,7 +1574,7 @@ PROGRAM VoiceInput_Ship_Defensive
 
 Rem Autogenerated V1
 Key {OrderDefensiveBehaviour}
-Say %(say_shipdefensive)
+Say "Ship, defensive;ship to defensive mode;Acknowledge"
 
 END PROGRAM
 
@@ -1695,7 +1586,7 @@ PROGRAM VoiceInput_Ship_Aggressive
 
 Rem Autogenerated V1
 Key {OrderAggressiveBehaviour}
-Say %(say_shipagressive)
+Say "Ship, aggressive;ship to aggressive mode;Acknowledge"
 
 END PROGRAM
 
@@ -1707,7 +1598,7 @@ PROGRAM VoiceInput_Ship_Target
 
 Rem Autogenerated V1
 Key {OrderFocusTarget}
-Say %(say_shiptarget)
+Say "Ship, attack target;Acknowledge"
 
 END PROGRAM
 
@@ -1719,7 +1610,7 @@ PROGRAM VoiceInput_Ship_HoldFire
 
 Rem Autogenerated V1
 Key {OrderHoldFire}
-Say %(say_shipholdfire)
+Say "Ship, hold fire;ship to hold fire;Acknowledge"
 
 END PROGRAM
 
@@ -1731,7 +1622,7 @@ PROGRAM VoiceInput_Ship_HoldPosition
 
 Rem Autogenerated V1
 Key {OrderHoldPosition}
-Say %(say_shipholdposition)
+Say "Ship, hold position;ship to hold position;Acknowledge"
 
 END PROGRAM
 
@@ -1743,7 +1634,7 @@ PROGRAM VoiceInput_Ship_Follow
 
 Rem Autogenerated V1
 Key {OrderFollow}
-Say %(say_shipfollow)
+Say "Ship, follow me;ship to follow;Acknowledge"
 
 END PROGRAM
 
@@ -1755,43 +1646,43 @@ PROGRAM VoiceInput_Ship_Open
 
 Rem Autogenerated V1
 Key {OpenOrders}
-Say %(say_shipopenorders)
+Say "Ship, open orders;ship free patrol;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Increase_Engine_Power
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase Engine Power;More Engines;Engines Up;Increase Engines")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase|More Engine Power;More Engines;Engines Up;Increase Engines")
 //*************************************************************
 PROGRAM VoiceInput_Increase_Engine_Power
 
 Rem Autogenerated V1
 Key {IncreaseEnginesPower}
-Say %(say_increaseengine)
+Say "Power to engine;More engine power;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Increase_Weapons_Power
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase Engine Weapons;More Weapons;Weapons Up;Increase Weapons")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase|More Engine Weapons;More Weapons;Weapons Up;Increase Weapons")
 //*************************************************************
 PROGRAM VoiceInput_Increase_Weapons_Power
 
 Rem Autogenerated V1
 Key {IncreaseWeaponsPower}
-Say %(say_increaseweapons)
+Say "Power to weapons;More weapons power;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Increase_Systems_Power
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase Shield Power;More Shields;Shields Up;Increase Shields")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase|More Shield Power;More Shields;Shields Up;Increase Shields;More|Increase Systems Power")
 //*************************************************************
 PROGRAM VoiceInput_Increase_Systems_Power
 
 Rem Autogenerated V1
 Key {IncreaseSystemsPower}
-Say %(say_increasesystems)
+Say "Power to systems;More system power;Acknowledge"
 
 END PROGRAM
 
@@ -1803,7 +1694,7 @@ PROGRAM VoiceInput_Reset_Power
 
 Rem Autogenerated V1
 Key {ResetPowerDistribution}
-Say %(say_resetpower)
+Say "Power reset;Acknowledge"
 
 END PROGRAM
 
@@ -1815,7 +1706,7 @@ PROGRAM VoiceInput_Weapons_WS
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseSystemsPower} {IncreaseWeaponsPower}"
-Say %(say_powerws)
+Say "Power balanced to shields and weapons;Acknowledge"
 
 END PROGRAM
 
@@ -1827,7 +1718,7 @@ PROGRAM VoiceInput_Weapons_SpeedAttack
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
-Say %(say_powerspeedattack)
+Say "Speed attack set;Power set to speed attack;Acknowledge"
 
 END PROGRAM
 
@@ -1839,7 +1730,7 @@ PROGRAM VoiceInput_Weapons_MaxWeapons
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower} {IncreaseWeaponsPower}"
-Say %(say_powermaxweapons)
+Say "Power diverted to weapons;Power to weapons;Acknowledge"
 
 END PROGRAM
 
@@ -1851,7 +1742,7 @@ PROGRAM VoiceInput_Weapons_MaxShields
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseSystemsPower} {IncreaseSystemsPower} {IncreaseEnginesPower} {IncreaseSystemsPower}"
-Say %(say_powermaxshields)
+Say "Power diverted to shields;Power to shields;Acknowledge"
 
 END PROGRAM
 
@@ -1863,7 +1754,7 @@ PROGRAM VoiceInput_Weapons_MaxEngines
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseSystemsPower} {IncreaseEnginesPower}"
-Say %(say_powermaxengines)
+Say "Power diverted to engines;Power to engines;Acknowledge"
 
 END PROGRAM
 
@@ -1875,7 +1766,7 @@ PROGRAM VoiceInput_Weapons_Balanced
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
-Say %(say_powerbalanced)
+Say "Balanced power selected;Acknowledge"
 
 END PROGRAM
 
@@ -1887,7 +1778,7 @@ PROGRAM VoiceInput_Weapons_AttackMode
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
-Say %(say_powerattackmode)
+Say "Power attack set;Power set to attack mode;Acknowledge"
 
 END PROGRAM
 
@@ -1899,7 +1790,7 @@ PROGRAM VoiceInput_Weapons_FastAttack
 
 Rem Autogenerated V1
 Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
-Say %(say_powerfastattack)
+Say "Fast attack set;Power set to fast mode;Acknowledge"
 
 END PROGRAM
 
@@ -1911,7 +1802,7 @@ PROGRAM VoiceInput_Escape
 
 Rem Autogenerated V1
 Key "{SetSpeed100} {UseBoostJuice} {ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseSystemsPower} {IncreaseEnginesPower} {SetSpeed100}"
-Say %(say_escape)
+Say "Oh Bleep;Escaping;Max power to engines;Emergency Escape Set"
 
 END PROGRAM
 
@@ -1923,19 +1814,295 @@ PROGRAM VoiceInput_Screenshot
 
 Rem Autogenerated V1
 Key "F10"
-Say %(say_screenshot)
+Say "Snap;Photo taken;Screen shot taken;Acknowledge;Say Cheese"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Camera
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera;Camera On|Off|Mode")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera [Mode];Camera On|Off|Mode")
 //*************************************************************
 PROGRAM VoiceInput_Camera
 
 Rem Autogenerated V1
 Key "{PhotoCameraToggle}"
-Say %(say_camera)
+Say "Toggling Camera Mode;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Free
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle]|Enter Free [Camera] Mode")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Free
+
+Rem Autogenerated V1
+Key "{ToggleFreeCam}"
+Say "Free Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_PreviousCam
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Previous Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_PreviousCam
+
+Rem Autogenerated V1
+Key "{VanityCameraScrollLeft}"
+Say "Selecting Previous Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_NextCam
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Next Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_NextCam
+
+Rem Autogenerated V1
+Key "{VanityCameraScrollRight}"
+Say "Selecting Next Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_One
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera One;Front Cockpit Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_One
+
+Rem Autogenerated V1
+Key "{VanityCameraOne}"
+Say "Selecting Front Cockpit Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Two
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Two;Rear Cockpit Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Two
+
+Rem Autogenerated V1
+Key "{VanityCameraTwo}"
+Say "Selecting Rear Cockpit Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Three
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Three;Pilot Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Three
+
+Rem Autogenerated V1
+Key "{VanityCameraThree}"
+Say "Selecting Pilot Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Four
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Four;Secondary Pilot Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Four
+
+Rem Autogenerated V1
+Key "{VanityCameraFour}"
+Say "Selecting Pilot secondary Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Five
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Five;[Co] Pilot One Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Five
+
+Rem Autogenerated V1
+Key "{VanityCameraFive}"
+Say "Selecting Co Pilot one Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Six
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Six;[Co] Pilot Two Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Six
+
+Rem Autogenerated V1
+Key "{VanityCameraSix}"
+Say "Selecting Co Pilot two Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Seven
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Seven;Front Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Seven
+
+Rem Autogenerated V1
+Key "{VanityCameraSeven}"
+Say "Selecting Front Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Eight
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Eight;Rear Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Eight
+
+Rem Autogenerated V1
+Key "{VanityCameraEight}"
+Say "Selecting Rear Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Nine
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Camera Nine;Low [Rear] Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Nine
+
+Rem Autogenerated V1
+Key "{VanityCameraNine}"
+Say "Selecting Low Rear Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Hud
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle HUD;Toggle Head Up Display")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Hud
+
+Rem Autogenerated V1
+Key "{FreeCamToggleHUD}"
+Say "Toggling Display;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrSpeed
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase Camera Speed")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrSpeed
+
+Rem Autogenerated V1
+Key "{FreeCamSpeedInc}"
+Say "Increasing free camera speed;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrSpeed
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Decrease Camera Speed")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrSpeed
+
+Rem Autogenerated V1
+Key "{FreeCamSpeedDec}"
+Say "Decreasing free camera speed;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Stabiliser
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera Stabiliser|Stabilizer")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Stabiliser
+
+Rem Autogenerated V1
+Key "{ToggleRotationLock}"
+Say "Toggling camera stabiliser;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_ShipControls
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera Ship Controls")
+//*************************************************************
+PROGRAM VoiceInput_Camera_ShipControls
+
+Rem Autogenerated V1
+Key "{FixCameraRelativeToggle}"
+Say "Toggling ship camera control mode;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Attach
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera [World] Attach|World")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Attach
+
+Rem Autogenerated V1
+Key "{FixCameraWorldToggle}"
+Say "Toggling Camera Attach to ship;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_ExitFree
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Exit Free Camera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_ExitFree
+
+Rem Autogenerated V1
+Key "{QuitCamera}"
+Say "Exiting Free Camera;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrZoom
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase [Camera] Zoom; Zoom Camera In")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrZoom
+
+Rem Autogenerated V1
+Key "{FreeCamZoomIn} {FreeCamZoomIn}"
+Say "Zoom In;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrZoom
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Decrease [Camera] Zoom;Zoom Camera Out")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrZoom
+
+Rem Autogenerated V1
+Key "{FreeCamZoomOut} {FreeCamZoomOut}"
+Say "Zoom Out;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrBlur
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Increase [Camera] Blur")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrBlur
+
+Rem Autogenerated V1
+Key "{FStopInc}"
+Say "F Stop Increase;Acknowledge;Blur Increase"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrBlur
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Decrease [Camera] Blur")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrBlur
+
+Rem Autogenerated V1
+Key "{FStopDec}"
+Say "F Stop Decrease;Acknowledge;Blur Decrease"
 
 END PROGRAM
 
@@ -1947,7 +2114,7 @@ PROGRAM VoiceInput_Toggle_Handbrake_Assist
 
 Rem Autogenerated V1
 Key "{AutoBreakBuggyButton}"
-Say %(say_togglehandbrake)
+Say "Toggle hand brake"
 
 END PROGRAM
 
@@ -1959,7 +2126,7 @@ PROGRAM VoiceInput_Handbrake_Assist_On
 
 Rem Autogenerated V1
 Key "{AutoBreakBuggyButton}"
-Say %(say_handbrakeon)
+Say "Hand brake on;Brake On;Acknowledge"
 
 END PROGRAM
 
@@ -1971,7 +2138,7 @@ PROGRAM VoiceInput_Handbrake_Assist_Off
 
 Rem Autogenerated V1
 Key "{AutoBreakBuggyButton}"
-Say %(say_handbrakeoff)
+Say "Hand brake off;Brake Off;Acknowledge"
 
 END PROGRAM
 
@@ -1983,7 +2150,7 @@ PROGRAM VoiceInput_Toggle_Headlights
 
 Rem Autogenerated V1
 Key "{HeadlightsBuggyButton}"
-Say %(say_toggleheadlights)
+Say "Toggle head lights"
 
 END PROGRAM
 
@@ -1995,7 +2162,7 @@ PROGRAM VoiceInput_Headlights_On
 
 Rem Autogenerated V1
 Key "{HeadlightsBuggyButton}"
-Say %(say_headlightson)
+Say "Head Lights on;Lights On;Acknowledge"
 
 END PROGRAM
 
@@ -2007,7 +2174,7 @@ PROGRAM VoiceInput_Headlights_Off
 
 Rem Autogenerated V1
 Key "{HeadlightsBuggyButton}"
-Say %(say_headlightsoff)
+Say "Head lights off;Lights Off;Acknowledge"
 
 END PROGRAM
 
@@ -2019,31 +2186,163 @@ PROGRAM VoiceInput_Toggle_Turret
 
 Rem Autogenerated V1
 Key "{ToggleBuggyTurretButton}"
-Say %(say_toggleturret)
+Say "Toggling turret;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Turret_On
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Turret Up;Extend Turret")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Enter Turret")
 //*************************************************************
 PROGRAM VoiceInput_Turret_On
 
 Rem Autogenerated V1
 Key "{ToggleBuggyTurretButton}"
-Say %(say_turretup)
+Say "Entering Turret;Acknowledge"
 
 END PROGRAM
 
 //*************************************************************
 // VoiceInput_Turret_Off
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Turrent Down;Retract turret")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Leave Turrent")
 //*************************************************************
 PROGRAM VoiceInput_Turret_Off
 
 Rem Autogenerated V1
 Key "{ToggleBuggyTurretButton}"
-Say %(say_turretdown)
+Say "Leaving Turret;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Summary Panel")
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_toggle
+
+Popout "Spanel" toggle
+Say "Toggling summary panel;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_on
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Summary Panel On")
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_on
+
+Popout "Spanel" on
+Say "Summary panel on;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_off
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Summary Panel Off")
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_off
+
+Popout "Spanel" off
+Say "Summary panel off;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Trip Panel")
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_toggle
+
+Popout "Tripanel" toggle
+Say "Toggling Trip panel;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_on
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Trip Panel On")
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_on
+
+Popout "Trippanel" on
+Say "Trip panel on;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_off
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Trip Panel Off")
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_off
+
+Popout "Trippanel" off
+Say "Trip panel off;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Note Panel")
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_toggle
+
+Popout "Notepanel" toggle
+Say "Toggling Note panel;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_on
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Note Panel On")
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_on
+
+Popout "Notepanel" on
+Say "Note panel on;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_off
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Note Panel Off")
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_off
+
+Popout "Notepanel" off
+Say "Note panel off;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Route Tracker")
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_toggle
+
+Popout "Routetracker" toggle
+Say "Toggling Route tracker panel;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_on
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Route Tracker On")
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_on
+
+Popout "RouteTracker" on
+Say "Route tracker on;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_off
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Route Tracker Off")
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_off
+
+Popout "RouteTracker" off
+Say "Route tracker off;Acknowledge"
 
 END PROGRAM
 
