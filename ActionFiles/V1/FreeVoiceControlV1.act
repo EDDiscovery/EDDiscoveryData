@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="This is the first edition of the Free Voice Control pack for EDD, for version 9.0+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
 INSTALL Version=1.0.0.0
-INSTALL MinEDVersion=8.9.0.0
+INSTALL MinEDVersion=9.0.0.0
 INSTALL Location=Actions
 
 GROUP Defense
@@ -232,6 +232,7 @@ If InstallList Contains FreeVoiceControl
     Static say_install $= You have installed Free Voice Control Version 1
     Say %(say_install)
     Call Initialise
+    MessageBox "Welcome to Free Voice Control\r\n\r\nThis pack allows you to use voice commands to control Elite.  You can order landing gear up, hyperspace,\r\nlights on etc.\r\n\r\nYou can find all the commands supported by using Help | Free Voice Control Help menu option.\r\n\r\nYou need to make sure any commands you want to say has an equivalent key binding in Elite Dangerous.\r\nA joystick binding won't work, it needs to be a keyboard key (due to Windows limitations).\r\nEDD will warn you if it can't find a key binding for a particular phrase - check the log window.\r\n\r\nEDD reads the keybindings file at startup.  If you change them in Elite, for now just restart EDD to\r\npick the new ones up.\r\n\r\nWindows voice recognitions is very sensitive to the following:\r\n\r\n* That you trained your voice (use Control Panel | Sound (Win7) or Speech Recognition (Win10)) to train it\r\n* That you have the right volume level for your microphone (Control Panel | Sound, click on the mic and set the levels)\r\n* That there is minimum other noise the microphone can hear\r\n\r\nGetting it set up right can sometimes be a bit of a challenge.\r\n\r\nCurrently the voice pack supports only the default recording device, set this in Control Panel | Sound | Recording\r\n\r\nYou may want to enable in the Free Voice Control Configuration the \"Show failed voice recognition\" and see what its listening\r\nto in the log window.\r\n\r\nEnjoy.\r\n\r\nPS. Soon a standalone FVC program will be released - watch out for that.\r\n", "Free Voice Control", OK
 
 END PROGRAM
 

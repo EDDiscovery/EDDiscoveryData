@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="This is the standard keyboard pack for ED Discovery, Version 4.\r\nIt adds control key functions to control the pop ups and the three configurable views on the travel page\r\n\r\nIt adds new function key mappings as well.\r\nSee the EDDiscovery help for keyboard mappings\r\nEnjoy!\r\n"
 INSTALL ShortDescription="Key Definition file"
 INSTALL Version=4.0.0.0
-INSTALL MinEDVersion=8.9.0.0
+INSTALL MinEDVersion=9.0.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=KeyPressesV1
 INSTALL DisableOther2=KeyPressesV2
