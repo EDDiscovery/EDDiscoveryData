@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the first edition of the Free Voice Control pack for EDD, for version 9.0+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
-INSTALL Version=1.0.1.0
+INSTALL Version=1.0.2.0
 INSTALL MinEDVersion=9.0.0.0
 INSTALL Location=Actions
 
@@ -48,8 +48,9 @@ EVENT onVoiceInput, VoiceInput_Next_Subsystem, "", VoiceInput MatchSemicolonList
 EVENT onVoiceInput, VoiceInput_Previous_Subsystem, "", VoiceInput MatchSemicolonList "[Select] previous subsystem"
 EVENT onVoiceInput, VoiceInput_Next_Fire_Group, "", VoiceInput MatchSemicolonList "[Next] Fire Group;Next Group"
 EVENT onVoiceInput, VoiceInput_Previous_Fire_Group, "", VoiceInput MatchSemicolonList "Previous Fire Group;Previous Group"
+EVENT onVoiceInput, VoiceInput_ScanSystem, "", VoiceInput MatchSemicolonList "Scan System"
 
-GROUP WeaponsWii
+GROUP Weapons
 EVENT onVoiceInput, VoiceInput_Deploy_Weapons, "", VoiceInput MatchSemicolonList "Deploy Weapons|Hardpoints;Deploy"
 EVENT onVoiceInput, VoiceInput_Retract_Weapons, "", VoiceInput MatchSemicolonList "Retract Weapons|Hardpoints;Retract;Weapons Away"
 
@@ -198,6 +199,7 @@ EVENT onPostStartup, onPostStartup, "", Condition AlwaysTrue
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
 EVENT onMenuItem, Menus, "", MenuName Contains FVC
 EVENT onVoiceInputFailed, VoiceInput_Failed, "", Condition AlwaysTrue
+EVENT onTimer, ScanSystemTimer, "", TimerName $== ScanSystemTimer
 
 //*************************************************************
 // onStartup
@@ -2349,6 +2351,33 @@ PROGRAM VoiceInput_RouteTracker_Panel_off
 
 Popout "RouteTracker" off
 Say "Route tracker off;Acknowledge"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ScanSystem
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Scan System")
+//*************************************************************
+PROGRAM VoiceInput_ScanSystem
+
+Set version = %version(0)
+If version $== 9.0.0.0 Or version $== 9.0.1.0 Or version $== 9.0.2.0
+    Print EDD >= 9.0.3.0 Required to execute this key sequence
+Else 
+    Print Scan System
+    Key "!{SecondaryFire}"
+    Say "Scanning system Commander;Acknowledge;Scanner Operating"
+    Timer ScanSystemTimer,6000
+
+END PROGRAM
+
+//*************************************************************
+// ScanSystemTimer
+// Events: onTimer?(TimerName $== ScanSystemTimer)
+//*************************************************************
+PROGRAM ScanSystemTimer
+
+Key "^{SecondaryFire}"
 
 END PROGRAM
 
