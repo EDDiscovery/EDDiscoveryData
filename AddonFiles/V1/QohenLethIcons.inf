@@ -7,5 +7,5 @@ INSTALL ShortDescription="Qohen Leth Icons"
 INSTALL ItemType="Icons"
 INSTALL Version=1.0.0.0
 INSTALL MinEDVersion=9.1.0.0
-INSTALL Location=OtherFiles
+INSTALL Location=AddonFiles
 INSTALL OtherFiles1=QohenLethIcons.zip;Icons
