@@ -1,0 +1,36 @@
+[
+  {
+    "Name": "Fred",
+    "Region" : true,
+    "X":10,
+    "Y":20,
+    "Z":30,
+    "Notes":"Note on Region"
+  },
+  {
+    "Name": "Sirius A",
+    "Notes":"Note on Sirius A"
+  },
+  {
+    "Name": "Sirius",
+    "Planets": [
+    { "Planet":"Fred1", "Place":"Home town", "Latitude":100 , "Longitude":20, "Comment":"Lovely" },
+    { "Planet":"Fred2", "Place":"Home town 2", "Latitude":110 , "Longitude":21, "Comment":"Slum" }
+    ]
+  },
+  {
+    "Name": "Sirius",
+    "Region" : true,
+    "Delete" : true
+  },
+  {
+    "Name": "Sirius A",
+    "Delete" : true
+  },
+  {
+    "Name": "Sirius",
+    "Planets": [
+    { "Planet":"Fred1", "Place":"Home town", "Delete":true }
+    ]
+  },
+]
