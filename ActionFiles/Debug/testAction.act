@@ -1,0 +1,192 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Test script for action"
+INSTALL ShortDescription="Test script"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=9.1.0.0
+INSTALL Location=Actions
+
+EVENT onKeyPress, TestFunctions, "", KeyPress $== F4
+
+PROGRAM TestFunctions
+
+Print Running Test functions at %datetimenow(longdatetime;culture:en-GB)
+set v1 = V1hello
+set v2 = ""
+set v4 = V4hello
+set v5 $= "%(v1)"
+set v6 = "v1"
+set v7 = "HelloThere"
+set n0 = 0
+set n3 = 3
+set n7 = 7
+set n8 = 8
+set wl1 = one,two,three
+set wl2 = one;two;three
+set wl3 = '"one","two","three"'
+set prefix = v
+set rroot_1 = V1Hello;VReplacedHello
+set r_name = rroot
+
+set array[1] = One
+set array[2] = Two
+set array[3] = Three
+
+Static HNumList = Minus;Trillion;Billion;Million;Thousand;Hundred
+
+errorif "EDD", %systempath(EDDAPPFOLDER) notcontains "EDDiscovery"
+errorif "EDD", '%ship("Cobra Mk. IV")' $!= "Cobra Mark 4"
+errorif "EDD", '%star("Sirius IX-T123b",rroot)' $!= "Sirius I X T 123 B"
+
+
+set datetime = "10/1/2018 12:42"
+set datetime2 = "10/1/2024 16:49:20"
+
+set deltatimesec = %datedelta(datetime,datetime2)
+set deltatimesecinv = %datedelta(datetime2,datetime)
+errorif "D", %(deltatimesec) != 189403640
+errorif "D", %(deltatimesecinv) != -189403640
+errorif "D", '%datedeltaformat(deltatimesec, "pos [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]", "neg [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]")' $!= "pos 2192 days 4 hours 7 minutes 20 seconds"
+errorif "D", '%datedeltaformat(deltatimesecinv, "pos [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]", "neg [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]")' $!= "neg 2192 days 4 hours 7 minutes 20 seconds"
+errorif "D", '%datedeltadiffformat(datetime,datetime2, "pos [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]", "neg [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]")' $!= "pos 2192 days 4 hours 7 minutes 20 seconds"
+errorif "D", '%datedeltadiffformat(datetime2,datetime, "pos [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]", "neg [d day{s|} ][h hour{s|} ][m minute{s|} ][s second{s|}]")' $!= "neg 2192 days 4 hours 7 minutes 20 seconds"
+
+errorif "D", %date(datetime,local;longdate;culture:en-GB) $!= "01 October 2018"
+errorif "D", %date(datetime,local;longdatetime;culture:en-GB) $!= "01 October 2018 12:42:00"
+errorif "D", %date(datetime,local;datetime;culture:en-GB) $!= "01/10/2018 12:42"
+errorif "D", %date(datetime,local;shorttime;culture:en-GB) $!= "12:42"
+errorif "D", %date(datetime,local;longtime;culture:en-GB) $!= "12:42:00"
+errorif "D", %date(datetime,local;shortdate;culture:en-GB) $!= "01/10/2018"		
+errorif "D", %date(datetime,local;ticks) $!= "636739945200000000"		
+
+
+errorif "F", %openfile(f1,"c:\\code\\f1.txt",Create) != 1
+errorif "F", '%writeline(f1,"line to write")' != 1
+errorif "F", %closefile(f1) != 1
+
+errorif "F", %listprocesses(proclist) != 1
+errorif "F", %findarray(proclist,"svchost") $== ""
+set pid = %startprocess("notepad.exe","c:\\code\\f1.txt")
+SLEEP 100
+errorif "F" , %(pid) == 0
+errorif "F", %findprocess("notepad") == 0
+errorif "F", %hasprocessexited(pid) $!= "NOTEXITED"
+errorif "F", %waitforprocess(pid,500) != 0
+errorif "F", %closeprocess(pid) != 1
+
+
+errorif "F", %openfile(f1,"c:\\code\\f1.txt",Open) != 1
+errorif "F", %readline(f1,l1) != 1
+errorif "F", l1 $!= "line to write"
+errorif "F", %closefile(f1) != 1
+errorif "F", %rmdir("c:\\code\\fred") != 0
+errorif "F", %mkdir("c:\\code\\fred") != 1
+errorif "F", %rmdir("c:\\code\\fred") != 1
+errorif "F", %fileexists("c:\\code\\f1.txt") != 1
+errorif "F", %fileexists("c:\\code\\f2.txt") != 0
+errorif "F", %fileexists("c:\\code\\f2.txt") != 0
+errorif "F", %deletefile("c:\\code\\f1.txt") != 1
+
+errorif "F", %findarray(array,"Two") $!= "array[2]"
+errorif "F", %findarray(array,"Three","array[2]") $!= "array[3]"
+errorif "F", %findarray(array,"Two","array[2]") $!= ""
+errorif "F", %findarray(array,"sksks") $!= ""
+errorif "F", %expandvars(array,";",1,4,none) $!= "[1] = One;[2] = Two;[3] = Three"
+errorif "F", %expandvars(array,";",1,4,nameonly) $!= "[1];[2];[3]"
+errorif "F", %expandvars(array,";",1,4,valueonly) $!= "One;Two;Three"
+errorif "F", %expandarray(array,";",1,4,none) $!= "One;Two;Three"
+errorif "F", %expandarray(array,";",2,1,none) $!= "Two"
+
+errorif "F", %ispresent(v1,v6) $!= "1"
+errorif "F", %ispresent(v4,"hel") $!= "1"
+errorif "F", %ispresent(v4,"xhel") $!= "0"
+errorif "F", %ispresent(v999,"xhel","def") $!= "def"
+
+errorif "F", %ifnotcontains(v1,fred,v4,"false","Blank") $!= "%(v4)"
+errorif "F", %ifcontains(v1,V1,v4,"false","Blank") $!= "%(v4)"
+errorif "F", %ifcontains(v2,V1,v4,"false","Blank") $!= "Blank"
+errorif "F", %ifnotcontains(v1,hel,v4,"false","Blank") $!= "false"
+
+errorif "F", %ifequal(v1,V1hello,v4,"false","Blank") $!= "%(v4)"
+errorif "F", %ifequal(v1,v1,v4,"false","Blank") $!= "%(v4)"
+errorif "F", %ifequal(v1,v1,"true","false","Blank") $!= "true"
+errorif "F", %ifequal(v1,v2,"true","false","Blank") $!= "false"
+errorif "F", %ifnotequal(v1,v1,"true","false","Blank") $!= "false"
+errorif "F", %ifnotequal(v2,v1,"true","false","Blank") $!= "Blank"
+
+errorif "F", %iffalse(n3,n3,n7) $!= "7"
+errorif "F", %ifzero(n0,n3,n7) $!= "3"
+
+errorif "F", %ifge(v2,n7,"true","false","Blank") $!= "Blank"		// check blank n2
+errorif "F", %ifge(v2,n7,"true","false") $!= ""
+
+errorif "F", %ifempty(v2,"true","false") $!= "true"
+errorif "F", %ifnotempty(v2,"true","false") $!= "false"
+errorif "F", %ifempty(v1,"true","false") $!= "false"
+errorif "F", %ifnotempty(v1,"true","false") $!= "true"
+
+errorif "F", %ifgt(n7,n0,"true","false") $!= "true"
+errorif "F", %ifgt(n0,n7,"true","false") $!= "false"
+errorif "F", %iflt(n0,n7,"true","false") $!= "true"
+errorif "F", %ifle(n7,n7,"true","false") $!= "true"
+errorif "F", %ifge(n7,n7,"true","false") $!= "true"
+errorif "F", %ifeq(v2,n0,"true","false") $!= ""
+errorif "F", %ifeq("",n0,"true","false","empty") $!= "empty"
+errorif "F", %ifeq(v2,n0,"true","false","empty") $!= "empty"
+errorif "F", %ifeq(n0,n0,"true","false","empty") $!= "true"
+errorif "F", %ifeq(n0,n0,"true","false","empty") $!= "true"
+errorif "F", %iftrue(n3,"true","false") $!= "true"
+errorif "F", %iftrue(n0,"true","false") $!= "false"
+errorif "F", %iffalse(n3,"true","false") $!= "false"
+errorif "F", %iffalse(n0,"true","false") $!= "true"
+errorif "F", %iffalse(n0,n3,n7) $!= "3"
+
+errorif "F", %ifnonzero(n0,n3,n7) $!= "7"
+
+
+errorif "F", %alt(v1,"Hello") $!= "V1Hello"
+errorif "F", %exist(v1) != 1
+errorif "F", %alt(v2,"Hello") $!= "Hello"
+errorif "F", %existsdefault(v3,"Hello") $!= "Hello"
+errorif "F", %existsdefault(v1,"Hello") $!= "V1hello"
+errorif "F", %existsdefault(v1,v4) $!= "V1hello"
+errorif "F", %existsdefault(v3,v4) $!= "V4hello"
+errorif "F", %expand(v5) $!= "V1hello"
+errorif "F", %expand("v5") $!= "V1hello"
+errorif "F", %indirect(v6) $!= "V1hello"
+errorif "F", %i(prefix,6) $!= "v1"
+errorif "F", %splitcaps(v7) $!= "Hello There"
+errorif "F", %splitcaps("FredJim") $!= "Fred Jim"
+errorif "F", %substring("FredJim",1,3) $!= "red"
+errorif "F", %substring("Fredrickcat",n3,n7) $!= "drickca"
+errorif "F", %indexof("Fredrickcat","rick") != 4
+errorif "F", %indexof(v4,"hel") != 2
+errorif "F", %lower("HelloThere",",","AndHere") $!= "hellothere,andhere"
+errorif "F", %upper("HelloThere",",","AndHere") $!= "HELLOTHERE,ANDHERE"
+errorif "F", %join(";",v1,"hello") $!= "V1Hello;hello"
+errorif "F", '%trim(" h ell o ")' $!= "h ell o"
+errorif "F", %length("hello") != 5
+errorif "F", %length(v1) != 7
+errorif "F", %wordof(wl1,2,",") $!= "two"
+errorif "F", %wordof(wl2,3) $!= "three"
+errorif "F", %wordlistcount(wl3) != 3
+errorif "F", %wordlistentry(wl3,1) $!= "two"
+errorif "F", %replace(v1,"hello",v7) $!= "v1HelloThere"
+errorif "F", %replacevar(v1,rroot) $!= "VReplacedHello"
+errorif "F", %replacevar(v1,"rroot") $!= "VReplacedHello"
+errorif "F", %replacevar(v1,r_name) $!= "VReplacedHello"
+errorif "F", %safevarname("\\fred") $!= "__fred"
+errorif "F", %hnum(1100000,HNumList) $!= "1.1 Million"
+errorif "F", %abs(-2019.2,N0) $!= "2,019"
+errorif "F", %abs(2019.2,N0) $!= "2,019"
+errorif "F", %floor(2019.2,N0) $!= "2,019"
+errorif "F", %int(2029,D) $!= 2029
+errorif "F", %round(2029.2929282,3,"0.#####") $!= 2029.293
+errorif "F", %roundnz(0.0000000001,3,"0.###",10) $!= 0.0000000001
+errorif "F", %roundscale(0.0000000001,3,"0.###",10,2.0) $!= 0.0000000002
+errorif "F", %eval(10+10) != 20
+
+print Test Complete %datetimenow(longdatetime;culture:en-GB)
+END PROGRAM
