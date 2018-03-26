@@ -6,6 +6,7 @@ INSTALL LongDescription="This is the fourth edition of the voice pack for EDD, f
 INSTALL ShortDescription="Voice file for ED"
 INSTALL Version=4.0.2.0
 INSTALL MinEDVersion=8.1.0.0
+INSTALL MaxEDInstallVersion=8.9.100.100
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
