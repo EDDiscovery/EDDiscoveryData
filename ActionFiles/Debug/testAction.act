@@ -12,7 +12,7 @@ EVENT onKeyPress, TestFunctions, "", KeyPress $== Shift+F4
 
 //*************************************************************
 // TestFunctions
-// Events: onKeyPress?(KeyPress $== F4)
+// Events: onKeyPress?(KeyPress $== Shift+F4)
 //*************************************************************
 PROGRAM TestFunctions
 
@@ -30,6 +30,7 @@ Set n8 = 8
 Set wl1 = one,two,three
 Set wl2 = one;two;three
 Set wl3 = "\"one\",\"two\",\"three\""
+Set wl4 = "\"one\";\"two\";\"three\""
 Set prefix = v
 Set rroot_1 = V1Hello;VReplacedHello
 Set r_name = rroot
@@ -41,7 +42,7 @@ Set array[3] = Three
 Static HNumList = Minus;Trillion;Billion;Million;Thousand;Hundred
 
 ErrorIf "EDD", %systempath(EDDAPPFOLDER) notcontains "EDDiscovery"
-ErrorIf "EDD", '%ship("Cobra Mk. IV")' $!= "Cobra Mark 4"
+ErrorIf "EDD", '%ship("Cobra Mk IV")' $!= "Cobra Mark 4"
 ErrorIf "EDD", '%star("Sirius IX-T123b",rroot)' $!= "Sirius I X T 123 B"
 
 Set datetime = 10/1/2018 12:42
@@ -175,6 +176,8 @@ ErrorIf "F", %wordof(wl1,2,",") $!= "two"
 ErrorIf "F", %wordof(wl2,3) $!= "three"
 ErrorIf "F", %wordlistcount(wl3) != 3
 ErrorIf "F", %wordlistentry(wl3,1) $!= "two"
+ErrorIf "F", %wordlistcount(wl4,";") != 3
+ErrorIf "F", %wordlistentry(wl4,1,";") $!= "two"
 ErrorIf "F", %replace(v1,"hello",v7) $!= "v1HelloThere"
 ErrorIf "F", %replacevar(v1,rroot) $!= "VReplacedHello"
 ErrorIf "F", %replacevar(v1,"rroot") $!= "VReplacedHello"
