@@ -8,18 +8,7 @@ INSTALL Version=1.0.0.0
 INSTALL MinEDVersion=8.1.0.0
 INSTALL Location=Actions
 
-EVENT FSDJump, FSDResponse, "", Condition AlwaysTrue
 EVENT onKeyPress, BookmarkSystem, "", KeyPress $== Scroll
-
-//*************************************************************
-// FSDResponse
-// Events: FSDJump
-//*************************************************************
-PROGRAM FSDResponse
-
-Static TGMS_StarSystem = %(EventClass_StarSystem)
-
-END PROGRAM
 
 //*************************************************************
 // BookmarkSystem
@@ -27,7 +16,9 @@ END PROGRAM
 //*************************************************************
 PROGRAM BookmarkSystem
 
-Bookmarks ADDSTAR "%(TGMS_StarSystem)"
+Event Last
+
+Bookmarks ADDSTAR "%(EC_StarSystem)"
 
 END PROGRAM
 
