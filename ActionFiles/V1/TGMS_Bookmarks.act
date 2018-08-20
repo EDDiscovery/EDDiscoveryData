@@ -1,0 +1,33 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Simple macros that allows you to create a bookmark named after the system you jumped into by hitting the scroll lock key"
+INSTALL ShortDescription="TGMS Bookmarks"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=8.1.0.0
+INSTALL Location=Actions
+
+EVENT FSDJump, FSDResponse, "", Condition AlwaysTrue
+EVENT onKeyPress, BookmarkSystem, "", KeyPress $== Scroll
+
+//*************************************************************
+// FSDResponse
+// Events: FSDJump
+//*************************************************************
+PROGRAM FSDResponse
+
+Static TGMS_StarSystem = %(EventClass_StarSystem)
+
+END PROGRAM
+
+//*************************************************************
+// BookmarkSystem
+// Events: onKeyPress?(KeyPress $== Scroll)
+//*************************************************************
+PROGRAM BookmarkSystem
+
+Bookmarks ADDSTAR "%(TGMS_StarSystem)"
+
+END PROGRAM
+
