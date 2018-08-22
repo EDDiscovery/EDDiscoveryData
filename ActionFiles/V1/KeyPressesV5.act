@@ -1,6 +1,6 @@
 ACTIONFILE V4
 
-ENABLED False
+ENABLED True
 
 INSTALL LongDescription="This is the standard keyboard pack for ED Discovery, Version 5.\r\nIt adds control key functions to control the pop ups and the three configurable views on the travel page\r\n\r\nIt adds new function key mappings as well.\r\nSee the EDDiscovery help for keyboard mappings\r\nEnjoy!\r\n"
 INSTALL ShortDescription="Key Definition file"
@@ -81,13 +81,13 @@ EVENT onKeyPress, Perform, Perform=ConfigureVoice, KeyPress $== Alt+F8
 
 //*************************************************************
 // TogglePopout
-// Events: onKeyPress?(KeyPress $== Ctrl+D)(panel=stardistance), onKeyPress?(KeyPress $== Ctrl+E)(panel=exploration), 
-// Events: onKeyPress?(KeyPress $== Ctrl+G)(panel=ledger), onKeyPress?(KeyPress $== Ctrl+H)(panel=travelhistory), 
-// Events: onKeyPress?(KeyPress $== Ctrl+I)(panel=screenshot), onKeyPress?(KeyPress $== Ctrl+J)(panel=journalhistory), 
-// Events: onKeyPress?(KeyPress $== Ctrl+L)(panel=log), onKeyPress?(KeyPress $== Ctrl+M)(panel=materials), 
-// Events: onKeyPress?(KeyPress $== Ctrl+N)(panel=notepanel), onKeyPress?(KeyPress $== Ctrl+O)(panel=commodities), 
-// Events: onKeyPress?(KeyPress $== Ctrl+P)(panel=scan), onKeyPress?(KeyPress $== Ctrl+S)(panel=spanel), 
-// Events: onKeyPress?(KeyPress $== Ctrl+T)(panel=trippanel), onKeyPress?(KeyPress $== Ctrl+Q)(panel=stats), 
+// Events: onKeyPress?(KeyPress $== Ctrl+D)(panel=stardistance), onKeyPress?(KeyPress $== Ctrl+E)(panel=exploration),
+// Events: onKeyPress?(KeyPress $== Ctrl+G)(panel=ledger), onKeyPress?(KeyPress $== Ctrl+H)(panel=travelhistory),
+// Events: onKeyPress?(KeyPress $== Ctrl+I)(panel=screenshot), onKeyPress?(KeyPress $== Ctrl+J)(panel=journalhistory),
+// Events: onKeyPress?(KeyPress $== Ctrl+L)(panel=log), onKeyPress?(KeyPress $== Ctrl+M)(panel=materials),
+// Events: onKeyPress?(KeyPress $== Ctrl+N)(panel=notepanel), onKeyPress?(KeyPress $== Ctrl+O)(panel=commodities),
+// Events: onKeyPress?(KeyPress $== Ctrl+P)(panel=scan), onKeyPress?(KeyPress $== Ctrl+S)(panel=spanel),
+// Events: onKeyPress?(KeyPress $== Ctrl+T)(panel=trippanel), onKeyPress?(KeyPress $== Ctrl+Q)(panel=stats),
 // Events: onKeyPress?(KeyPress $== Ctrl+R)(panel=routetracker)
 //*************************************************************
 PROGRAM TogglePopout
@@ -96,9 +96,9 @@ If KeyPanel NotPresent Or KeyPanel $== Complete
     Popout %(panel)1 status
     If %(P_Exists) IsTrue
         Popout %(panel)1 toggle
-    Else 
+    Else
         Popout %(panel) toggle
-Else 
+Else
     Pragma ignoreerrors
     Historytab %(KeyPanel) %(panel)
     If LastError NotPresent
@@ -109,13 +109,13 @@ END PROGRAM
 
 //*************************************************************
 // ToggleMinimise
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+D)(panel=stardistance), onKeyPress?(KeyPress $== Shift+Ctrl+E)(panel=exploration), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+G)(panel=ledger), onKeyPress?(KeyPress $== Shift+Ctrl+H)(panel=travelhistory), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+I)(panel=screenshot), onKeyPress?(KeyPress $== Shift+Ctrl+J)(panel=journalhistory), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+L)(panel=log), onKeyPress?(KeyPress $== Shift+Ctrl+M)(panel=materials), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+N)(panel=notepanel), onKeyPress?(KeyPress $== Shift+Ctrl+O)(panel=commodities), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+P)(panel=scan), onKeyPress?(KeyPress $== Shift+Ctrl+Q)(panel=stats), 
-// Events: onKeyPress?(KeyPress $== Shift+Ctrl+R)(panel=routetracker), onKeyPress?(KeyPress $== Shift+Ctrl+S)(panel=spanel), 
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+D)(panel=stardistance), onKeyPress?(KeyPress $== Shift+Ctrl+E)(panel=exploration),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+G)(panel=ledger), onKeyPress?(KeyPress $== Shift+Ctrl+H)(panel=travelhistory),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+I)(panel=screenshot), onKeyPress?(KeyPress $== Shift+Ctrl+J)(panel=journalhistory),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+L)(panel=log), onKeyPress?(KeyPress $== Shift+Ctrl+M)(panel=materials),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+N)(panel=notepanel), onKeyPress?(KeyPress $== Shift+Ctrl+O)(panel=commodities),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+P)(panel=scan), onKeyPress?(KeyPress $== Shift+Ctrl+Q)(panel=stats),
+// Events: onKeyPress?(KeyPress $== Shift+Ctrl+R)(panel=routetracker), onKeyPress?(KeyPress $== Shift+Ctrl+S)(panel=spanel),
 // Events: onKeyPress?(KeyPress $== Shift+Ctrl+T)(panel=trippanel)
 //*************************************************************
 PROGRAM ToggleMinimise
@@ -125,14 +125,14 @@ Print Pop Minimize %(panel) %(P_Exists)
 If %(P_Exists) IsTrue
     If %(P_WindowState) $== Minimized
         Popout %(panel)1 normal
-    Else 
+    Else
         Popout %(panel)1 minimize
 
 END PROGRAM
 
 //*************************************************************
 // TogglePanel
-// Events: onKeyPress?(KeyPress $== Ctrl+Comma)(panel=bottom), onKeyPress?(KeyPress $== Ctrl+Period)(panel=bottom-right), 
+// Events: onKeyPress?(KeyPress $== Ctrl+Comma)(panel=bottom), onKeyPress?(KeyPress $== Ctrl+Period)(panel=bottom-right),
 // Events: onKeyPress?(KeyPress $== Ctrl+Question)(panel=middle-right), onKeyPress?(KeyPress $== Ctrl+Quotes)(panel=top-right)
 //*************************************************************
 PROGRAM TogglePanel
@@ -143,9 +143,9 @@ END PROGRAM
 
 //*************************************************************
 // Perform
-// Events: onKeyPress?(KeyPress $== F2)(Perform=2dmap), onKeyPress?(KeyPress $== F3)(Perform=3dmap), 
-// Events: onKeyPress?(KeyPress $== F8)(Perform=EditLastPack), onKeyPress?(KeyPress $== F11)(Perform=edsm), 
-// Events: onKeyPress?(KeyPress $== F12)(Perform=Refresh), onKeyPress?(KeyPress $== Ctrl+F6)(Perform=ManageAddOns), 
+// Events: onKeyPress?(KeyPress $== F2)(Perform=2dmap), onKeyPress?(KeyPress $== F3)(Perform=3dmap),
+// Events: onKeyPress?(KeyPress $== F8)(Perform=EditLastPack), onKeyPress?(KeyPress $== F11)(Perform=edsm),
+// Events: onKeyPress?(KeyPress $== F12)(Perform=Refresh), onKeyPress?(KeyPress $== Ctrl+F6)(Perform=ManageAddOns),
 // Events: onKeyPress?(KeyPress $== Shift+F8)(Perform=editlasttext), onKeyPress?(KeyPress $== Alt+F8)(Perform=ConfigureVoice)
 //*************************************************************
 PROGRAM Perform
@@ -192,11 +192,11 @@ END PROGRAM
 
 //*************************************************************
 // ProgramWindow
-// Events: onKeyPress?(KeyPress $== Alt+F1)(cmd=topmost), onKeyPress?(KeyPress $== Alt+F2)(cmd=normalz), 
-// Events: onKeyPress?(KeyPress $== Alt+F3)(cmd=showintaskbar), onKeyPress?(KeyPress $== Alt+F4)(cmd=notshowintaskbar), 
-// Events: onKeyPress?(KeyPress $== Ctrl+1)(cmd="tab history"), onKeyPress?(KeyPress $== Ctrl+2)(cmd="tab journal"), 
-// Events: onKeyPress?(KeyPress $== Ctrl+3)(cmd="tab Trilateration"), onKeyPress?(KeyPress $== Ctrl+4)(cmd="tab screenshots"), 
-// Events: onKeyPress?(KeyPress $== Ctrl+5)(cmd="tab route"), onKeyPress?(KeyPress $== Ctrl+6)(cmd="tab routes/expeditions"), 
+// Events: onKeyPress?(KeyPress $== Alt+F1)(cmd=topmost), onKeyPress?(KeyPress $== Alt+F2)(cmd=normalz),
+// Events: onKeyPress?(KeyPress $== Alt+F3)(cmd=showintaskbar), onKeyPress?(KeyPress $== Alt+F4)(cmd=notshowintaskbar),
+// Events: onKeyPress?(KeyPress $== Ctrl+1)(cmd="tab history"), onKeyPress?(KeyPress $== Ctrl+2)(cmd="tab journal"),
+// Events: onKeyPress?(KeyPress $== Ctrl+3)(cmd="tab Trilateration"), onKeyPress?(KeyPress $== Ctrl+4)(cmd="tab screenshots"),
+// Events: onKeyPress?(KeyPress $== Ctrl+5)(cmd="tab route"), onKeyPress?(KeyPress $== Ctrl+6)(cmd="tab routes/expeditions"),
 // Events: onKeyPress?(KeyPress $== Ctrl+7)(cmd="tab Export/Import"), onKeyPress?(KeyPress $== Ctrl+8)(cmd="tab Settings")
 //*************************************************************
 PROGRAM ProgramWindow
