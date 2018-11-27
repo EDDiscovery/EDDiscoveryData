@@ -39,11 +39,14 @@ Set array[1] = One
 Set array[2] = Two
 Set array[3] = Three
 
+let n10 = (%(n7)*3)+%(n8)
+errorif "Eval", %(n10) != 29
+
 Static HNumList = Minus;Trillion;Billion;Million;Thousand;Hundred
 
 ErrorIf "EDD", %systempath(EDDAPPFOLDER) notcontains "EDDiscovery"
 ErrorIf "EDD", '%ship("Cobra Mk IV")' $!= "Cobra Mark 4"
-ErrorIf "EDD", '%star("Sirius IX-T123b",rroot)' $!= "Sirius I X T 123 B"
+ErrorIf "EDD", '%star("Sirius IX-T123b",rroot)' $!= "Sirius , I X T 123 B"
 
 Set datetime = 10/1/2018 12:42
 Set datetime2 = 10/1/2024 16:49:20
@@ -62,8 +65,8 @@ ErrorIf "D", %date(datetime,local;longdatetime;culture:en-GB) $!= "01 October 20
 ErrorIf "D", %date(datetime,local;datetime;culture:en-GB) $!= "01/10/2018 12:42"
 ErrorIf "D", %date(datetime,local;shorttime;culture:en-GB) $!= "12:42"
 ErrorIf "D", %date(datetime,local;longtime;culture:en-GB) $!= "12:42:00"
-ErrorIf "D", %date(datetime,local;shortdate;culture:en-GB) $!= "01/10/2018"        
-ErrorIf "D", %date(datetime,local;ticks) $!= "636739945200000000"        
+ErrorIf "D", %date(datetime,local;shortdate;culture:en-GB) $!= "01/10/2018"
+ErrorIf "D", %date(datetime,local;ticks) $!= "636739945200000000"
 
 ErrorIf "F", %openfile(f1,"c:\\code\\f1.txt",Create) != 1
 ErrorIf "F", '%writeline(f1,"line to write")' != 1
@@ -192,6 +195,7 @@ ErrorIf "F", %round(2029.2929282,3,"0.#####") $!= 2029.293
 ErrorIf "F", %roundnz(0.0000000001,3,"0.###",10) $!= 0.0000000001
 ErrorIf "F", %roundscale(0.0000000001,3,"0.###",10,2.0) $!= 0.0000000002
 ErrorIf "F", %eval(10+10) != 20
+ErrorIf "F", %eval(10+a10,try) $!= Nan
 
 Print Test Complete %datetimenow(longdatetime;culture:en-GB)
 
