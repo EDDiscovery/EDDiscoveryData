@@ -1,51 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Items>
     <Notifications>
-        <Entry StartUTC="2018-11-07T21:42:09Z" Type="Popup" PointSize="14">
-<Body Lang="en" Caption="First Note">This is a note to the user in English
-Hello to EDD!
-            </Body>
-            <Body Lang="fr" Caption="First Note">
-                note 2 in fr
-            </Body>
-        </Entry>
-
-        <Entry StartUTC="2018-11-08T21:42:09Z" Type="Popup" PointSize="14" VersionMin="10.0.0.0" VersionMax="10.4.0.0" >
-<Body Lang="en" Caption="Second Note">This is second note to the user in English
-Hello to EDD!
-            </Body>
-            <Body Lang="fr" Caption="First Note">
-                note 2 in fr
-            </Body>
-        </Entry>
-
-        <Entry StartUTC="2018-11-10T20:00:09Z" EndUTC="2018-12-20T20:00:09Z" Type="Log" Highlight="Yes">
-            <Body Lang="en" Caption="Second Note">New Voice Pack XX available!</Body>
-            <Body Lang="fr" Caption="Second Note">
-            </Body>
-        </Entry>
-
-
-        <Entry StartUTC="2018-11-20T20:00:09Z" EndUTC="2018-12-20T20:00:09Z" Type="Log" >
-            <Body Lang="en" Caption="Second Note">New Voice Pack XX1 available!</Body>
-            <Body Lang="fr" Caption="Second Note">
-            </Body>
-        </Entry>
-
-
-        <Entry StartUTC="2018-11-22T20:00:09Z" EndUTC="2018-11-26T20:00:09Z" Type="Log">
-            <Body Lang="en" Caption="Second Note">New Voice Pack XX2 available!</Body>
-            <Body Lang="fr" Caption="Second Note">
-            </Body>
-        </Entry>
-
-
-
     </Notifications>
-
-    <Others>
-        Not used presently -for future use
-    </Others>
 </Items>
 
 

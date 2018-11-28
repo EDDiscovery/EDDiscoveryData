@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Items>
     <Notifications>
-        <Entry StartUTC="2018-11-09T21:42:09Z" Type="Popup" PointSize="14">
-<Body Lang="en" Caption="Third Note">This is a note to the user in English
-Hello to EDD!
-            </Body>
-            <Body Lang="fr" Caption="Note">
-                note 2 in fr
-            </Body>
-        </Entry>
-
     </Notifications>
-
-    <Others>
-        Not used presently -for future use
-    </Others>
 </Items>
 
 
