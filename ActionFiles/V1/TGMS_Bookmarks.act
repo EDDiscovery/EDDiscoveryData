@@ -1,0 +1,24 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Simple macros that allows you to create a bookmark named after the system you jumped into by hitting the scroll lock key"
+INSTALL ShortDescription="TGMS Bookmarks"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=8.1.0.0
+INSTALL Location=Actions
+
+EVENT onKeyPress, BookmarkSystem, "", KeyPress $== Scroll
+
+//*************************************************************
+// BookmarkSystem
+// Events: onKeyPress?(KeyPress $== Scroll)
+//*************************************************************
+PROGRAM BookmarkSystem
+
+Event Last
+
+Bookmarks ADDSTAR "%(EC_StarSystem)"
+
+END PROGRAM
+
