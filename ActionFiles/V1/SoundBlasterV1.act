@@ -10,7 +10,7 @@ INSTALL Location=Actions
 
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
-EVENT All, Event, "", TriggerType IsOneOf onNewEntry,UserRightClick
+EVENT All, Event, "", TriggerType IsOneOf NewEntry,UserRightClick
 EVENT onMenuItem, Menus, "", MenuName Contains SoundBlasterV1
 
 //*************************************************************
