@@ -12,7 +12,6 @@ EVENT onStartup, onStartup, "", Condition AlwaysTrue
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
 EVENT All, Event, "", TriggerType IsOneOf onNewEntry Or TriggerType IsOneOf NewEntry
 EVENT onRefreshEnd, onRefreshEnd, "", Condition AlwaysTrue
-EVENT onKeyPress, logData, "", KeyPress $== Shift+Q
 
 //*************************************************************
 // onStartup
@@ -115,7 +114,6 @@ END PROGRAM
 
 //*************************************************************
 // logData
-// Events: onKeyPress?(KeyPress $== Shift+Q)
 //*************************************************************
 PROGRAM logData
 
