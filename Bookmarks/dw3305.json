@@ -1,0 +1,29 @@
+[
+  {
+    "Name": "Fine Ring Sector JH-V C2-4",
+    "Notes":"Shapley 1"
+  },
+  {
+    "Name": "HR 6164",
+    "Notes":"The View"
+  },
+  {
+    "Name": "Blu Thua GI-B b55-2",
+    "Notes":"Cycladia"
+  },
+  {
+    "Name": "Traikaae CH-Y c10",
+    "Notes":"Labirinto",
+    "Planets": [
+        { "Planet":"1 A", "Place":"", "Comment":"Landing Planet", "Latitude":0 , "Longitude":0 }
+    ]
+  },
+  {
+    "Name": "Traikaae KT-P d6-10",
+    "Notes":"Cinnabar Moth Nebula"
+  },
+  {
+    "Name": "Omega Sector VE-Q b5-15",
+    "Notes":"Waypoint 2"
+  }
+]
