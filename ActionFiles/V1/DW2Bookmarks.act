@@ -1,0 +1,141 @@
+ACTIONFILE V4
+
+INSTALL LongDescription="This pack keeps you updated with the DW3305\r\nIt will keep your bookmarks up to date as the waypoints are announced"
+INSTALL ShortDescription="DW3305 Expedition"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=10.3.0.0
+INSTALL Location=Actions
+
+ENABLED True
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call BookmarkLoad( bookmarkfile = "dw3305.json")
+
+END PROGRAM
+
+//*************************************************************
+// Bookmarks
+//*************************************************************
+
+PROGRAM BookmarkLoad
+
+set date = %DateTimeNow(LongDate)
+set lastdate = %existsdefault(DW3305_Last_Date,"")
+
+if date $== %(lastdate)     // lets not try more than once a day
+    return
+
+persistentglobal DW3305_Last_Date = %(date)
+
+Set appfolder = %SystemPath(EDDAppFolder)
+Set subfolder = %(appfolder)\Bookmarks
+Set exist = %DirExists(subfolder)
+If exist == 0
+    Expr %mkdir(subfolder)
+
+Perform datadownload "Bookmarks" %(bookmarkfile) %(subfolder)
+
+if Downloaded IsTrue
+    Set filename = %(subfolder)\%(bookmarkfile)
+
+    if %FileExists(filename) IsTrue
+        Call AddBookmarks(filename="%(filename)")
+else
+    print "Bookmark of DW3305 bookmark file failed - will try next time"
+
+return
+
+END PROGRAM
+
+
+//*************************************************************
+// AddBookmarks
+//*************************************************************
+
+PROGRAM AddBookmarks
+
+print Read file %(filename)
+
+Set str = %readalltext(filename)
+Expr %jsonparse(str,"Root")
+
+if %(Result) IsFalse
+    print Bookmark file %(filename) failed to read - delete and rerun
+    return
+
+rem Pragma dumpvars Root*
+
+Loop %(Root_Count),N
+    Set prefix = Root_%(N)_
+    Set name = %indirect("%(prefix)Name")
+    Set deletemarker = %exist(%(prefix)Delete)
+
+    rem print Processing %(name)
+
+    If %exist("%(prefix)Region") == 1                       // region=1/star=0 marker with position
+        Set isregion = %i(prefix,Region)                    // is it a region
+
+        If deletemarker IsTrue
+            rem Print Delete star/region marker %(name) : %(isregion)
+
+            Pragma ignoreerrors     // because it may not be there..
+
+            If isregion $== "True"
+                Bookmarks DELETE REGION "%(name)"
+            Else
+                Bookmarks DELETE "%(name)"
+
+            Pragma allowerrors
+
+        Else
+            Set x = %i(prefix,X)
+            Set y = %i(prefix,Y)
+            Set z = %i(prefix,Z)
+            Set notes = %i(prefix,Notes)
+
+            rem Print Set star/region marker %(name) : %(isregion) %(x) %(y) %(z) %(notes)
+
+            If isregion $== "True"
+                Bookmarks ADD REGION "%(name)" %(x) %(y) %(z) "%(notes)"
+            Else
+                Bookmarks ADD "%(name)" %(x) %(y) %(z) "%(notes)"
+
+    Else
+        If deletemarker IsTrue                              // Star marker delete
+            rem Print Delete star marker %(name)
+            Pragma ignoreerrors
+            Bookmarks DELETE "%(name)"
+            Pragma allowerrors
+
+        Else If %exist("%(prefix)Notes") IsTrue            // Star marker new..
+            Set notes = %i(prefix,Notes)
+            rem Print Set star marker %(name) : %(notes)
+            Bookmarks ADDSTAR "%(name)" "%(notes)"
+
+        If %exist("%(prefix)Planets_Count") IsTrue          // any planets
+            Loop "%i(prefix,Planets_Count)",P
+                Set pprefix = %(prefix)Planets_%(P)_
+                Set pname = %i(pprefix,Planet)
+                Set place = %i(pprefix,Place)
+
+                If %exist("%(pprefix)Delete") IsTrue
+                    rem Print Delete Planet marker at %(name) %(pname) %(place)
+                    Pragma ignoreerrors
+                    Bookmarks DeletePlanet "%(name)" "%(pname)" "%(place)"
+                    Pragma allowerrors
+                Else
+                    Set lat = %i(pprefix,Latitude)
+                    Set long = %i(pprefix,Longitude)
+                    Set comment = %i(pprefix,Comment)
+                    rem Print Set Planet marker at %(name) %(pname) %(place) %(lat) %(long) %(comment)
+                    Bookmarks AddPlanet "%(name)" "%(pname)" "%(place)" %(lat) %(long) "%(comment)"
+
+END PROGRAM
+
