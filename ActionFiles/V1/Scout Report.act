@@ -112,12 +112,3 @@ If success IsTrue
 
 END PROGRAM
 
-//*************************************************************
-// logData
-//*************************************************************
-PROGRAM logData
-
-InfoBox Test, Test
-
-END PROGRAM
-
