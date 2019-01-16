@@ -9,6 +9,8 @@ INSTALL Location=Actions
 ENABLED True
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onInstall, onStartup, "", Condition AlwaysTrue
+EVENT onTimer, BookmarkLoad, "", TimerName Contains Bookmarkdelay
 
 //*************************************************************
 // onStartup
@@ -16,7 +18,7 @@ EVENT onStartup, onStartup, "", Condition AlwaysTrue
 //*************************************************************
 PROGRAM onStartup
 
-Call BookmarkLoad( bookmarkfile = "dw3305.json")
+Timer Bookmarkdelay,10000
 
 END PROGRAM
 
@@ -26,11 +28,17 @@ END PROGRAM
 
 PROGRAM BookmarkLoad
 
+set bookmarkfile = dw3305.json
+
 set date = %DateTimeNow(LongDate)
 set lastdate = %existsdefault(DW3305_Last_Date,"")
 
+Print Check DW3305
+
 if date $== %(lastdate)     // lets not try more than once a day
     return
+
+Print Download DW3305 Bookmarks
 
 persistentglobal DW3305_Last_Date = %(date)
 
