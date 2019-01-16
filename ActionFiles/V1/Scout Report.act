@@ -1,10 +1,10 @@
-﻿ACTIONFILE V4
+ACTIONFILE V4
 
 ENABLED True
 
 INSTALL LongDescription="This writes files about system information and scanned body for easier reporting for the DW2 Geological Reports.\r\n\r\nModified from the OBS Pack for ED."
 INSTALL ShortDescription="Geological Survey Reporting"
-INSTALL Version=1.0
+INSTALL Version=1.1
 INSTALL MinEDVersion=8.1.0.0
 INSTALL Location=Actions
 
@@ -48,11 +48,11 @@ END PROGRAM
 
 //*************************************************************
 // Event
-// Events: All?(TriggerType IsOneOf onNewEntry Or TriggerType IsOneOf NewEntry)
 //*************************************************************
 PROGRAM Event
 
-Call WriteFiles
+If EventClass_ScanType Contains Detailed
+    Call WriteFiles
 
 END PROGRAM
 
@@ -72,8 +72,6 @@ END PROGRAM
 PROGRAM WriteFiles
 
 Event LAST
-// EVENT THPOS
-// pragma dumpvars EC*
 
 If EC_JID != 0 And GSRFilePath IsPresent
     // Print Update files %(GSRFilePath)
@@ -90,11 +88,6 @@ If EC_JID != 0 And GSRFilePath IsPresent
     Call WriteFile(file="EDlastevent.txt",text="%(EC_EventSummary) %(EC_EventDescription)")
     Call WriteFile(file="EDlasteventdetailed.txt",text="%(EC_EventSummary) %(EC_EventDescription) %(EC_EventDetailedInfo)")
     Call WriteFile(file=EDcommander.txt,text="%(Commander)")
-
-// EVENT PREFIX I_ FROM %(EC_JID) INFO
-// pragma dumpvars I_*
-// EVENT PREFIX M_ FROM %(EC_JID) MISSIONS
-// pragma dumpvars M_*
 
 END PROGRAM
 
