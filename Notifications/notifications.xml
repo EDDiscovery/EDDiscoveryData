@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Items>
     <Notifications>
+        <Entry StartUTC="2019-01-16T10:10:10Z" Type="Popup" PointSize="14">
+<Body Lang="en" Caption="New Action Packs">New Voice and DW3305 Action Packs Available
+
+Use the Add on Manager to install them
+
+Voice Pack 10 adds on many new events to the voice system found in ED 3.3. It also allows you more control over text received voice output due to the additional text channels found in ED 3.3
+
+DW3305 pack will download to your bookmarks the DW star systems and planet bookmarks.  Use this in conjunction with your compass overlay to guide you accurately to offical meeting up points
+
+Press the acknowledge button to never see this message again!
+
+Good luck Commanders.
+
+EDD Team.  </Body>
+        </Entry>
     </Notifications>
 </Items>
-
-
