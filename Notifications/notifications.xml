@@ -16,5 +16,15 @@ Good luck Commanders.
 
 EDD Team.  </Body>
         </Entry>
+
+        <Entry StartUTC="2019-01-17T13:00:00Z" EndUTC="2019-02-17T23:00:00Z" Type="Log">
+<Body Caption="" Lang="en">
+******************************
+Voice Pack 10.0.1.0 Out!
+Improved control over scan output over the 10.0.0.0 version
+******************************
+ </Body>
+        </Entry>
+
     </Notifications>
 </Items>
