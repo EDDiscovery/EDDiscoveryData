@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 10 of the voice pack for EDD, for version 10.3+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=10.0.0.0
+INSTALL Version=10.0.1.0
 INSTALL MinEDVersion=10.3.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -507,13 +507,13 @@ Static say_ScanStar $= Scanned Star %star(EventClass_BodyName,say_ss), %(EventCl
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) stellar masses
 Static say_ScanStarMassMag $+= , Absolute Magnitude %round(EventClass_nAbsoluteMagnitude,1,M0.#)
 Static say_ScanStarInOrbit $= , orbital period %round(period,1,0.#) days
-Static say_ScanStarRadius $= , Radius %round(radius,2,0.##) sols
+Static say_ScanStarRadius $= , Radius %roundnz(radius,2,0.#,4) sols
 // gated on ScanHabZoneEnable
 Static say_ScanStarHabitableZone $= , Habitable Zone %round(EventClass_HabitableZoneInner,0,0) to %round(EventClass_HabitableZoneOuter,0,0) light seconds
 Static say_ScanStarAge $= , Age %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNumList) years
 
 // always said on planet
-Static say_ScanPlanet $= "Scanned %star(EventClass_BodyName,say_ss),%ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")%ifnonzero(EventClass_EstimatedValue,\", %(EventClass_EstimatedValue) credits\")"
+Static say_ScanPlanet $= "Scanned %star(BodyName,say_ss) %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")%ifnonzero(EventClass_EstimatedValue,\", %(EventClass_EstimatedValue) credits\")"
 // gated on ScanPlanetBasicInformationDisable
 Static say_ScanPlanetDistance $= , Distance from arrival %round(EventClass_DistanceFromArrivalLS,1,#.0) light seconds
 Static say_ScanPlanetLandable $= , Landable
@@ -1132,11 +1132,12 @@ If %(EventClass_IsStar) IsTrue
         Set speech += %expand(say_ScanStarMassMag)
 
         If EventClass_nOrbitalPeriod IsNotEmpty And EventClass_nOrbitalPeriod > 0
-            Let period = %(EventClass_nOrbitalPeriod)/86400
+            Let period = %(EventClass_nOrbitalPeriod)/86400.0
             Set speech += %expand(say_ScanStarInOrbit)
 
         If EventClass_nRadius IsNotEmpty And EventClass_nRadius > 0
-            Let radius = %(EventClass_nRadius)/695700000
+            Let radius = %(EventClass_nRadius)/695700000.0
+			print %(radius)
             Set speech += %expand(say_ScanStarRadius)
 
     If SpeechControls IsPresent And SpeechControls Contains ScanHabZoneEnable;
@@ -1149,6 +1150,16 @@ If %(EventClass_IsStar) IsTrue
     End 
 
 Else 
+    If SpeechControls IsPresent And SpeechControls NotContains ScanPlanetBeltClusters; And EventClass_BodyName Contains "Belt Cluster"
+		End		// remove belt clusters
+
+	Set StarName = %(EventStarSystem)
+	Let bl = %length(EventClass_BodyName)
+	if  bl > %length(StarName)
+		set BodyName = %substring(EventClass_BodyName,%length(StarName),2000)
+	else
+		set BodyName = %(EventClass_BodyName)
+
     Set speech = %expand(say_ScanPlanet)
 
     If SpeechControls NotPresent Or SpeechControls NotContains ScanPlanetBasicInformationDisable;
@@ -1161,7 +1172,8 @@ Else
         If %(EventClass_Atmosphere) IsNotEmpty And %(EventClass_Atmosphere) $!= None
             If %(EventClass_Atmosphere) $!= "Earth Like"        // ignore earth like atmos, we have already done it in the planet class
                 Set speech += %expand(say_ScanPlanetAtmosphere)
-        Else 
+
+        Else If EventClass_BodyName NotContains "Belt Cluster"
             Set speech += %expand(say_ScanPlanetNoAtmosphere)
 
     If SpeechControls IsPresent And SpeechControls Contains ScanPlanetExtendedInformationEnable;
@@ -1171,11 +1183,11 @@ Else
         If %(EventClass_nTidalLock) $== 1
             Set speech += %expand(say_ScanPlanetTidallyLocked)
         Else If EventClass_nRotationPeriod IsNotEmpty
-            Let rotation = %(EventClass_nRotationPeriod)/86400
+            Let rotation = %(EventClass_nRotationPeriod)/86400.0
             Set speech += %expand(say_ScanPlanetRotation)
 
         If EventClass_nOrbitalPeriod IsNotEmpty
-            Let period = %(EventClass_nOrbitalPeriod)/86400
+            Let period = %(EventClass_nOrbitalPeriod)/86400.0
             Set speech += %expand(say_ScanPlanetOrbitalPeriod)
 
         If EventClass_nMassEM IsNotEmpty
@@ -1186,7 +1198,7 @@ Else
                 Set speech += %expand(say_ScanPlanetMass)
 
         If EventClass_nRadius IsNotEmpty And EventClass_nRadius > 0
-            Let radius = %(EventClass_nRadius)/1000
+            Let radius = %(EventClass_nRadius)/1000.0
             Set speech += %expand(say_ScanPlanetRadius)
 
         If EventClass_nSurfaceGravity IsNotEmpty
@@ -1497,78 +1509,85 @@ If MenuName Contains ShowHelp
 
 If MenuName Contains ConfigureVerbosity
 
-    Set col1 = 100
-    Set col2 = +250
+	Set lab = 10
+	Set labw = 140
+    Set col1 = 150
+    Set col2 = 400
+    Set col3 = 650
     Set colw = 240
     Set ls = +30
     Set lsm = +40
-    Set width = 560
+    Set width = 1000
     Set Def = ""
-    Set dvar2a = "L2,Label,\"Speech file\",10,%(lsm),80,20,\"\""
-    Set dvar2b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Empty means no speech file, else enter the file or use browse\""
-    Set dvar2c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Select file to write speech output to\""
+    Set dvar1a = "L2,Label,\"Speech file\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Empty means no speech file, else enter the file or use browse\""
+    Set dvar1c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Select file to write speech output to\""
 
-    Set dvar2d = "CBPR,CheckBox,\"Print date/time in log\",%(col1),%(ls),%(colw),20,\"Print time and date before text\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
-    Set dvar2e = "CBLL,CheckBox,\"Log Last only\",%(col2),+0,%(colw),20,\"Clear log before each speech output\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
+    Set dvar2a = "CBPR,CheckBox,\"Print date/time in log\",%(col1),%(ls),%(colw),20,\"Print time and date before text\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
+    Set dvar2b = "CBLL,CheckBox,\"Log Last only\",%(col2),+0,%(colw),20,\"Clear log before each speech output\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
 
-    Set dvar2f = "CBD,CheckBox,\"Disable Voice Output\",%(col1),%(ls),%(colw),20,\"Disable Voice Output, use to print only\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
-    Set dvar2g = "CBSSML,CheckBox,\"Disable SSML\",%(col2),+0,%(colw),20,\"Disable SSML (Requires Restart of ED)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
+    Set dvar3a = "L2,Label,\"General\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar3b = "CBD,CheckBox,\"Disable Voice Output\",%(col1),+0,%(colw),20,\"Disable Voice Output, use to print only\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
+    Set dvar3c = "CBSSML,CheckBox,\"Disable SSML\",%(col2),+0,%(colw),20,\"Disable SSML (Requires Restart of ED)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
+	Set dvar3d = "CBWEL,CheckBox,\"Disable Welcome Msg\",%(col3),+0,%(colw),20,\"Disable the welcome message\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
 
-    Set dvar3a = "L3,Label,\"Exclude Stars\",10,%(lsm),80,20,\"\""
-    Set dvar3b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Exclude these stars from the read out of system information read after jumping, star types OBAFGKM, H,N,TTS, Wx etc, comma or space separated\""
-
-    Set dvar4a = "L3,Label,\"General\",10,%(lsm),80,20,\"\""
+    Set dvar4a = "L3,Label,\"Friends\",%(lab),%(lsm),%(labw),20,\"\""
     Set dvar4b = "CBFR,CheckBox,\"Disable Friend Status\",%(col1),+0,%(colw),20,\"Friend status online/offline is muted\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
-    Set dvar4c = "CBWEL,CheckBox,\"Disable Welcome Msg\",%(col2),+0,%(colw),20,\"Disable the welcome message\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
 
-	//print %(SpeechControls)
-
-    Set dvar41a = "L3,Label,\"Texts\",10,%(lsm),80,20,\"\""
+    Set dvar5a = "L3,Label,\"Texts\",%(lab),%(lsm),%(labw),20,\"\""
 	let npcdisable = !%IsPresent(SpeechControls,"NPCChatterDisable;",0)
-    Set dvar41b = "CBN1,CheckBox,\"Enable NPC Texts\",%(col1),+0,%(colw),20,\"Enable all NPC Texts\",%(npcdisable)"		// name kept for backwards compat
-    Set dvar41x = "CBNS,CheckBox,\"Disable NPC Sounds\",%(col2),+0,%(colw),20,\"Disable Intro/Out sounds on NPC Texts\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
-    Set dvar41z = "CBNMV,CheckBox,\"NPC Different Voices\",%(col1),%(ls),%(colw),20,\"Pick different voices for each NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+    
+	Set dvar5b = "CBN1,CheckBox,\"Enable NPC Texts\",%(col1),+0,%(colw),20,\"Enable all NPC Texts\",%(npcdisable)"		// name kept for backwards compat
+    Set dvar5c = "CBNS,CheckBox,\"Disable NPC Sounds\",%(col2),+0,%(colw),20,\"Disable Intro/Out sounds on NPC Texts\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
+    Set dvar5d = "CBNMV,CheckBox,\"NPC Different Voices\",%(col3),+0,%(colw),20,\"Pick different voices for each NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+    
+	Set dvar5e = "CBN2,CheckBox,\"Enable Squadron Texts\",%(col1),%(ls),%(colw),20,\"Enable all Squadron Texts\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
+    Set dvar5f = "CBN3,CheckBox,\"Enable Wing Texts\",%(col2),+0,%(colw),20,\"Enable all Wing Texts\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
+    Set dvar5g = "CBN4,CheckBox,\"Enable Local Texts\",%(col3),+0,%(colw),20,\"Enable all Local Texts\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
+    
+	Set dvar5h = "CBN5,CheckBox,\"Enable Friend Texts\",%(col1),%(ls),%(colw),20,\"Enable all Friend Texts\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
+    Set dvar5j = "CBN6,CheckBox,\"Enable VoiceChat Texts\",%(col2),+0,%(colw),20,\"Enable all Voice Chat Texts\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
+    Set dvar5k = "CBN7,CheckBox,\"Enable StarSystem Texts\",%(col3),+0,%(colw),20,\"Enable all Star System Texts\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
 
-    Set dvar41c = "CBN2,CheckBox,\"Enable Squadron Texts\",%(col1),%(ls),%(colw),20,\"Enable all Squadron Texts\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
-    Set dvar41d = "CBN3,CheckBox,\"Enable Wing Texts\",%(col2),+0,%(colw),20,\"Enable all Wing Texts\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
-    Set dvar41e = "CBN4,CheckBox,\"Enable Local Texts\",%(col1),%(ls),%(colw),20,\"Enable all Local Texts\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
-    Set dvar41f = "CBN5,CheckBox,\"Enable Friend Texts\",%(col2),+0,%(colw),20,\"Enable all Friend Texts\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
-    Set dvar41g = "CBN6,CheckBox,\"Enable VoiceChat Texts\",%(col1),%(ls),%(colw),20,\"Enable all Voice Chat Texts\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
-    Set dvar41h = "CBN7,CheckBox,\"Enable StarSystem Texts\",%(col2),+0,%(colw),20,\"Enable all Star System Texts\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
-    Set dvar41i = "CBN8,CheckBox,\"Enable Player Texts\",%(col1),%(ls),%(colw),20,\"Enable all Player Texts\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
-    Set dvar41j = "CBN9,CheckBox,\"Enable Any Other Texts\",%(col2),+0,%(colw),20,\"Enable any other types of Texts\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
+    Set dvar5m = "CBN8,CheckBox,\"Enable Player Texts\",%(col1),%(ls),%(colw),20,\"Enable all Player Texts\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
+    Set dvar5n = "CBN9,CheckBox,\"Enable Any Other Texts\",%(col2),+0,%(colw),20,\"Enable any other types of Texts\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
 
-    Set dvar5a = "L3,Label,\"FSD Jump\",10,%(lsm),80,20,\"\""
-    Set dvar5b = "CBF,CheckBox,\"System Info first jump only\",%(col1),+0,%(colw),20,\"Say system information on first jump to system only\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
-    Set dvar5c = "CBFL,CheckBox,\"Disable fuel level reports\",%(col2),+0,%(colw),20,\"Disable Fuel Level Reports\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
-    Set dvar5d = "CBFR,CheckBox,\"Disable faction reports\",%(col1),%(ls),%(colw),20,\"Disable Faction reporting on FSD jumps\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
 
-    Set dvar6a = "L3,Label,\"Scan\",10,%(lsm),80,20,\"\""
-    Set dvar6b = "CBSM,CheckBox,\"Disable Star Mass/Mag\",%(col1),+0,%(colw),20,\"Disable Scan reports of stars mass and mag\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
-    Set dvar6c = "CBSH,CheckBox,\"Enable Star HabZone\",%(col2),+0,%(colw),20,\"Enable Scan reports of stars hab zone\",%IsPresent(SpeechControls,\"ScanHabZoneEnable;\",0)"
-    Set dvar6d = "CBPB,CheckBox,\"Disable Planet Basic\",%(col1),%(ls),%(colw),20,\"Disable Scan reports of planets basic info\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
-    Set dvar6e = "CBPF,CheckBox,\"Enable Planet Extended\",%(col2),+0,%(colw),20,\"Enable Scan reports of planets extended info\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
-    Set dvar6f = "CBPM,CheckBox,\"Enable Planet Materials\",%(col1),%(ls),%(colw),20,\"Enable Scan reports of planets materials info\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
+    Set dvar6a = "L3,Label,\"FSD Jump\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar6b = "CBF,CheckBox,\"System Info first jump only\",%(col1),+0,%(colw),20,\"Say system information on first jump to system only\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
+    Set dvar6c = "CBFL,CheckBox,\"Disable fuel level reports\",%(col2),+0,%(colw),20,\"Disable Fuel Level Reports\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
+    Set dvar6d = "CBFR,CheckBox,\"Disable faction reports\",%(col3),+0,%(colw),20,\"Disable Faction reporting on FSD jumps\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
 
-    Set dvar7a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
-    Set dvar7b = "CBED,CheckBox,\"Disable EDSM info\",%(col1),+0,%(colw),20,\"Disable all EDSM lookup of system info\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
-    Set dvar7c = "CBES,CheckBox,\"Short Summary\",%(col2),+0,%(colw),20,\"Produce a short summary instead of the full info\",%IsPresent(SpeechControls,\";EDSMSummaryEnable\",0)"
-    Set dvar7d = "CBEM,CheckBox,\"Moon information\",%(col1),%(ls),%(colw),20,\"Say moon information\",%IsPresent(SpeechControls,\";EDSMMoonsEnable\",0)"
-    Set dvar7e = "CBESM,CheckBox,\"Sub moon information\",%(col2),+0,%(colw),20,\"Say sub moon information\",%IsPresent(SpeechControls,\";EDSMSubMoonsEnable\",0)"
-    Set dvar7f = "CBEAT,CheckBox,\"Atmosphere information\",%(col1),%(ls),%(colw),20,\"Say atmosphere information for planets\",%IsPresent(SpeechControls,\";EDSMAtmosphereEnable\",1)"
-    Set dvar7g = "CBEVC,CheckBox,\"Volcanism information\",%(col2),+0,%(colw),20,\"Say volcanism information for planets\",%IsPresent(SpeechControls,\";EDSMVolcanismEnable\",1)"
-    Set dvar7h = "CBEMA,CheckBox,\"Materials information\",%(col1),%(ls),%(colw),20,\"Say materials information for planets\",%IsPresent(SpeechControls,\";EDSMMaterialsEnable\",0)"
+    Set dvar7a = "L3,Label,\"Exclude Stars Types\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Exclude these stars from the read out of system information read after jumping, star types OBAFGKM, H,N,TTS, Wx etc, comma or space separated\""
 
-    Set dvar8a = "L3,Label,\"Nav Beacon\",10,%(lsm),80,20,\"\""
-    Set dvar8b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Select what is spoken after a navigation beacon is scanned\",Summary,No Speech on Scan,Full Scan Speech"
+	Set dvar8a = "L3,Label,\"Scan\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar8b = "CBSM,CheckBox,\"Disable Star Mass/Mag\",%(col1),+0,%(colw),20,\"Disable Scan reports of stars mass and mag\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
+    Set dvar8c = "CBSH,CheckBox,\"Enable Star HabZone\",%(col2),+0,%(colw),20,\"Enable Scan reports of stars hab zone\",%IsPresent(SpeechControls,\"ScanHabZoneEnable;\",0)"
+    Set dvar8d = "CBPB,CheckBox,\"Disable Planet Basic\",%(col3),+0,%(colw),20,\"Disable Scan reports of planets basic info\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
+    Set dvar8e = "CBPF,CheckBox,\"Enable Planet Extended\",%(col1),%(ls),%(colw),20,\"Enable Scan reports of planets extended info\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
+    Set dvar8f = "CBPM,CheckBox,\"Enable Planet Materials\",%(col2),+0,%(colw),20,\"Enable Scan reports of planets materials info\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
+    Set dvar8g = "CBBC,CheckBox,\"Enable Belt Clusters\",%(col3),+0,%(colw),20,\"Enable Scan reports of Belt Clusters\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
-    Set dvar9a = "L3,Label,\"Targetting\",10,%(lsm),80,20,\"\""
-    Set dvar9b = "CBTarget,CheckBox,\"Disable Target Reports\",%(col1),+0,%(colw),20,\"Disable all reporting of targetting ships\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+    Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
+    Set dvar9b = "CBED,CheckBox,\"Disable EDSM info\",%(col1),+0,%(colw),20,\"Disable all EDSM lookup of system info\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
+    Set dvar9c = "CBES,CheckBox,\"Short Summary\",%(col2),+0,%(colw),20,\"Produce a short summary instead of the full info\",%IsPresent(SpeechControls,\";EDSMSummaryEnable\",0)"
+    Set dvar9d = "CBEM,CheckBox,\"Moon information\",%(col3),+0,%(colw),20,\"Say moon information\",%IsPresent(SpeechControls,\";EDSMMoonsEnable\",0)"
+    Set dvar9e = "CBESM,CheckBox,\"Sub moon information\",%(col1),%(ls),%(colw),20,\"Say sub moon information\",%IsPresent(SpeechControls,\";EDSMSubMoonsEnable\",0)"
+    Set dvar9f = "CBEAT,CheckBox,\"Atmosphere information\",%(col2),+0,%(colw),20,\"Say atmosphere information for planets\",%IsPresent(SpeechControls,\";EDSMAtmosphereEnable\",1)"
+    Set dvar9g = "CBEVC,CheckBox,\"Volcanism information\",%(col3),+0,%(colw),20,\"Say volcanism information for planets\",%IsPresent(SpeechControls,\";EDSMVolcanismEnable\",1)"
+    Set dvar9h = "CBEMA,CheckBox,\"Materials information\",%(col1),%(ls),%(colw),20,\"Say materials information for planets\",%IsPresent(SpeechControls,\";EDSMMaterialsEnable\",0)"
 
-    Set dvarok = "OK,Button,\"OK\",%eval(%(width)-100),%(lsm),80,20,\"Press for OK\""
-    Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-200),+0,80,20,\"Press for Cancel\""
+    Set dvar10a = "L3,Label,\"Nav Beacon\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Select what is spoken after a navigation beacon is scanned\",Summary,No Speech on Scan,Full Scan Speech"
 
-    Dialog D1, "Voice Pack Configuration", "560,850", dvar
+    Set dvar11a = "L3,Label,\"Targetting\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar11b = "CBTarget,CheckBox,\"Disable Target Reports\",%(col1),+0,%(colw),20,\"Disable all reporting of targetting ships\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+
+    Set dvarok = "OK,Button,\"OK\",%eval(%(width)-140),%(lsm),120,20,\"Press for OK\""
+    Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-280),+0,120,20,\"Press for Cancel\""
+
+    Dialog D1, "Voice Pack Configuration", "%(width),700", dvar
 
     While D1 $!= Cancel And D1 $!= Escape
         If D1 $== BBROWSE
@@ -1612,6 +1631,7 @@ If MenuName Contains ConfigureVerbosity
             Call SetSO(ctrl="CBPB",flag="ScanPlanetBasicInformationDisable;")
             Call SetSO(ctrl="CBPF",flag="ScanPlanetExtendedInformationEnable;")
             Call SetSO(ctrl="CBPM",flag="ScanPlanetMaterialInformationEnable;")
+            Call SetSO(ctrl="CBBC",flag="ScanPlanetBeltClusters;")
 
             Call SetSO(ctrl="CBED",flag="EDSMInformationDisable;")
             Call SetSO(ctrl="CBES",flag="EDSMSummaryEnable;")
