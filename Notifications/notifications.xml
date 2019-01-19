@@ -26,7 +26,7 @@ Improved control over scan output over the 10.0.0.0 version
  </Body>
         </Entry>
 
-        <Entry StartUTC="2019-01-17T13:00:00Z" EndUTC="2019-02-17T23:00:00Z" Type="Log">
+        <Entry StartUTC="2019-01-19T01:00:00Z" EndUTC="2019-02-17T23:00:00Z" Type="Log">
 <Body Caption="" Lang="en">
 ******************************
 Please update to 10.4.3+ to fix a problem with a scan panel crash
