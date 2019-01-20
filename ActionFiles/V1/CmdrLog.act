@@ -1,0 +1,162 @@
+﻿ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This pack allows you to add System Notes using the in-game chat window.\r\nSend a message to \"Local\" prefixed with \"LOG\" and it will be appended to your System Notes.\r\n\r\nYou can edit the Prefix in the \"Globals\" section in \"Edit Add-on Action Files\", or via the \"Commanders Log\" preferences dialog in the \"Add-Ons\" menu."
+INSTALL ShortDescription="Commanders Log"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=10.4.3.0
+INSTALL Location=Actions
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT SendText, onSendText, "", Condition AlwaysTrue
+EVENT onMenuItem, onMenuItem, "", MenuName $== MenuCmdrLogPrefix
+
+//*************************************************************
+// init
+//*************************************************************
+PROGRAM init
+
+// Initialise the prefix
+If CmdrLogPrefix NotPresent
+    PersistentGlobal CmdrLogPrefix = LOG
+
+// Initialise the menu
+MenuItem MenuCmdrLogPrefix
+If MenuPresent IsFalse
+    MenuItem MenuCmdrLogPrefix,"add-ons","Commanders Log"
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+Call init
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+// Startup processing - initialize any global state
+Call init
+
+END PROGRAM
+
+//*************************************************************
+// onSendText
+// Events: SendText
+//*************************************************************
+PROGRAM onSendText
+
+// Pragma dumpvars E*
+// TODO: Use event condition instead of these checks
+// TODO: Allow user to specify which Chat Channel(s) to use for log messages
+If EventClass_To $!= Local
+    Pragma log "Ignoring message as not to Local"
+    Return 
+
+// Pragma dumpvars EventClass_Message
+// Pragma dumpvars CmdrLog*
+Let len = %Length(CmdrLogPrefix)
+If %substring(EventClass_Message,0,len) CS!= %(CmdrLogPrefix)
+    Pragma log "Ignoring message as does not start with %(CmdrLogPrefix)"
+    Return 
+
+// Retrieve details for the current History entry (into EC_ variables)
+// which is the one we actually want to update
+Event THPOS
+
+// Pragma dumpvars E*
+
+// Ideally should escape all incoming messages but we don't have a function to do this yet
+// Set Msg = %EscapeChar(EventClass_Message)
+// Set Note = %EscapeChar(EC_Note)
+
+// Pragma log "Current JID = %(EventJID)"
+// Pragma log "Target JID = %(EC_JID)"
+// Pragma log "Message = %(EventClass_Message)"
+// Pragma log "Current note = %(EC_Note)"
+
+// Strip prefix from message
+Call stripPrefix(str = "%(EventClass_Message)", prefix = "%(CmdrLogPrefix)")
+Set NewNote = %(ReturnValue)
+
+If NewNote Empty
+    Return 
+
+// Concatenate the new note to the existing one
+If EC_Note IsNotEmpty
+    Set NewNote = "%join(\"\r\n\",EC_Note,NewNote)"
+    Set NewNote = %ReplaceEscapeChar(NewNote)
+
+// Cannot use Pragma log if the note contains any special characters
+// Pragma dumpvars NewNote
+
+// Save new note to history
+If NewNote CS!= EC_Note
+    Event FROM %(EC_JID) NOTE "%(NewNote)"
+
+END PROGRAM
+
+//*************************************************************
+// stripPrefix
+//*************************************************************
+PROGRAM stripPrefix
+
+If str Empty
+    Return ""
+
+If prefix Empty
+    Return %trim(str)
+
+Let prefixLen = %length(prefix) + 1
+// substring - must use all 3 parameters, third parameter must be >= 0
+Set rv = %substring(str,prefixLen,2048)
+Return %trim(rv)
+
+END PROGRAM
+
+//*************************************************************
+// onMenuItem
+// Events: onMenuItem?(MenuName $== MenuCmdrLogPrefix)
+//*************************************************************
+PROGRAM onMenuItem
+
+Pragma Log "Menu clicked"
+// Row 1 - y = 30, height = 20
+Set dvar_l1 = "L1,Label,\"Prefix\",10,30,100,20,,"
+Set dvar_tb1 = "TB1,TextBox,%(CmdrLogPrefix),120,30,200,20,\"Specify the prefix to use when sending a message.\",0"
+// Row 2 - y = 60, height = 20
+Set dvar_ok = "OK,Button,\"OK\",10,60,100,20,\"Press for OK\""
+Set dvar_cancel = "Cancel,Button,\"Cancel\",120,60,100,20,\"Press for Cancel\""
+
+Dialog D1, "Commanders Log", "350,100", dvar
+
+// Handle other controls until OK or Cancel has been pressed
+While (D1 $!= OK) And (D1 $!= Cancel)
+    Print %(D1)
+    // If D1 $== B1
+    // Print Button B1
+    // DialogControl D1,Set TB1="Hello there"
+    DialogControl D1,Continue
+
+If D1 $== OK
+    DialogControl D1,Get TB1
+    Print textbox=%(DialogResult)
+    PersistentGlobal CmdrLogPrefix = %(DialogResult)
+    Pragma Log "CmdrLogPrefix set to %(CmdrLogPrefix)"
+
+DialogControl D1, Close
+
+Return 
+
+END PROGRAM
+
