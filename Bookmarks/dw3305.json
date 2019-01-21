@@ -24,6 +24,9 @@
   },
   {
     "Name": "Omega Sector VE-Q b5-15",
-    "Notes":"Waypoint 2"
+    "Notes":"Waypoint 2",
+    "Planets": [
+        { "Planet":"7 B", "Place":"Roald Landing (GeoSite #5)", "Comment":"WP2 meeting point", "Latitude":34.283 , "Longitude":79.552 }
+    ]
   }
 ]
