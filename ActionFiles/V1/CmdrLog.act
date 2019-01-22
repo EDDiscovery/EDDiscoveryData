@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This pack allows you to add System Notes using the in-game chat window.\r\nSend a message to \"Local\" prefixed with \"LOG\" and it will be appended to your System Notes.\r\n\r\nYou can edit the Prefix in the \"Globals\" section in \"Edit Add-on Action Files\", or via the \"Commanders Log\" preferences dialog in the \"Add-Ons\" menu."
 INSTALL ShortDescription="Commanders Log"
-INSTALL Version=1.0.0.0
+INSTALL Version=1.0.0.1
 INSTALL MinEDVersion=10.4.3.0
 INSTALL Location=Actions
 
@@ -60,14 +60,14 @@ PROGRAM onSendText
 // TODO: Use event condition instead of these checks
 // TODO: Allow user to specify which Chat Channel(s) to use for log messages
 If EventClass_To $!= Local
-    Pragma log "Ignoring message as not to Local"
+    Pragma Debug "Ignoring message as not to \"Local\""
     Return 
 
 // Pragma dumpvars EventClass_Message
 // Pragma dumpvars CmdrLog*
 Let len = %Length(CmdrLogPrefix)
 If %substring(EventClass_Message,0,len) CS!= %(CmdrLogPrefix)
-    Pragma log "Ignoring message as does not start with %(CmdrLogPrefix)"
+    Pragma Debug "Ignoring message as not starting with %(CmdrLogPrefix)"
     Return 
 
 // Retrieve details for the current History entry (into EC_ variables)
@@ -130,7 +130,6 @@ END PROGRAM
 //*************************************************************
 PROGRAM onMenuItem
 
-Pragma Log "Menu clicked"
 // Row 1 - y = 30, height = 20
 Set dvar_l1 = "L1,Label,\"Prefix\",10,30,100,20,,"
 Set dvar_tb1 = "TB1,TextBox,%(CmdrLogPrefix),120,30,200,20,\"Specify the prefix to use when sending a message.\",0"
@@ -144,19 +143,18 @@ Dialog D1, "Commanders Log", "350,100", dvar
 While (D1 $!= OK) And (D1 $!= Cancel)
     Print %(D1)
     // If D1 $== B1
-    // Print Button B1
-    // DialogControl D1,Set TB1="Hello there"
+        // Print Button B1
+        // DialogControl D1,Set TB1="Hello there"
     DialogControl D1,Continue
 
 If D1 $== OK
     DialogControl D1,Get TB1
-    Print textbox=%(DialogResult)
+    // Print textbox=%(DialogResult)
     PersistentGlobal CmdrLogPrefix = %(DialogResult)
-    Pragma Log "CmdrLogPrefix set to %(CmdrLogPrefix)"
+    Pragma Debug "CmdrLogPrefix set to %(CmdrLogPrefix)"
 
 DialogControl D1, Close
 
 Return 
 
 END PROGRAM
-
