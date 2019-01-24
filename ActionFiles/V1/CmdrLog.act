@@ -22,6 +22,10 @@ PROGRAM init
 If CmdrLogPrefix NotPresent
     PersistentGlobal CmdrLogPrefix = LOG
 
+// Initialise whether to log timestamps
+If CmdrLogTimestamp NotPresent
+    PersistentGlobal CmdrLogTimestamp = 0
+
 // Initialise the menu
 MenuItem MenuCmdrLogPrefix
 If MenuPresent IsFalse
@@ -92,6 +96,11 @@ Set NewNote = %(ReturnValue)
 If NewNote Empty
     Return 
 
+// If we're logging timestamps, prefix the note
+If CmdrLogTimestamp IsTrue
+    Set now = "%DateTimeNow(\"\")"
+    Set NewNote = "%join(\" \", now, NewNote)"
+
 // Concatenate the new note to the existing one
 If EC_Note IsNotEmpty
     Set NewNote = "%join(\"\r\n\",EC_Note,NewNote)"
@@ -134,10 +143,12 @@ PROGRAM onMenuItem
 Set dvar_l1 = "L1,Label,\"Prefix\",10,30,100,20,,"
 Set dvar_tb1 = "TB1,TextBox,%(CmdrLogPrefix),120,30,200,20,\"Specify the prefix to use when sending a message.\",0"
 // Row 2 - y = 60, height = 20
-Set dvar_ok = "OK,Button,\"OK\",10,60,100,20,\"Press for OK\""
-Set dvar_cancel = "Cancel,Button,\"Cancel\",120,60,100,20,\"Press for Cancel\""
+Set dvar_cb1 = "CB1,CheckBox,\"Log Timestamps\",10,60,200,20,\"Check to add a timestamp to every log entry.\",%(CmdrLogTimestamp)"
+// Row 2 - y = 90, height = 20
+Set dvar_ok = "OK,Button,\"OK\",10,90,100,20,\"Press for OK\""
+Set dvar_cancel = "Cancel,Button,\"Cancel\",120,90,100,20,\"Press for Cancel\""
 
-Dialog D1, "Commanders Log", "350,100", dvar
+Dialog D1, "Commanders Log", "350,130", dvar
 
 // Handle other controls until OK or Cancel has been pressed
 While (D1 $!= OK) And (D1 $!= Cancel)
@@ -149,9 +160,10 @@ While (D1 $!= OK) And (D1 $!= Cancel)
 
 If D1 $== OK
     DialogControl D1,Get TB1
-    // Print textbox=%(DialogResult)
     PersistentGlobal CmdrLogPrefix = %(DialogResult)
     Pragma Debug "CmdrLogPrefix set to %(CmdrLogPrefix)"
+    DialogControl D1,Get CB1
+    PersistentGlobal CmdrLogTimestamp = %(DialogResult)
 
 DialogControl D1, Close
 
