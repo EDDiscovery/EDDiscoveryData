@@ -1,0 +1,107 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This writes files about system information and scanned body for easier reporting for the DW2 Geological Reports.\r\n\r\nModified from the OBS Pack for ED."
+INSTALL ShortDescription="Geological Survey Reporting"
+INSTALL Version=1.1
+INSTALL MinEDVersion=8.1.0.0
+INSTALL Location=Actions
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT All, Event, "", TriggerType IsOneOf onNewEntry Or TriggerType IsOneOf NewEntry
+EVENT onRefreshEnd, onRefreshEnd, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+If GSRFilePath IsPresent
+    Print Geological Scouting report Installed, Files will be written to %(GSRFilePath)
+Else 
+    Print Geological Scouting Report Error: output file path not set.  Disable then re-enable the pack to select the path
+Print 
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains "Scout Report"
+    Print Installing Geological Scouting Report
+    FileDialog folder,"Enter the folder where the output files are stored",MyComputer
+    If FolderName IsNotEmpty
+        PersistentGlobal GSRFilePath = %(FolderName)
+        Print GSR Installed, Files will be written to %(GSRFilePath)
+        Call WriteFiles
+    Else 
+        DeleteVariable GSRFilePath
+        MessageBox "GSRFile Path is not set.\r\nThis will disable this SCRIPT.  Disable and re-enable to try again", "WARNING Path not set"
+
+END PROGRAM
+
+//*************************************************************
+// Event
+//*************************************************************
+PROGRAM Event
+
+If EventClass_ScanType Contains Detailed
+    Call WriteFiles
+
+END PROGRAM
+
+//*************************************************************
+// onRefreshEnd
+// Events: onRefreshEnd
+//*************************************************************
+PROGRAM onRefreshEnd
+
+Call WriteFiles
+
+END PROGRAM
+
+//*************************************************************
+// WriteFiles
+//*************************************************************
+PROGRAM WriteFiles
+
+Event LAST
+
+If EC_JID != 0 And GSRFilePath IsPresent
+    // Print Update files %(GSRFilePath)
+
+    Call WriteFile(file="EDposition.txt",text="%(EC_xpos),%(EC_ypos),%(EC_zpos)")
+    Call WriteFile(file="EDstarsystem.txt",text="%(EC_StarSystem)")
+    Call WriteFile(file="EDbody.txt",text="%(EC_WhereAmI)")
+
+    If EC_WhereAmI Contains %(EC_StarSystem)
+        Call WriteFile(file="EDsystembody.txt",text="%(EC_WhereAmI)")
+    Else 
+        Call WriteFile(file="EDsystembody.txt",text="%(EC_StarSystem) | %(EC_WhereAmI)")
+
+    Call WriteFile(file="EDlastevent.txt",text="%(EC_EventSummary) %(EC_EventDescription)")
+    Call WriteFile(file="EDlasteventdetailed.txt",text="%(EC_EventSummary) %(EC_EventDescription) %(EC_EventDetailedInfo)")
+    Call WriteFile(file=EDcommander.txt,text="%(Commander)")
+
+END PROGRAM
+
+//*************************************************************
+// WriteFile
+//*************************************************************
+PROGRAM WriteFile
+
+Set fullpath = %(GSRFilePath)\%(file)
+Let success = %openfile(h1,fullpath,create)
+If success IsTrue
+    Expr %write(h1,text)
+    Expr %closefile(h1)
+    // print write %(fullpath) with %(text)
+
+END PROGRAM
+
