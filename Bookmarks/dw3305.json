@@ -28,5 +28,38 @@
     "Planets": [
         { "Planet":"7 B", "Place":"Roald Landing (GeoSite #5)", "Comment":"WP2 meeting point", "Latitude":34.283 , "Longitude":79.552 }
     ]
+  },
+  {
+    "Name": "Pyramoe PM-X b33-6",
+    "Notes":"DW3305 The Arkgamanon Mountain Range",
+    "Planets": [
+        { "Planet":"A 2 A", "Place":"", "Comment":"Mountains", "Latitude":0 , "Longitude":0 }
+    ]
+  },
+  {
+    "Name": "CD-23 14350",
+    "Notes":"DW3305 NGC 6629"
+  },
+  {
+    "Name": "Eagle Sector IR-W d1-117",
+    "Notes":"DW3305 Eagle Nebula (Eagle's Landing Planetary Port)"
+  },
+  {
+    "Name": "Rohini",
+    "Notes":"DW3305 Eudaemon Anchorage (Space Port)"
+  },
+  {
+    "Name": "Flyiedgiae QN-T d3-17",
+    "Notes":"DW3305 Quantum World",
+    "Planets": [
+        { "Planet":"AB 1 B", "Place":"", "Comment":"Quantum World", "Latitude":0 , "Longitude":0 }
+    ]
+  },
+  {
+    "Name": "PRU AESCS NC-M D7-192",
+    "Notes":"DW3305 Waypoint 3 Conflux Delta Site",
+    "Planets": [
+        { "Planet":"A 3 A", "Place":"Conflux Delta Site", "Comment":"WP3 meeting place", "Latitude":-53.348 , "Longitude":-48.923 }
+    ]
   }
 ]
