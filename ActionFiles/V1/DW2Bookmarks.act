@@ -2,7 +2,7 @@ ACTIONFILE V4
 
 INSTALL LongDescription="This pack keeps you updated with the DW3305\r\nIt will keep your bookmarks up to date as the waypoints are announced"
 INSTALL ShortDescription="DW3305 Expedition"
-INSTALL Version=1.0.0.0
+INSTALL Version=1.0.1.0
 INSTALL MinEDVersion=10.3.0.0
 INSTALL Location=Actions
 
@@ -28,6 +28,8 @@ END PROGRAM
 
 PROGRAM BookmarkLoad
 
+rem set debugfolder = c:\code\eddiscoverydata\bookmarks
+
 set bookmarkfile = dw3305.json
 
 set date = %DateTimeNow(LongDate)
@@ -35,8 +37,8 @@ set lastdate = %existsdefault(DW3305_Last_Date,"")
 
 Print Check DW3305
 
-if date $== %(lastdate)     // lets not try more than once a day
-    return
+//if debugfolder IsNotPresent And date $== %(lastdate)     // lets not try more than once a day
+//    return
 
 Print Download DW3305 Bookmarks
 
@@ -48,7 +50,11 @@ Set exist = %DirExists(subfolder)
 If exist == 0
     Expr %mkdir(subfolder)
 
-Perform datadownload "Bookmarks" %(bookmarkfile) %(subfolder)
+if debugfolder IsNotPresent 
+	Perform datadownload "Bookmarks" %(bookmarkfile) %(subfolder)
+else
+	Set Downloaded = 1
+	Set subfolder = %(debugfolder)
 
 if Downloaded IsTrue
     Set filename = %(subfolder)\%(bookmarkfile)
