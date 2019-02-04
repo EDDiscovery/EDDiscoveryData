@@ -61,5 +61,24 @@
     "Planets": [
         { "Planet":"A 3 A", "Place":"Conflux Delta Site", "Comment":"WP3 meeting place", "Latitude":-53.348 , "Longitude":-48.923 }
     ]
-  }
+  },
+
+
+{ "Name":"Skaude AL-X e1-28", "Notes":"DW3305->WP4 Rusty Net Nebula"} ,
+{ "Name":"Skaude AA-A h294", "Notes":"DW3305->WP4 Skaude (Collection of Wonders)"} ,
+{ "Name":"Skaudai AM-B d14-138", "Notes":"DW3305->WP4 Skaudai Guardian Ruins"} ,
+{ "Name":"Skaudai CH-B d14-34", "Notes":"DW3305->WP4 Sacaqawea Space Port"} ,
+{ "Name":"Eodgorph PI-T e3-21", "Notes":"DW3305->WP4 Spear Thistle Nebula"} ,
+{ "Name":"Prua Phoe TK-M d8-361", "Notes":"DW3305->WP4 Octopus Nebula"} ,
+{ "Name":"Flyiedgai ST-R e4-8", "Notes":"DW3305->WP4 Fish Eye Nebula"} ,
+{ "Name":"Flyiedgai UL-C d13-41", "Notes":"DW3305->WP4 Flyiedgai Nebula"} ,
+{ "Name":"Ellaisms QX-U e2-43", "Notes":"DW3305->WP4 Ellaisms Remnant"} ,
+{ "Name":"Preae Ain VU-V c3-23", "Notes":"DW3305->WP4 Hammer Nebula"} ,
+{ "Name":"Xeehia GT-G d11-8", "Notes":"DW3305->WP4 Causality of Lotus"} ,
+{ "Name":"Clooku EW-Y C3-197", "Notes":"DW3305 WP4",
+    "Planets": [
+        { "Planet":"5 G A", "Place":"Shepard Shallows (GeoSite 16)", "Comment":"WP4 meeting place", "Latitude":56.305 , "Longitude":111.854 }
+    ]
+    }
+
 ]
