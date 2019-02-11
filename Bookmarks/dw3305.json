@@ -79,6 +79,19 @@
     "Planets": [
         { "Planet":"5 G A", "Place":"Shepard Shallows (GeoSite 16)", "Comment":"WP4 meeting place", "Latitude":56.305 , "Longitude":111.854 }
     ]
-    }
+},
+
+
+{ "Name":"Gru Hypue KS-T d3-31", "Notes":"DW3305->WP5 Gagarin Gate"} ,
+{ "Name":"Floalt GO-G d11-9", "Notes":"DW3305->WP5 Amaethon Nebula (and the Polonium Fields)"} ,
+{ "Name":"Blaa Phoe NC-D d12-230", "Notes":"DW3305->WP5 Death Spiral"} ,
+{ "Name":"Boewnst AA-A h33", "Notes":"DW3305->WP5 Michell's Legacy"} ,
+{ "Name":"Byaa Ain QA-J c11-144", "Notes":"DW3305->WP5 Clockwork Rings"} ,
+{ "Name":"Byaa Ain XK-R c7-65", "Notes":"DW3305->WP5 Crayfish Nebula"} ,
+{ "Name":"Nuekuae AA-A h52", "Notes":"DW3305->WP5 The Crux"} ,
+{ "Name":"Gru Hypue AA-A g4", "Notes":"DW3305->WP5 Jo Ella's Flares"} ,
+{ "Name":"Gandharvi", "Notes":"DW3305->WP5 Caravanserai"} ,
+{ "Name":"Eor Aoscs KG-Y e4213", "Notes":"DW3305->WP5 Bullet Nebula"} ,
+{ "Name":"Boewnst KS-S c20-959", "Notes":"DW3305 WP5 Polo Harbour"}
 
 ]
