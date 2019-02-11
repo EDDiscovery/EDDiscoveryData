@@ -1,0 +1,152 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Interactive Chat Console. Execute commands and tasks from the in-game chat.\n\nIt responds to specially prefixed messages - such as /ln I'm a new Captain's Log entry - and interact with the system history and other tools.\r\n\r\nRecognized tokens:\n\r\nv1.0.0.0\r\n/ln - New Captain's Log entry\r\n/nn - New system note\r\n/na - Append to current systenote\r\n\r\nTODO\r\n/la - Append to current Captain's Log entry\r\n/ts - set target to current or named system\r\n/tc - clear/unset target\r\n/fs - set start flag to current or named system\r\n/fe - set end flag to current or named system\r\n/fc - clear start/end flag from current or named system"
+INSTALL ShortDescription="Chat Console, by EDDiscovery Developers Team"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=10.4.4.0
+INSTALL Location=Actions
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT SendText, onSendText, "", Condition AlwaysTrue
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+Call tokenSetup
+
+Print 
+Print ****
+
+Print ChatConsole will read the following tokens
+Print %(tLogNew), create a new entry in the Captain's Log with the sent text
+Print %(tLogAppend), append the sent text to the current entry
+
+Print ****
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call tokenSetup
+
+END PROGRAM
+
+//*************************************************************
+// tokenSetup
+//*************************************************************
+PROGRAM tokenSetup
+
+Print ****
+Print Register ChatConsole tokens...
+
+Static tLogNew $= /ln
+If CaptainsLogNewPrefix NotPresent
+    PersistentGlobal CaptainsLogNewPrefix = %(tLogNew)
+
+Static tLogAppend $= /la
+If CaptainsLogAppendPrefix NotPresent
+    PersistentGlobal CaptainsLogAppendPrefix = %(tLogAppend)
+
+Static tNoteNew $= /nn
+If SystemNoteNewPrefix NotPresent
+    PersistentGlobal CaptainsLogNewPrefix = %(tNoteNew)
+
+Static tNoteAppend $= /na
+If SystemNoteAppendPrefix NotPresent
+    PersistentGlobal CaptainsLogAppendPrefix = %(tNoteAppend)
+
+Print ChatConsole ready!
+Print ****
+
+// internal constant. hardcoded, by now
+Static tokensLength $= 3                                        // tokens MUST have this number of chars
+
+END PROGRAM
+
+//*************************************************************
+// onSendText
+// Events: SendText
+//*************************************************************
+PROGRAM onSendText
+
+If EventClass_To $!= Local
+    Return 
+
+Set msg = "%Replace(\"%(EventClass_Message)\", \" \", \"_\")"
+Set token = %substring(EventClass_Message,0,%(tokensLength))
+If %(token) IsOneOf "%(tLogNew), %(tLogAppend), %(tNoteNew), %(tNoteAppend)"    // , %(tTargetSet), %(tTargetClear), %(tFlagStart), %(tFlagEnd), %(tFlagClear)"
+    Call onTokenPresent(sentText="%(msg)", sentToken="%(token)")
+
+END PROGRAM
+
+//*************************************************************
+// onTokenPresent
+//*************************************************************
+PROGRAM onTokenPresent
+
+Event THPOS
+
+If sentText Empty
+    Return 
+
+If sentToken Empty
+    Return 
+
+// Captain's Log
+If sentToken CSContains %(tLogNew)
+    Print New entry created
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")
+    Captainslog ADDHERE %(ReturnValue)
+
+If sentToken CSContains %(tLogAppend)
+    Print TODO: append to current Captain's Log entry
+
+// System Note
+If sentToken CSContains %(tNoteNew)
+    Print New system note created
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")    
+    Event FROM %(EC_JID) NOTE %(ReturnValue)
+
+If sentToken CSContains %(tNoteAppend)
+    Print Text appended to current system note
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")
+
+    Set textToAppend = %(ReturnValue)
+    Set joinNotes = "%Join(\"\r\n --- \n\",EC_Note,textToAppend)"
+    Set combinedNotes = "%ReplaceEscapeChar(\"%(joinNotes)\")"
+
+    Event FROM %(EC_JID) NOTE "%(combinedNotes)"
+
+END PROGRAM
+
+//*************************************************************
+// stripTokenFromText
+//*************************************************************
+PROGRAM stripTokenFromText
+
+If sentText Empty
+    Return ""
+
+If token Empty
+    Return %(sentText)
+
+Let tokensLength = %(tokensLength)
+Set strippedText = %substring(sentText,tokensLength,2048)
+Set outputText = "%Replace(strippedText, \"_\", \" \")"
+
+If token CSContains %(tNoteNew)
+    Return "%trim(outputText)"
+Else If token CSContains %(tNoteAppend)
+    Return %trim(outputText)
+
+END PROGRAM
