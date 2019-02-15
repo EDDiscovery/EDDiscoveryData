@@ -34,5 +34,28 @@ Please update to 10.4.3+ to fix a problem with a scan panel crash
  </Body>
         </Entry>
 
+
+        <Entry StartUTC="2019-02-15T00:00:00Z" EndUTC="2019-02-28T23:00:00Z" Type="Popup" PointSize="14">
+<Body Lang="en" Caption="Elite Galaxy Online">Elite Galaxy Online
+
+It has been brought to our attention that this service has been suspended, pending updates to it.
+
+To help the commander who runs this site please disable this service in your commanders settings.
+
+Go into Settings | Commanders, select your commander, click EDIT and then disable uploading of data to EGO by unsetting "Sync to EGO".
+
+This will lower any load on his servers and also make EDD more happy!
+
+Sorry for the interruption but we thought this was important.
+
+We will inform you of any updates to this service when we are advised.
+
+Safe Flight.
+
+Rob and the EDD Team.
+</Body>
+        </Entry>
+
+
     </Notifications>
 </Items>
