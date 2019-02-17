@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="This writes files about system information and scanned body for easier reporting for the DW2 Geological Reports.\r\n\r\nModified from the OBS Pack for ED."
 INSTALL ShortDescription="Geological Survey Reporting"
 INSTALL Version=1.1
-INSTALL MinEDVersion=8.1.0.0
+INSTALL MinEDVersion=20.1.0.0
 INSTALL Location=Actions
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
@@ -21,9 +21,9 @@ PROGRAM onStartup
 
 If GSRFilePath IsPresent
     Print Geological Scouting report Installed, Files will be written to %(GSRFilePath)
-Else 
+Else
     Print Geological Scouting Report Error: output file path not set.  Disable then re-enable the pack to select the path
-Print 
+Print
 
 END PROGRAM
 
@@ -40,7 +40,7 @@ If InstallList Contains "Scout Report"
         PersistentGlobal GSRFilePath = %(FolderName)
         Print GSR Installed, Files will be written to %(GSRFilePath)
         Call WriteFiles
-    Else 
+    Else
         DeleteVariable GSRFilePath
         MessageBox "GSRFile Path is not set.\r\nThis will disable this SCRIPT.  Disable and re-enable to try again", "WARNING Path not set"
 
@@ -82,7 +82,7 @@ If EC_JID != 0 And GSRFilePath IsPresent
 
     If EC_WhereAmI Contains %(EC_StarSystem)
         Call WriteFile(file="EDsystembody.txt",text="%(EC_WhereAmI)")
-    Else 
+    Else
         Call WriteFile(file="EDsystembody.txt",text="%(EC_StarSystem) | %(EC_WhereAmI)")
 
     Call WriteFile(file="EDlastevent.txt",text="%(EC_EventSummary) %(EC_EventDescription)")
