@@ -1,0 +1,212 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Interactive Chat Console. Execute commands and tasks from the in-game chat.\n\nIt responds to specially prefixed messages - such as /ln I'm a new Captain's Log entry - and interact with the system history and other tools.\r\n\r\nRecognized tokens:\n\r\nv1.0.0.0\r\n/ln - New Captain's Log entry\r\n/nn - New system note\r\n/na - Append to current systenote\r\n/ts - Set target to named system (ex. /ts Colonia)\r\n/tc - Clear assigned target\r\n/fs - Set the start flag to current system\r\n/fe - Set the end flag to current system\r\n/fc - Clear start/end flags from current system\r\n\r\nTODO\r\n/la - Append to current Captain's Log entry\r\n/fs - set start flag to a named system\r\n/fe - set end flag to a named system\r\n/fc - clear start/end flag to a  named system\r\n"
+INSTALL ShortDescription="Chat Console, by EDDiscovery Developers Team"
+INSTALL Version=1.0.1.2
+INSTALL MinEDVersion=10.5.0.0
+INSTALL Location=Actions
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT SendText, onSendText, "", Condition AlwaysTrue
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+Call tokenSetup
+
+Print 
+Print ****
+Print ChatConsole reads the following tokens:
+Print %(tLogNew), create a new entry in the Captain's Log with the sent text
+Print %(tNoteNew), replace the current system note with the sent text
+Print %(tNoteAppend), append to the current system note the sent text
+Print %(tTargetSet), set the target to the given system
+Print %(tTargetClear), clear the target
+Print %(tFlagStart), assign the start flag to the current system
+Print %(tFlagEnd), assign the end flag to the current system
+Print %(tFlagClear), clear start/e4nd flag from current system
+Print ****
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call tokenSetup
+
+END PROGRAM
+
+//*************************************************************
+// tokenSetup
+//*************************************************************
+PROGRAM tokenSetup
+
+Print ****
+Print Register ChatConsole tokens...
+
+Static tLogNew $= /ln
+If CaptainsLogNewPrefix NotPresent
+    PersistentGlobal CaptainsLogNewPrefix = %(tLogNew)
+
+// TODO: Log Append
+Static tLogAppend $= /la
+If CaptainsLogAppendPrefix NotPresent
+    PersistentGlobal CaptainsLogAppendPrefix = %(tLogAppend)
+
+Static tNoteNew $= /nn
+If SystemNoteNewPrefix NotPresent
+    PersistentGlobal SystemNoteNewPrefix = %(tNoteNew)
+
+Static tNoteAppend $= /na
+If SystemNoteAppendPrefix NotPresent
+    PersistentGlobal SystemNoteAppendPrefix = %(tNoteAppend)
+
+Static tTargetSet $= /ts
+If TargetSetPrefix NotPresent
+    PersistentGlobal TargetSetPrefix = %(tTargetSet)
+
+Static tTargetClear $= /tc
+If TargetClearPrefix NotPresent
+    PersistentGlobal TargetClearPrefix = %(tTargetClear)
+
+Static tFlagStart $= /fs
+If FlagStartPrefix NotPresent
+    PersistentGlobal FlagStartPrefix = %(tFlagStart)
+
+Static tFlagEnd $= /fe
+If FlagEndPrefix NotPresent
+    PersistentGlobal FlagEndPrefix = %(tFlagEnd)
+
+Static tFlagClear $= /fc
+If FlagClearPrefix NotPresent
+    PersistentGlobal FlagClearPrefix = %(tFlagClear)
+
+// defina tags
+Print Tags defined.
+Call tagsAssignement
+
+Print ChatConsole ready!
+Print ****
+
+// internal constant. hardcoded, by now
+// ATTENTION: tokens MUST have this number of chars to be correctly processed. 
+// TODO: rely on regex to allow for variable tokens length
+Static tokensLength $= 3
+
+END PROGRAM
+
+//*************************************************************
+// tagsAssignement
+//*************************************************************
+PROGRAM tagsAssignement
+
+Captainslog SETTAGLIST    Travel=Journal.FSDJump;Landed=Journal.Touchdown;Cargo=Journal.Cargo;Engineer=Journal.EngineerCraft;Repair=Journal.Repair;Scan=Journal.Scan
+
+END PROGRAM
+
+//*************************************************************
+// onSendText
+// Events: SendText
+//*************************************************************
+PROGRAM onSendText
+
+If EventClass_To $!= Local
+    Return 
+
+Set msg = "%Replace(\"%(EventClass_Message)\", \" \", \"_\")"
+Set token = %substring(EventClass_Message,0,%(tokensLength))
+If %(token) IsOneOf "%(tLogNew), %(tLogAppend), %(tNoteNew), %(tNoteAppend), %(tTargetSet), %(tTargetClear), %(tFlagStart), %(tFlagEnd), %(tFlagClear)"
+    Call onTokenPresent(sentText="%(msg)", sentToken="%(token)")
+
+END PROGRAM
+
+//*************************************************************
+// onTokenPresent
+//*************************************************************
+PROGRAM onTokenPresent
+
+Event THPOS
+
+If sentText Empty
+    Return 
+
+If sentToken Empty
+    Return 
+
+// Captain's Log
+If sentToken CSContains %(tLogNew)
+    Print New entry created
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")
+    Captainslog ADDHERE %(ReturnValue)
+
+If sentToken CSContains %(tLogAppend)
+    Print TODO: Append sent text to current Captain's Log entry!
+
+// System Note
+If sentToken CSContains %(tNoteNew)
+    Print New system note created
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")
+    Event FROM %(EC_JID) NOTE %(ReturnValue)
+
+If sentToken CSContains %(tNoteAppend)
+    Print Text appended to current system note
+    Call stripTokenFromText(sentText="%(sentText)",token="%(sentToken)")
+
+    Set textToAppend = %(ReturnValue)
+    Set joinNotes = "%Join(\"\r\n --- \n\",EC_Note,textToAppend)"
+    Set combinedNotes = "%ReplaceEscapeChar(\"%(joinNotes)\")"
+
+    Event FROM %(EC_JID) NOTE "%(combinedNotes)"
+
+If sentToken CSContains %(tTargetSet)
+    Bookmarks ADDSTAR %sentText
+    Target BOOKMARK %sentText
+
+If sentToken CSContains %(tTargetClear)
+    Target CLEAR
+
+If sentToken CSContains %(tFlagStart)
+    Event FROM %(EC_JID) SETSTARTMARKER
+
+If sentToken CSContains %(tFlagEnd)
+    Event FROM %(EC_JID) SETSTOPMARKER
+
+If sentToken CSContains %(tFlagClear)
+    Event FROM %(EC_JID) CLEARSTARTSTOPMARKER
+
+END PROGRAM
+
+//*************************************************************
+// stripTokenFromText
+//*************************************************************
+PROGRAM stripTokenFromText
+
+If sentText Empty
+    Return ""
+
+If %length(sentText) == %length(token)
+    Print parameter less token
+
+If token Empty
+    Return %(sentText)
+
+Let tokensLength = %length(token) + 1
+Set strippedText = %substring(sentText,tokensLength,2048)
+Set outputText = "%Replace(strippedText, \"_\", \" \")"
+
+If token CSContains %(tNoteNew)
+    Return "%trim(outputText)"
+Else If token CSContains %(tNoteAppend)
+    Return %trim(outputText)
+
+END PROGRAM
+
