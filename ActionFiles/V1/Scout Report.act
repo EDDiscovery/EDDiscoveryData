@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="This writes files about system information and scanned body for easier reporting for the DW2 Geological Reports.\r\n\r\nModified from the OBS Pack for ED."
 INSTALL ShortDescription="Geological Survey Reporting"
 INSTALL Version=1.1
-INSTALL MinEDVersion=20.1.0.0
+INSTALL MinEDVersion=10.4.0.0
 INSTALL Location=Actions
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
@@ -51,7 +51,7 @@ END PROGRAM
 //*************************************************************
 PROGRAM Event
 
-If EventClass_ScanType Contains Detailed
+If EventClass_ScanType IsPresent And EventClass_ScanType Contains Detailed
     Call WriteFiles
 
 END PROGRAM
