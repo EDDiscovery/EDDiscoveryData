@@ -92,6 +92,31 @@
 { "Name":"Gru Hypue AA-A g4", "Notes":"DW3305->WP5 Jo Ella's Flares"} ,
 { "Name":"Gandharvi", "Notes":"DW3305->WP5 Caravanserai"} ,
 { "Name":"Eor Aoscs KG-Y e4213", "Notes":"DW3305->WP5 Bullet Nebula"} ,
-{ "Name":"Boewnst KS-S c20-959", "Notes":"DW3305 WP5 Polo Harbour"}
+{ "Name":"Boewnst KS-S c20-959", "Notes":"DW3305 WP5 Polo Harbour"},
+
+{ "Name":"Dryao Aoscs FW-W e1-5865", "Notes":"DW3305->WP6 Phiaanor"} ,
+{ "Name":"Mylaifa AA-A h786", "Notes":"DW3305->WP6 Ocularis Coelum"} ,
+{ "Name":"Leamiae LS-T e3-3317", "Notes":"DW3305->WP6 Fosforon"} ,
+{ "Name":"Eok Pruae RO-R e4-2481", "Notes":"DW3305->WP6 Pink Flame Nebula"} ,
+{ "Name":"Eok Pruae PI-S e4-2295", "Notes":"DW3305->WP6 Cloverfield Planetary Nebula"} ,
+
+{ "Name":"Byoi Ain WE-R e4-913", "Notes":"DW3305->WP6 Jade Ghost Stellar Remnant"} ,
+{ "Name":"Byaa Airm JM-W f1-744", "Notes":"DW3305->WP6 Ebony and Ivory"} ,
+{ "Name":"Dryoea Flyi II-S e4-6870", "Notes":"DW3305->WP6 Gardens of Shangri"} ,
+{ "Name":"Eoch Pri FB-W e2-5646", "Notes":"DW3305->WP6 The Gloaming"} ,
+{ "Name":"Dryaa Pruae BG-X d1-1087", "Notes":"DW3305->WP6 Fleur de Lis Nebula"} ,
+{ "Name":"Dryaa Pruae GG-Y e5180", "Notes":"DW3305->WP6 The 'Neutron' Nebula"} ,
+{ "Name":"Dryau Ausms KG-Y e3390", "Notes":"DW3305 WP6 Thee Dryau Awesomes",
+    "Planets": [
+        { "Planet":"AB 2 B", "Place":"Aloros Ravine", "Comment":"WP6 meeting place", "Latitude":-10.656 , "Longitude":-67.896 }
+    ]
+}
+
+
+
+
+
+
+
 
 ]
