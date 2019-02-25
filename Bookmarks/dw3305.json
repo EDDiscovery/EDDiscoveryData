@@ -110,6 +110,27 @@
     "Planets": [
         { "Planet":"AB 2 B", "Place":"Aloros Ravine", "Comment":"WP6 meeting place", "Latitude":-10.656 , "Longitude":-67.896 }
     ]
+},
+
+
+{ "Name":"Shrogaei FH-U e3-1421", "Notes":"DW3305->WP7 Shrogaei Nebula Cluster"} ,
+{ "Name":"Hypoe Flyi HW-W e1-7966", "Notes":"DW3305->WP7 Galionas"} ,
+{ "Name":"HYPOE FLYI HX-T E3-295", "Notes":"DW3305->WP7 Caeruleum Luna 'Mysturji Crater'"} ,
+{ "Name":"Great Annihilator", "Notes":"DW3305->WP7 Great Annihilator"} ,
+{ "Name":"Zunuae HL-Y e6903", "Notes":"DW3305->WP7 Zunuae Nebula"} ,
+{ "Name":"Byoomao MI-S e4-5423", "Notes":"DW3305->WP7 Wulfric"} ,
+{ "Name":"Sagittarius A*", "Notes":"DW3305->WP7 Sagittarius A*"} ,
+{ "Name":"Shrogea MH-V e2-1763", "Notes":"DW3305->WP7 Black in Green (Tourist Installation)"} ,
+{ "Name":"Hypuae Scrua FL-W d2-90", "Notes":"DW3305->WP7 The Clawed Hand Nebula"} ,
+{ "Name":"Kyli Flyuae WO-A f39", "Notes":"DW3305->WP7 Dance of the Compact Quartet"} ,
+{ "Name":"Myriesly DQ-G d10-1240", "Notes":"DW3305->WP7 Insinnergy's World"} ,
+{ "Name":"Myriesly RY-S e3-5414", "Notes":"DW3305->WP7 Six Rings"} ,
+{ "Name":"Myriesly CL-P e5-4186", "Notes":"DW3305->WP7 Emerald Remnant"} ,
+{ "Name":"Myriesly CL-P e5-7383", "Notes":"DW3305->WP7 Fenrisulfur"} ,
+{ "Name":"STUEMEAE KM-W C1-342", "Notes":"DW3305 WP7 Armstrong Landing",
+    "Planets": [
+        { "Planet":"1 B", "Place":"Armstrong Landing", "Comment":"WP7 meeting place GeoSite 4", "Latitude":58.078 , "Longitude":79.594 }
+    ]
 }
 
 
