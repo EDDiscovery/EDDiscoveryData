@@ -4,8 +4,8 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 11 of the voice pack for EDD, for version 10.5+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=11.0.0.0
-INSTALL MinEDVersion=10.4.100.0
+INSTALL Version=11.0.1.0
+INSTALL MinEDVersion=10.5.1.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -247,6 +247,7 @@ EVENT UIFsdCooldown, GenericResponseUI, QueueLimit=2000, Condition AlwaysTrue
 EVENT UILowFuel, GenericResponseUI, "", Condition AlwaysTrue
 EVENT UIOverHeating, GenericResponseUI, QueueLimit=5000, Condition AlwaysTrue
 EVENT UIBeingInterdicted, GenericResponseUI, "", Condition AlwaysTrue
+EVENT UIShipTargeted, GenericResponseUI, "", EventClass_ShipTargeted_TargetLocked == 0
 
 GROUP Other
 EVENT onEDSMSync, EDSMSync, "", Condition AlwaysTrue
@@ -279,6 +280,8 @@ Static say_UILowFuel $= "%iftrue(EventClass_LowFuel,\"Warning, Low Fuel situatio
 Static say_UIOverHeating $= "%iftrue(EventClass_OverHeating,\"Warning, over heating;Over Heating commander\",\"Temperature normal;Temperature okay\")"
 Static say_UIBeingInterdicted $= "%iftrue(EventClass_Interdicted,\"Alert Interdiction under way;Warning, being inderdicted, evasive manoeuvres\",\"\")"
 Static say_UIBeingInterdicted $= "%iftrue(EventClass_Interdicted,\"Alert Interdiction under way;Warning, being inderdicted, evasive manoeuvres\",\"\")"
+
+Static say_UIShipTargeted $= Lost Target;Target Lost
 
 // Too vocal EVENT UIIsInDanger, GenericResponseUI, "", Condition AlwaysTrue
 // Static say_UIIsInDanger $= '%iftrue(EventClass_Danger,"","Out of Danger commander;Situation normal, Danger has passed")'
@@ -580,7 +583,6 @@ Static say_SelfDestruct $= Preparing for launch of escape capsule commander, veh
 
 Static say_SharedBookmarkToSquadron $= Bookmark shared with Squadron %(EventClass_Name)
 
-Static say_ShipLostTarget $= Lost Target;Target Lost
 Static say_ShipTargeted1 $+= Pilot is %(EventClass_PilotName_Localised), %(EventClass_PilotRank), in a %ship(EventClass_Ship_Localised)
 Static say_ShipTargeted2 $+= Shield %round(EventClass_ShieldHealth,1,0.#) per cent, Hull at %round(EventClass_HullHealth,1,0.#) per cent
 Static say_ShipTargeted3 $+= %ifeq(levelscanned,0,"Targetted %(EventClass_PilotName_Localised), ")
