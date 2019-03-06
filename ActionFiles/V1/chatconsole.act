@@ -1,0 +1,230 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Interactive Chat Console. Execute commands and tasks from the in-game chat.\n\nIt responds to specially prefixed messages - such as /ln I'm a new Captain's Log entry - and interact with the system history and other tools.\r\n\r\nRecognized tokens:\n\r\nv1.0.0.0\r\n/ln - New Captain's Log entry\r\n/nn - New system note\r\n/na - Append to current systenote\r\n/ts - Set target to named system (ex. /ts Colonia)\r\n/tc - Clear assigned target\r\n/fs - Set the start flag to current system\r\n/fe - Set the end flag to current system\r\n/fc - Clear start/end flags from current system\r\n\r\nTODO\r\n/la - Append to current Captain's Log entry\r\n/fs - set start flag to a named system\r\n/fe - set end flag to a named system\r\n/fc - clear start/end flag to a  named system\r\n"
+INSTALL ShortDescription="Chat Console, by EDDiscovery Developers Team"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=10.5.1.0
+INSTALL Location=Actions
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onEliteUIEvent, onCommand, "", EventClass_EventTypeID $== Command
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+Call tokenSetup
+
+If InstallList Contains ChatConsole
+    Print 
+    Print ****
+    Print ChatConsole reads the following tokens:
+    Print %(CCCaptainsLogNew), create a new entry in the Captain's Log with the sent text
+    Print %(CCCaptainsLogAppend), append text to last entry in the Captain's Log with the sent text
+    Print %(CCSystemNoteNew), replace the current system note with the sent text
+    Print %(CCSystemNoteAppend), append to the current system note the sent text
+    Print %(CCTargetSet), set the target to the given system
+    Print %(CCTargetClear), clear the target
+    Print %(CCFlagStart), assign the start flag to the current system
+    Print %(CCFlagEnd), assign the end flag to the current system
+    Print %(CCFlagClear), clear start/e4nd flag from current system
+    Print ****
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call tokenSetup
+
+END PROGRAM
+
+//*************************************************************
+// tokenSetup
+//*************************************************************
+PROGRAM tokenSetup
+
+Print ****
+
+// for now, we won't let them be configurable
+Static CCPrefixCaptainsLogNew = "%ExistsDefault(CCPrefixCaptainsLogNew,\"/ln\")"
+Static CCPrefixCaptainsLogAppend = "%ExistsDefault(CCPrefixCaptainsLogAppend,\"/la\")"
+Static CCPrefixSystemNoteNew = "%ExistsDefault(CCPrefixSystemNoteNew,\"/nn\")"
+Static CCPrefixSystemNoteAppend = "%ExistsDefault(CCPrefixSystemNoteAppend,\"/na\")"
+Static CCPrefixTargetSet = "%ExistsDefault(CCPrefixTargetSet,\"/ts\")"
+Static CCPrefixTargetClear = "%ExistsDefault(CCPrefixTargetClear,\"/tc\")"
+Static CCPrefixFlagStart = "%ExistsDefault(CCPrefixFlagStart,\"/fs\")"
+Static CCPrefixFlagEnd = "%ExistsDefault(CCPrefixFlagEnd,\"/fe\")"
+Static CCPrefixFlagClear = "%ExistsDefault(CCPrefixFlagClear,\"/fc\")"
+
+Captainslog APPENDTAGLIST Travel=Journal.FSDJump;Landed=Journal.Touchdown;Cargo=Journal.Cargo;Engineer=Journal.EngineerCraft;Repair=Journal.Repair;Scan=Journal.Scan
+
+Print ChatConsole ready!
+Print ****
+
+END PROGRAM
+
+//*************************************************************
+// onSendText
+// Events: SendText
+//*************************************************************
+PROGRAM onCommand
+
+Set msg = %trim(EventClass_Command)
+
+ForEach prefix in CCPrefix*
+    Set prefixtext = %indirect(prefix)
+    If prefixtext $== %substring(msg,0,%length(prefixtext))
+        //Print Prefix %(prefixtext) detected
+        Set msg = "%trim(\"%substring(msg,%length(prefixtext),20000)\")"
+		//print calling %(prefix)
+		Call "%(prefix)"(  sentToken="%(prefix)", sentText = "%(msg)")    // call with "" is new in 10.5.1
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixCaptainsLogNew
+//*************************************************************
+PROGRAM CCPrefixCaptainsLogNew
+
+if sentText IsNotEmpty
+	Captainslog ADDHERE "%(sentText)"
+	Say "Added to Captains Log, %(sentText)", Priority=Low
+else
+	Print No text to add to log
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixCaptainsLogAppend
+//*************************************************************
+PROGRAM CCPrefixCaptainsLogAppend
+
+if sentText IsNotEmpty
+	Captainslog LAST
+	if %(CL_Id) >= 0
+		Captainslog FROM %(CL_Id) NOTE "%(CL_Note) %(sentText)"
+		Say "Appended to Captains Log, %(sentText)", Priority=Low
+	else
+		Print No Captains log entry to append to
+else
+	Print No text to add to log
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixSystemNoteNew
+//*************************************************************
+PROGRAM CCPrefixSystemNoteNew
+
+if sentText IsNotEmpty
+	Event BACKWARD NOT SendText
+	If %(EC_JID) >= 0
+		Event FROM %(EC_JID) NOTE "%(sentText)"
+		Say "Set Note, %(sentText)", Priority=Low
+	else
+		Print no entry to set note to.
+else
+	Print No text to set note
+
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixSystemNoteAppend
+//*************************************************************
+PROGRAM CCPrefixSystemNoteAppend
+
+if sentText IsNotEmpty
+	Event BACKWARD NOT SendText
+	If %(EC_JID) >= 0
+		Set joinNotes = %Join(";",EC_Note,"%(sentText)")
+		Event FROM %(EC_JID) NOTE "%(joinNotes)"
+		Say "Append Note, %(sentText)", Priority=Low
+	else
+		Print no entry to add note to.
+else
+	Print No text to set note
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixTargetSet
+//*************************************************************
+PROGRAM CCPrefixTargetSet
+
+if sentText IsNotEmpty
+	pragma IgnoreErrors
+	set LastError = ""
+	Bookmarks ADDSTAR "%(sentText)"
+	pragma AllowErrors
+	if LastError IsEmpty
+		Target BOOKMARK "%(sentText)"
+		Say "Target set to %(sentText)", Priority=Low
+	else
+		Say "Star %(sentText) does not exist", Priority=Low
+		Print "Star %(sentText) does not exist"
+else
+	Print Need the star name after option
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixTargetClear
+//*************************************************************
+PROGRAM CCPrefixTargetClear
+
+Target Clear
+Say "Target cleared", Priority=Low
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixFlagStart
+//*************************************************************
+PROGRAM CCPrefixFlagStart
+
+Event BACKWARD NOT SendText
+If %(EC_JID) >= 0
+    Event FROM %(EC_JID) SETSTARTMARKER
+	Say "Set Start Flag", Priority=Low
+	Perform Refresh
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixFlagEnd
+//*************************************************************
+PROGRAM CCPrefixFlagEnd
+
+Event BACKWARD NOT SendText
+If %(EC_JID) >= 0
+    Event FROM %(EC_JID) SETSTOPMARKER
+	Say "Set End Flag", Priority=Low
+	Perform Refresh
+
+END PROGRAM
+
+//*************************************************************
+// CCPrefixFlagClear
+//*************************************************************
+PROGRAM CCPrefixFlagClear
+
+Event BACKWARD NOT SendText
+If %(EC_JID) >= 0
+    Event FROM %(EC_JID) CLEARSTARTSTOPMARKER
+	Say "Clear Flag", Priority=Low
+	Perform Refresh
+
+END PROGRAM
+
+
+
