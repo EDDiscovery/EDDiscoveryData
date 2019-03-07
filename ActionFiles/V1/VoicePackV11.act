@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 11 of the voice pack for EDD, for version 10.5+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=11.0.1.0
+INSTALL Version=11.0.2.0
 INSTALL MinEDVersion=10.5.1.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -98,7 +98,6 @@ EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
 EVENT DockSRV, GenericResponse, "", Condition AlwaysTrue
 EVENT FSDJump, FSDResponse, QueueLimit=5000, Condition AlwaysTrue
-EVENT FSDTarget, GenericResponse, "", Condition AlwaysTrue
 EVENT FuelScoop, GenericResponse, Priority=Low, Condition AlwaysTrue
 EVENT JetConeBoost, GenericResponse, "", Condition AlwaysTrue
 EVENT JetConeDamage, GenericResponse, "", Condition AlwaysTrue
@@ -380,8 +379,8 @@ Static say_friendsub5 $= Declined;has declined your friendship
 Static say_FighterRebuilt $= Fighter ready for action;New Fighter ready Commander;Launch fighter when ready;
 Static say_FighterDestroyed $= Alert, Commander the fighter has been destroyed;Fighter has been destroyed;Fighter destroyed
 
-Static say_FSDTarget $= Targetted system %star(EventClass_StarSystem,say_ss);%star(EventClass_StarSystem,say_ss) Selected; %star(EventClass_StarSystem,say_ss) locked in
-Static say_FSSAllBodiesFound $= All bodies in %(EventClass_SystemName) found;Congratulations, all systems in %star(EventClass_SystemName,say_ss) found
+// not used Static say_FSDTarget $= Targetted system %star(EventClass_StarSystem,say_ss);%star(EventClass_StarSystem,say_ss) Selected; %star(EventClass_StarSystem,say_ss) locked in
+Static say_FSSAllBodiesFound $= All bodies found;Congratulations, all systems found; System scanned
 Static say_FSSDiscoveryScan $= Scanned %(EventClass_BodyCount) bodies, scan progress is %round(EventClass_Progress,0,0) percent;Scanned %(EventClass_BodyCount) bodies, %round(EventClass_Progress,0,0) percent
 
 Static say_FSSSignalDiscovered1 $= {Detected %(EventClass_Signals[1]_SignalName_Localised);Discovered %(EventClass_Signals[1]_SignalName_Localised)} %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawingFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawingFaction_Localised)')
@@ -405,11 +404,11 @@ Static say_EscapeInterdiction $= Evaded interdiction by %iftrue(EventClass_IsPla
 Static say_EscapeInterdictionPlayer $= Commander %(EventClass_Interdictor_Localised)
 Static say_EscapeInterdictionNPC $= N P C %(EventClass_Interdictor_Localised)
 
-Static say_FuelScoop $= %ifgt(EventClass_Scooped,0.1,'{Refueled;Scooped}{ %round(EventClass_Scooped,2,0.##) tons of fuel, }{leaving level at;fuel level is now} %round(EventClass_Total,1,0.#) tons')
+Static say_FuelScoop $= %ifgt(EventClass_Scooped,0.1,'{Refueled;Scooped}{ %round(EventClass_Scooped,2,0.##) tons of fuel, }{leaving;fuel level is now;now} %round(EventClass_Total,1,0.#) tons')
 
-Static say_FSDJump $= "Arrived at %star(EventClass_StarSystem,say_ss), %(visit)%ifnonzero(EventEDDBPopulation,\"Populated, \") jump distance %round(EventClass_JumpDist,1,0.0) light years"
+Static say_FSDJump $= "Arrived at %star(EventClass_StarSystem,say_ss), %(visit)%ifnonzero(EventEDDBPopulation,\"Populated, \") jump distance %round(EventClass_JumpDist,1,0.#) light years"
 Static say_FSDJumpVisit $= First visit, ;Second visit, ;Third Visit, ;Fourth visit, ;Fifth visit, ;Sixth Visit,;
-Static say_FSDJumpFuel $= , Fuel used %round(EventClass_FuelUsed,1,0.0) tons, Fuel left %round(EventClass_FuelLevel,1,0.0) tons
+Static say_FSDJumpFuel $= , Fuel used %round(EventClass_FuelUsed,1,0.#) tons, Fuel left %round(EventClass_FuelLevel,1,0.#) tons
 Static say_FSDJumpFaction $= ", System controlled by %rs(EventClass_Faction,say_ss) %ifnotempty(EventClass_FactionState,\"in state %(EventClass_FactionState)\")"
 Static say_FSDJumpFuelWarning $= , Alert commander, fuel level is low;, Fuel level is low;, Warning, running low on gas here
 
