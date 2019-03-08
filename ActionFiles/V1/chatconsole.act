@@ -24,15 +24,15 @@ If InstallList Contains ChatConsole
     Print 
     Print ****
     Print ChatConsole reads the following tokens:
-    Print %(CCCaptainsLogNew), create a new entry in the Captain's Log with the sent text
-    Print %(CCCaptainsLogAppend), append text to last entry in the Captain's Log with the sent text
-    Print %(CCSystemNoteNew), replace the current system note with the sent text
-    Print %(CCSystemNoteAppend), append to the current system note the sent text
-    Print %(CCTargetSet), set the target to the given system
-    Print %(CCTargetClear), clear the target
-    Print %(CCFlagStart), assign the start flag to the current system
-    Print %(CCFlagEnd), assign the end flag to the current system
-    Print %(CCFlagClear), clear start/e4nd flag from current system
+    Print %(CCPrefixCaptainsLogNew), create a new entry in the Captain's Log with the sent text
+    Print %(CCPrefixCaptainsLogAppend), append text to last entry in the Captain's Log with the sent text
+    Print %(CCPrefixSystemNoteNew), replace the current system note with the sent text
+    Print %(CCPrefixSystemNoteAppend), append to the current system note the sent text
+    Print %(CCPrefixTargetSet), set the target to the given system
+    Print %(CCPrefixTargetClear), clear the target
+    Print %(CCPrefixFlagStart), assign the start flag to the current system
+    Print %(CCPrefixFlagEnd), assign the end flag to the current system
+    Print %(CCPrefixFlagClear), clear start/e4nd flag from current system
     Print ****
 
 END PROGRAM
@@ -73,8 +73,8 @@ Print ****
 END PROGRAM
 
 //*************************************************************
-// onSendText
-// Events: SendText
+// onCommand
+// Events: onEliteUIEvent?(EventClass_EventTypeID $== Command)
 //*************************************************************
 PROGRAM onCommand
 
@@ -83,10 +83,10 @@ Set msg = %trim(EventClass_Command)
 ForEach prefix in CCPrefix*
     Set prefixtext = %indirect(prefix)
     If prefixtext $== %substring(msg,0,%length(prefixtext))
-        //Print Prefix %(prefixtext) detected
+        // Print Prefix %(prefixtext) detected
         Set msg = "%trim(\"%substring(msg,%length(prefixtext),20000)\")"
-		//print calling %(prefix)
-		Call "%(prefix)"(  sentToken="%(prefix)", sentText = "%(msg)")    // call with "" is new in 10.5.1
+        // print calling %(prefix)
+        Call "%(prefix)"(  sentToken="%(prefix)", sentText = "%(msg)")    // call with "" is new in 10.5.1
 
 END PROGRAM
 
@@ -95,11 +95,11 @@ END PROGRAM
 //*************************************************************
 PROGRAM CCPrefixCaptainsLogNew
 
-if sentText IsNotEmpty
-	Captainslog ADDHERE "%(sentText)"
-	Say "Added to Captains Log, %(sentText)", Priority=Low
-else
-	Print No text to add to log
+If sentText IsNotEmpty
+    Captainslog ADDHERE "%(sentText)"
+    Say "Added to Captains Log, %(sentText)", Priority=Low
+Else 
+    Print No text to add to log
 
 END PROGRAM
 
@@ -108,15 +108,15 @@ END PROGRAM
 //*************************************************************
 PROGRAM CCPrefixCaptainsLogAppend
 
-if sentText IsNotEmpty
-	Captainslog LAST
-	if %(CL_Id) >= 0
-		Captainslog FROM %(CL_Id) NOTE "%(CL_Note) %(sentText)"
-		Say "Appended to Captains Log, %(sentText)", Priority=Low
-	else
-		Print No Captains log entry to append to
-else
-	Print No text to add to log
+If sentText IsNotEmpty
+    Captainslog LAST
+    If %(CL_Id) >= 0
+        Captainslog FROM %(CL_Id) NOTE "%(CL_Note) %(sentText)"
+        Say "Appended to Captains Log, %(sentText)", Priority=Low
+    Else 
+        Print No Captains log entry to append to
+Else 
+    Print No text to add to log
 
 END PROGRAM
 
@@ -125,16 +125,15 @@ END PROGRAM
 //*************************************************************
 PROGRAM CCPrefixSystemNoteNew
 
-if sentText IsNotEmpty
-	Event BACKWARD NOT SendText
-	If %(EC_JID) >= 0
-		Event FROM %(EC_JID) NOTE "%(sentText)"
-		Say "Set Note, %(sentText)", Priority=Low
-	else
-		Print no entry to set note to.
-else
-	Print No text to set note
-
+If sentText IsNotEmpty
+    Event BACKWARD NOT SendText
+    If %(EC_JID) >= 0
+        Event FROM %(EC_JID) NOTE "%(sentText)"
+        Say "Set Note, %(sentText)", Priority=Low
+    Else 
+        Print no entry to set note to.
+Else 
+    Print No text to set note
 
 END PROGRAM
 
@@ -143,16 +142,16 @@ END PROGRAM
 //*************************************************************
 PROGRAM CCPrefixSystemNoteAppend
 
-if sentText IsNotEmpty
-	Event BACKWARD NOT SendText
-	If %(EC_JID) >= 0
-		Set joinNotes = %Join(";",EC_Note,"%(sentText)")
-		Event FROM %(EC_JID) NOTE "%(joinNotes)"
-		Say "Append Note, %(sentText)", Priority=Low
-	else
-		Print no entry to add note to.
-else
-	Print No text to set note
+If sentText IsNotEmpty
+    Event BACKWARD NOT SendText
+    If %(EC_JID) >= 0
+        Set joinNotes = "%Join(\";\",EC_Note,\"%(sentText)\")"
+        Event FROM %(EC_JID) NOTE "%(joinNotes)"
+        Say "Append Note, %(sentText)", Priority=Low
+    Else 
+        Print no entry to add note to.
+Else 
+    Print No text to set note
 
 END PROGRAM
 
@@ -161,19 +160,19 @@ END PROGRAM
 //*************************************************************
 PROGRAM CCPrefixTargetSet
 
-if sentText IsNotEmpty
-	pragma IgnoreErrors
-	set LastError = ""
-	Bookmarks ADDSTAR "%(sentText)"
-	pragma AllowErrors
-	if LastError IsEmpty
-		Target BOOKMARK "%(sentText)"
-		Say "Target set to %(sentText)", Priority=Low
-	else
-		Say "Star %(sentText) does not exist", Priority=Low
-		Print "Star %(sentText) does not exist"
-else
-	Print Need the star name after option
+If sentText IsNotEmpty
+    Pragma IgnoreErrors
+    Set LastError = ""
+    Bookmarks ADDSTAR "%(sentText)"
+    Pragma AllowErrors
+    If LastError Empty
+        Target BOOKMARK "%(sentText)"
+        Say "Target set to %(sentText)", Priority=Low
+    Else 
+        Say "Star %(sentText) does not exist", Priority=Low
+        Print "Star %(sentText) does not exist"
+Else 
+    Print Need the star name after option
 
 END PROGRAM
 
@@ -195,8 +194,8 @@ PROGRAM CCPrefixFlagStart
 Event BACKWARD NOT SendText
 If %(EC_JID) >= 0
     Event FROM %(EC_JID) SETSTARTMARKER
-	Say "Set Start Flag", Priority=Low
-	Perform Refresh
+    Say "Set Start Flag", Priority=Low
+    Perform Refresh
 
 END PROGRAM
 
@@ -208,8 +207,8 @@ PROGRAM CCPrefixFlagEnd
 Event BACKWARD NOT SendText
 If %(EC_JID) >= 0
     Event FROM %(EC_JID) SETSTOPMARKER
-	Say "Set End Flag", Priority=Low
-	Perform Refresh
+    Say "Set End Flag", Priority=Low
+    Perform Refresh
 
 END PROGRAM
 
@@ -221,10 +220,8 @@ PROGRAM CCPrefixFlagClear
 Event BACKWARD NOT SendText
 If %(EC_JID) >= 0
     Event FROM %(EC_JID) CLEARSTARTSTOPMARKER
-	Say "Clear Flag", Priority=Low
-	Perform Refresh
+    Say "Clear Flag", Priority=Low
+    Perform Refresh
 
 END PROGRAM
-
-
 
