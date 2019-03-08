@@ -24,15 +24,15 @@ If InstallList Contains ChatConsole
     Print 
     Print ****
     Print ChatConsole reads the following tokens:
-    Print %(CCCaptainsLogNew), create a new entry in the Captain's Log with the sent text
-    Print %(CCCaptainsLogAppend), append text to last entry in the Captain's Log with the sent text
-    Print %(CCSystemNoteNew), replace the current system note with the sent text
-    Print %(CCSystemNoteAppend), append to the current system note the sent text
-    Print %(CCTargetSet), set the target to the given system
-    Print %(CCTargetClear), clear the target
-    Print %(CCFlagStart), assign the start flag to the current system
-    Print %(CCFlagEnd), assign the end flag to the current system
-    Print %(CCFlagClear), clear start/e4nd flag from current system
+    Print %(CCPrefixCaptainsLogNew), create a new entry in the Captain's Log with the sent text
+    Print %(CCPrefixCaptainsLogAppend), append text to last entry in the Captain's Log with the sent text
+    Print %(CCPrefixSystemNoteNew), replace the current system note with the sent text
+    Print %(CCPrefixSystemNoteAppend), append to the current system note the sent text
+    Print %(CCPrefixTargetSet), set the target to the given system
+    Print %(CCPrefixTargetClear), clear the target
+    Print %(CCPrefixFlagStart), assign the start flag to the current system
+    Print %(CCPrefixFlagEnd), assign the end flag to the current system
+    Print %(CCPrefixFlagClear), clear start/e4nd flag from current system
     Print ****
 
 END PROGRAM
@@ -73,7 +73,7 @@ Print ****
 END PROGRAM
 
 //*************************************************************
-// onSendText
+// onCommand
 // Events: SendText
 //*************************************************************
 PROGRAM onCommand
