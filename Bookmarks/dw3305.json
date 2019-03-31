@@ -131,7 +131,23 @@
     "Planets": [
         { "Planet":"1 B", "Place":"Armstrong Landing", "Comment":"WP7 meeting place GeoSite 4", "Latitude":58.078 , "Longitude":79.594 }
     ]
+},
+
+{ "Name":"Hypuae Briae LC-U e3-152", "Notes":"DW3305->WP10 The Zinnia Haze"} ,
+{ "Name":"Hyuqeae MT-Q e5-4335", "Notes":"DW3305->WP10 Hydrangea Nebula"} ,
+{ "Name":"Hypuae Briae YQ-Z c28-339", "Notes":"DW3305->WP10 Magnus Nebula"} ,
+{ "Name":"Vegnoae BK-R d4-1105", "Notes":"DW3305->WP10 Neighbouring Necklaces"} ,
+{ "Name":"Phroi Bluae LS-B d13-744", "Notes":"DW3305->WP10 Undine Haven"} ,
+{ "Name":"Hypuae Briae BV-Y e3851", "Notes":"DW3305->WP10 The Briar Patch Nebula"} ,
+{ "Name":"Hypuae Briae YF-E d12-2760", "Notes":"DW3305->WP10 Infinite Bonds"} ,
+{ "Name":"Vegnoae WE-R e4-9257", "Notes":"DW3305->WP10 Eos Nebula"} ,
+{ "Name":"Bleethuae NI-B D674", "Notes":"DW3305 WP10 Morphenniel Nebula",
+    "Planets": [
+        { "Planet":"2 D A", "Place":"Mors Pit", "Comment":"WP10 meeting place BioSite 1", "Latitude":-28.177 , "Longitude":-177.98 }
+    ]
+
 }
+
 
 
 
