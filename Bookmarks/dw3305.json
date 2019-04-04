@@ -143,7 +143,7 @@
 { "Name":"Vegnoae WE-R e4-9257", "Notes":"DW3305->WP10 Eos Nebula"} ,
 { "Name":"Bleethuae NI-B D674", "Notes":"DW3305 WP10 Morphenniel Nebula",
     "Planets": [
-        { "Planet":"2 D A", "Place":"Mors Pit", "Comment":"WP10 meeting place BioSite 1", "Latitude":-28.177 , "Longitude":-177.98 }
+        { "Planet":"2 D A", "Place":"Mors Pit", "Comment":"WP10 meeting place BioSite 1", "Latitude":-28.177 , "Longitude":-117.98 }
     ]
 
 }
