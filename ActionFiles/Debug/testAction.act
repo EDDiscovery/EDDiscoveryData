@@ -1,6 +1,6 @@
 ACTIONFILE V4
 
-ENABLED True
+ENABLED False
 
 INSTALL LongDescription="Test script for action"
 INSTALL ShortDescription="Test script"
@@ -39,8 +39,8 @@ Set array[1] = One
 Set array[2] = Two
 Set array[3] = Three
 
-let n10 = (%(n7)*3)+%(n8)
-errorif "Eval", %(n10) != 29
+Let n10 = (%(n7)*3)+%(n8)
+ErrorIf "Eval", %(n10) != 29
 
 Static HNumList = Minus;Trillion;Billion;Million;Thousand;Hundred
 
@@ -187,6 +187,22 @@ ErrorIf "F", %replacevar(v1,"rroot") $!= "VReplacedHello"
 ErrorIf "F", %replacevar(v1,r_name) $!= "VReplacedHello"
 ErrorIf "F", %safevarname("\\fred") $!= "__fred"
 ErrorIf "F", %hnum(1100000,HNumList) $!= "1.1 Million"
+
+ErrorIf "F", %hnum(1200000000000,HNumList) $!= "1.2 Trillion"
+ErrorIf "F",%hnum(1200000000,HNumList)     $!=    "1.2 Billion"
+ErrorIf "F",%hnum(1200000,HNumList)        $!=    "1.2 Million"
+ErrorIf "F",%hnum(120000,HNumList)         $!=    "120 Thousand"
+ErrorIf "F",%hnum(12000,HNumList)          $!=    "12 Thousand"
+ErrorIf "F",%hnum(1200,HNumList)           $!=    "1 Thousand 2 Hundred"
+ErrorIf "F",%hnum(120,HNumList)            $!=    "120"
+ErrorIf "F",%hnum(12,HNumList)             $!=    "12"
+ErrorIf "F",%hnum(9.232,HNumList)          $!=    "9.2"
+ErrorIf "F",%hnum(0.9232,HNumList)         $!=    "0.9"
+ErrorIf "F",%hnum(0.09232,HNumList)        $!=    "0.09"
+ErrorIf "F",%hnum(0.009232,HNumList)       $!=    "0.009"
+ErrorIf "F",%hnum(0.00009232,HNumList)     $!=    "0.00009"
+ErrorIf "F",%hnum(0.0000,HNumList)     $!=    "0"
+
 ErrorIf "F", %abs(-2019.2,N0) $!= "2,019"
 ErrorIf "F", %abs(2019.2,N0) $!= "2,019"
 ErrorIf "F", %floor(2019.2,N0) $!= "2,019"
