@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 12 of the voice pack for EDD, for version 10.6+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=12.0.0.0
+INSTALL Version=12.1.0.0
 INSTALL MinEDVersion=10.6.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -17,6 +17,7 @@ INSTALL DisableOther7=VoicePackV8
 INSTALL DisableOther8=VoicePackV9
 INSTALL DisableOther9=VoicePackV10
 INSTALL DisableOther9=VoicePackV11
+INSTALL DisableOther9=VoicePackV12
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -80,7 +81,7 @@ GROUP Exploration
 EVENT BuyExplorationData, GenericResponse, "", Condition AlwaysTrue
 EVENT CodexEntry, GenericResponse, "", Condition AlwaysTrue
 EVENT DiscoveryScan, GenericResponse, "", Condition AlwaysTrue
-EVENT FSSAllBodiesFound, GenericResponse, "", Condition AlwaysTrue
+EVENT FSSAllBodiesFound, FSSAllBodiesFound, "", Condition AlwaysTrue
 EVENT FSSDiscoveryScan, GenericResponse, "", Condition AlwaysTrue
 EVENT FSSSignalDiscovered, FSSSignalDiscovered, QueueLimit=4000, Condition AlwaysTrue
 EVENT NavBeaconScan, NavBeaconScan, "", Condition AlwaysTrue
@@ -383,7 +384,7 @@ Static say_FighterDestroyed $= Alert, Commander the fighter has been destroyed;F
 
 // not used Static say_FSDTarget $= Targetted system %star(EventClass_StarSystem,say_ss);%star(EventClass_StarSystem,say_ss) Selected; %star(EventClass_StarSystem,say_ss) locked in
 Static say_FSSAllBodiesFound $= All bodies found;Congratulations, all systems found; System scanned
-Static say_FSSDiscoveryScan $= Scanned %(EventClass_BodyCount) bodies, scan progress is %round(EventClass_Progress,0,0) percent;Scanned %(EventClass_BodyCount) bodies, %round(EventClass_Progress,0,0) percent
+Static say_FSSDiscoveryScan $= %ifEQ(EventClass_Progress,100,"", "Scanned %(EventClass_BodyCount) bodies, progress is %round(EventClass_Progress,0,0) percent;Scanned %(EventClass_BodyCount) bodies, %round(EventClass_Progress,0,0) percent")
 
 Static say_FSSSignalDiscovered1 $= {Detected %(EventClass_Signals[1]_SignalName_Localised);Discovered %(EventClass_Signals[1]_SignalName_Localised)} %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawingFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawingFaction_Localised)')
 Static say_FSSSignalDiscoveredN $= Detected %(EventClass_SignalsCount) signals
@@ -534,7 +535,7 @@ Static say_SendText $= Message sent to %(EventClass_To_Localised)
 Static say_Scanned $= Warning, %(EventClass_ScanType) scan detected;A Ship is performing a %(EventClass_ScanType) scan on us;%(EventClass_ScanType) scan detected commander;We are being scanned for %(EventClass_ScanType);%(EventClass_ScanType) scan detected
 
 // always said on star
-Static say_ScanStar $= Scanned Star %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText), %(EventClass_EstimatedValue) credits
+Static say_ScanStar $= Scanned Star %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText)%ifgt(EventClass_EstimatedValue,19999,", %hnum(EventClass_EstimatedValue,HNumList) credits")
 // gated on ScanStarMassDisable
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) stellar masses
 Static say_ScanStarMassMag $+= , Absolute Magnitude %round(EventClass_nAbsoluteMagnitude,1,M0.#)
@@ -547,7 +548,7 @@ Static say_ScanStarAge $= , Age %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNum
 // always said on planet
 Static say_ScanPlanet $= "Scanned %Body(EventClass_BodyName,EventStarSystem,say_ss) %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")"
 // gated on ScanPlanetBasicInformationDisable
-Static say_ScanPlanetCredits $= "%ifnonzero(EventClass_EstimatedValue,\", %hnum(EventClass_EstimatedValue,HNumList) credits\")"
+Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) credits\")"
 Static say_ScanPlanetDistance $= , Distance %hnum(EventClass_DistanceFromArrivalLS,HNumList) light seconds
 Static say_ScanPlanetLandable $= , Landable
 Static say_ScanPlanetAtmosphere $= , %sc(EventClass_Atmosphere) %ifnotcontains(EventClass_Atmosphere, ' atmosphere','')
@@ -1113,6 +1114,8 @@ Else
     Call speak(speech="%(speech)",FinishEvent=FSD, Priority=High)
     Static ScanSystem = %(EventStarSystem)
 
+Static FSSAllBodiesFoundAllowed = 1	// allow FSSAllbodies found
+
 END PROGRAM
 
 //*************************************************************
@@ -1316,6 +1319,19 @@ PROGRAM MarketSell
 Let profit = (%(EventClass_SellPrice)-%(EventClass_AvgPricePaid))*%(EventClass_Count)
 Set speech = "%phrase(\"%expand(say_MarketSell)\")"
 Call speak(speech="%(speech)")
+
+END PROGRAM
+
+//*************************************************************
+// MarketSell
+// Events: MarketSell
+//*************************************************************
+PROGRAM FSSAllBodiesFound
+
+if FSSAllBodiesFoundAllowed NotPresent Or FSSAllBodiesFoundAllowed == 1
+	Set speech = "%phrase(\"%expand(say_FSSAllBodiesFound)\")"
+	Call speak(speech="%(speech)")
+	Static FSSAllBodiesFoundAllowed = 0
 
 END PROGRAM
 
