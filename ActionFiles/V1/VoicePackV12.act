@@ -1833,7 +1833,7 @@ Rem mandatory: Event Variables..
 Rem optional: QueueLimit
 Rem optional: Prior
 Rem optional: Volume
-pragma dumpvars Event*
+rem pragma dumpvars Event*
 
 Set v = say_%(EventClass_EventTypeStr)
 Set speech = "%phrase(\"%indirect(v)\")"                        // now expand any phrases in it
