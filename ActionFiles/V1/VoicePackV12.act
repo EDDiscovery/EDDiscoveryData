@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 12 of the voice pack for EDD, for version 10.6+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=12.2.0.0
+INSTALL Version=12.3.0.0
 INSTALL MinEDVersion=10.6.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -16,8 +16,7 @@ INSTALL DisableOther6=VoicePackV6
 INSTALL DisableOther7=VoicePackV8
 INSTALL DisableOther8=VoicePackV9
 INSTALL DisableOther9=VoicePackV10
-INSTALL DisableOther9=VoicePackV11
-INSTALL DisableOther9=VoicePackV12
+INSTALL DisableOther10=VoicePackV11
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -524,8 +523,8 @@ Static say_ReceiveText $= Message from %(EventClass_FromLocalised), %(EventClass
 
 Static say_SAAScanComplete $= Surface Scan Analysis on %body(EventClass_BodyName,EventStarSystem,say_ss), complete commander, used %(EventClass_ProbesUsed) probes; %body(EventClass_BodyName,EventStarSystem,say_ss), scan complete with %(EventClass_ProbesUsed) probes used
 
-Static say_SellExplorationData $= Sold %(EventClass_Systems_Length) star systems for %hnum(EventClass_BaseValue,HNumList) credits.
-Static say_SellExplorationDataBonus $= And discovered %(EventClass_Discovered_Length) bodies for %hnum(EventClass_Bonus,HNumList) bonus credits
+Static say_SellExplorationData $= Sold %(EventClass_SystemsCount) star systems for %hnum(EventClass_BaseValue,HNumList) credits.
+Static say_SellExplorationDataBonus $= And discovered %(EventClass_DiscoveredCount) bodies for %hnum(EventClass_Bonus,HNumList) bonus credits
 
 Static say_MultiSellExplorationData $= Sold %(EventClass_Systems_Length) star systems for %hnum(EventClass_TotalEarnings,HNumList) credits.
 
@@ -1276,7 +1275,7 @@ PROGRAM SellExplorationData
 
 Set speech = "%phrase(\"%expand(say_SellExplorationData)\")"
 
-If EventClass_Discovered_Length >= 1
+If EventClass_DiscoveredCount >= 1
     Set speech += " %phrase(\"%expand(say_SellExplorationDataBonus)\")"
 
 Call speak(speech="%(speech)")
