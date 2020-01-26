@@ -76,7 +76,7 @@ Static jkm_CyclePreviousHostileTarget $= Previous Hostile
 Static jkm_SelectHighestThreat $= Highest Threat
 Static jkm_WeaponColourToggle $= Toggline weapons colour
 
-Static jkm_DeployHeatSink $= Fire heatshink
+Static jkm_DeployHeatSink $= Fire heatsink
 Static jkm_N_UseShieldCell $= Discharging Shield Cell
 Static jkm_N_FireChaffLauncher $= Fire chaff
 Static jkm_N_ChargeECM $= Charging ECM
