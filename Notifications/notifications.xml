@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Items>
     <Notifications>
-        <Entry StartUTC="2019-01-16T10:10:10Z" Type="Popup" PointSize="14">
+        <Entry StartUTC="2019-01-16T10:10:10Z" EndUTC="2019-02-17T23:00:00Z" Type="Popup" PointSize="14">
 <Body Lang="en" Caption="New Action Packs">New Voice and DW3305 Action Packs Available
 
 Use the Add on Manager to install them
