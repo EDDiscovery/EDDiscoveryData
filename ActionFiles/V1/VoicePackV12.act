@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 12 of the voice pack for EDD, for version 10.6+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=12.3.2.0
+INSTALL Version=12.3.3.0
 INSTALL MinEDVersion=10.6.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -384,7 +384,8 @@ Static say_FighterDestroyed $= Alert, Commander the fighter has been destroyed;F
 Static say_FSSAllBodiesFound $= All bodies found;Congratulations, all bodies found; System scanned
 Static say_FSSDiscoveryScan $= %ifEQ(EventClass_Progress,100,"", "Scanned %(EventClass_BodyCount) bodies, progress is %round(EventClass_Progress,0,0) percent;Scanned %(EventClass_BodyCount) bodies, %round(EventClass_Progress,0,0) percent")
 
-Static say_FSSSignalDiscovered1 $= {Detected %(EventClass_Signals[1]_SignalName_Localised);Discovered %(EventClass_Signals[1]_SignalName_Localised)} %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawingFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawingFaction_Localised)')
+Static say_FSSSignalDiscovered1 $= {Detected;Discovered;Found} %ifcontains(EventClass_Signals[1]_SignalName,'USS_','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
+Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawingFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawingFaction_Localised)')
 Static say_FSSSignalDiscoveredN $= Detected %(EventClass_SignalsCount) signals
 
 Static say_EngineerProgressRank $= Congratulations, you've made rank %(EventClass_Engineers[1]_Rank), with Engineer %(EventClass_Engineers[1]_Engineer)
@@ -622,7 +623,7 @@ Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{Landing successful
 Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",0,9,\"\",\"_Name_Localised\")"
 
 Static say_Undocked $= Undocked from %sc(EventClass_StationName) fly safe commander;Ship ready, your in control Commander; Engines on, departing %sc(EventClass_StationName);Departing station %sc(EventClass_StationName)
-Static say_USSDrop $= Dropped into U S S type %(EventClass_USSTypeLocalised), threat level is %(EventClass_USSThreat)
+Static say_USSDrop $= {Dropped into;Entering} U S S type %(EventClass_USSTypeLocalised), threat level is %(EventClass_USSThreat)
 
 Static say_VehicleSwitch $= Switching to %sc(EventClass_To)
 
