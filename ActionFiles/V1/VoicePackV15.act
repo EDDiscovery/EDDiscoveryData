@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 15 of the voice pack for EDD, for version 11.4+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=15.0.0.0
+INSTALL Version=15.0.1.0
 INSTALL MinEDVersion=11.4.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -560,7 +560,7 @@ Static say_ScanStar $= "Scanned Star %Body(EventClass_BodyName,EventStarSystem,s
 // gated on ScanStarMassDisable
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) stellar masses
 Static say_ScanStarMassMag $+= , Absolute Magnitude %round(EventClass_nAbsoluteMagnitude,1,M0.#)
-Static say_ScanStarInOrbit $= , orbital period %round(period,1,0.#) days
+Static say_ScanStarInOrbit $= , orbital period %hnum(period,HNumList) days
 Static say_ScanStarRadius $= , Radius %roundnz(radius,2,0.#,4) sols
 // gated on ScanHabZoneEnable
 Static say_ScanStarHabitableZone $= , Habitable Zone %round(EventClass_HabitableZoneInner,0,0) to %round(EventClass_HabitableZoneOuter,0,0) light seconds
@@ -578,7 +578,7 @@ Static say_ScanPlanetNoAtmosphere $= , No Atmosphere
 Static say_ScanPlanetVolcanism $= , %(EventClass_Volcanism)
 Static say_ScanPlanetTidallyLocked $= , Tidally locked
 Static say_ScanPlanetRotation $= , Rotation Period %round(rotation,1,0.#) days
-Static say_ScanPlanetOrbitalPeriod $= , Orbital Period %round(period,1,0.#) days
+Static say_ScanPlanetOrbitalPeriod $= , orbital period %hnum(period,HNumList) days
 Static say_ScanPlanetMass $= , Mass %round(EventClass_nMassEM,3,0.###) earth masses
 Static say_ScanPlanetMoonMass $= , Mass %roundnz(moonmass,2,0.##,4) moon masses
 Static say_ScanPlanetRadius $= , Radius %round(radius,0,0.#) km
