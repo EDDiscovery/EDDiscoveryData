@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 15 of the voice pack for EDD, for version 11.4+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=15.0.1.0
+INSTALL Version=15.0.2.0
 INSTALL MinEDVersion=11.4.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -18,7 +18,7 @@ INSTALL DisableOther8=VoicePackV9
 INSTALL DisableOther9=VoicePackV10
 INSTALL DisableOther10=VoicePackV11
 INSTALL DisableOther11=VoicePackV12
-INSTALL DisableOther11=VoicePackV14
+INSTALL DisableOther12=VoicePackV14
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -1848,63 +1848,64 @@ If DialogResult == %(State)
 END PROGRAM
 
 //*************************************************************
-// Docking Granted response
+// DockingGrantedResponse
+// Events: onTimer?(TimerName Contains VoicePackDockingGrantedDelay)
 //*************************************************************
-
 PROGRAM DockingGrantedResponse
-//print docking granted response for %(EventClass_StationType) on pad %(EventClass_LandingPad)
-//pragma dumpvars Event*
 
-set starports = Orbis;Coriolis;Bernal;Ocellus;Asteroid Base
+// print docking granted response for %(EventClass_StationType) on pad %(EventClass_LandingPad)
+// pragma dumpvars Event*
 
-if %(EventClass_StationType) MatchSemicolon %(starports)
-	Set v = say_DockingGrantedCO
-	Set speech = "%phrase(\"%indirect(v)\") "                        // now expand any phrases in it
-	if %(EventClass_LandingPad) <= 4
-		set speech += "%(say_DockingGranted6) %wordof(say_DockingGrantedD4,EventClass_LandingPad)"
-	else if %(EventClass_LandingPad) <= 8
-		let lp = %(EventClass_LandingPad)-4
-		set speech += "%(say_DockingGranted7) %wordof(say_DockingGrantedD4,lp)"
-	else if %(EventClass_LandingPad) <= 10
-		let lp = %(EventClass_LandingPad)-8
-		set speech += "%(say_DockingGranted8) %wordof(say_DockingGrantedD2,lp)"
-	else if %(EventClass_LandingPad) <= 15
-		let lp = %(EventClass_LandingPad)-10
-		set speech += "%(say_DockingGranted9) %wordof(say_DockingGrantedD5,lp)"
-	else if %(EventClass_LandingPad) <= 19
-		let lp = %(EventClass_LandingPad)-15
-		set speech += "%(say_DockingGranted10) %wordof(say_DockingGrantedD4,lp)"
-	else if %(EventClass_LandingPad) <= 23
-		let lp = %(EventClass_LandingPad)-19
-		set speech += "%(say_DockingGranted11) %wordof(say_DockingGrantedD4,lp)"
-	else if %(EventClass_LandingPad) <= 25
-		let lp = %(EventClass_LandingPad)-23
-		set speech += "%(say_DockingGranted12) %wordof(say_DockingGrantedD2,lp)"
-	else if %(EventClass_LandingPad) <= 30
-		let lp = %(EventClass_LandingPad)-25
-		set speech += "%(say_DockingGranted1) %wordof(say_DockingGrantedD5,lp)"
-	else if %(EventClass_LandingPad) <= 34
-		let lp = %(EventClass_LandingPad)-30 
-		set speech += "%(say_DockingGranted2) %wordof(say_DockingGrantedD4,lp)"
-	else if %(EventClass_LandingPad) <= 38
-		let lp = %(EventClass_LandingPad)-34
-		set speech += "%(say_DockingGranted3) %wordof(say_DockingGrantedD4,lp)"
-	else if %(EventClass_LandingPad) <= 40
-		let lp = %(EventClass_LandingPad)-38
-		set speech += "%(say_DockingGranted4) %wordof(say_DockingGrantedD2,lp)"
-	else 
-		let lp = %(EventClass_LandingPad)-40
-		set speech += "%(say_DockingGranted5) %wordof(say_DockingGrantedD5,lp)"
-	
-	set speech += %(say_DockingGrantedGRN)
-else
-	Set v = say_DockingGranted
-	Set speech = "%phrase(\"%indirect(v)\")"                        // now expand any phrases in it
+Set starports = Orbis;Coriolis;Bernal;Ocellus;Asteroid Base
+
+If %(EventClass_StationType) MatchSemicolon %(starports)
+    Set v = say_DockingGrantedCO
+    Set speech = "%phrase(\"%indirect(v)\") "                   // now expand any phrases in it
+    If %(EventClass_LandingPad) <= 4
+        Set speech += "%(say_DockingGranted6) %wordof(say_DockingGrantedD4,EventClass_LandingPad)"
+    Else If %(EventClass_LandingPad) <= 8
+        Let lp = %(EventClass_LandingPad)-4
+        Set speech += "%(say_DockingGranted7) %wordof(say_DockingGrantedD4,lp)"
+    Else If %(EventClass_LandingPad) <= 10
+        Let lp = %(EventClass_LandingPad)-8
+        Set speech += "%(say_DockingGranted8) %wordof(say_DockingGrantedD2,lp)"
+    Else If %(EventClass_LandingPad) <= 15
+        Let lp = %(EventClass_LandingPad)-10
+        Set speech += "%(say_DockingGranted9) %wordof(say_DockingGrantedD5,lp)"
+    Else If %(EventClass_LandingPad) <= 19
+        Let lp = %(EventClass_LandingPad)-15
+        Set speech += "%(say_DockingGranted10) %wordof(say_DockingGrantedD4,lp)"
+    Else If %(EventClass_LandingPad) <= 23
+        Let lp = %(EventClass_LandingPad)-19
+        Set speech += "%(say_DockingGranted11) %wordof(say_DockingGrantedD4,lp)"
+    Else If %(EventClass_LandingPad) <= 25
+        Let lp = %(EventClass_LandingPad)-23
+        Set speech += "%(say_DockingGranted12) %wordof(say_DockingGrantedD2,lp)"
+    Else If %(EventClass_LandingPad) <= 30
+        Let lp = %(EventClass_LandingPad)-25
+        Set speech += "%(say_DockingGranted1) %wordof(say_DockingGrantedD5,lp)"
+    Else If %(EventClass_LandingPad) <= 34
+        Let lp = %(EventClass_LandingPad)-30 
+        Set speech += "%(say_DockingGranted2) %wordof(say_DockingGrantedD4,lp)"
+    Else If %(EventClass_LandingPad) <= 38
+        Let lp = %(EventClass_LandingPad)-34
+        Set speech += "%(say_DockingGranted3) %wordof(say_DockingGrantedD4,lp)"
+    Else If %(EventClass_LandingPad) <= 40
+        Let lp = %(EventClass_LandingPad)-38
+        Set speech += "%(say_DockingGranted4) %wordof(say_DockingGrantedD2,lp)"
+    Else 
+        Let lp = %(EventClass_LandingPad)-40
+        Set speech += "%(say_DockingGranted5) %wordof(say_DockingGrantedD5,lp)"
+
+    Set speech += %(say_DockingGrantedGRN)
+Else 
+    Set v = say_DockingGranted
+    Set speech = "%phrase(\"%indirect(v)\")"                    // now expand any phrases in it
 
 If speech IsNotEmpty
-	Set prior = "%existsdefault(Priority,\"Normal\")"           // pick up config variables
-	Set queuelimit = %existsdefault(QueueLimit,'0')
-	Call speak(speech="%(speech)",Volume="%existsdefault(Volume,'-999')",Priority="%(prior)", QueueLimit="%(queuelimit)")
+    Set prior = "%existsdefault(Priority,\"Normal\")"           // pick up config variables
+    Set queuelimit = %existsdefault(QueueLimit,'0')
+    Call speak(speech="%(speech)",Volume="%existsdefault(Volume,'-999')",Priority="%(prior)", QueueLimit="%(queuelimit)")
 
 END PROGRAM
 
@@ -2001,17 +2002,17 @@ END PROGRAM
 
 //*************************************************************
 // GenericDelayedResponse
-// Events: DockingGranted(Delay=10000)
+// Events: DockingGranted(Delay=10000,DelayName=VoicePackDockingGrantedDelay)
 //*************************************************************
 PROGRAM GenericDelayedResponse
 
 Rem Delay gives delay in ms before the timer triggers with the TimerName of VoicePack.. and Event variables set to the Event which triggered it.
 Rem Optional, use DelayName to call the trigger name different from the standard one
 
-if %exist(DelayName) isTrue
-	Timer %(DelayName),%(Delay),%(EventJID)
-else
-	Timer VoicePackGenericDelay%(EventClass_EventTypeStr),%(Delay),%(EventJID)
+If %exist(DelayName) IsTrue
+    Timer %(DelayName),%(Delay),%(EventJID)
+Else 
+    Timer VoicePackGenericDelay%(EventClass_EventTypeStr),%(Delay),%(EventJID)
 
 END PROGRAM
 
