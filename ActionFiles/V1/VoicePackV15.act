@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 15 of the voice pack for EDD, for version 11.4+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=15.0.2.0
+INSTALL Version=15.0.5.0
 INSTALL MinEDVersion=11.4.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -584,7 +584,7 @@ Static say_ScanPlanetMoonMass $= , Mass %roundnz(moonmass,2,0.##,4) moon masses
 Static say_ScanPlanetRadius $= , Radius %round(radius,0,0.#) km
 Static say_ScanPlanetGravity $= , Gravity %roundnz(gravity,1,0.#,4) gee
 Static say_ScanPlanetTemperature $= , Temperature %round(EventClass_nSurfaceTemperature,0,0.#) kelvin
-Static say_ScanPlanetPressure $= , Pressure %roundnz(EventClass_nSurfacePressure,1,0.#,4) Pascal
+Static say_ScanPlanetPressure $= , Pressure %roundnz(EventClass_nSurfacePressureEarth,1,0.#,4) Atmospheres
 Static say_ScanPlanetNoSurfacePressure $= , No surface pressure
 // gated on ScanPlanetMaterialInformationEnable
 Static say_ScanPlanetMaterials $= ", Materials detected %ExpandVars(EventClass_Materials_,\", \",0,1000,\"nameonly splitcaps\")"
@@ -1290,7 +1290,6 @@ Else
             Set speech += %expand(say_ScanPlanetTemperature)
 
         If %(EventClass_nSurfacePressure) IsNotEmpty And %(EventClass_nSurfacePressure) > 0
-            Let atpressure = %(EventClass_nSurfacePressure)/101.325
             Set speech += %expand(say_ScanPlanetPressure)
         Else 
             Set speech += %expand(say_ScanPlanetNoSurfacePressure)
