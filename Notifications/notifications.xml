@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Items>
-    <Notifications>
-        <Entry StartUTC="2019-01-16T10:10:10Z" EndUTC="2019-02-17T23:00:00Z" Type="Popup" PointSize="14">
+
+<Notifications>
+
+
+
+<Entry StartUTC="2019-01-16T10:10:10Z" EndUTC="2019-02-17T23:00:00Z" Type="Popup" PointSize="14">
 <Body Lang="en" Caption="New Action Packs">New Voice and DW3305 Action Packs Available
 
 Use the Add on Manager to install them
@@ -14,28 +18,33 @@ Press the acknowledge button to never see this message again!
 
 Good luck Commanders.
 
-EDD Team.  </Body>
-        </Entry>
+EDD Team.
+</Body>
+</Entry>
 
-        <Entry StartUTC="2019-01-17T13:00:00Z" EndUTC="2019-02-17T23:00:00Z" Type="Log">
+
+
+<Entry StartUTC="2019-01-17T13:00:00Z" EndUTC="2019-02-17T23:00:00Z" Type="Log">
 <Body Caption="" Lang="en">
 ******************************
 Voice Pack 10.0.1.0 Out!
 Improved control over scan output over the 10.0.0.0 version
 ******************************
- </Body>
-        </Entry>
+</Body>
+</Entry>
 
-        <Entry StartUTC="2019-01-19T01:00:00Z" EndUTC="2019-02-17T23:00:00Z" VersionMax="10.4.3" Type="Log">
+
+
+<Entry StartUTC="2019-01-19T01:00:00Z" EndUTC="2019-02-17T23:00:00Z" VersionMax="10.4.3" Type="Log">
 <Body Caption="" Lang="en">
 ******************************
 Please update to 10.4.3+ to fix a problem with a scan panel crash
 ******************************
- </Body>
-        </Entry>
+</Body>
+</Entry>
 
 
-        <Entry StartUTC="2019-02-15T00:00:00Z" EndUTC="2019-02-28T23:00:00Z" Type="Popup" PointSize="14">
+<Entry StartUTC="2019-02-15T00:00:00Z" EndUTC="2019-02-28T23:00:00Z" Type="Popup" PointSize="14">
 <Body Lang="en" Caption="Elite Galaxy Online">Elite Galaxy Online
 
 It has been brought to our attention that this service has been suspended, pending updates to it.
@@ -54,10 +63,11 @@ Safe Flight.
 
 Rob and the EDD Team.
 </Body>
-        </Entry>
+</Entry>
 
 
-        <Entry StartUTC="2021-03-20T13:00:00Z" EndUTC="2021-04-20T23:00:00Z" Type="Popup" PointSize="14">
+
+<Entry StartUTC="2021-03-20T13:00:00Z" EndUTC="2021-07-20T23:00:00Z" Type="Popup" PointSize="14">
 <Body Caption="Odyssey Update" Lang="en">
 ******************************
 Update the program to 11.10.3 if you are going to play the Odyssey Alpha
@@ -65,12 +75,12 @@ Update the program to 11.10.3 if you are going to play the Odyssey Alpha
 Frontier have changed their method of marking journal files for this alpha and thus EDD will be confused
 and update your standard commander, instead of creating a commander with the prefix BETA
 
-Once you update, your Odyssey play will be in the commander [BETA] <name>
+Once you update, your Odyssey play will be in the commander [BETA] name
 
 Thanks
 ******************************
- </Body>
-        </Entry>
+</Body>
+</Entry>
 
 
 

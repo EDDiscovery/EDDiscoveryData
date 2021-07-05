@@ -1,0 +1,234 @@
+ACTIONFILE V4
+
+ENABLED False
+
+GROUP One;Keep
+EVENT onKeyPress, onKeyPressList, "jim=\"one one two\",fred=\"two two\",Three=\"Four four two\"", KeyPress $== F1
+EVENT onKeyPress, onKeyPressA1, "", KeyPress $== F2
+EVENT onKeyPress, onKeyPressA2, "", KeyPress $== F3
+EVENT onKeyPress, onKeyPressA3, "", KeyPress $== F4
+EVENT onKeyPress, onKeyPressA4, "", KeyPress $== Shift+F4
+EVENT onKeyPress, onKeyPressA5, "", KeyPress $== F12
+EVENT onKeyPress, onKeyPressA6, "", KeyPress $== Shift+F12
+
+GROUP Three
+EVENT onKeyPress, onKeyPressB, "sheila=\"one one two\"", KeyPress $== F5
+EVENT onKeyPress, onKeyPressC, "", KeyPress $== F6
+
+GROUP Two
+EVENT onKeyPress, onKeyPressD, "", KeyPress $== F9
+EVENT onKeyPress, onKeyPressE, "albert=\"one one two\"", KeyPress $== F10
+
+GROUP Fred
+EVENT onKeyPress, XYZ, "", KeyPress $== Shift+A
+
+GROUP Ship
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "[Fire]|Charge|Deploy Shield Cell;Recharge Shields"
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "Launch|Fire Chaff"
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "Deploy|Fire|Launch|[] Heat Sink"
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "Charge|Deploy|Fire ECM"
+
+GROUP Flight
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "Assist Toggle"
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "[Flight] Assist On;FlightAssist On"
+EVENT onVoiceInput, VoiceInput_1, "", VoiceInput MatchSemicolonList "[Flight] Assist Off;FlightAssist Off"
+
+GROUP Init;Keep
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Static SpeechCulture = en-gb
+
+Perform EnableVoiceRecognition %(SpeechCulture)
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressList
+// Events: onKeyPress?(KeyPress $== F1)(jim="one one two",fred="two two",Three="Four four two")
+//*************************************************************
+PROGRAM onKeyPressList
+
+Print ---- LIST GROUP *
+Events LIST *,"","","",""
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+Print ---- LIST onKeyPress
+Events LIST "",Onkeypress,"","",""
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA1
+// Events: onKeyPress?(KeyPress $== F2)
+//*************************************************************
+PROGRAM onKeyPressA1
+
+Print ---- DISABLE GROUP *w*
+Events DISABLE *w*,"","","",""
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+Print --- Disable voice group Ship
+Events DISABLE Ship,"","","",""
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA2
+// Events: onKeyPress?(KeyPress $== F3)
+//*************************************************************
+PROGRAM onKeyPressA2
+
+Print ---- ENABLE GROUP *w*
+Events ENABLE *w*,"","","",""
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+Print --- Disable voice group Ship
+Events ENABLE Ship,"","","",""
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA3
+// Events: onKeyPress?(KeyPress $== F4)
+//*************************************************************
+PROGRAM onKeyPressA3
+
+Print ---- ADD F12
+Events ADD NewEventGroup,onKeyPress, onKeyPressF, "", KeyPress $== F12
+Perform LoadKeys
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA4
+// Events: onKeyPress?(KeyPress $== Shift+F4)
+//*************************************************************
+PROGRAM onKeyPressA4
+
+Print ---- Remove F12
+Events Delete NewEventGroup,"","","",""
+Rem Events Delete "",onKeyPress,"","",""
+Perform LoadKeys
+Pragma dumpvars EV_*
+DeleteVariable EV_*
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA5
+// Events: onKeyPress?(KeyPress $== F12)
+//*************************************************************
+PROGRAM onKeyPressA5
+
+Print --- Disable all but
+Events DISABLEALLBUT *Keep*,"","","",""
+Perform LoadKeys
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressA6
+// Events: onKeyPress?(KeyPress $== Shift+F12)
+//*************************************************************
+PROGRAM onKeyPressA6
+
+Print --- Enable all but
+Events ENABLEALLBUT *Keep*,"","","",""
+Perform LoadKeys
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressB
+// Events: onKeyPress?(KeyPress $== F5)(sheila="one one two")
+//*************************************************************
+PROGRAM onKeyPressB
+
+Print B
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressC
+// Events: onKeyPress?(KeyPress $== F6)
+//*************************************************************
+PROGRAM onKeyPressC
+
+Print C
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressD
+// Events: onKeyPress?(KeyPress $== F9)
+//*************************************************************
+PROGRAM onKeyPressD
+
+Print D
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressE
+// Events: onKeyPress?(KeyPress $== F10)(albert="one one two")
+//*************************************************************
+PROGRAM onKeyPressE
+
+Print E
+
+END PROGRAM
+
+//*************************************************************
+// onKeyPressF
+//*************************************************************
+PROGRAM onKeyPressF
+
+Print F
+
+END PROGRAM
+
+//*************************************************************
+// XYZ
+// Events: onKeyPress?(KeyPress $== Shift+A)
+//*************************************************************
+PROGRAM XYZ
+
+Print hello
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_1
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Fire]|Charge|Deploy Shield Cell;Recharge Shields"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Launch|Fire Chaff"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Deploy|Fire|Launch|[] Heat Sink"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Charge|Deploy|Fire ECM"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Assist Toggle"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Flight] Assist On;FlightAssist On"), 
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Flight] Assist Off;FlightAssist Off")
+//*************************************************************
+PROGRAM VoiceInput_1
+
+Print Voice Input
+Pragma dumpvars E*
+
+END PROGRAM
+
