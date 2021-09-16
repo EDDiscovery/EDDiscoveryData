@@ -51,7 +51,7 @@ Static jkm_OrbitLinesToggle $= Umlaufbahnlinien umschalten
 Static jkm_GalaxyMapOpen $= Galaxiekarte umschalten
 Static jkm_SystemMapOpen $= Systemkarte umschalten
 
-Static jkm_SetSpeedMinus100 $= Voll voraus!
+Static jkm_SetSpeedMinus100 $= Volle Fahrt zurück!
 Static jkm_SetSpeedMinus75 $= Dreiviertel Achtern!
 Static jkm_SetSpeedMinus50 $= Halbe Achtern!
 Static jkm_SetSpeedMinus25 $= Viertel Achtern!
