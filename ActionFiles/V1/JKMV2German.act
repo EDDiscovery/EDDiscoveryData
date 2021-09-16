@@ -31,14 +31,14 @@ Static jkm_N_AutoBreakBuggyButton $= Umschalten SRV Bremse
 Static jkm_N_ToggleBuggyTurretButton $= Umschalten SRV Turm
 
 Rem no power, cause it just goes crazy.. instead just plop them under a single POWER entry
-// Static jkm_IncreaseEnginesPower_Buggy $= "Increase power to Engines"
-// Static jkm_IncreaseWeaponsPower_Buggy $= "Increase power to Weapons"
-// Static jkm_IncreaseSystemsPower_Buggy $= "Increase power to Systems"
-// Static jkm_ResetPowerDistribution_Buggy = "Reset SRV power system"
-// Static jkm_IncreaseEnginesPower $= "Increase power to Engines"
-// Static jkm_IncreaseWeaponsPower $= "Increase power to Weapons"
-// Static jkm_IncreaseSystemsPower $= "Increase power to Systems"
-// Static jkm_ResetPowerDistribution $= "Reset ship power distribution"
+// Static jkm_IncreaseEnginesPower_Buggy $= "Mehr Leistung für die Motoren"
+// Static jkm_IncreaseWeaponsPower_Buggy $= "Mehr Leistung für die Waffen"
+// Static jkm_IncreaseSystemsPower_Buggy $= "Mehr Leistung für die Systeme"
+// Static jkm_ResetPowerDistribution_Buggy = "SRV-Stromsystem zurücksetzen"
+// Static jkm_IncreaseEnginesPower $= "Mehr Leistung für die Motoren"
+// Static jkm_IncreaseWeaponsPower $= "Mehr Leistung für die Waffen"
+// Static jkm_IncreaseSystemsPower $= "Mehr Leistung für die Systeme"
+// Static jkm_ResetPowerDistribution $= "Schiffsstromverteilung zurücksetzen"
 Static jkm_powerbindings $= IncreaseEnginesPower_Buggy,IncreaseSystemsPower_Buggy,IncreaseWeaponsPower_Buggy,ResetPowerDistribution_Buggy,IncreaseEnginesPower,IncreaseWeaponsPower,IncreaseSystemsPower,ResetPowerDistribution
 Static jkm_Power = Einstellen der Leistung;Ändern der Leistungszuweisung
 
@@ -74,7 +74,7 @@ Static jkm_SelectTarget $= Ziel auswählen
 Static jkm_CycleNextHostileTarget $= Nächster Feind
 Static jkm_CyclePreviousHostileTarget $= Vorheriger Feind
 Static jkm_SelectHighestThreat $= Höchste Bedrohung
-Static jkm_WeaponColourToggle $= Waffenbfarbe umschalten
+Static jkm_WeaponColourToggle $= Waffenfarbe umschalten
 
 Static jkm_DeployHeatSink $= Kühlkörper werfen
 Static jkm_N_UseShieldCell $= Schildzelle entladen
@@ -92,8 +92,8 @@ Static jkm_MicrophoneMute $= Mikrofon stumm umschalten
 Static jkm_FocusLeftPanel $= Navigation
 Static jkm_FocusRightPanel $= System
 Static jkm_FocusRadarPanel $= Rollen
-Static jkm_QuickCommsPanel $= Kommunikation
-Static jkm_FocusCommsPanel $= Kommunikation
+Static jkm_QuickCommsPanel $= Schnellkommunikations-Konsole
+Static jkm_FocusCommsPanel $= Kommunikations-Konsole
 Static jkm_UIFocus $= Bedienfeld umschalten
 Static jkm_HeadLookToggle $= Kopfsicht umschalten
 Static jkm_FriendsMenu $= Freundesmenü
