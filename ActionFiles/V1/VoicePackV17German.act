@@ -1,13 +1,10 @@
 ﻿ACTIONFILE V4
-// Problems/Issues with %hnum as of german numbers are separated by points instead of commas and vice versa
-// Switched some Lines/wordings as these now sounding better i.e. say_FuelScoop (can do this for the english version too if desired)
-// Line 663++ magic not done!!
 
 ENABLED True
 
 INSTALL LongDescription="This is the version 17 of the voice pack for EDD, German translation, for version 12.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="German Voice file for ED"
-INSTALL Version=17.1.0.0
+INSTALL Version=17.1.0.1
 INSTALL MinEDVersion=12.0.500.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -426,7 +423,7 @@ Static say_DockingGranted12 $= zwölf Uhr
 Static say_DockingGrantedD2 $= "am Anfang;entfernt"
 Static say_DockingGrantedD4 $= "am Anfang;nahe der Mitte;in mittlerer Entfernung;am Ende des Hafens"
 Static say_DockingGrantedD5 $= "am Anfang;nahe der Mitte;mittig;in mittlerer Entfernung;am Ende des Hafens"
-Static say_DockingGrantedGRN $= ", wenn die grüne Steuerbord Navigationsleuchte der Station rechts ist.";", wenn die rote Backbord Navigationsleuchte der Station links ist."
+Static say_DockingGrantedGRN $= , wenn die grüne Steuerbord Navigationsleuchte der Station rechts ist.;, wenn die rote Backbord Navigationsleuchte der Station links ist.
 
 Static say_DockingRequested $= Docking-Anfrage gesendet;Docking anfordern
 Static say_DockingTimeout $= Zu spät Kommandant, die Erlaubnis zum Andocken wurde entzogen;Zu langsam Kommandant, Erlaubnis zum Andocken zurückgezogen
@@ -578,7 +575,7 @@ Static say_ModuleSwap $= "Austausch von Modulen zwischen %ifnotcontains(EventCla
 Static say_MassModuleStore $= Mehrere Module vom Schiff %ship(EventClass_Ship) gelagert.
 
 Static say_NavBeaconScan $= %(EventClass_NumBodies) Körper in diesem System abgetastet.
-Static say_NpcCrewPaidWage $= "Besatzungsmitglied %(EventClass_Name) bekam %hnum(EventClass_Amount,HNumList) Kredits Lohn"; "Lohn, %hnum(EventClass_Amount,HNumList) Kredits für Besatzungsmitglied %(EventClass_Name)"
+Static say_NpcCrewPaidWage $= Besatzungsmitglied %(EventClass_Name) bekam %hnum(EventClass_Amount,HNumList) Kredits Lohn; Lohn, %hnum(EventClass_Amount,HNumList) Kredits für Besatzungsmitglied %(EventClass_Name)
 Static say_NpcCrewRank $= {Glückwünsche!;Gute Arbeit!} Mitglied der Besatzung %(EventClass_Name) wurde zum %sc(EventClass_RankCombat) befördert.
 
 Static say_PayBounties $= "Kopfgeld in Höhe von %(EventClass_Amount) Kredits bezahlt Kommandant %ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
