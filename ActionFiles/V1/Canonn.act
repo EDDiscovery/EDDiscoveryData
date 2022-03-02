@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="Cannon Plugin V1. This plugin enables EDD to feed the Cannon network with assorted journal information. Your commander name will be recorded in Cannonn publicly visible databases and new discoveries published on the Caanon Alert discord server."
 INSTALL ShortDescription="Canonn Journal Data Collector"
-INSTALL Version=1.1.1.0
+INSTALL Version=1.2.0.0
 INSTALL MinEDVersion=12.1.0.0
 INSTALL Location=Actions
 INSTALL OtherFile1=EDDCanonn.dll;DLL
@@ -15,12 +15,12 @@ EVENT onInstall, onInstall, "", Condition AlwaysTrue
 
 PROGRAM onInstall
 
-If UpdateList IsPresent 
+If UpdateList IsPresent
 	If UpdateList Contains "Canonn;"
 		MessageBox "Updated Canonn Plugin. Restart EDD to activate the new version.","EDD Canonn"
 	else if InstallList Contains "Canonn;"
 		MessageBox "Installed Canonn Plugin. Restart EDD to activate it.  When EDD asks for permission to run the EDDCanonn.DLL, allow it","EDD Canonn"
-	
+
 
 END PROGRAM
 
