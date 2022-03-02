@@ -92,6 +92,7 @@ EVENT NavBeaconScan, NavBeaconScan, "", Condition AlwaysTrue
 EVENT MultiSellExplorationData, MultiSellExplorationData, "", Condition AlwaysTrue
 EVENT Scan, Scan, "", Condition AlwaysTrue
 EVENT SAAScanComplete, GenericResponse, "", Condition AlwaysTrue
+EVENT SAASignalsFound, GenericResponse, "", Condition AlwaysTrue
 EVENT SellExplorationData, SellExplorationData, "", Condition AlwaysTrue
 
 GROUP Flight
@@ -618,6 +619,8 @@ Static say_ReceiveText $= Message from %(EventClass_FromLocalised), %(EventClass
 Static say_RenameSuitLoadout $= Confirmed Commander, %(EventClass_SuitName_Localised) Loadout renamed to %rv(EventClass_LoadoutName,suit_loadoutrename)
 
 Static say_SAAScanComplete $= Surface Scan Analysis on %body(EventClass_BodyName,EventStarSystem,say_ss), complete Commander, used %(EventClass_ProbesUsed) probes<;> %body(EventClass_BodyName,EventStarSystem,say_ss), scan complete with %(EventClass_ProbesUsed) probes used
+
+Static say_SAASignalsFound $= %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' and ') surface signals found on body %body(EventClass_BodyName,EventStarSystem,say_ss)
 
 Static say_SellExplorationData $= Sold %(EventClass_SystemsCount) star systems for %hnum(EventClass_BaseValue,HNumList) credits.
 Static say_SellExplorationDataBonus $= And discovered %(EventClass_DiscoveredCount) bodies for %hnum(EventClass_Bonus,HNumList) bonus credits
@@ -1501,6 +1504,7 @@ Else
 Call speak(speech="%(speech)", QueueLimit="2000" )
 
 END PROGRAM
+
 
 //*************************************************************
 // SaySystemInfo
