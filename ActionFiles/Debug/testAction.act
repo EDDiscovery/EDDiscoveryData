@@ -1,6 +1,6 @@
 ACTIONFILE V4
 
-ENABLED False
+ENABLED True
 
 INSTALL LongDescription="Test script for action"
 INSTALL ShortDescription="Test script"
@@ -9,6 +9,17 @@ INSTALL MinEDVersion=9.1.0.0
 INSTALL Location=Actions
 
 EVENT onKeyPress, TestFunctions, "", KeyPress $== Shift+F4
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Print **** Action Test harness installed, hit shift+F4 to run
+
+END PROGRAM
 
 //*************************************************************
 // TestFunctions
@@ -175,6 +186,11 @@ ErrorIf "F", %join(";",v1,"hello") $!= "V1Hello;hello"
 ErrorIf "F", '%trim(" h ell o ")' $!= "h ell o"
 ErrorIf "F", %length("hello") != 5
 ErrorIf "F", %length(v1) != 7
+ErrorIf "WF", %wordcount(wl1,",") != 3
+ErrorIf "WF", %wordfind(wl1,"two",",",1,0) != 2
+ErrorIf "WF", %wordfind(wl1,"TWO",",",0,0) != 0
+ErrorIf "WF", %wordfind(wl1,"tw",",",1,1) != 2
+ErrorIf "WF", %wordfind(wl1,"xxx",",",1,1) != 0
 ErrorIf "F", %wordof(wl1,2,",") $!= "two"
 ErrorIf "F", %wordof(wl2,3) $!= "three"
 ErrorIf "F", %wordlistcount(wl3) != 3

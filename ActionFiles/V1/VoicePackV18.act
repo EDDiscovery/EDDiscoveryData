@@ -5,7 +5,7 @@ ENABLED True
 INSTALL LongDescription="This is the version 18 of the voice pack for EDD, for version 15+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
 INSTALL Version=18.0.0.0
-INSTALL MinEDVersion=12.1.500.0
+INSTALL MinEDVersion=12.1.700.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -405,7 +405,10 @@ Static say_DiscoveryScan $= "{{{Scanned System, %(EventClass_Bodies)<;>System Sc
 Static say_Died $= Here lies the bones of Commander %(Commander), dead and buried<;> Your dead and buried Commander %(Commander)<;>I'll send for the under taker Commander %(Commander)<;>Ashes to ashes, dust to dust, your toast Commander %(Commander)
 Static say_Docked $= "{{{Docked at %(EventClass_StationName), %ifnotempty(EventClass_StationType,\"%(EventClass_StationType) type\")}}}{{{. }}}{{{This is a %(EventClass_Economy_Localised) station<;>Station economy is %(EventClass_Economy_Localised)}}}"
 Static say_DockSRV $= Surface Recon Vehicle back on board Commander<;>Boarded mothership Commander, prepare for flight operations<;>Entering mothership
-Static say_DockingDenied $= {{{Appears busy Commander<;>Nope, no good Commander<;>Busy Port Commander}}}, confirming %(EventClass_StationName) has denied docking<;>Docking was denied at %(EventClass_StationName)
+
+Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason
+Static dockingresponse = "No space commander;Your ship is too large commander for the pads available;Your hostile to this station commander;You have outstanding offences commander;Your too far from the station commander;You have a fighter deployed commander;Docking is denied commander"
+Static say_DockingDenied $= %(EventClass_StationName) has denied docking, %wordof(dockingresponse,%wordfind(dockingdeniedlist,EventClass_Reason))
 
 Static say_DockingGranted $= "Commander, confirmed for landing pad %(EventClass_LandingPad)<;>Confirmed landing on pad %(EventClass_LandingPad)<;> Landing pad %(EventClass_LandingPad) is ready for you Commander"
 Static say_DockingGrantedCO $= "Commander, Landing pad %(EventClass_LandingPad) is at <;>Confirmed landing on pad %(EventClass_LandingPad), located at <;>Landing pad %(EventClass_LandingPad) is ready for you Commander, located at "
