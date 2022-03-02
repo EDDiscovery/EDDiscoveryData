@@ -499,7 +499,7 @@ Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{Refueled<;>Scooped}}}{
 Static say_FSDJump $= "Arrived at %star(EventClass_StarSystem,say_ss), %(visit)%ifnonzero(EventEDDBPopulation,\"Populated, \") jump distance %round(EventClass_JumpDist,1,0.#) light years"
 Static say_FSDJumpVisit $= First visit, ;Second visit, ;Third Visit, ;Fourth visit, ;Fifth visit, ;Sixth Visit,;
 Static say_FSDJumpFuel $= , Fuel used %round(EventClass_FuelUsed,1,0.#) tons
-Static say_FSDJumpFaction $= ", System controlled by %rs(EventClass_Faction,say_ss) %ifnotempty(EventClass_FactionState,\"in state %(EventClass_FactionState)\")"
+Static say_FSDJumpFaction $= ", System controlled by %rs(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"in state %(EventClass_FactionState)\")')"
 Static say_FSDJumpFuelWarning $= , Alert Commander, fuel level is low<;>, Fuel level is low<;>, Warning, running low on gas here
 
 Static say_HullDamageCritical $= Alert, Alert, Damage is critical at %(health) %
