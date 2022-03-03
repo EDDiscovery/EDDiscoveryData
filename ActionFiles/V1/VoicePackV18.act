@@ -993,8 +993,8 @@ If %(RefreshCount) <= 1
     Event PREFIX LAST_ LAST
     Ledger PREFIX LED_ AtOrBefore %(LAST_JID)
     Event PREFIX RK_ LAST Rank
-	Rem pragma dumpvars LAST*
-	Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
+    Rem pragma dumpvars LAST*
+    Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
     If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
         Call speak(speech="%(speech)")
 
@@ -1035,11 +1035,11 @@ If sayit IsFalse
 
 If EventClass_Channel $!= npc                                   // non NPC, is said by the main computer voice
     Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
-	Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
     Call speak(speech="%(speech)")
 Else If SpeechControls NotContains NPCVoicesEnable;
     Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
-	Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
     Call speak(speech="%(speech)")
 Else 
     Rem pragma dumpvars *
@@ -1106,7 +1106,7 @@ PROGRAM ShipTargeted
 If SpeechControls NotPresent Or SpeechControls NotContains TargetReportingDisabled;
     If %(EventClass_TargetLocked) == 0
         Set v = say_ShipLostTarget
-		Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+        Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
         Call speak(speech="%(speech)", QueueLimit="1000")
     Else If %(EventClass_ScanStage) >= 1
         // Pragma dumpvars TargetVars*
@@ -1122,7 +1122,7 @@ If SpeechControls NotPresent Or SpeechControls NotContains TargetReportingDisabl
         If %(levelscanned) < %(EventClass_ScanStage)
             Set v = say_%(EventClass_EventTypeStr)%(EventClass_ScanStage)
             Static %(var) = %(EventClass_ScanStage)
-			Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+            Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
             Call speak(speech="%(speech)", QueueLimit = "4000")
 Else 
     Rem print Off
@@ -1149,10 +1149,10 @@ PROGRAM HullDamage
 Let health100 = %(EventClass_Health)*100
 Let health = %floor(health100,N0)
 If health < 50
-	Set speech = '%phrase("%expand(say_HullDamageCritical)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%expand(say_HullDamageCritical)","<;>","{{{","}}}")'
     Call speak(speech="%(speech)", Volume=100)
 Else 
-	Set speech = '%phrase("%expand(say_HullDamage)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%expand(say_HullDamage)","<;>","{{{","}}}")'
     Call speak(speech="%(speech)")
 
 END PROGRAM
@@ -1164,9 +1164,9 @@ END PROGRAM
 PROGRAM ShieldState
 
 If EventClass_ShieldsUp IsTrue
-	Set speech = '%phrase("%expand(say_shieldsup)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%expand(say_shieldsup)","<;>","{{{","}}}")'
 Else 
-	Set speech = '%phrase("%expand(say_shieldsdown)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%expand(say_shieldsdown)","<;>","{{{","}}}")'
 
 Call speak(speech="%(speech)")
 
@@ -1427,10 +1427,10 @@ END PROGRAM
 PROGRAM Interdiction
 
 If EventClass_Success IsTrue
-	Set speech = '%phrase("%expand(say_InterdictionSuccess)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%expand(say_InterdictionSuccess)","<;>","{{{","}}}")'
 Else 
-	Set speech = '%phrase("%expand(say_InterdictionFailure)","<;>","{{{","}}}")'
-    
+    Set speech = '%phrase("%expand(say_InterdictionFailure)","<;>","{{{","}}}")'
+
 Call speak(speech="%(speech)")
 
 END PROGRAM
@@ -1479,7 +1479,7 @@ If EventClass_Status $== ""
         Static say_FriendsSummation $+= "%ifnonzero(totalother,'%(totalother) %ifgt(totalother,\'1\',\'other friend statuses are\',\'other status is\') available.') "
         // print %expand(say_FriendsSummation)
 
-		Set speech = '%phrase("%expand(say_FriendsSummation)","<;>","{{{","}}}")'
+        Set speech = '%phrase("%expand(say_FriendsSummation)","<;>","{{{","}}}")'
 
         Call speak(speech="%(speech)", QueueLimit="2000" )
 Else 
@@ -1504,7 +1504,6 @@ Else
 Call speak(speech="%(speech)", QueueLimit="2000" )
 
 END PROGRAM
-
 
 //*************************************************************
 // SaySystemInfo
@@ -1971,7 +1970,7 @@ Set starports = Orbis;Coriolis;Bernal;Ocellus;Asteroid Base
 If %(EventClass_StationType) MatchSemicolon %(starports)
     Set v = say_DockingGrantedCO
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
-	If %(EventClass_LandingPad) <= 4
+    If %(EventClass_LandingPad) <= 4
         Set speech += "%(say_DockingGranted6) %wordof(say_DockingGrantedD4,EventClass_LandingPad)"
     Else If %(EventClass_LandingPad) <= 8
         Let lp = %(EventClass_LandingPad)-4
@@ -2010,7 +2009,7 @@ If %(EventClass_StationType) MatchSemicolon %(starports)
     Set speech += %(say_DockingGrantedGRN)
 Else 
     Set v = say_DockingGranted
-	Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+    Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
 
 If speech IsNotEmpty
     Set prior = "%existsdefault(Priority,\"Normal\")"           // pick up config variables
@@ -2027,24 +2026,25 @@ END PROGRAM
 // Events: ChangeCrewRole, CrewAssign, CrewFire, CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, 
 // Events: CrewMemberQuits, EndCrewSession, JoinACrew, KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, 
 // Events: EngineerCraft, EngineerContribution, EngineerProgress, EngineerLegacyConvert, Synthesis, TechnologyBroker, 
-// Events: BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan, SAAScanComplete, ApproachBody(QueueLimit=5000), 
-// Events: ApproachSettlement(QueueLimit=1000), Docked, DockingCancelled, DockingDenied, DockingRequested, DockingTimeout, 
-// Events: DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000), LaunchSRV, Liftoff, 
-// Events: StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned, MissionAccepted, 
-// Events: MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected, 
-// Events: MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned, 
-// Events: Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect, 
-// Events: PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, 
-// Events: AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, 
-// Events: ModuleRetrieve, ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, 
-// Events: ShipyardBuy, ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, 
-// Events: RefuelPartial, Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, 
-// Events: AppliedToSquadron, DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron, 
-// Events: SharedBookmarkToSquadron, SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData, 
-// Events: CargoDepot, EjectCargo, MarketBuy, WingAdd, WingJoin, WingLeave, WingInvite, BuyWeapon, CollectItems, 
-// Events: CreateSuitLoadout, DeleteSuitLoadout, Disembark, DropItems, DropShipDeploy, Embark, LoadoutEquipModule, 
-// Events: LoadoutRemoveModule, RenameSuitLoadout, ScanOrganic, SellOrganicData, SellSuit, SellWeapon, SuitLoadout, 
-// Events: SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon, UseConsumable, onTimer?(TimerName Contains VoicePackGenericDelay)
+// Events: BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan, SAAScanComplete, SAASignalsFound, 
+// Events: ApproachBody(QueueLimit=5000), ApproachSettlement(QueueLimit=1000), Docked, DockingCancelled, DockingDenied, 
+// Events: DockingRequested, DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, 
+// Events: LeaveBody(QueueLimit=5000), LaunchSRV, Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, 
+// Events: USSDrop, MissionAbandoned, MissionAccepted, MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, 
+// Events: MiningRefined, MaterialCollected, MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, 
+// Events: DatalinkScan, DatalinkVoucher, DataScanned, Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, 
+// Events: SendText, PowerplayCollect, PowerplayDefect, PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, 
+// Events: PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, 
+// Events: LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve, ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, 
+// Events: SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy, ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, 
+// Events: SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial, Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, 
+// Events: SystemsShutdown, VehicleSwitch, AppliedToSquadron, DisbandedSquadron, InvitedToSquadron, JoinedSquadron, 
+// Events: KickedFromSquadron, LeftSquadron, SharedBookmarkToSquadron, SquadronCreated, SquadronDemotion, SquadronPromotion, 
+// Events: WonATrophyForSquadron, BuyTradeData, CargoDepot, EjectCargo, MarketBuy, WingAdd, WingJoin, WingLeave, WingInvite, 
+// Events: BuyWeapon, CollectItems, CreateSuitLoadout, DeleteSuitLoadout, Disembark, DropItems, DropShipDeploy, Embark, 
+// Events: LoadoutEquipModule, LoadoutRemoveModule, RenameSuitLoadout, ScanOrganic, SellOrganicData, SellSuit, SellWeapon, 
+// Events: SuitLoadout, SwitchSuitLoadout, UpgradeSuit, UpgradeWeapon, UseConsumable, 
+// Events: onTimer?(TimerName Contains VoicePackGenericDelay)
 //*************************************************************
 PROGRAM GenericResponse
 
@@ -2148,7 +2148,7 @@ PROGRAM speak
 Rem required: speech
 Rem optional: Volume, QueueLimit, Priority, FinishEvent, Wait, Voice, PitchShift, PrefixSound, PostfixSound, MixSound, Rate
 
-rem Print SAY: %(speech)
+Rem Print SAY: %(speech)
 
 Set speech = "%replacevar(speech,\"say_tx\")"
 
