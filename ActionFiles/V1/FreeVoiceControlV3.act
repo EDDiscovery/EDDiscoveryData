@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the third edition of the Free Voice Control pack for EDD, for version 10.5+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
-INSTALL Version=3.1.0.0
+INSTALL Version=3.2.0.0
 INSTALL MinEDVersion=10.5.1.0
 INSTALL Location=Actions
 INSTALL DisableOther1=FreeVoiceControlV1
@@ -273,7 +273,7 @@ Static SpeechPriority = Low                                     // anything else
 
 Perform EnableVoiceRecognition %(SpeechCulture)
 Perform VoiceRecognitionParameters 0,0,%(FVCEndTimeout),%(FVCEndTimeoutAmbiguous)
-Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100')
+Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100.0')
 Perform BeginVoiceRecognition
 
 MenuItem FVCMenuConfigure,add-ons,"Free Voice Control Configuration",speaker
@@ -380,7 +380,7 @@ If MenuName Contains FVCMenuConfigure
                 Let good = 0
             Else 
                 PersistentGlobal FVCConfidence = %(res)
-                Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100')
+                Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100.0')
 
             Let updatetimeouts = 0
 
