@@ -1,10 +1,10 @@
 ACTIONFILE V4
 
-ENABLED True
+ENABLED False
 
 INSTALL LongDescription="This is the second edition of the Joystick,Keyboard, Mouse pack for EDD, for version 8.3+\r\n\r\nIt vocalises events caused by joystick, key and mouse bindings."
 INSTALL ShortDescription="JKM Pack for ED"
-INSTALL Version=2.0.0.0
+INSTALL Version=2.1.0.0
 INSTALL MinEDVersion=8.3.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=JKMV1
@@ -18,6 +18,7 @@ EVENT onSayFinished, FinishSpeech, "", EventName $== JKMFinish
 
 //*************************************************************
 // SetUpLanguageEnglish
+// Events: None
 //*************************************************************
 PROGRAM SetUpLanguageEnglish
 
@@ -116,6 +117,7 @@ END PROGRAM
 
 //*************************************************************
 // SetUpLanguage
+// Events: None
 //*************************************************************
 PROGRAM SetUpLanguage
 
@@ -147,8 +149,6 @@ MenuItem VoiceMenuConfigureVoice                                // see of voice 
 If MenuPresent IsFalse
     MenuItem jkmMenuVoice,add-ons,"Voice Synthesis Configuration",speaker
 
-MenuItem jkmMenuJoystick,add-ons,"List Joystick and Binding Information",speaker
-
 END PROGRAM
 
 //*************************************************************
@@ -168,6 +168,7 @@ END PROGRAM
 
 //*************************************************************
 // Initialise
+// Events: None
 //*************************************************************
 PROGRAM Initialise
 
@@ -189,10 +190,6 @@ PROGRAM Menus
 
 If MenuName Contains jkmMenuVoice
     Perform ConfigureVoice "Configure Voice Synthesis"
-If MenuName Contains jkmMenuJoystick
-    EliteBindings *
-    Perform listeliteinput
-    InfoBox "Check:\r\n%(EliteInputCheck)\r\nBindings:\r\n%(EB_Text)\r\nDevices:\r\n%(EliteInput)", "Elite Bindings and Joystick information"
 
 END PROGRAM
 
@@ -203,13 +200,13 @@ END PROGRAM
 PROGRAM TurnOn
 
 // Print
-// Print %(Device), %(Binding), List: %(BindingList), EventName:%(EventName) Pressed:%(Pressed) Value:%(Value)
+Rem Print %(Device), %(Binding), List: %(BindingList), EventName:%(EventName) Pressed:%(Pressed) Value:%(Value)
 
 // Debug this. Use Event THPOS and move the cursor to check various points.
 Event Last
 
 If EC_DockedState IsPresent And EC_DockedState IsTrue           // Docked, don't do anything
-    End
+    End 
 
 If Binding IsOneOf %(jkm_powerbindings)                         // if power binding, alter to generic name
     Set Binding = Power
@@ -219,7 +216,7 @@ Set v = jkm_%(Binding)                                          // make up varia
 If %(v) NotPresent And EC_Hyperspace IsPresent                  // if not present, and we have a hyperspace flag (just in case)
     If EC_Hyperspace IsFalse                                    // select alternate name of hyperspace flag
         Set v = jkm_N_%(Binding)
-    Else
+    Else 
         Set v = jkm_H_%(Binding)
 
 If %(v) IsPresent And %(v) IsNotEmpty                           // we have a binding
@@ -231,7 +228,7 @@ If %(v) IsPresent And %(v) IsNotEmpty                           // we have a bin
         // print Say %(speech)  %TickCount() %(jkm_lastbindingtime)
         Static jkm_lastbinding = %(Binding)
         Static jkm_lastbindingtime = %TickCount()
-    Else
+    Else 
         Static jkm_lastbindingtime = %TickCount()
         // Print rejected due to duplicate binding in less than X second %TickCount() %(jkm_lastbindingtime)
 
@@ -239,6 +236,7 @@ END PROGRAM
 
 //*************************************************************
 // speak
+// Events: None
 //*************************************************************
 PROGRAM speak
 
@@ -260,7 +258,7 @@ Static jkm_speaking = 1
 If SpeechLog IsPresent And SpeechLog IsNotEmpty
     If SpeechOptions IsPresent And SpeechOptions Contains LogLastOnly;
         Let success = %openfile(h1,SpeechLog,create)
-    Else
+    Else 
         Let success = %openfile(h1,SpeechLog,append)
 
     If success IsTrue
@@ -269,7 +267,7 @@ If SpeechLog IsPresent And SpeechLog IsNotEmpty
 
         Expr %writeline(h1,speech)
         Expr %closefile(h1)
-    Else
+    Else 
         Print Cannot write to speech log file '%(SpeechLog)'
 
 END PROGRAM
