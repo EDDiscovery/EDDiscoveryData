@@ -1,15 +1,15 @@
 ﻿ACTIONFILE V4
 
-ENABLED False
+ENABLED True
 
 INSTALL LongDescription="This is the fourth edition of the Free Voice Control pack for EDD, for version 15+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
-INSTALL Version=4.0.0.0
+INSTALL Version=4.0.1.0
 INSTALL MinEDVersion=15.0.0.2
 INSTALL Location=Actions
 INSTALL DisableOther1=FreeVoiceControlV1
 INSTALL DisableOther2=FreeVoiceControlV2
-INSTALL DisableOther2=FreeVoiceControlV3
+INSTALL DisableOther3=FreeVoiceControlV3
 
 // The tags before the colon allow the code to select which group to enable, see OnUIMode
 
@@ -530,6 +530,8 @@ If MenuName Contains ShowHelp
     Set help += Use the FVC configuration options in the Add-Ons menu to configure the pack\r\n\r\n
     Set help += Use the Voice synthesis configuration options in the Add-Ons menu to configure the voice output\r\n\r\n
     Set help += Free Voice Control understands the following phrases at this point (changes by elite mode):\r\n\r\n
+    Set help += Current Mode is %(MajorMode)\r\n
+    Set help += Phrases:\r\n
     Perform VoiceRecognitionPhrases
     Set help += %(Phrases)
     InfoBox "%replaceescapechar(help)","Free Voice Control Help"
