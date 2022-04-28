@@ -4,8 +4,8 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 18 of the voice pack for EDD, for version 15+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=18.1.0.0
-INSTALL MinEDVersion=12.1.700.0
+INSTALL Version=18.2.0.0
+INSTALL MinEDVersion=15.0.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -48,7 +48,6 @@ EVENT PayLegacyFines, GenericResponse, "", Condition AlwaysTrue
 EVENT PVPKill, GenericResponse, "", Condition AlwaysTrue
 EVENT RedeemVoucher, GenericResponse, "", Condition AlwaysTrue
 EVENT Scanned, GenericResponse, "", Condition AlwaysTrue
-EVENT ShieldState, ShieldState, "", Condition AlwaysTrue
 EVENT ShipTargeted, ShipTargeted, "", Condition AlwaysTrue
 
 GROUP CommunityGoals
@@ -321,7 +320,7 @@ PROGRAM SetUpLanguageEnglish
 
 Static say_UILights $= "%ifnonzero(EventClass_Lights,\"Lights on Commander<;>Turning lights on\",\"Lights off Commander<;>Turning lights off\")"
 Static say_UIFireGroup $= "Switching to fire group %substring(\"-ABCDEFGHIJK\",%(EventClass_Group),1)<;>Fire Group %substring(\"-ABCDEFGHIJK\",%(EventClass_Group),1) selected"
-Static say_UIShieldsUp $= "%iftrue(EventClass_ShieldState,\"Shields Restored<;>Shields Up<;>Shields back on\",\"Alert, shields down Commander<;>Warning no shields, take evasive manoeuvres\")"
+Static say_UIShieldsUp $= "%iftrue(EventClass_ShieldState,\"Shields Restored<;>Shields Up<;>Shields back on\",\"Alert, shields down Commander<;>Warning no shields\")"
 Static say_UILandingGear $= "%iftrue(EventClass_Gear,\"Landing gear down<;>Gear down<;>Gear down Commander<;>Deploy Gear\",\"Landing gear up<;>Gear up Commander<;>Retracted gear\")"
 Static say_UIHardpointsDeployed $= "%iftrue(EventClass_Deployed,\"Deploying weapons<;>Deploying hard points<;>Weapons out\",\"Weapons away<;>Retracting Weapons<;>Retracting hard points\")"
 Static say_UIInWing $= "%iftrue(EventClass_Winged,\"In wing Commander\",\"Out of wing\")"
@@ -418,6 +417,7 @@ Static say_Disembark $= Disembarked %iftrue(EventClass_Taxi,'from Apex Taxi','%i
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanetaryPort"," planetary port %(EventStationName)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootStarPort"," Star port %(EventStationName)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planet %body(EventClass_Body,EventStarSystem,say_ss)")
+Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootFleetCarrier"," Fleet Carrier %(EventStationName)")
 
 Static say_DatalinkVoucher $= {{{Scanned datalink<;>Downloaded datalink}}}{{{, voucher received is worth<;>, that's worth}}} %hnum(EventClass_Reward,HNumList) credits from %rs(EventClass_PayeeFaction,say_ss)
 Static say_DatalinkScan $= Scanned data link, %(EventClass_MessageLocalised)
@@ -1179,20 +1179,6 @@ Else
 
 END PROGRAM
 
-//*************************************************************
-// ShieldState
-// Events: ShieldState
-//*************************************************************
-PROGRAM ShieldState
-
-If EventClass_ShieldsUp IsTrue
-    Set speech = '%phrase("%expand(say_shieldsup)","<;>","{{{","}}}")'
-Else 
-    Set speech = '%phrase("%expand(say_shieldsdown)","<;>","{{{","}}}")'
-
-Call speak(speech="%(speech)")
-
-END PROGRAM
 
 //*************************************************************
 // CommitCrime

@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the fourth edition of the Free Voice Control pack for EDD, for version 15+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
-INSTALL Version=4.0.1.0
+INSTALL Version=4.0.2.0
 INSTALL MinEDVersion=15.0.0.2
 INSTALL Location=Actions
 INSTALL DisableOther1=FreeVoiceControlV1
@@ -21,12 +21,11 @@ EVENT onVoiceInput, VoiceInput_Heat_Sink, "", VoiceInput MatchSemicolonList "Dep
 EVENT onVoiceInput, VoiceInput_Charge_ECM, "", VoiceInput MatchSemicolonList "Charge|Deploy|Fire ECM"
 EVENT onVoiceInput, VoiceInput_Hyperspace, "", VoiceInput MatchSemicolonList "Hyperspace;Jump;Warp Drive;Frameshift Drive"
 EVENT onVoiceInput, VoiceInput_Supercruise, "", VoiceInput MatchSemicolonList Supercruise
-EVENT onVoiceInput, VoiceInput_NightVision, "", VoiceInput MatchSemicolonList "Night Vision;Vision On;Vision Off;"
 EVENT onVoiceInput, VoiceInput_Deploy_Weapons, "", VoiceInput MatchSemicolonList "Deploy Weapons;Deploy Hardpoints"
 EVENT onVoiceInput, VoiceInput_Retract_Weapons, "", VoiceInput MatchSemicolonList "Retract Weapons;Retract Hardpoints;Weapons Away"
 EVENT onVoiceInput, VoiceInput_Landing_GearToggle, "", VoiceInput MatchSemicolonList "[Toggle] Landing Gear"
-EVENT onVoiceInput, VoiceInput_Landing_GearDown, "", VoiceInput MatchSemicolonList "[Landing] Gear Down"
-EVENT onVoiceInput, VoiceInput_Landing_GearUp, "", VoiceInput MatchSemicolonList "[Landing] Gear Up"
+EVENT onVoiceInput, VoiceInput_Landing_GearDown, "", VoiceInput MatchSemicolonList "[Landing] Gear Down;Lower [Landing] Gear"
+EVENT onVoiceInput, VoiceInput_Landing_GearUp, "", VoiceInput MatchSemicolonList "[Landing] Gear Up;Retract [Landing] Gear"
 EVENT onVoiceInput, VoiceInput_Deploy_Cargo_Scoop, "", VoiceInput MatchSemicolonList "Deploy|Lower Cargo Scoop"
 EVENT onVoiceInput, VoiceInput_Retract_Cargo_Scoop, "", VoiceInput MatchSemicolonList "Retract|Raise|Retract Cargo Scoop"
 EVENT onVoiceInput, VoiceInput_Toggle_Weapons_Colour, "", VoiceInput MatchSemicolonList "Toggle Weapons Colour|Color"
@@ -150,7 +149,8 @@ GROUP MainShipNormalSpace-MainShipSupercruise-MainShipDockedStarport-MainShipDoc
 
 EVENT onVoiceInput, VoiceInput_Lights_On, "", VoiceInput MatchSemicolonList "Ship Lights On"
 EVENT onVoiceInput, VoiceInput_Lights_Off, "", VoiceInput MatchSemicolonList "Ship Lights Off"
-EVENT onVoiceInput, VoiceInput_Lights_Toggle, "", VoiceInput MatchSemicolonList "Lights Toggle;Toggle [ship] lights"
+EVENT onVoiceInput, VoiceInput_Lights_Toggle, "", VoiceInput MatchSemicolonList "Ship Lights Toggle;Toggle [ship] lights"
+EVENT onVoiceInput, VoiceInput_NightVision, "", VoiceInput MatchSemicolonList "[Toggle] Night Vision;Night Vision On;Night Vision Off"
 
 GROUP MainShipLanded:Disembark
 
@@ -169,12 +169,12 @@ EVENT onVoiceInput, VoiceInput_LaunchDocked, "", VoiceInput MatchSemicolonList "
 EVENT onVoiceInput, VoiceInput_DisembarkDocked, "", VoiceInput MatchSemicolonList "Disembark Ship"
 EVENT onVoiceInput, VoiceInput_RefuelDocked, "", VoiceInput MatchSemicolonList "Refuel Ship"
 EVENT onVoiceInput, VoiceInput_RepairDocked, "", VoiceInput MatchSemicolonList "Repair Ship"
-EVENT onVoiceInput, VoiceInput_RestockDocked, "", VoiceInput MatchSemicolonList "Restock Ship"
+EVENT onVoiceInput, VoiceInput_RestockDocked, "", VoiceInput MatchSemicolonList "Restock Ship;Rearm Ship"
 EVENT onVoiceInput, VoiceInput_ReturnToSurfaceDocked, "", VoiceInput MatchSemicolonList "Return to surface;Go to hangar"
 
 GROUP OnFootPlanet:General
 
-EVENT onVoiceInput, VoiceInput_HolsterWeapon, "", VoiceInput MatchSemicolonList "Holster [Weapon]"
+EVENT onVoiceInput, VoiceInput_HolsterWeapon, "", VoiceInput MatchSemicolonList "Holster [Weapon];Retract Tool"
 EVENT onVoiceInput, VoiceInput_Grenade, "", VoiceInput MatchSemicolonList "Throw Grenade"
 EVENT onVoiceInput, VoiceInput_NextGrenade, "", VoiceInput MatchSemicolonList "Next Grenade"
 EVENT onVoiceInput, VoiceInput_PreviousGrenade, "", VoiceInput MatchSemicolonList "Previous Grenade"
@@ -187,17 +187,17 @@ EVENT onVoiceInput, VoiceInput_NextWeapon, "", VoiceInput MatchSemicolonList "Ne
 EVENT onVoiceInput, VoiceInput_PreviousWeapon, "", VoiceInput MatchSemicolonList "Previous [Weapon]"
 EVENT onVoiceInput, VoiceInput_Flashlight, "", VoiceInput MatchSemicolonList "[Toggle] Flashlight"
 EVENT onVoiceInput, VoiceInput_NightVision, "", VoiceInput MatchSemicolonList "[Toggle] Nightvision"
-EVENT onVoiceInput, VoiceInput_Shields, "", VoiceInput MatchSemicolonList "[Toggle] Shields"
+EVENT onVoiceInput, VoiceInput_Shields, "", VoiceInput MatchSemicolonList "[Toggle] Shields;Enable Shields;Disable Shields"
 EVENT onVoiceInput, VoiceInput_ClearAuthority, "", VoiceInput MatchSemicolonList "Clear Authority"
 EVENT onVoiceInput, VoiceInput_Health, "", VoiceInput MatchSemicolonList "Take Pill;Health recharge"
 EVENT onVoiceInput, VoiceInput_Battery, "", VoiceInput MatchSemicolonList "Recharge pack|battery"
 EVENT onVoiceInput, VoiceInput_FragGrenade, "", VoiceInput MatchSemicolonList "[Select] Fragment grenade"
 EVENT onVoiceInput, VoiceInput_EMPGrenade, "", VoiceInput MatchSemicolonList "[Select] Pulse grenade"
 EVENT onVoiceInput, VoiceInput_ShieldGrenade, "", VoiceInput MatchSemicolonList "[Select] Shield grenade"
-EVENT onVoiceInput, VoiceInput_Recharge, "", VoiceInput MatchSemicolonList "[Select] Recharge tool"
+EVENT onVoiceInput, VoiceInput_Recharge, "", VoiceInput MatchSemicolonList "[Select] Recharge tool; Energy Link"
 EVENT onVoiceInput, VoiceInput_CompAnalyser, "", VoiceInput MatchSemicolonList "[Select] Composition Analyser"
 EVENT onVoiceInput, VoiceInput_SuitTool, "", VoiceInput MatchSemicolonList "[Select] Suit Tool"
-EVENT onVoiceInput, VoiceInput_ToolMode, "", VoiceInput MatchSemicolonList "[Toggle] Tool Mode"
+EVENT onVoiceInput, VoiceInput_ToolMode, "", VoiceInput MatchSemicolonList "[Toggle] Tool Mode;[Change] Tool Mode"
 EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Open] Galaxy map"
 EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "Close Galaxy Map"
 EVENT onVoiceInput, VoiceInput_Open_System_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Open] System map"
@@ -207,6 +207,8 @@ EVENT onVoiceInput, VoiceInput_FocusComms_Humanoid, "", VoiceInput MatchSemicolo
 EVENT onVoiceInput, VoiceInput_QuickComms_Humanoid, "", VoiceInput MatchSemicolonList "[Toggle] Quick Communication [Panel]"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Humanoid, "", VoiceInput MatchSemicolonList "Open|Toggle|Close Insight Panel"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Taxi_Humanoid, "", VoiceInput MatchSemicolonList "Book|Call [for] Taxi|shuttle"
+EVENT onVoiceInput, VoiceInput_InsightPanel_RecallShip_Humanoid, "", VoiceInput MatchSemicolonList "Recall Ship"
+EVENT onVoiceInput, VoiceInput_InsightPanel_DismissShip_Humanoid, "", VoiceInput MatchSemicolonList "Dismiss Ship"
 EVENT onVoiceInput, VoiceInput_InsightPanel_CancelTaxi_Humanoid, "", VoiceInput MatchSemicolonList "Cancel Taxi|shuttle"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Navigation_Humanoid, "", VoiceInput MatchSemicolonList "Navigation Panel"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Contacts_Humanoid, "", VoiceInput MatchSemicolonList "Contacts Panel"
@@ -238,7 +240,7 @@ EVENT onVoiceInput, VoiceInput_EnterLift_Humanoid, "", VoiceInput MatchSemicolon
 GROUP OnFootPlanet-OnFootStation:Misc
 
 EVENT onVoiceInput, VoiceInput_Embark_Humanoid, "", VoiceInput MatchSemicolonList "Embark Ship;Board Ship"
-EVENT onVoiceInput, VoiceInput_Interact_Humanoid, "", VoiceInput MatchSemicolonList "Press;Select;Interact;Pick Up"
+EVENT onVoiceInput, VoiceInput_Interact_Humanoid, "", VoiceInput MatchSemicolonList "Press;Select;Interact;Pick Up;Collect Item"
 EVENT onVoiceInput, VoiceInput_Manage_Inventory_Humanoid, "", VoiceInput MatchSemicolonList "Manage Inventory"
 EVENT onVoiceInput, VoiceInput_Resupply_Inventory_Humanoid, "", VoiceInput MatchSemicolonList "Resupply [from] Inventory"
 EVENT onVoiceInput, VoiceInput_InteractSecondary_Humanoid, "", VoiceInput MatchSemicolonList "Press Secondary"
@@ -382,7 +384,7 @@ Rem we generate our own modes:  MainShipNormalSpace, MainShipDockedStarPort,  Ma
 Rem and None, Taxi, Multicrew, SRV, Fighter, OnFootPlanet, OnFootStation
 
 Rem pragma dumpvars *
-Print UI Mode %(EventClass_MajorMode) with %(EventClass_Mode)
+Rem Print UI Mode %(EventClass_MajorMode) with %(EventClass_Mode)
 Set mode = %(EventClass_MajorMode)
 
 If mode $== OnFoot
@@ -694,7 +696,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Landing_GearUp
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Landing] Gear Up")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Landing] Gear Up;Retract [Landing] Gear")
 //*************************************************************
 PROGRAM VoiceInput_Landing_GearUp
 
@@ -706,7 +708,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Landing_GearDown
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Landing] Gear Down")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Landing] Gear Down;Lower [Landing] Gear")
 //*************************************************************
 PROGRAM VoiceInput_Landing_GearDown
 
@@ -766,13 +768,13 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Lights_Toggle
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Lights Toggle;Toggle [ship] lights")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ship Lights Toggle;Toggle [ship] lights")
 //*************************************************************
 PROGRAM VoiceInput_Lights_Toggle
 
 Rem Autogenerated V1
 Key {ShipSpotLightToggle}
-Say "Toggling lights;Acknowledge"
+Say ""
 
 END PROGRAM
 
@@ -1090,7 +1092,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_NightVision
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Night Vision;Vision On;Vision Off;"), onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Nightvision")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Night Vision;Night Vision On;Night Vision Off"), onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Nightvision")
 //*************************************************************
 PROGRAM VoiceInput_NightVision
 
@@ -3022,7 +3024,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Interact_Humanoid
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Press;Select;Interact;Pick Up")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Press;Select;Interact;Pick Up;Collect Item")
 //*************************************************************
 PROGRAM VoiceInput_Interact_Humanoid
 
@@ -3046,7 +3048,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_HolsterWeapon
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Holster [Weapon]")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Holster [Weapon];Retract Tool")
 //*************************************************************
 PROGRAM VoiceInput_HolsterWeapon
 
@@ -3190,7 +3192,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_NightVision
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Night Vision;Vision On;Vision Off;"), onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Nightvision")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Night Vision;Night Vision On;Night Vision Off"), onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Nightvision")
 //*************************************************************
 PROGRAM VoiceInput_NightVision
 
@@ -3202,7 +3204,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Shields
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Shields")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Shields;Enable Shields;Disable Shields")
 //*************************************************************
 PROGRAM VoiceInput_Shields
 
@@ -3286,7 +3288,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Recharge
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Select] Recharge tool")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Select] Recharge tool; Energy Link")
 //*************************************************************
 PROGRAM VoiceInput_Recharge
 
@@ -3322,7 +3324,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_ToolMode
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Tool Mode")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Toggle] Tool Mode;[Change] Tool Mode")
 //*************************************************************
 PROGRAM VoiceInput_ToolMode
 
@@ -3429,13 +3431,37 @@ Say "Insight panel"
 END PROGRAM
 
 //*************************************************************
+// VoiceInput_InsightPanel_RecallShip_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Recall Ship")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_RecallShip_Humanoid
+
+Rem Autogenerated V1
+Key "[500,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#1{UI_Up} [50,500]#1{UI_Select} [50,50]#1{UI_Back}"
+Say "Recall Ship"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_DismissShip_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Dismiss Ship")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_DismissShip_Humanoid
+
+Rem Autogenerated V1
+Key "[500,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#1{UI_Up} [50,500]#1{UI_Select} [50,50]#1{UI_Back}"
+Say "Dismiss Ship"
+
+END PROGRAM
+
+//*************************************************************
 // VoiceInput_InsightPanel_Taxi_Humanoid
 // Events: onVoiceInput?(VoiceInput MatchSemicolonList "Book|Call [for] Taxi|shuttle")
 //*************************************************************
 PROGRAM VoiceInput_InsightPanel_Taxi_Humanoid
 
 Rem Autogenerated V1
-Key "[500,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#2{UI_Up} [50,50]#2{UI_Select}"
+Key "[500,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#2{UI_Up} [50,50]#1{UI_Select}"
 Say "Book Taxi Destination Panel"
 
 END PROGRAM
@@ -3813,7 +3839,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_RestockDocked
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Restock Ship")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Restock Ship;Rearm Ship")
 //*************************************************************
 PROGRAM VoiceInput_RestockDocked
 
