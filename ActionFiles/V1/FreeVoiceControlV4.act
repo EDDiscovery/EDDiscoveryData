@@ -531,6 +531,7 @@ If MenuName Contains ShowHelp
     Set help += Use Add-Ons | Manage to enable or disable this pack\r\n\r\n
     Set help += Use the FVC configuration options in the Add-Ons menu to configure the pack\r\n\r\n
     Set help += Use the Voice synthesis configuration options in the Add-Ons menu to configure the voice output\r\n\r\n
+    Set help += To use "Press to Talk" enable it in the Free Voice Control Configuration and press the right Ctrl key\r\n\r\n
     Set help += Free Voice Control understands the following phrases at this point (changes by elite mode):\r\n\r\n
     Set help += Current Mode is %(MajorMode)\r\n
     Set help += Phrases:\r\n
