@@ -4,8 +4,8 @@ ENABLED True
 
 INSTALL LongDescription="This is the fourth edition of the Free Voice Control pack for EDD, for version 15+\r\n\r\nFree voice control allows you to control Elite from your microphone.  It comes with a set of preconfigured voice commands which automatically bind to your control setup in Elite (as long as a keyboard action is associated with it).  \r\n\r\nYou can ask for landing gear to be deployed, ask for the galaxy map to be shown, adjust your power settings - all by voice!  There are over 130+ commands so far.\r\n\r\nInstall for free today!"
 INSTALL ShortDescription="Free Voice Control"
-INSTALL Version=4.0.2.0
-INSTALL MinEDVersion=15.0.0.2
+INSTALL Version=4.0.3.0
+INSTALL MinEDVersion=15.0.0.
 INSTALL Location=Actions
 INSTALL DisableOther1=FreeVoiceControlV1
 INSTALL DisableOther2=FreeVoiceControlV2
@@ -3913,14 +3913,9 @@ END PROGRAM
 //*************************************************************
 PROGRAM VoiceInput_ScanSystem
 
-Set version = %version(0)
-If version $== 9.0.0.0 Or version $== 9.0.1.0 Or version $== 9.0.2.0
-    Print EDD >= 9.0.3.0 Required to execute this key sequence
-Else 
-    Print Scan System
-    Key "!{SecondaryFire}"
-    Say "Scanning system Commander;Acknowledge;Scanner Operating"
-    Timer ScanSystemTimer,6000
+Key "!{SecondaryFire}"
+Say "Scanning system Commander;Acknowledge;Scanner Operating"
+Timer ScanSystemTimer,6000
 
 END PROGRAM
 
