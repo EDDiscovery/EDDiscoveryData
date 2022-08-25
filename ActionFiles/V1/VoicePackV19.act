@@ -2216,7 +2216,6 @@ If %(Exists) == 0
         Set P = %(SubtitlePosition2)
         DeleteVariable SubtitlePosition
 
-    print Subtitle pos set to %(P)
     Set dvar1 = 'T1,Label,"",5,5,500,30,""'
     Set dvar2 = 'T2,Label,"",5,35,500,30,""'
     Set dvar3 = 'T3,Label,"",5,65,500,30,""'
@@ -2245,7 +2244,7 @@ If Control $== Reposition Or Control $== Resize
     DialogControl SDIAG,position
     DialogControl SDIAG,size
     PersistentGlobal SubtitlePosition2 = "-,-,%(X),%(Y),-,-,-%(W),-%(H)"
-    print Subtitle pos %(SubtitlePosition2)
+
     Rem print Dialog is at %(X),%(Y),%(W),%(H)
     Set dw = %(W)
     DialogControl SDIAG,controlbounds T1
