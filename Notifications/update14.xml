@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Items>
+    <Notifications>
+
+<Entry StartUTC="2022-11-26T00:00:00Z" EndUTC="2022-12-01T23:00:00Z" Type="Popup" PointSize="16">
+<Body Lang="en" Caption="Update 14 and EDD">How Update 14 and EDD will work.
+
+As you probably know, Frontier are splitting the galaxy: Legacy galaxy and Live galaxy.
+
+EDD keeps a history of your endeavours. After this split occurs, you will have two parallel commanders, each with the same previous history, but one in the legacy galaxy and one in the live galaxy.
+
+EDD needs to keep them separate.  To do this, when a journal file is written for the legacy commander and EDD sees it, it will create a new commander called cmdrName (Legacy). You will still have a commander called cmdrName.
+
+Gameplay journal entries in legacy mode will be assigned to the legacy commander, gameplay journals entries in live mode will be assigned to the normal commander.
+
+Version 16.0 will support this.
+
+If you continue to use the previous EDDs, all gameplay, live and legacy, will be assigned to your single commander instance.
+
+Unfortunately, as of Saturday, Frontier have not disclosed to us at EDCD how we can identify a legacy game from a live game. Hopefully by Tuesday they will, and it will be simple, and the EDD team can produce a 16.0 client which supports this.  If not, I suggest you only play in live galacy until we get this information and can produce 16.0.
+
+Regards
+
+Commander Robby.
+
+</Body>
+</Entry>
+
+    </Notifications>
+</Items>
+
+
