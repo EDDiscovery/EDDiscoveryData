@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the second edition of the OBS pack for EDD, for version 16+\r\n\r\nIt writes files, at a selectable location, with information that you can use to display on the OBS screen."
 INSTALL ShortDescription="OBS Pack for ED"
-INSTALL Version=16.0.0.0
+INSTALL Version=2.0.0.0
 INSTALL MinEDVersion=16.0.0.0
 INSTALL Location=Actions
 
