@@ -7,12 +7,13 @@ INSTALL ShortDescription="OBS Pack for ED"
 INSTALL Version=2.0.0.0
 INSTALL MinEDVersion=16.0.0.0
 INSTALL Location=Actions
+INSTALL DisableOther1=obsv1.act
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
 EVENT All, Event, "", TriggerType IsOneOf onNewEntry Or TriggerType IsOneOf NewEntry
 EVENT onRefreshEnd, onRefreshEnd, "", Condition AlwaysTrue
-EVENT onMenuItem, Menus, "", MenuName Contains OBSV1
+EVENT onMenuItem, Menus, "", MenuName Contains OBSV2
 
 //*************************************************************
 // onStartup
@@ -35,8 +36,8 @@ END PROGRAM
 //*************************************************************
 PROGRAM onInstall
 
-If InstallList Contains OBSV1
-    Print Installing OBS Pack
+If InstallList Contains OBSV2
+    Print Installing OBS Pack V2
     FileDialog folder,"Enter the folder where the output files are stored",MyComputer
     If FolderName IsNotEmpty
         PersistentGlobal OBSFilePath = %(FolderName)
@@ -55,7 +56,7 @@ END PROGRAM
 //*************************************************************
 PROGRAM Initialise
 
-MenuItem OBSV1Help,help,"OBS"
+MenuItem OBSV2Help,help,"OBS"
 
 END PROGRAM
 
@@ -162,7 +163,7 @@ END PROGRAM
 
 //*************************************************************
 // Menus
-// Events: onMenuItem?(MenuName Contains OBSV1)
+// Events: onMenuItem?(MenuName Contains OBSV2)
 //*************************************************************
 PROGRAM Menus
 

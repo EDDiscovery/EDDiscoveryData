@@ -6,6 +6,7 @@ INSTALL LongDescription="This is the first edition of the OBS pack for EDD, for 
 INSTALL ShortDescription="OBS Pack for ED"
 INSTALL Version=1.1.0.0
 INSTALL MinEDVersion=8.1.0.0
+INSTALL MaxEDInstallVersion=15.10.0.0
 INSTALL Location=Actions
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
