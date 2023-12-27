@@ -378,8 +378,8 @@ Static say_BookTaxi $= Confirmed Commander, you book an Apex taxi to %star(Event
 Static say_CancelTaxi $= Confirmed taxi cancelled Commander, refund %hnum(EventClass_Refund,HNumList) credits
 Static say_CancelDropship $= Cancelled drop ship commander, stand down.<;> Close call commander, good job you cancelled!
 
-Static say_CargoDepot $= "%ifequal(EventClass_UpdateEnum,\"Collect\",\"{{{Collected %(EventClass_Count) of %(EventClass_FriendlyCargoType), leaving \")"
-Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"{{{Delivered %(EventClass_Count) of %(EventClass_FriendlyCargoType), leaving \")"
+Static say_CargoDepot $= "%ifequal(EventClass_UpdateEnum,\"Collect\",\"{{{Collected %(EventClass_Count) of %(EventClass_FriendlyCargoType), leaving }}}\")"
+Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"{{{Delivered %(EventClass_Count) of %(EventClass_FriendlyCargoType), leaving }}}\")"
 Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"WingUpdate\",\"Wing update on cargo mission \")"
 Static say_CargoDepot $+= "%(EventClass_ItemsToGo) items left, %round(EventClass_ProgressPercent,1,\"0.#\") percent."
 
