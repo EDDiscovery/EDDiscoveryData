@@ -229,6 +229,68 @@ ErrorIf "F", %roundscale(0.0000000001,3,"0.###",10,2.0) $!= 0.0000000002
 ErrorIf "F", %eval(10+10) != 20
 ErrorIf "F", %eval(10+a10,try) $!= Nan
 
+set v1 = jim 1
+set v2 = "Fred,\"Jim 1\",Sheila  "
+if v1 IsOneOf "%(v2)"
+    print IsOneOf 1 Passed
+else
+    ErrorIf "OneOf", Condition AlwaysTrue
+
+if v1 NotOneOf "%(v2)"
+    ErrorIf "NotOneOf", Condition AlwaysTrue
+else
+    print NotOneOf 1 Passed
+
+
+set v3 = "notjim,\"Jim 1\""
+
+if v3 AnyOfAny "%(v2)"
+    print Is AnyOfAny Passed
+else
+    ErrorIf "AnyOfAny", Condition AlwaysTrue
+
+if v3 NotAnyOfAny "%(v2)"
+    ErrorIf "NotAnyOfAny", Condition AlwaysTrue
+else
+    print NotAnyOfAny Passed
+
+
+set v4 = jim
+
+if v4 MatchSemicolon "sheila ;george;jim"
+    print MatchSemicolon Passed
+else
+    ErrorIf "MatchSemicolon", Condition AlwaysTrue
+
+if v4 NotMatchSemicolon "sheila ;george;jim"
+    ErrorIf "NotMatchSemicolon", Condition AlwaysTrue
+else
+    print NotMatchSemicolon Passed
+
+
+set v5 = Set phasers to stun
+
+if v5 MatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
+    print MatchSemicolonList Passed
+else
+    ErrorIf "MatchSemicolonList", Condition AlwaysTrue
+
+if v5 NotMatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
+    ErrorIf "NotMatchSemicolonList", Condition AlwaysTrue
+else
+    print NotMatchSemicolonList Passed
+
+if v5 MatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
+    print MatchCommaList Passed
+else
+    ErrorIf "MatchCommaList", Condition AlwaysTrue
+
+if v5 NotMatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
+    ErrorIf "NotMatchCommaList", Condition AlwaysTrue
+else
+    print NotMatchCommaList Passed
+
+
 Print Test Complete %datetimenow(longdatetime;culture:en-GB)
 
 END PROGRAM
