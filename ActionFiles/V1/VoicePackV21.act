@@ -978,7 +978,6 @@ If InstallList Contains VoicePack
     Call SetUpLanguage
     Say %(say_install)
 Call Initialise
-Call Initialise
 
 END PROGRAM
 
@@ -1549,7 +1548,7 @@ If EventClass_Status $== ""
     Else 
         Let online = %(EventClass_OnlineCount)
         Let offline = %(EventClass_OfflineCount)
-        Let totalother = %(EventClass_StatusListCount) - %(offline) - %(online)
+        Let totalother = %(EventClass_OtherCount)
 
         Static say_FriendsSummation $= "%ifnonzero(online,'%(online) %ifgt(online,\'1\',\'friends are\',\'friend is\') online.') "
         Static say_FriendsSummation $+= "%ifnonzero(offline,'%(offline) %ifgt(offline,\'1\',\'friends\',\'friend\') have gone offline.') "
