@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 21 of the voice pack for EDD, for version 17.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=21.0.1.0
+INSTALL Version=21.0.2.0
 INSTALL MinEDVersion=17.0.100.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -798,8 +798,16 @@ Static say_tx4 $= " Cr ; Credits "
 Static say_tx5 $= "Mk. ;Mark "
 Static say_tx6 $= " CMDRs; Commanders"
 Static say_tx7 $= " cmdr; Commanders"
-Static say_tx8 $= "O7 ; Salute "
+Static say_tx8 $= "O7; Salute "
 Static say_tx9 $= " O7; , Salute"
+Static say_tx10 $= "R;[^0-9]07; Salute, "
+Static say_tx11 $= "R;\s+07; Salute, "
+
+rem print Replace Test
+rem print %replacevar("Hello O7","say_tx")
+rem print %replacevar("O7","say_tx")
+rem print %replacevar("07","say_tx")
+rem print %replacevar(" 907","say_tx")
 
 // Phonemes
 
@@ -1110,9 +1118,9 @@ If EventClass_Channel $!= npc                                   // non NPC, is s
         // Print for %(from) chose %(voice) at pitch %(pitchshift) rate %(rate)
 
         If TextVoiceEffects IsPresent
-            Set effects = %(TextVoiceEffects),PitchShift=%(pitchshift)
+            Set effects = NoGlobalEffects=1,%(TextVoiceEffects),PitchShift=%(pitchshift)
         Else 
-            Set effects = PitchShift=%(pitchshift)
+            Set effects = NoGlobalEffects=1,PitchShift=%(pitchshift)
 
         Set speech = '%(EventClass_MessageLocalised)'
 
@@ -1174,9 +1182,9 @@ Else
     Set speech = %(EventClass_MessageLocalised)
 
     If NPCVoiceEffects IsPresent
-        Set effects = %(NPCVoiceEffects),PitchShift=%(pitchshift)
+        Set effects = NoGlobalEffects=1,%(NPCVoiceEffects),PitchShift=%(pitchshift)
     Else 
-        Set effects = PitchShift=%(pitchshift)
+        Set effects = NoGlobalEffects=1,PitchShift=%(pitchshift)
 
     Set volume = %ExistsDefault(NPCVoiceVolume,'-999')
 
@@ -2310,7 +2318,7 @@ PROGRAM speak
 
 Rem required: speech
 Rem optional: Volume, QueueLimit, Priority, FinishEvent, Wait, Voice, PrefixSound, PostfixSound, MixSound, Rate
-Rem EffectVars= no global sound effects but these in the list: Effect=value,effect=value etc.
+Rem EffectVars present: Add these effects in
 
 Rem Print SAY: %(speech)
 
@@ -2323,12 +2331,9 @@ If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
 // if QueueLimit IsPresent
 // print Queued %(QueueLimit) for %(speech)
 
-Rem Print SAY: %(speech)
+Print SAY: %(speech)
 
-If EffectVars IsPresent And EffectVars IsNotEmpty               // if we have effect vars and its not empty, pass them to say, stopping the global sound effects
-    Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%(EffectVars)" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
-Else                                                            // don't give it so it applies the standard global SoundEffects variable
-    Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
+Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%existsdefault(EffectVars,'')" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 
 Rem print Say Said %(SaySaid) %(speech)
 If SpeechControls IsPresent And SpeechControls Contains Subtitles; And SaySaid $!= !LIMIT
