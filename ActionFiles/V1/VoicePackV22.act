@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 22 of the voice pack for EDD, for version 17.2+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=22.0.0.0
+INSTALL Version=22.0.1.0
 INSTALL MinEDVersion=17.2.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -1199,7 +1199,7 @@ Else
 
     Set volume = %ExistsDefault(NPCVoiceVolume,'-999')
 
-    Print NPC Sound effects %(effects) : rate %(rate) : voice %(voice) : volume %(volume)
+    // Print NPC Sound effects %(effects) : rate %(rate) : voice %(voice) : volume %(volume)
     // we override the SoundEffects global by providing at least on speech effect, PitchShift, or the effect vars if present
     Call speak(speech="%(speech)",Volume="%(volume)",EffectVars="%(effects)",Voice="%(voice)",PrefixSound="%(presound)",PostfixSound="%(postsound)",MixSound="%(mixsound)",Rate="%(rate)",QueueLimit="5000")
 
@@ -2342,7 +2342,7 @@ If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
 // if QueueLimit IsPresent
 // print Queued %(QueueLimit) for %(speech)
 
-Print SAY: %(speech)
+// Print SAY: %(speech)
 
 Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%existsdefault(EffectVars,'')" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 
