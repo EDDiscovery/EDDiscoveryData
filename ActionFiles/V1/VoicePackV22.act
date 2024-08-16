@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 22 of the voice pack for EDD, for version 17.2+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=22.0.1.0
+INSTALL Version=22.0.2.0
 INSTALL MinEDVersion=17.2.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -22,10 +22,10 @@ INSTALL DisableOther12=VoicePackV14
 INSTALL DisableOther13=VoicePackV15
 INSTALL DisableOther14=VoicePackV16
 INSTALL DisableOther15=VoicePackV17
-INSTALL DisableOther15=VoicePackV18
-INSTALL DisableOther15=VoicePackV19
-INSTALL DisableOther16=VoicePackV20
-INSTALL DisableOther17=VoicePackV21
+INSTALL DisableOther16=VoicePackV18
+INSTALL DisableOther17=VoicePackV19
+INSTALL DisableOther18=VoicePackV20
+INSTALL DisableOther19=VoicePackV21
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -362,7 +362,7 @@ Static say_shutdown $= Bye Bye Commander, till next time<;>Elite Dangerous Disco
 Static say_refresh $= 'Welcome %existsdefault(RK_Class_Combat,"") Commander %(Commander), %ifzero(LAST_OnFoot,"%ifnonzero(LAST_IsSRV,\"driving\",\"flying\") a %ship(LAST_ShipType)") with %hnum(LED_Credits,HNumList) credits'
 
 Static say_ApproachBody $= Approaching Body %body(EventClass_Body,EventStarSystem,say_ss)<;>Body %body(EventClass_Body,EventStarSystem,say_ss) in range Commander<;>Ship approaching Body %body(EventClass_Body,EventStarSystem,say_ss), Commander
-Static say_ApproachBodyWarning $= Warning commander, High Gravity Body, %hnum(S_Body_gravity,HNumList) Gee, body name %body(EventClass_Body,EventStarSystem,say_ss), Proceed with caution<;>Warning! %body(EventClass_Body,EventStarSystem,say_ss) has High Gravity, %hnum(S_Body_gravity,HNumList) Gee, Proceed with caution
+Static say_ApproachBodyWarning $= Warning commander, High Gravity Body, %hnum(S_Body_gravityg,HNumList) Gee, body name %body(EventClass_Body,EventStarSystem,say_ss), Proceed with caution<;>Warning! %body(EventClass_Body,EventStarSystem,say_ss) has High Gravity, %hnum(S_Body_gravityg,HNumList) Gee, Proceed with caution
 Static say_ApproachSettlement $= Approaching %replace(EventClass_Name,'+','')<;>Settlement %replace(EventClass_Name,'+','') approaching
 Static say_AfmuRepairs $= Repaired module %(EventClass_ModuleLocalised) to %round(EventClass_Health,0,0) percent
 Static say_AppliedToSquadron $= Applied to Squadron %(EventClass_Name)
