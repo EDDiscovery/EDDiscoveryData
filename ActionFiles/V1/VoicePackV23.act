@@ -2,10 +2,10 @@
 
 ENABLED True
 
-INSTALL LongDescription="This is the version 21 of the voice pack for EDD, for version 17.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
+INSTALL LongDescription="This is the version 23 of the voice pack for EDD, for version 18.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=21.0.3.0
-INSTALL MinEDVersion=17.0.100.0
+INSTALL Version=23.0.0.0
+INSTALL MinEDVersion=18.1.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -22,9 +22,11 @@ INSTALL DisableOther12=VoicePackV14
 INSTALL DisableOther13=VoicePackV15
 INSTALL DisableOther14=VoicePackV16
 INSTALL DisableOther15=VoicePackV17
-INSTALL DisableOther15=VoicePackV18
-INSTALL DisableOther15=VoicePackV19
-INSTALL DisableOther16=VoicePackV20
+INSTALL DisableOther16=VoicePackV18
+INSTALL DisableOther17=VoicePackV19
+INSTALL DisableOther18=VoicePackV20
+INSTALL DisableOther19=VoicePackV21
+INSTALL DisableOther20=VoicePackV22
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -32,7 +34,7 @@ INSTALL OtherFile3=npcpostfix.mp3;Sounds
 
 GROUP Combat
 
-EVENT Bounty, GenericResponse, "", Condition AlwaysFalse
+EVENT Bounty, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyAmmo, GenericResponse, "", Condition AlwaysTrue
 EVENT CapShipBond, GenericResponse, "", Condition AlwaysTrue
 EVENT CockpitBreached, GenericResponse, Volume=100, Condition AlwaysTrue
@@ -309,6 +311,10 @@ EVENT UIGlideMode, GenericResponseUI, "", EventClass_EventRefresh IsFalse And Ev
 EVENT UISelectedWeapon, SelectedWeapon, "", EventClass_EventRefresh IsFalse
 EVENT UIMusic, Music, "", EventClass_EventRefresh IsFalse
 
+GROUP PanelEvents
+
+EVENT onSurveyor, SurveyorPanel, "", Condition AlwaysTrue
+
 GROUP Other
 
 EVENT onEDSMSync, EDSMSync, "", Condition AlwaysTrue
@@ -361,13 +367,13 @@ Static say_shutdown $= Bye Bye Commander, till next time<;>Elite Dangerous Disco
 Static say_refresh $= 'Welcome %existsdefault(RK_Class_Combat,"") Commander %(Commander), %ifzero(LAST_OnFoot,"%ifnonzero(LAST_IsSRV,\"driving\",\"flying\") a %ship(LAST_ShipType)") with %hnum(LED_Credits,HNumList) credits'
 
 Static say_ApproachBody $= Approaching Body %body(EventClass_Body,EventStarSystem,say_ss)<;>Body %body(EventClass_Body,EventStarSystem,say_ss) in range Commander<;>Ship approaching Body %body(EventClass_Body,EventStarSystem,say_ss), Commander
-Static say_ApproachBodyWarning $= Warning commander, High Gravity Body, %hnum(S_Body_gravity,HNumList) Gee, body name %body(EventClass_Body,EventStarSystem,say_ss), Proceed with caution<;>Warning! %body(EventClass_Body,EventStarSystem,say_ss) has High Gravity, %hnum(S_Body_gravity,HNumList) Gee, Proceed with caution
+Static say_ApproachBodyWarning $= Warning commander, High Gravity Body, %hnum(S_Body_gravityg,HNumList) Gee, body name %body(EventClass_Body,EventStarSystem,say_ss), Proceed with caution<;>Warning! %body(EventClass_Body,EventStarSystem,say_ss) has High Gravity, %hnum(S_Body_gravityg,HNumList) Gee, Proceed with caution
 Static say_ApproachSettlement $= Approaching %replace(EventClass_Name,'+','')<;>Settlement %replace(EventClass_Name,'+','') approaching
 Static say_AfmuRepairs $= Repaired module %(EventClass_ModuleLocalised) to %round(EventClass_Health,0,0) percent
 Static say_AppliedToSquadron $= Applied to Squadron %(EventClass_Name)
 Static say_AsteroidCracked $= Cracked Asteroid %(EventClass_Body) Commander<;>Boom!<;>%(EventClass_Body) cracked Commander
 
-Static say_Bounty $= "Bounty for that ship is %hnum(EventClass_TotalReward,HNumList) credits, faction was %rs(\"%alt(EventClass_VictimFactionLocalised,EventClass_VictimFaction)\",say_ss)"
+Static say_Bounty $= "Bounty awarded %ifnotempty(EventClass_TargetLocalised, 'for %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Pilot %(EventClass_PilotName_Localised), ')is %hnum(EventClass_TotalReward,HNumList) credits, faction was %rv(EventClass_VictimFactionLocalised,say_ss)"
 Static say_BuyAmmo $= Ammunition bought, %(EventClass_Cost) credits<;>Rearming cost %(EventClass_Cost) credits
 Static say_BuyExplorationData $= Bought map of star system %star(EventClass_System,say_ss) for %(EventClass_Cost) credits
 Static say_BuyDrones $= Bought %(EventClass_Count) %(EventClass_Type) at a total cost of %(EventClass_TotalCost) credits
@@ -387,18 +393,18 @@ Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"Delivere
 Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"WingUpdate\",\"Wing update on cargo mission, \")"
 Static say_CargoDepot $+= "%(EventClass_ItemsToGo) items left, %round(EventClass_ProgressPercent,1,\"0.#\") percent."
 
-Static say_CapShipBond $= Reward for capital ship combat from faction %rs(EventClass_AwardingFaction,say_ss) against %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) credits
+Static say_CapShipBond $= Reward for capital ship combat from faction %rv(EventClass_AwardingFaction_Localised,say_ss) against %rv(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) credits
 Static say_CockpitBreached $= Alert, Alert, Cockpit breached. Head for station now<;>Emergency, loss of Cockpit Canopy, abort<;>Emergency, Cockpit Canopy is breached
 Static say_CollectCargo $= "{{{Picked up<;>Collected<;>Scooped up}}} %(EventClass_FriendlyType) %iftrue(EventClass_Stolen,\", Warning Commander, this cargo is stolen\")"
-Static say_CommitCrimeFine $= Fine committed Commander, %sc(EventClass_CrimeType) on %rs(EventClass_Faction,say_ss), cost %hnum(EventClass_Fine,HNumList) credits
-Static say_CommitCrimeBounty $= Crime committed Commander, %sc(EventClass_CrimeType) on %rs(EventClass_Faction,say_ss), bounty on you is %hnum(EventClass_Bounty,HNumList) credits
+Static say_CommitCrimeFine $= Fine committed Commander, Crime is %(EventClass_CrimeType), %ifnotempty(EventClass_Victim,' on %(EventClass_VictimLocalised), ')against faction %rv(EventClass_Faction,say_ss), cost %hnum(EventClass_Fine,HNumList) credits
+Static say_CommitCrimeBounty $= Crime committed Commander, %(EventClass_CrimeType),%ifnotempty(EventClass_Victim,' on %(EventClass_VictimLocalised), ')against faction %rv(EventClass_Faction,say_ss), bounty on you is %hnum(EventClass_Bounty,HNumList) credits
 Static say_CommunityGoal $= Current community goals are %(EventClass_CommunityGoalList)
 Static say_CommunityGoalJoin $= Joining the community goal %sc(EventClass_Name), located at system %star(EventClass_System,say_ss)
 Static say_CommunityGoalReward $= Community goal %sc(EventClass_Name), located at system %star(EventClass_System,say_ss), rewarded you with %hnum(EventClass_Reward,HNumList) credits
 Static say_CommunityGoalDiscard $= Opting out of community goal %sc(EventClass_Name), located at system %star(EventClass_System,say_ss)
 Static say_CrewAssign $= "Crew member %(EventClass_Name), %ifequal(EventClass_Role,\"Active\",\" reporting for duty\",\" placed on %(EventClass_Role)\")"
 Static say_CrewFire $= {{{Crew member %(EventClass_Name) }}}fired<;>dismissed<;>is paid off, goodbye sucker
-Static say_CrewHire $= "{{{Hired new crew member %(EventClass_Name)%ifnotempty(EventClass_Faction,\", of faction %rs(EventClass_Faction,say_ss)\"), rank %(EventClass_CombatRank), costing %(EventClass_Cost) credits.}}} Welcome to the team<;> Welcome onboard"
+Static say_CrewHire $= "{{{Hired new crew member %(EventClass_Name)%ifnotempty(EventClass_Faction,\", of faction %rv(EventClass_Faction,say_ss)\"), rank %(EventClass_CombatRank), costing %(EventClass_Cost) credits.}}} Welcome to the team<;> Welcome onboard"
 
 Static say_ChangeCrewRole $= Crew role changed to %(EventClass_Role)<;>Swapped control to %(EventClass_Role)
 Static say_CrewMemberJoins $= Crew member %(EventClass_Crew) joins us on the %(EventShip_ShortName), Welcome Commander<;>Welcome Commander %(EventClass_Crew) to our ship
@@ -424,7 +430,7 @@ Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootStarPort"," Star port 
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planet %body(EventClass_Body,EventStarSystem,say_ss)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootFleetCarrier"," Fleet Carrier %(EventStationName)")
 
-Static say_DatalinkVoucher $= {{{Scanned datalink<;>Downloaded datalink}}}{{{, voucher received is worth<;>, that's worth}}} %hnum(EventClass_Reward,HNumList) credits from %rs(EventClass_PayeeFaction,say_ss)
+Static say_DatalinkVoucher $= {{{Scanned data link<;>Downloaded data link}}}{{{, voucher received is worth<;>, that's worth}}} %hnum(EventClass_Reward,HNumList) credits from faction %rv(EventClass_PayeeFaction,say_ss)
 Static say_DatalinkScan $= Scanned data link, %(EventClass_MessageLocalised)
 Static say_DataScanned $= Scanned %sc(EventClass_Type)
 Static say_DiscoveryScan $= "{{{Scanned System, %(EventClass_Bodies)<;>System Scan reveals %(EventClass_Bodies)}}}{{{ %ifeq(EventClass_Bodies,1,\"body\",\"bodies\") }}}{{{found<;>detected}}}{{{ Commander<;>}}}"
@@ -486,7 +492,7 @@ Static say_EndCrewSession $= "{{{Crew session ended<;>Ending crew session}}}{{{ 
 Static say_EjectCargo $= "%iftrue(EventClass_Abandoned,\"Abandon\",\"Eject\") %(EventClass_Count) units of %(EventClass_FriendlyType) to space<;>Ejected %(EventClass_FriendlyType)<;>Dumped %(EventClass_FriendlyType)"
 
 Static say_FetchRemoteModule $= Module %sc(EventClass_StoredItemLocalised) being retrieved, cost %hnum(EventClass_TransferCost,HNumList) credits
-Static say_FactionKillBond $= Reward for combat from faction %rs(EventClass_AwardingFaction_Localised,say_ss) against %rs(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) credits
+Static say_FactionKillBond $= Reward for combat from faction %rv(EventClass_AwardingFaction_Localised,say_ss) against %rv(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) credits
 
 Static say_Friends $= "%ifEqual(EventClass_Status,\"Offline\",\"Friend \")%ifEqual(EventClass_Status,\"Online\",\"Friend \")%(EventClass_Name) %ReplaceVar(EventClass_Status,say_friendsub)"
 Static say_friendsub1 $= Added;has been added as a friend
@@ -502,8 +508,14 @@ Static say_FighterDestroyed $= Alert, Commander the fighter has been destroyed<;
 Static say_FSSAllBodiesFound $= All bodies found<;>Congratulations, all bodies found<;> System scanned<;>Scan Complete Commander
 Static say_FSSDiscoveryScan $= "%ifEQ(EventClass_Progress,100,\"\", \"Scanned %(EventClass_BodyCount) bodies, progress is %round(EventClass_Progress,0,0) percent<;>Scanned %(EventClass_BodyCount) bodies, %round(EventClass_Progress,0,0) percent\")"
 
-Static say_FSSSignalDiscovered1 $= {{{Detected<;>Discovered<;>Found}}} %ifcontains(EventClass_Signals[1]_SignalName,'USS_','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
-Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawningFaction_Localised)')
+Static say_FSSSignalDiscovered1 $= {{{Detected <;>Discovered <;>Found }}} 
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Carrier','Carrier, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Station','Station, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Installation','Installation, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Megaship','Mega Ship, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Titan','Titan, ')
+Static say_FSSSignalDiscovered1 $+= %ifcontains(EventClass_Signals[1]_ClassOfSignal,'USS','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
+Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', of faction %rv(EventClass_Signals[1]_SpawningFaction_Localised,say_ss)')
 Static say_FSSSignalDiscoveredN $= Detected %(EventClass_SignalsCount) signals
 
 Static say_EngineerProgressRank $= Congratulations, you've made rank %(EventClass_Engineers[1]_Rank), with Engineer %(EventClass_Engineers[1]_Engineer)
@@ -528,7 +540,7 @@ Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{Refueled<;>Scooped}}}{
 Static say_FSDJump $= "Arrived at %star(EventClass_StarSystem,say_ss), %(visit) jump distance %round(EventClass_JumpDist,1,0.#) light years"
 Static say_FSDJumpVisit $= First visit, ;Second visit, ;Third Visit, ;Fourth visit, ;Fifth visit, ;Sixth Visit,;
 Static say_FSDJumpFuel $= , Fuel used %round(EventClass_FuelUsed,1,0.#) tons
-Static say_FSDJumpFaction $= ", System controlled by %rs(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"in state %(EventClass_FactionState)\")')"
+Static say_FSDJumpFaction $= ", System controlled by %rv(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"in state %(EventClass_FactionState)\")')"
 Static say_FSDJumpFuelWarning $= , Alert Commander, fuel level is low<;>, Fuel level is low<;>, Warning, running low on gas here
 
 Static say_HullDamageCritical $= Alert, Alert, Damage is critical at %(health) %
@@ -546,7 +558,7 @@ Static say_InterdictionFailureNPC $= Failed to inderdict N P C %(EventClass_Inte
 Static say_Interdicted $= %iftrue(EventClass_IsPlayer,say_InterdictedPlayer) %iffalse(EventClass_IsPlayer,say_InterdictedNPC)
 Static say_InterdictedPlayer $= Human Commander Alert!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdiction by %(EventClass_CombatRank) Commander %(EventClass_Interdictor)
 Static say_InterdictedNPC $= N P C Alert!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdiction by %(EventClass_Interdictor_Localised), %ifnotempty(EventClass_Faction,say_InterdictedFaction)
-Static say_InterdictedFaction $= of faction %rs(EventClass_Faction,say_ss)
+Static say_InterdictedFaction $= of faction %rv(EventClass_Faction,say_ss)
 Static say_InterdictedSubmitted $= Submitted to
 
 Static say_InvitedToSquadron $= Invited to Squadron %(EventClass_Name)<;>Squadron %(EventClass_Name) wants you to join them Commander.
@@ -577,20 +589,22 @@ Static say_MarketSell $= Sold %(EventClass_Count) units of %(EventClass_Type_Loc
 Static say_MiningRefined $= Refined %(EventClass_FriendlyType)<;>%(EventClass_FriendlyType) Refined
 
 Static say_MissionAbandoned $= %sc(EventClass_Name) has been abandoned<;>Abandoned mission %sc(EventClass_Name)<;>Aborted mission %sc(EventClass_Name)
-Static say_MissionAccepted $= "%sc(EventClass_Name) accepted %ifnotempty(EventClass_Faction,\"from faction %rs(EventClass_Faction,say_ss),\")"
+
+Static say_MissionAccepted $= "%(EventClass_LocalisedName) accepted %ifnotempty(EventClass_Faction,\"from faction %rv(EventClass_Faction,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationSystem,\" Mission destination is %star(EventClass_DestinationSystem,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationStation,\" station %(EventClass_DestinationStation),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Target,\" target is %(EventClass_TargetLocalised),\")"
-Static say_MissionAccepted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rs(EventClass_TargetFaction,say_ss) faction,\")"
+Static say_MissionAccepted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rv(EventClass_TargetFaction,say_ss) faction,\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_PassengerType,\"taking %(EventClass_PassengerCount) passengers of type %(EventClass_PassengerType).\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Expiry,\" %datedeltaformatnow(EventClass_Expiry,'This mission expires in [d day{s|} ][h hour{s|} ][Md minute{s|} ][Sh second{s|}].','This mission expired on [D]',longdatetime)\")"
 
-Static say_MissionCompleted $= "{{{Congratulations, <;>Well done Commander, <;>Good Job, <;>Splendid! }}}%sc(EventClass_Name) completed %ifnotempty(EventClass_Faction,\"from faction %rs(EventClass_Faction,say_ss), \")"
+Static say_MissionCompleted $= "{{{Congratulations, <;>Well done Commander, <;>Good Job, <;>Splendid! }}}Mission %(EventClass_LocalisedName) completed %ifnotempty(EventClass_Faction,\"from faction %rv(EventClass_Faction,say_ss), \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Target,\" target was %(EventClass_TargetLocalised), \")"
-Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rs(EventClass_TargetFaction,say_ss) faction, \")"
+Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"of %rv(EventClass_TargetFaction,say_ss) faction, \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Reward,\"Reward is %hnum(EventClass_Reward,HNumList) credits\")"
-Static say_MissionFailed $= %sc(EventClass_Name) has failed<;>Failed mission %sc(EventClass_Name)
-Static say_MissionRedirected $= %sc(EventClass_Name) has had it's destination changed to %(EventClass_NewDestinationStation) in system %(EventClass_NewDestinationSystem)<;>New destination for %sc(EventClass_Name), go to %(EventClass_NewDestinationStation) in system %(EventClass_NewDestinationSystem)
+
+Static say_MissionFailed $= Mission %(EventClass_LocalisedName) has failed<;>Failed mission %sc(EventClass_Name)
+Static say_MissionRedirected $= Mission %(EventClass_LocalisedName) has had it's destination changed to %(EventClass_NewDestinationStation) in system %(EventClass_NewDestinationSystem)<;>New destination for mission %(EventClass_LocalisedName), go to %(EventClass_NewDestinationStation) in system %(EventClass_NewDestinationSystem)
 
 Static say_ModuleBuy $= "Module %sc(EventClass_BuyItemLocalised) fitted%ifnonzero(EventClass_BuyPrice,', cost %hnum(EventClass_BuyPrice,HNumList) credits'), on ship %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \")%sc(EventClass_Slot)."
 // when new func system comes in, fix this back to hnum.. condition execution
@@ -629,7 +643,7 @@ Static say_PowerplayVoucher $= "Reward for Power Play combat from %(EventClass_P
 Static say_PVPKill $= Congratulations, that scum %(EventClass_CombatRank) Commander %(EventClass_Victim) is pushing up the weeds now in heaven or hell<;>%(EventClass_CombatRank) Commander %(EventClass_Victim) despatched to another world<;>%(EventClass_CombatRank) Commander %(EventClass_Victim) never knew what was coming, sucker
 
 Static say_RebootRepair $= "Rebooting and repairing modules %expandarray(EventClass_FriendlySlots,\", \",0,20,splitcaps)"
-Static say_RedeemVoucher $= "Redeeming %(EventClass_Type) worth %hnum(EventClass_Amount,HNumList) credits, %ifnotempty(EventClass_Faction,\" from factions %sc(EventClass_Faction)\")%ifnonzero(EventClass_BrokerPercentage,\", with a commission to the broker of %(EventClass_BrokerPercentage) percent\")"
+Static say_RedeemVoucher $= "Redeeming %(EventClass_Type) worth %hnum(EventClass_Amount,HNumList) credits, %ifnotempty(EventClass_Faction,' from factions %rv(EventClass_Faction,say_ss)')%ifnonzero(EventClass_BrokerPercentage,', with a commission to the broker of %(EventClass_BrokerPercentage) percent')"
 
 Static say_Repair $= {{{Repaired %(EventClass_ItemLocalised) Commander<;>%(EventClass_ItemLocalised) repaired}}}. Cost is %hnum(EventClass_Cost,HNumList) credits
 Static say_RepairDrone $= Drone Repaired %round(EventClass_HullRepaired,1,0.#) hull, %round(EventClass_CockpitRepaired,1,0.#) cockpit, %round(EventClass_CorrosionRepaired,1,0.#) corrosion
@@ -678,7 +692,7 @@ Static say_ScanStarRadius $= , Radius %roundnz(radius,2,0.#,4) sols
 Static say_ScanStarAge $= , Age %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNumList) years
 
 // always said on planet
-Static say_ScanPlanet $= "Scanned %Body(EventClass_BodyName,EventStarSystem,say_ss) %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")"
+Static say_ScanPlanet $= "Scanned %Body(EventClass_BodyName,EventStarSystem,say_ss) %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rv(EventClass_PlanetTypeText,say_ss)\")"
 // gated on ScanPlanetBasicInformationDisable
 Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) credits\")"
 Static say_ScanPlanetDistance $= , Distance %hnum(EventClass_DistanceFromArrivalLS,HNumList) light seconds
@@ -720,7 +734,7 @@ Static say_SharedBookmarkToSquadron $= Bookmark shared with Squadron %(EventClas
 Static say_ShipTargeted1 $+= Pilot is %(EventClass_PilotName_Localised), %(EventClass_PilotRank), in a %ship(EventClass_Ship_Localised)
 Static say_ShipTargeted2 $+= Shield %round(EventClass_ShieldHealth,1,0.#) per cent, Hull at %round(EventClass_HullHealth,1,0.#) per cent
 Static say_ShipTargeted3 $+= "%ifeq(levelscanned,0,\"Targetted %(EventClass_PilotName_Localised), \")"
-Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','Ship is %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Bounty %hnum(EventClass_Bounty,HNumList) credits') %ifnotempty(EventClass_Faction,', Faction %(EventClass_Faction)')
+Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','Ship is %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Bounty %hnum(EventClass_Bounty,HNumList) credits') %ifnotempty(EventClass_Faction,', Faction %rv(EventClass_Faction,say_ss)')
 
 Static say_SRVDestroyed $= {{{Boom<;>Blast<;>Kerpow}}} Your SRV is destroyed. Returning to Mothership
 Static say_SystemsShutdown $= {{{Alert, <;>Danger, <;>Be prepared, }}}{{{Enemy vessel<;>Other ship}}} has disabled the ship
@@ -781,6 +795,25 @@ Static say_WonATrophyForSquadron $= Congratulations, you've won a trophy for Squ
 
 Static say_EDSM $= EDSM First discovery
 
+// VP30, surveyor
+// The list of Event Names from surveyor (encoded in say_surveyor_<trigger>) is in the Action Document under onSurveyor event
+// only included the ones which add information over the basic scan output
+Static say_surveyor_prefixphrase $= "Surveyor reports for body %(BodyShortName), "
+Static say_surveyor_Discovery $= "A Discovery, %(data), "
+Static say_surveyor_MiningSignals $= "Mining Signals, "
+Static say_surveyor_GeoSignals $= "Geological Signals, "
+Static say_surveyor_BioSignals $= "Biological Signals, "
+Static say_surveyor_ThargoidSignals $= "Thargoid Signals, "
+Static say_surveyor_GuardianSignals $= "Guardian Signals, "
+Static say_surveyor_HumanSignals $= "Human Signals, "
+Static say_surveyor_OtherSignals $= "Other Signals, "
+Static say_surveyor_TinyPlanetRadius $= "Tiny Radius, "
+Static say_surveyor_HugePlanetRadius $= "Large Radius, "
+Static say_surveyor_HighGravity $= "High Gravity Warning %(data) Gee, "
+Static say_surveyor_Earthlike $= "It's an earth like planet!, "
+Static say_surveyor_WaterWorld $= "Water World, "
+Static say_surveyor_AmmoniaWorld $= "Ammonia World, "
+
 Rem subsitution patterns (ss1,ss2 etc) for faction and body name fields
 Static say_ssn0 $= "-; dash "
 Static say_ssn1 $= " I ; 1 "
@@ -788,6 +821,7 @@ Static say_ssn2 $= " II ; 2 "
 Static say_ssn3 $= " III ; 3 "
 Static say_ssn4 $= "q\" IV ; 4 \""
 Static say_ssn5 $= " V ; 5 "
+Static say_ssn6 $= "G.;G "
 
 Rem say subsitution patterns, applied after the phrase has been made, are called say_txN in the same form as above.
 
@@ -800,7 +834,7 @@ Static say_tx6 $= " CMDRs; Commanders"
 Static say_tx7 $= " cmdr; Commanders"
 Static say_tx8 $= "O7; Salute "
 Static say_tx9 $= " O7; , Salute"
-Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
+REM removed, matching 61.07 Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
 Static say_tx11 $= "R;\s+07; Salute Commander, "
 
 rem print Replace Test
@@ -1038,6 +1072,7 @@ If %(RefreshCount) <= 1
     Event PREFIX RK_ LAST Rank
     Rem pragma dumpvars LAST*
     Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
+    
     If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
         Call speak(speech="%(speech)")
 
@@ -1188,7 +1223,7 @@ Else
 
     Set volume = %ExistsDefault(NPCVoiceVolume,'-999')
 
-    Print NPC Sound effects %(effects) : rate %(rate) : voice %(voice) : volume %(volume)
+    // Print NPC Sound effects %(effects) : rate %(rate) : voice %(voice) : volume %(volume)
     // we override the SoundEffects global by providing at least on speech effect, PitchShift, or the effect vars if present
     Call speak(speech="%(speech)",Volume="%(volume)",EffectVars="%(effects)",Voice="%(voice)",PrefixSound="%(presound)",PostfixSound="%(postsound)",MixSound="%(mixsound)",Rate="%(rate)",QueueLimit="5000")
 
@@ -2188,7 +2223,7 @@ PROGRAM ApproachBody
 Scan "%(EventClass_StarSystem)" "%(EventBodyName)"
 rem pragma dumpvars S_*
 
-If %(S_BodyFound) IsTrue And %(S_Body_gravity) $!= "" And %(S_Body_gravity) >= 2.0
+If %(S_BodyFound) IsTrue And S_Body_gravityg IsPresent And  %(S_Body_gravityg) $!= "" And %(S_Body_gravityg) >= 2.0
     Set v = say_ApproachBodyWarning
 Else 
     Set v = say_ApproachBody
@@ -2331,7 +2366,7 @@ If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
 // if QueueLimit IsPresent
 // print Queued %(QueueLimit) for %(speech)
 
-Print SAY: %(speech)
+// Print SAY: %(speech)
 
 Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%existsdefault(EffectVars,'')" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 
@@ -2449,6 +2484,31 @@ Call speak(speech="Hello there",EffectVars="PitchShift=100,EchoMix=20,EchoFeedba
 // Set str = <phoneme alphabet='ipa' ph = '%(InputBox1)'>Phoneme failed, this may be due to voice selected, for instance Ivona voices do not support all phonemes</phoneme>
 // Print %(SayPhonemeLast)
 // Say "%(SayPhonemeLast)"
+
+END PROGRAM
+
+
+PROGRAM SurveyorPanel
+rem print VoicePack Surveyor Panel run `%(Body)` `%(BodyShortName)`
+rem pragma dumpvars EventName*
+rem pragma dumpvars Value*
+
+set speech = ""
+
+FOREACH eventn in EventName*
+    set data = %indirect("Value%(Index)")
+    set eventid = %indirect(eventn)
+    
+    rem print .. Event %(Index) : %(eventid) : '%(data)'
+
+    if %exist("say_surveyor_%(eventid)") IsTrue
+        set speech += %expand("say_surveyor_%(eventid)")
+    else
+        rem print "Rejected saying %(eventid)"
+         
+if speech IsNotEmpty
+    set speech = "%expand(say_surveyor_prefixphrase)%(speech)"
+    Call speak(speech="%(speech)")
 
 END PROGRAM
 
