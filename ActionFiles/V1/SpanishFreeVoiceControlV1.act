@@ -1,0 +1,3929 @@
+﻿ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Esta es la primera edición en español del paquete Free Voice Control para EDD, compatible con las versiones 15+\r\n\r\nFree voice control te permite controlar Elite: Dangerous a través de tu micrófono. Viene preconfigurado con una serie de comandos de voz que automáticamente corresponden a tu configuración en el juego (siempre y cuando estén ligadas al teclado).\r\n\r\nPuedes pedir que despliegue el tren de aterrizaje, abra el mapa de la galaxia, ajustar la distribución de energía - todo con la voz! Hay mas de 130+ comandos hasta el momento.\r\n\r\nInstala gratis hoy!"
+INSTALL ShortDescription="Free Voice Control en Español"
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=15.0.0.0
+INSTALL Location=Actions
+INSTALL DisableOther1=FreeVoiceControlV1
+INSTALL DisableOther2=FreeVoiceControlV2
+INSTALL DisableOther3=FreeVoiceControlV3
+INSTALL DisableOther4=FreeVoiceControlV4
+
+// The tags before the colon allow the code to select which group to enable, see OnUIMode
+
+GROUP MainShipNormalSpace:Only
+
+EVENT onVoiceInput, VoiceInput_Shield_Cell, "", VoiceInput MatchSemicolonList "Recargar escudos;Disparar|Activar|Desplegar célula de escudo;Célula de escudo"
+EVENT onVoiceInput, VoiceInput_Chaff, "", VoiceInput MatchSemicolonList "[Desplegar] señuelos"
+EVENT onVoiceInput, VoiceInput_Heat_Sink, "", VoiceInput MatchSemicolonList "[Desplegar] eyector térmico"
+EVENT onVoiceInput, VoiceInput_Charge_ECM, "", VoiceInput MatchSemicolonList "[Desplegar] contra medidas [electrónicas] "
+EVENT onVoiceInput, VoiceInput__Saltar_al__Hiperespacio, "", VoiceInput MatchSemicolonList "[Saltar al] Hiperespacio;Saltar;Siguiente salto"
+EVENT onVoiceInput, VoiceInput_Supercruise, "", VoiceInput MatchSemicolonList "[Saltar a] Supercrucero"
+EVENT onVoiceInput, VoiceInput_Deploy_Weapons, "", VoiceInput MatchSemicolonList "Desplegar|Retraer Armas;Armas Fuera|Dentro"
+EVENT onVoiceInput, VoiceInput_Landing_GearToggle, "", VoiceInput MatchSemicolonList "[Alternar|Desplegar|Retraer] Tren de aterrizaje"
+EVENT onVoiceInput, VoiceInput_Deploy_Cargo_Scoop, "", VoiceInput MatchSemicolonList "[Desplegar|Retraer] Bodega de carga"
+EVENT onVoiceInput, VoiceInput_Toggle_Weapons_Colour, "", VoiceInput MatchSemicolonList "[Alternar] color de las armas"
+EVENT onVoiceInput, VoiceInput_Toggle_Engine_Colour, "", VoiceInput MatchSemicolonList "[Alternar] color del motor"
+EVENT onVoiceInput, VoiceInput_Rotational_Correction_Toggle, "", VoiceInput MatchSemicolonList "[Alternar] corrección rotacional"
+EVENT onVoiceInput, VoiceInput_Silent_Running, "", VoiceInput MatchSemicolonList "[Alternar] Navegación silenciosa"
+EVENT onVoiceInput, VoiceInput_RequestDocking_Ship, "", VoiceInput MatchSemicolonList "[Solicitar] permiso de|para aterrizaje|aterrizar"
+EVENT onVoiceInput, VoiceInput_LaunchInFighter, "", VoiceInput MatchSemicolonList "Abordar caza"
+EVENT onVoiceInput, VoiceInput_LaunchNPCFighter, "", VoiceInput MatchSemicolonList "Lanzar caza"
+
+GROUP MainShipNormalSpace-Fighter:Flight
+
+EVENT onVoiceInput, VoiceInput_Toggle_Flight_Assist, "", VoiceInput MatchSemicolonList "[Alternar|Encender|Activar|Apagar|Desactivar] Asistente de vuelo"
+EVENT onVoiceInput, VoiceInput_Boost, "", VoiceInput MatchSemicolonList Boost;Postquemador
+EVENT onVoiceInput, VoiceInput_Increase_Radar_Range, "", VoiceInput MatchSemicolonList "Aumentar rango [del] radar|sensor"
+EVENT onVoiceInput, VoiceInput_Decrease_Radar_Range, "", VoiceInput MatchSemicolonList "Disminuir rango [del] radar|sensor"
+EVENT onVoiceInput, VoiceInput_Long_Range_Scan, "", VoiceInput MatchSemicolonList "Sensores al máximo"
+EVENT onVoiceInput, VoiceInput_Short_Range_Scan, "", VoiceInput MatchSemicolonList "Sensores al mínimo"
+EVENT onVoiceInput, VoiceInput_Medium_Range_Scan, "", VoiceInput MatchSemicolonList "Restablecer Sensores"
+EVENT onVoiceInput, VoiceInput_Next_Subsystem, "", VoiceInput MatchSemicolonList "Siguiente subsistema [siguiente]"
+EVENT onVoiceInput, VoiceInput_Previous_Subsystem, "", VoiceInput MatchSemicolonList "Subsistema anterior"
+
+GROUP MainShipNormalSpace-Fighter:Targeting
+
+EVENT onVoiceInput, VoiceInput_Select_Target, "", VoiceInput MatchSemicolonList "Apuntar;Seleccionar objetivo"
+EVENT onVoiceInput, VoiceInput_Next_Target, "", VoiceInput MatchSemicolonList "Próximo|Siguiente objetivo"
+EVENT onVoiceInput, VoiceInput_Previous_target, "", VoiceInput MatchSemicolonList "Objetivo anterior"
+EVENT onVoiceInput, VoiceInput_Highest_Threat, "", VoiceInput MatchSemicolonList "Objetivo peligroso"
+EVENT onVoiceInput, VoiceInput_Next_Hostile, "", VoiceInput MatchSemicolonList "Siguiente enemigo"
+EVENT onVoiceInput, VoiceInput_Previous_Hostile, "", VoiceInput MatchSemicolonList "Enemigo anterior"
+EVENT onVoiceInput, VoiceInput_Target_Wing_man_1, "", VoiceInput MatchSemicolonList "Equipo uno"
+EVENT onVoiceInput, VoiceInput_Target_Wing_man_2, "", VoiceInput MatchSemicolonList "Equipo dos"
+EVENT onVoiceInput, VoiceInput_Target_Wing_man_3, "", VoiceInput MatchSemicolonList "Equipo tres"
+EVENT onVoiceInput, VoiceInput_Select_Wing_man_target, "", VoiceInput MatchSemicolonList "Objetivo equipo"
+
+GROUP MainShipNormalSpace-Fighter-MainShipSupercruise:RadarSystemsPower
+
+EVENT onVoiceInput, VoiceInput_Next_Fire_Group_Ship, "", VoiceInput MatchSemicolonList "Siguiente grupo [de acción]"
+EVENT onVoiceInput, VoiceInput_Previous_Fire_Group_Ship, "", VoiceInput MatchSemicolonList "Grupo [de acción] anterior"
+EVENT onVoiceInput, VoiceInput_Increase_Engine_Power_Ship, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los motor|motores"
+EVENT onVoiceInput, VoiceInput_Increase_Weapons_Power_Ship, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a las armas"
+EVENT onVoiceInput, VoiceInput_Increase_Systems_Power_Ship, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los sistemas|escudos"
+EVENT onVoiceInput, VoiceInput_Reset_Power_Ship, "", VoiceInput MatchSemicolonList "Restaurar|Reiniciar|Restablecer|Balancear poder|energía"
+EVENT onVoiceInput, VoiceInput_Weapons_WS_Ship, "", VoiceInput MatchSemicolonList "Armas y escudos;escudos y armas"
+EVENT onVoiceInput, VoiceInput_Weapons_SpeedAttack_Ship, "", VoiceInput MatchSemicolonList "Ataque veloz"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxWeapons_Ship, "", VoiceInput MatchSemicolonList "Armas al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxShields_Ship, "", VoiceInput MatchSemicolonList "Escudos|Sistemas al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxEngines_Ship, "", VoiceInput MatchSemicolonList "Motores al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_Balanced_Ship, "", VoiceInput MatchSemicolonList "Ataque balanceado"
+EVENT onVoiceInput, VoiceInput_Weapons_AttackMode_Ship, "", VoiceInput MatchSemicolonList "Modo Ataque;Ataque Pesado;A la carga"
+EVENT onVoiceInput, VoiceInput_Weapons_FastAttack_Ship, "", VoiceInput MatchSemicolonList "Ataque rápido"
+EVENT onVoiceInput, VoiceInput_Escape_Ship, "", VoiceInput MatchSemicolonList "Escape de emergencia;Graciosa huída;Sálvese quien pueda"
+
+GROUP MainShipNormalSpace-Fighter-MainShipSupercruise:Speed
+
+EVENT onVoiceInput, VoiceInput_Minus100, "", VoiceInput MatchSemicolonList "Reversa al máximo;Marcha atrás al máximo"
+EVENT onVoiceInput, VoiceInput_Minus75, "", VoiceInput MatchSemicolonList "Reversa al setenta y cinco [por ciento]"
+EVENT onVoiceInput, VoiceInput_Minus50, "", VoiceInput MatchSemicolonList "Reversa al cincuenta [por ciento]"
+EVENT onVoiceInput, VoiceInput_Minus25, "", VoiceInput MatchSemicolonList "Reversa al veinticinco [por ciento]"
+EVENT onVoiceInput, VoiceInput_Stop, "", VoiceInput MatchSemicolonList "Motores|Impulsores fuera;Apagar|Detener motores|impulsores"
+EVENT onVoiceInput, VoiceInput_25, "", VoiceInput MatchSemicolonList "Motores|Impulsores al veinticinco [por ciento]"
+EVENT onVoiceInput, VoiceInput_50, "", VoiceInput MatchSemicolonList "[Motores|Impulsores] [a] media marcha;[Motores|Impulsores] [al] cincuenta [por ciento]"
+EVENT onVoiceInput, VoiceInput_75, "", VoiceInput MatchSemicolonList "Motores|Impulsores al setenta y cinco [por ciento]"
+EVENT onVoiceInput, VoiceInput_100, "", VoiceInput MatchSemicolonList "Motores|Impulsores al cien [por ciento];[Motores|Impulsores] a toda marcha|máquina"
+
+GROUP Fighter:Only
+
+EVENT onVoiceInput, VoiceInput_Fighter_Dock, "", VoiceInput MatchSemicolonList "Permiso para abordar"
+EVENT onVoiceInput, VoiceInput_Ship_Defensive, "", VoiceInput MatchSemicolonList "Nave defensiva"
+EVENT onVoiceInput, VoiceInput_Ship_Aggressive, "", VoiceInput MatchSemicolonList "Nave Agresiva"
+EVENT onVoiceInput, VoiceInput_Ship_Target, "", VoiceInput MatchSemicolonList "Nave a mi objetivo"
+EVENT onVoiceInput, VoiceInput_Ship_HoldFire, "", VoiceInput MatchSemicolonList "Nave alto el fuego"
+EVENT onVoiceInput, VoiceInput_Ship_HoldPosition, "", VoiceInput MatchSemicolonList "Nave mantén|mantener posición"
+EVENT onVoiceInput, VoiceInput_Ship_Follow, "", VoiceInput MatchSemicolonList "Nave seguir|sígueme"
+EVENT onVoiceInput, VoiceInput_Ship_Open, "", VoiceInput MatchSemicolonList "Nave abrir ordenes;Abrir ordenes de nave;Ordenar nave"
+EVENT onVoiceInput, VoiceInput_SwitchFighterInFighter, "", VoiceInput MatchSemicolonList "[Nave] cambio de mando;Cambiar piloto|caza caza]"
+
+GROUP NPCControlled:Only
+
+EVENT onVoiceInput, VoiceInput_Fighter_Dock, "", VoiceInput MatchSemicolonList "Caza regresa"
+EVENT onVoiceInput, VoiceInput_Fighter_Defensive, "", VoiceInput MatchSemicolonList "Caza defensivo"
+EVENT onVoiceInput, VoiceInput_Fighter_Aggressive, "", VoiceInput MatchSemicolonList "Caza agresivo"
+EVENT onVoiceInput, VoiceInput_Fighter_Target, "", VoiceInput MatchSemicolonList "Caza a mi objetivo"
+EVENT onVoiceInput, VoiceInput_Fighter_HoldFire, "", VoiceInput MatchSemicolonList "Caza alto el fuego"
+EVENT onVoiceInput, VoiceInput_Fighter_HoldPosition, "", VoiceInput MatchSemicolonList "Caza mantén|mantener posición"
+EVENT onVoiceInput, VoiceInput_Fighter_Follow, "", VoiceInput MatchSemicolonList "Caza seguir|sígueme"
+EVENT onVoiceInput, VoiceInput_Fighter_Open, "", VoiceInput MatchSemicolonList "Caza abrir ordenes;Abrir ordenes de Caza;Ordenar caza"
+EVENT onVoiceInput, VoiceInput_SwitchFighterInShip, "", VoiceInput MatchSemicolonList "[Caza] cambio de mando;Cambiar piloto|caza caza]"
+
+GROUP MainShipSupercruise:Only
+
+EVENT onVoiceInput, VoiceInput_Drop, "", VoiceInput MatchSemicolonList "Termina|Finaliza|Cancela|Salir [de] supercrucero"
+EVENT onVoiceInput, VoiceInput_Wingman_Nav_Lock, "", VoiceInput MatchSemicolonList "Bloquear|Bloqueo baliza [de] [equipo|navegación]"
+EVENT onVoiceInput, VoiceInput_ScanSystem, "", VoiceInput MatchSemicolonList "Escanear sistema"
+EVENT onVoiceInput, VoiceInput_Toggle_Orbit_Lines, "", VoiceInput MatchSemicolonList "[Alternar] líneas orbitales"
+EVENT onVoiceInput, VoiceInput_Resume_Route, "", VoiceInput MatchSemicolonList "Restaurar ruta [de navegación]"
+EVENT onVoiceInput, VoiceInput_Hyperspace, "", VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto"
+
+GROUP MainShipSupercruise-MainShipNormalSpace:HUDMode
+
+EVENT onVoiceInput, VoiceInput_HUDModeToggle_Ship, "", VoiceInput MatchSemicolonList "alternar|cambiar modo"
+
+GROUP MainShipNormalSpace-MainShipSupercruise-MainShipDockedStarport-MainShipDockedPlanet-MainShipLanded-Fighter-Taxi:Panels
+
+EVENT onVoiceInput, VoiceInput_Systems_Panel_Ship, "", VoiceInput MatchSemicolonList "[Abrir] Panel del sistema"
+EVENT onVoiceInput, VoiceInput_Target_Panel_Ship, "", VoiceInput MatchSemicolonList "[Abrir] Panel de objetivo"
+EVENT onVoiceInput, VoiceInput_Role_Panel_Ship, "", VoiceInput MatchSemicolonList "[Abrir] Panel de rol"
+EVENT onVoiceInput, VoiceInput_Communication_Panel_Ship, "", VoiceInput MatchSemicolonList "[Abrir] Panel de comunicaciones"
+EVENT onVoiceInput, VoiceInput_Close_Panel_Ship, "", VoiceInput MatchSemicolonList "Cerrar panel"
+EVENT onVoiceInput, VoiceInput_Quick_Comms_Ship, "", VoiceInput MatchSemicolonList "[Abrir] comunicaciones rápidas"
+EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map_Ship, "", VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map_Ship, "", VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;cerrar mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Open_System_Map_Ship, "", VoiceInput MatchSemicolonList "[Abrir] mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Close_System_Map_Ship, "", VoiceInput MatchSemicolonList "[Cerrar] mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Friends_Menu_Ship, "", VoiceInput MatchSemicolonList "[Abrir] menú de amigos|amistad"
+EVENT onVoiceInput, VoiceInput_Next_Panel_Ship, "", VoiceInput MatchSemicolonList "Panel siguiente;Siguiente Panel"
+EVENT onVoiceInput, VoiceInput_Previous_Panel_Ship, "", VoiceInput MatchSemicolonList "Panel anterior"
+EVENT onVoiceInput, VoiceInput_CameraMainShip, "", VoiceInput MatchSemicolonList "Modo cámara"
+
+GROUP MainShipNormalSpace-MainShipSupercruise-MainShipDockedStarport-MainShipDockedPlanet-MainShipLanded-Fighter:Lights
+
+EVENT onVoiceInput, VoiceInput_Lights_On, "", VoiceInput MatchSemicolonList "Encender Luces;Enciende las Luces"
+EVENT onVoiceInput, VoiceInput_Lights_Off, "", VoiceInput MatchSemicolonList "Apagar Luces; Apaga las Luces"
+EVENT onVoiceInput, VoiceInput_Lights_Toggle, "", VoiceInput MatchSemicolonList "[Alternar] Luces"
+EVENT onVoiceInput, VoiceInput_NightVision, "", VoiceInput MatchSemicolonList "[Alternar] Vision Nocturna"
+
+GROUP MainShipLanded:Disembark
+
+EVENT onVoiceInput, VoiceInput_DisembarkLanded, "", VoiceInput MatchSemicolonList "Desembarcar [nave]"
+EVENT onVoiceInput, VoiceInput_DisembarkLandedSRV, "", VoiceInput MatchSemicolonList "Desembarcar a VRS"
+
+GROUP MainShipDockedPlanet:Embarkation
+
+EVENT onVoiceInput, VoiceInput_DisembarkLandedSRV, "", VoiceInput MatchSemicolonList "Desembarcar a VRS"
+
+GROUP MainShipDockedPlanet-MainShipDockedStarPort:General
+
+EVENT onVoiceInput, VoiceInput_StarPortServices, "", VoiceInput MatchSemicolonList "[Abrir] servicios [locales]"
+EVENT onVoiceInput, VoiceInput_LaunchDocked, "", VoiceInput MatchSemicolonList Despegar
+EVENT onVoiceInput, VoiceInput_DisembarkDocked, "", VoiceInput MatchSemicolonList "Desembarcar [nave]"
+EVENT onVoiceInput, VoiceInput_RefuelDocked, "", VoiceInput MatchSemicolonList "Repostar [nave]"
+EVENT onVoiceInput, VoiceInput_RepairDocked, "", VoiceInput MatchSemicolonList "Reparar [nave]"
+EVENT onVoiceInput, VoiceInput_RestockDocked, "", VoiceInput MatchSemicolonList "Re-aprovisionar [nave]"
+EVENT onVoiceInput, VoiceInput_ReturnToSurfaceDocked, "", VoiceInput MatchSemicolonList "Ir al hangar;regresar a [la] superficie"
+
+GROUP OnFootPlanet:General
+
+EVENT onVoiceInput, VoiceInput_HolsterWeapon, "", VoiceInput MatchSemicolonList "Enfundar [Arma];Retraer [herramienta]"
+EVENT onVoiceInput, VoiceInput_Grenade, "", VoiceInput MatchSemicolonList "Lanzar|Tirar|Arrojar Granada"
+EVENT onVoiceInput, VoiceInput_NextGrenade, "", VoiceInput MatchSemicolonList "Próxima granada"
+EVENT onVoiceInput, VoiceInput_PreviousGrenade, "", VoiceInput MatchSemicolonList "Granada anterior"
+EVENT onVoiceInput, VoiceInput_Reload, "", VoiceInput MatchSemicolonList "Recargar [arma]"
+EVENT onVoiceInput, VoiceInput_Switch, "", VoiceInput MatchSemicolonList "Cambiar [arma]"
+EVENT onVoiceInput, VoiceInput_PrimaryWeapon, "", VoiceInput MatchSemicolonList "[Arma] principal"
+EVENT onVoiceInput, VoiceInput_SecondaryWeapon, "", VoiceInput MatchSemicolonList "[Arma] secundaria"
+EVENT onVoiceInput, VoiceInput_SelectUtility, "", VoiceInput MatchSemicolonList "[Seleccionar|Selecciona] Utilidad"
+EVENT onVoiceInput, VoiceInput_NextWeapon, "", VoiceInput MatchSemicolonList "Siguiente [Arma]"
+EVENT onVoiceInput, VoiceInput_PreviousWeapon, "", VoiceInput MatchSemicolonList "[Arma] anterior"
+EVENT onVoiceInput, VoiceInput_Flashlight, "", VoiceInput MatchSemicolonList "Linterna;[fuera] Luces [fuera]"
+EVENT onVoiceInput, VoiceInput_NightVision, "", VoiceInput MatchSemicolonList "[Alternar|Activar|Desactivar] visión nocturna"
+EVENT onVoiceInput, VoiceInput_Shields, "", VoiceInput MatchSemicolonList "[Alternar|Activar|Desactivar] escudos"
+EVENT onVoiceInput, VoiceInput_ClearAuthority, "", VoiceInput MatchSemicolonList "Limpiar|Borrar autoridad|autorización"
+EVENT onVoiceInput, VoiceInput_Health, "", VoiceInput MatchSemicolonList "Curar;recargar salud"
+EVENT onVoiceInput, VoiceInput_Battery, "", VoiceInput MatchSemicolonList "[Recargar] baterías"
+EVENT onVoiceInput, VoiceInput_FragGrenade, "", VoiceInput MatchSemicolonList "[Seleccionar] granada de fragmentación"
+EVENT onVoiceInput, VoiceInput_EMPGrenade, "", VoiceInput MatchSemicolonList "[Seleccionar] granada de pulso"
+EVENT onVoiceInput, VoiceInput_ShieldGrenade, "", VoiceInput MatchSemicolonList "[Seleccionar] granada de escudo"
+EVENT onVoiceInput, VoiceInput_Recharge, "", VoiceInput MatchSemicolonList "[Seleccionar] herramienta de recarga;link de energía"
+EVENT onVoiceInput, VoiceInput_CompAnalyser, "", VoiceInput MatchSemicolonList "[Seleccionar] analizador [de composición]"
+EVENT onVoiceInput, VoiceInput_SuitTool, "", VoiceInput MatchSemicolonList "[Seleccionar] herramienta [del traje]"
+EVENT onVoiceInput, VoiceInput_ToolMode, "", VoiceInput MatchSemicolonList "[Alternar] modo de herramienta;[Cambiar] modo de herramienta"
+EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Open_System_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Abrir] mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Close_System_Map_Humanoid, "", VoiceInput MatchSemicolonList "Cerrar mapa del sistema"
+EVENT onVoiceInput, VoiceInput_MissionHelp_Humanoid, "", VoiceInput MatchSemicolonList "[Alternar] ayuda [de] misión"
+EVENT onVoiceInput, VoiceInput_FocusComms_Humanoid, "", VoiceInput MatchSemicolonList "[Centrar] panel de comunicación|comunicaciones"
+EVENT onVoiceInput, VoiceInput_QuickComms_Humanoid, "", VoiceInput MatchSemicolonList "[Alternar] [panel] [de] comunicaciones rápidas"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Humanoid, "", VoiceInput MatchSemicolonList "Abrir|Alternar|Cerrar Panel de Insight"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Taxi_Humanoid, "", VoiceInput MatchSemicolonList "Pedir|Solicitar|Llamar|Reservar Taxi|Lanzadera|Apex"
+EVENT onVoiceInput, VoiceInput_InsightPanel_RecallShip_Humanoid, "", VoiceInput MatchSemicolonList "Llamar nave"
+EVENT onVoiceInput, VoiceInput_InsightPanel_DismissShip_Humanoid, "", VoiceInput MatchSemicolonList "Despedir nave"
+EVENT onVoiceInput, VoiceInput_InsightPanel_CancelTaxi_Humanoid, "", VoiceInput MatchSemicolonList "Cancelar Taxi|Lanzadera|Apex"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Navigation_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] navegación"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Contacts_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] contactos"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Transactions_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] transacciones"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Backpack_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] mochila;Panel [de] inventario"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Commander_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] comandante"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Codex_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] códice"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Powerplay_Humanoid, "", VoiceInput MatchSemicolonList "Pane [de] Powerplay|Potencias"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Squadrons_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de|del] escuadrón"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Engineer_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] ingenieros"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Galnet_Humanoid, "", VoiceInput MatchSemicolonList "Panel de Galnet|noticias"
+EVENT onVoiceInput, VoiceInput_ClosePanel_Humanoid, "", VoiceInput MatchSemicolonList "Close Panel"
+
+GROUP OnFootPlanet-OnFootStation:Emotes
+
+EVENT onVoiceInput, VoiceInput_EmotePoint, "", VoiceInput MatchSemicolonList Apuntar
+EVENT onVoiceInput, VoiceInput_EmoteWave, "", VoiceInput MatchSemicolonList "Hola hola"
+EVENT onVoiceInput, VoiceInput_EmoteAgree, "", VoiceInput MatchSemicolonList "de acuerdo"
+EVENT onVoiceInput, VoiceInput_EmoteDisagree, "", VoiceInput MatchSemicolonList "en desacuerdo"
+EVENT onVoiceInput, VoiceInput_EmoteGo, "", VoiceInput MatchSemicolonList Vamos
+EVENT onVoiceInput, VoiceInput_EmoteStop, "", VoiceInput MatchSemicolonList Para;Alto;Detente
+EVENT onVoiceInput, VoiceInput_EmoteApplaud, "", VoiceInput MatchSemicolonList Aplaudir
+EVENT onVoiceInput, VoiceInput_EmoteSalute, "", VoiceInput MatchSemicolonList Saludo
+
+GROUP OnFootStation:Only
+
+EVENT onVoiceInput, VoiceInput_EnterLift_Humanoid, "", VoiceInput MatchSemicolonList "Elevador;Apretar botón"
+
+GROUP OnFootStation:General
+
+EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map_Humanoid, "", VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Open_System_Map_Humanoid, "", VoiceInput MatchSemicolonList "[Abrir] mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Close_System_Map_Humanoid, "", VoiceInput MatchSemicolonList "Cerrar mapa del sistema"
+EVENT onVoiceInput, VoiceInput_FocusComms_Humanoid, "", VoiceInput MatchSemicolonList "[Centrar] panel de comunicación|comunicaciones"
+EVENT onVoiceInput, VoiceInput_QuickComms_Humanoid, "", VoiceInput MatchSemicolonList "[Alternar] [panel] [de] comunicaciones rápidas"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Humanoid, "", VoiceInput MatchSemicolonList "Abrir|Alternar|Cerrar Panel de Insight"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Navigation_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] navegación"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Contacts_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] contactos"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Transactions_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] transacciones"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Backpack_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] mochila;Panel [de] inventario"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Commander_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] comandante"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Codex_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] códice"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Powerplay_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] Powerplay|Potencias"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Squadrons_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de|del] escuadrón"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Engineer_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] ingenieros"
+EVENT onVoiceInput, VoiceInput_Panel__de__portanaves, "", VoiceInput MatchSemicolonList "Panel [de] portanaves"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Galnet_Humanoid, "", VoiceInput MatchSemicolonList "Panel de Galnet|noticias"
+EVENT onVoiceInput, VoiceInput_ClosePanel_Humanoid, "", VoiceInput MatchSemicolonList "Close Panel"
+
+GROUP OnFootPlanet-OnFootStation:Misc
+
+EVENT onVoiceInput, VoiceInput_Embark_Humanoid, "", VoiceInput MatchSemicolonList "Abordar [nave]"
+EVENT onVoiceInput, VoiceInput_Interact_Humanoid, "", VoiceInput MatchSemicolonList Interactuar;Recoger;Tomar;Agarrar
+EVENT onVoiceInput, VoiceInput_Manage_Inventory_Humanoid, "", VoiceInput MatchSemicolonList "[Administrar] Inventario"
+EVENT onVoiceInput, VoiceInput_Resupply_Inventory_Humanoid, "", VoiceInput MatchSemicolonList "Reaprovisionar|Rellenar inventario"
+EVENT onVoiceInput, VoiceInput_InteractSecondary_Humanoid, "", VoiceInput MatchSemicolonList "Presionar secundario"
+EVENT onVoiceInput, VoiceInput_CameraOnFoot, "", VoiceInput MatchSemicolonList "[Modo] Cámara [externa]"
+
+GROUP SRV-MainShipSupercruise-MainShipNormalSpace-MainShipNotInFlight-Fighter-Headlook
+
+EVENT onVoiceInput, VoiceInput_Head_Look_Reset, "", VoiceInput MatchSemicolonList "Mirada al frente"
+EVENT onVoiceInput, VoiceInput_Head_Look_Up, "", VoiceInput MatchSemicolonList "Vista arriba"
+EVENT onVoiceInput, VoiceInput_Head_Look_Down, "", VoiceInput MatchSemicolonList "Vista abajo"
+EVENT onVoiceInput, VoiceInput_Head_Look_Left, "", VoiceInput MatchSemicolonList "Vista a la izquierda"
+EVENT onVoiceInput, VoiceInput_Head_Look_Right, "", VoiceInput MatchSemicolonList "Vista a la derecha"
+EVENT onVoiceInput, VoiceInput_Head_Look_FullLeft, "", VoiceInput MatchSemicolonList "Mirar a la izquierda"
+EVENT onVoiceInput, VoiceInput_Head_Look_FullRight, "", VoiceInput MatchSemicolonList "Mirar a la derecha"
+EVENT onVoiceInput, VoiceInput_Head_Look_FullUp, "", VoiceInput MatchSemicolonList "Mirar arriba"
+
+GROUP SRV-Main
+
+EVENT onVoiceInput, VoiceInput_Recall_Ship, "", VoiceInput MatchSemicolonList "Llamar nave"
+EVENT onVoiceInput, VoiceInput_Dismiss_Ship, "", VoiceInput MatchSemicolonList "Despedir Nave"
+EVENT onVoiceInput, VoiceInput_Toggle_Drive_Assist, "", VoiceInput MatchSemicolonList "[Alternar] asistente [de conducción]"
+EVENT onVoiceInput, VoiceInput_Toggle_Handbrake, "", VoiceInput MatchSemicolonList "[Alternar] freno de emergencia|mano"
+EVENT onVoiceInput, VoiceInput_Toggle_Headlights, "", VoiceInput MatchSemicolonList "[Alternar] luces"
+EVENT onVoiceInput, VoiceInput_Toggle_Turret, "", VoiceInput MatchSemicolonList "[Alternar] torreta"
+EVENT onVoiceInput, VoiceInput_CameraSRV, "", VoiceInput MatchSemicolonList "[Alternar] cámara"
+EVENT onVoiceInput, VoiceInput_SelectTargetSRV, "", VoiceInput MatchSemicolonList "Seleccionar objetivo"
+EVENT onVoiceInput, VoiceInput_EmbarkSRV, "", VoiceInput MatchSemicolonList "abordar [nave]"
+EVENT onVoiceInput, VoiceInput_Open_Galaxy_Map_Buggy, "", VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Close_Galaxy_Map_Buggy, "", VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico"
+EVENT onVoiceInput, VoiceInput_Open_System_Map_Buggy, "", VoiceInput MatchSemicolonList "[Abrir] mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Close_System_Map_Buggy, "", VoiceInput MatchSemicolonList "Cerrar mapa del sistema"
+EVENT onVoiceInput, VoiceInput_Systems_Panel_Buggy, "", VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] sistemas"
+EVENT onVoiceInput, VoiceInput_Target_Panel_Buggy, "", VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] ojetivo"
+EVENT onVoiceInput, VoiceInput_Role_Panel_Buggy, "", VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] Rol"
+EVENT onVoiceInput, VoiceInput_Communication_Panel_Buggy, "", VoiceInput MatchSemicolonList "[Abrir] panel [de] comunicaciones"
+EVENT onVoiceInput, VoiceInput_Close_Panel_Buggy, "", VoiceInput MatchSemicolonList "Cerrar panel"
+EVENT onVoiceInput, VoiceInput_Quick_Comms_Buggy, "", VoiceInput MatchSemicolonList "[Abrir] comunicaciones rápidas"
+EVENT onVoiceInput, VoiceInput_Next_Fire_Group_Buggy, "", VoiceInput MatchSemicolonList "Siguiente grupo [de acción]"
+EVENT onVoiceInput, VoiceInput_Previous_Fire_Group_Buggy, "", VoiceInput MatchSemicolonList "Grupo [de acción] anterior"
+EVENT onVoiceInput, VoiceInput_Increase_Engine_Power_Buggy, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los motor|motores"
+EVENT onVoiceInput, VoiceInput_Increase_Weapons_Power_Buggy, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a las armas"
+EVENT onVoiceInput, VoiceInput_Increase_Systems_Power_Buggy, "", VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al los sistemas|escudos"
+EVENT onVoiceInput, VoiceInput_Reset_Power_Buggy, "", VoiceInput MatchSemicolonList "Reiniciar|Balancear|Restablecer poder|energía"
+EVENT onVoiceInput, VoiceInput_Weapons_WS_Buggy, "", VoiceInput MatchSemicolonList "Armas y escudos;Escudos y armas"
+EVENT onVoiceInput, VoiceInput_Weapons_SpeedAttack_Buggy, "", VoiceInput MatchSemicolonList "Ataque veloz"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxWeapons_Buggy, "", VoiceInput MatchSemicolonList "Armas al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxShields_Buggy, "", VoiceInput MatchSemicolonList "Escudos al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_MaxEngines_Buggy, "", VoiceInput MatchSemicolonList "Motores al máximo"
+EVENT onVoiceInput, VoiceInput_Weapons_Balanced_Buggy, "", VoiceInput MatchSemicolonList "Ataque balanceado"
+EVENT onVoiceInput, VoiceInput_Weapons_AttackMode_Buggy, "", VoiceInput MatchSemicolonList "Modo de ataque;Ataque pesado;A la carga"
+EVENT onVoiceInput, VoiceInput_Weapons_FastAttack_Buggy, "", VoiceInput MatchSemicolonList "Ataque rápido"
+EVENT onVoiceInput, VoiceInput_RequestDocking_Ship, "", VoiceInput MatchSemicolonList "[Solicitar] permiso para abordar"
+
+GROUP CameraOn:All
+
+EVENT onVoiceInput, VoiceInput_Camera_PreviousCam, "", VoiceInput MatchSemicolonList "Cámara anterior"
+EVENT onVoiceInput, VoiceInput_Camera_NextCam, "", VoiceInput MatchSemicolonList "Cámara siguiente;Siguiente cámara"
+EVENT onVoiceInput, VoiceInput_Camera_One, "", VoiceInput MatchSemicolonList "Cámara uno;Cámara frontal cabina"
+EVENT onVoiceInput, VoiceInput_Camera_Two, "", VoiceInput MatchSemicolonList "Cámara dos;Cámara trasera cabina"
+EVENT onVoiceInput, VoiceInput_Camera_Three, "", VoiceInput MatchSemicolonList "Cámara tres;Cámara piloto"
+EVENT onVoiceInput, VoiceInput_Camera_Four, "", VoiceInput MatchSemicolonList "Cámara cuatro;Cámara piloto secundaria"
+EVENT onVoiceInput, VoiceInput_Camera_Five, "", VoiceInput MatchSemicolonList "Cámara cinco;Cámara copiloto uno"
+EVENT onVoiceInput, VoiceInput_Camera_Six, "", VoiceInput MatchSemicolonList "Cámara seis;Cámara copiloto dos"
+EVENT onVoiceInput, VoiceInput_Camera_Hud, "", VoiceInput MatchSemicolonList "[Alternar] HUD"
+EVENT onVoiceInput, VoiceInput_Camera_Free, "", VoiceInput MatchSemicolonList "[Alternar cámara libre]"
+EVENT onVoiceInput, VoiceInput_Camera_ExitFree, "", VoiceInput MatchSemicolonList "Salir de cámara libre"
+EVENT onVoiceInput, VoiceInput_Camera_IncrSpeed, "", VoiceInput MatchSemicolonList "Aumentar velocidad [de] [la] cámara"
+EVENT onVoiceInput, VoiceInput_Camera_DecrSpeed, "", VoiceInput MatchSemicolonList "Disminuir|Reducir velocidad [de] [la] cámara"
+EVENT onVoiceInput, VoiceInput_Camera_Stabiliser, "", VoiceInput MatchSemicolonList "[Alternar] Estabilizador [de] [la] cámara"
+EVENT onVoiceInput, VoiceInput_Camera_Attach, "", VoiceInput MatchSemicolonList "Toggle Camera [World] Attach|World"
+EVENT onVoiceInput, VoiceInput_Camera_IncrZoom, "", VoiceInput MatchSemicolonList "Acercar [cámara]"
+EVENT onVoiceInput, VoiceInput_Camera_DecrZoom, "", VoiceInput MatchSemicolonList "Alejar [cámara]"
+EVENT onVoiceInput, VoiceInput_Camera_IncrBlur, "", VoiceInput MatchSemicolonList "Aumentar desenfoque"
+EVENT onVoiceInput, VoiceInput_Camera_DecrBlur, "", VoiceInput MatchSemicolonList "Disminuir desenfoque"
+
+GROUP CameraOn:ShipOnly
+
+EVENT onVoiceInput, VoiceInput_Camera_Seven, "", VoiceInput MatchSemicolonList "Cámara siete;Cámara frontal"
+EVENT onVoiceInput, VoiceInput_Camera_Eight, "", VoiceInput MatchSemicolonList "Cámara ocho;Cámara trasera"
+EVENT onVoiceInput, VoiceInput_Camera_Nine, "", VoiceInput MatchSemicolonList "Cámara nueve;Cámara inferior|baja"
+EVENT onVoiceInput, VoiceInput_Camera_ShipControls, "", VoiceInput MatchSemicolonList "[Alternar] control de la nave"
+
+GROUP Always-Misc
+
+EVENT onVoiceInput, VoiceInput_Microphone_Mute, "", VoiceInput MatchSemicolonList "Silenciar micrófono"
+EVENT onVoiceInput, VoiceInput_Screenshot, "", VoiceInput MatchSemicolonList "Tomar foto;Captura de pantalla"
+EVENT onVoiceInput, VoiceInput_Reset_Head_Position, "", VoiceInput MatchSemicolonList "Centrar vista"
+EVENT onVoiceInput, VoiceInput_Head_Look, "", VoiceInput MatchSemicolonList "Vista libre;Liberar vista"
+EVENT onVoiceInput, VoiceInput_Game_Menu, "", VoiceInput MatchSemicolonList "[Abrir] Menú del juego"
+
+GROUP Always-Initialisation
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onPostStartup, onPostStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onMenuItem, Menus, "", MenuName Contains FVC
+EVENT onVoiceInputFailed, VoiceInput_Failed, "", Condition AlwaysTrue
+EVENT onTimer, ScanSystemTimer, "", TimerName $== ScanSystemTimer
+EVENT UIMode, OnUIMode, "", Condition AlwaysTrue
+EVENT onEliteInputRaw, VoiceActivatedKey, "", Device $== Keyboard And EventName $== RControlKey
+EVENT Docked, DockedEvent, "", Condition AlwaysTrue
+EVENT Embark, EmbarkEvent, "", Condition AlwaysTrue
+EVENT LaunchFighter, FighterLaunched, "", Condition AlwaysTrue
+EVENT DockFighter, FighterDocked, "", Condition AlwaysTrue
+EVENT FighterDestroyed, FighterDestroyed, "", Condition AlwaysTrue
+
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Call Initialise
+
+END PROGRAM
+
+//*************************************************************
+// onPostStartup
+// Events: onPostStartup
+//*************************************************************
+PROGRAM onPostStartup
+
+MenuItem VoiceMenuConfigureVoice                                // see of voice menu installed.. do this on post install since voice pack gets the priority
+If MenuPresent IsFalse
+    MenuItem FVCConfigureVoice,add-ons,"Voice Synthesis Configuration",speaker
+
+END PROGRAM
+
+// UI select mode
+PROGRAM OnUIMode
+
+Rem see uimode.cs in EDC
+Rem major modes are: None, MainShip, Taxi, Multicrew, SRV, Fighter, OnFoot
+Rem modes are None, MainShipNormalSpace, MainShipDockedStarPort,  MainShipDockedPlanet, MainShipSupercruise, MainShipLanded,
+Rem TaxiDocked,TaxiNormalSpace,TaxiSupercruise,TaxiDockedPlanet,
+Rem MulticrewDockedStarPort,  MulticrewDockedPlanet, MulticrewNormalSpace, MulticrewSupercruise, MulticrewLanded, MulticrewSRV,
+Rem SRV, Fighter,
+Rem OnFootStarPortHangar, OnFootStarPortSocialSpace, OnFootPlantaryPortHangar, OnFootPlantaryPortSocialSpace, OnFootInstallationInside, OnFootPlanet
+
+Rem we generate our own modes:  MainShipNormalSpace, MainShipDockedStarPort,  MainShipDockedPlanet, MainShipSupercruise, MainShipLanded,
+Rem and None, Taxi, Multicrew, SRV, Fighter, OnFootPlanet, OnFootStation
+
+Rem pragma dumpvars *
+Rem Print UI Mode %(EventClass_MajorMode) with %(EventClass_Mode)
+Set mode = %(EventClass_MajorMode)
+
+If mode $== OnFoot
+    If EventClass_Mode $== OnFootInstallationInside Or EventClass_Mode $== OnFootPlanet
+        Set mode = "OnFootPlanet"
+    Else 
+        Set mode = "OnFootStation"
+Else If mode $== MainShip
+    Set mode = %(EventClass_Mode)
+
+If mode $!= %(MajorMode)
+    Static MajorMode = "%(mode)"
+    Print Changed free voice control set to %(MajorMode)
+
+    // now we order the events on/off due to major mode, allowing always to be enabled
+
+    Events DISABLEALLBUT "*%(MajorMode)*","","","",""
+    Events ENABLE "Always*","","","",""
+
+    If EventClass_MajorMode $== MainShip And FighterLaunched IsTrue
+        Events enable "*NPCControlled*","","","",""
+        Print NPC Fighter commands active
+
+    // EVENTS LIST "*","","","",""
+    // pragma dumpvars EV*
+
+    // then reload
+    Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains FreeVoiceControl
+    Static SpeechCulture = es-ES
+    Static say_install $= Has instalado Free Voice Control
+    Say %(say_install)
+    Call Initialise
+    MessageBox "Bienvenido a Free Voice Control\r\n\r\nEste paquete te permite usar comandos de voz para controlar Elite. Puedes ordenar que el tren de aterrizaje se suba, activar el hiperespacio,\r\nencender las luces, etc.\r\n\r\nPuedes encontrar todos los comandos soportados usando la opción del menú Ayuda | Free Voice Control Help.\r\n\r\nDebes asegurarte de que cualquier comando que quieras decir tenga una asignación de tecla equivalente en Elite Dangerous.\r\nUna asignación de joystick no funcionará, debe ser una tecla del teclado (debido a las limitaciones de Windows).\r\nEDD te advertirá si no puede encontrar una asignación de tecla para una frase en particular: revisa la ventana de registro.\r\n\r\nEDD lee el archivo de asignaciones de teclas al iniciar. Si los cambias en Elite, por ahora simplemente reinicia EDD para\r\nque cargue los nuevos.\r\n\r\nEl reconocimiento de voz de Windows es muy sensible a lo siguiente:\r\n\r\n* Que hayas entrenado tu voz (usa el Panel de Control | Sonido (Win7) o Reconocimiento de Voz (Win10) para entrenarlo)\r\n* Que tengas el nivel de volumen correcto para tu micrófono (Panel de Control | Sonido, haz clic en el micrófono y ajusta los niveles)\r\n* Que haya el mínimo de ruido posible que el micrófono pueda captar\r\n\r\nConfigurar esto correctamente a veces puede ser un poco desafiante.\r\n\r\nActualmente, el paquete de voz solo soporta el dispositivo de grabación predeterminado, configúralo en Panel de Control | Sonido | Grabación.\r\n\r\nEs posible que desees habilitar en la Configuración de Free Voice Control la opción \"Mostrar reconocimiento de voz fallido\" y ver qué está escuchando\r\nen la ventana de registro.\r\n\r\nDisfruta.\r\n\r\n", "Free Voice Control", OK
+
+END PROGRAM
+
+//*************************************************************
+// Initialise
+// Events: None
+//*************************************************************
+PROGRAM Initialise
+
+Static SpeechCulture = es-ES
+
+Static TagAnnounciate = AnnounciateError;
+Static TagWelcome = WelcomeDisable;
+Static TagShowFailed = ShowFailed;
+Static TagDisableSpeech = SpeechOff;
+Static DontSpeak = 1
+
+If FVCControls NotPresent
+    Print ****
+    Print Setting voice recognition pack control to default values, use the Add-On menu Voice Recongnition Pack Configuration to reconfigure
+    Print ****
+    PersistentGlobal FVCControls = %(TagAnnounciate)
+    PersistentGlobal FVCConfidence = 94
+    PersistentGlobal FVCTarget = elitedangerous64
+    PersistentGlobal FVCSilentError = Report Once
+    PersistentGlobal FVCEndTimeout = 150
+    PersistentGlobal FVCEndTimeoutAmbiguous = 500
+
+If FVCPressToTalk NotPresent
+    PersistentGlobal FVCPressToTalk = Off
+
+If FVCControls NotContains %(TagWelcome)
+    Static say_welcome $= Free Voice Control en marcha
+    Say %(say_welcome)
+
+Static SpeechPriority = Low                                     // anything else going on, don't add to speech queue.  Do this after loading
+
+Perform EnableVoiceRecognition %(SpeechCulture)
+If VoiceRecognitionEnabled IsFalse
+    Print **** ADVERTENCIA Reconocimiento de voz fallo en iniciarse - Revise que el microfono por defecto esta establecido y presente
+Else 
+    Perform VoiceRecognitionParameters 0,0,%(FVCEndTimeout),%(FVCEndTimeoutAmbiguous)
+    Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100.0')
+    Perform BeginVoiceRecognition
+    MenuItem FVCMenuConfigure,add-ons,"Free Voice Control Configuration",speaker
+    MenuItem FVCMenuShowHelp,help,"Free Voice Control Help",speaker
+    MenuItem FVCMenuEditPack,add-ons,"Free Voice Control Edit Phrases",speaker
+
+    Static KeyProcessTo = %(FVCTarget)                          // programs using Key in here pick up global KeyProcessTo, set it to the perisistent for ours
+    Static KeyDelay = 20
+
+    Static VRKeyDown = 0
+    Static MajorMode = Unknown
+    Static CameraMode = 0
+    Static StarPortMenu = 1
+    Static FighterLaunched = 0
+
+    Call SetKeyVariables
+
+    Perform EnableEliteInputNoAxis
+
+    Print Voice Recognition Pack running.
+
+    If FVCControls Contains %(TagDisableSpeech)                 // global speech disable
+        Print ADVERTENCIA - Free Voice Control esta configurado para deshabilitar todos los diálogos de salida.  Reactiivelo en el menu de Add-ons
+        Static SpeechDisable = 1
+
+    If FVCPressToTalk $== Hold
+        Say "Reconocimiento de voz deshabilitado, mantenga presionado Control Derecho para habilitar"
+        Perform VoiceRecognitionEvent 0
+
+END PROGRAM
+
+//*************************************************************
+// SetKeyVariables
+// Events: None
+//*************************************************************
+PROGRAM SetKeyVariables
+
+Static KeyAnnounciateOnError = %IsPresent(FVCControls,TagAnnounciate,0)
+If FVCSilentError $== "Report Once"
+    Static KeySilentOnError = 1
+Else If FVCSilentError $== "Never Report"
+    Static KeySilentOnError = 2
+Else 
+    Static KeySilentOnError = 0
+
+END PROGRAM
+
+//*************************************************************
+// Menus
+// Events: onMenuItem?(MenuName Contains FVC)
+//*************************************************************
+PROGRAM Menus
+
+If MenuName Contains FVCConfigureVoice
+    Perform ConfigureVoice "Configure Voice Synthesis"
+
+If MenuName Contains EditPack
+    Perform EditPack %(ActionPackName)
+
+If MenuName Contains ShowHelp
+    Set help = Free Voice Control para EDDiscovery (C) Equipo EDDiscovery\r\n\r\n
+    Set help += Usa Add-Ons | Gestionar para habilitar o deshabilitar este paquete\r\n\r\n
+    Set help += Usa las opciones de configuración de FVC en el menú Add-Ons para configurar el paquete\r\n\r\n
+    Set help += Usa las opciones de configuración de la síntesis de voz en el menú Add-Ons para configurar la salida de voz\r\n\r\n
+    Set help += Para usar "Presionar para Hablar", habilítalo en la Configuración de Free Voice Control y presiona la tecla Ctrl derecha\r\n\r\n
+    Set help += Free Voice Control entiende las siguientes frases en este momento (cambios según el modo de Elite):\r\n\r\n
+    Set help += El modo actual es %(MajorMode)\r\n
+    Set help += Frases:\r\n
+    Perform VoiceRecognitionPhrases
+    Set help += %(Phrases)
+    InfoBox "%replaceescapechar(help)","Free Voice Control Help"
+
+If MenuName Contains FVCMenuConfigure
+
+    Set height = 500
+    Set Col1 = 150
+
+    Set dvar1a = "L2,Label,\"%ConfianzaMin\",10,+50,120,20,\"\""
+    Set dvar1b = "TBCONF,TextBox,\"%existsdefault(FVCConfidence,'94')\",%(Col1),+0,230,20,\"Establecer el nivel de confianza para aceptar un comando en %\""
+
+    Set dvar2a = "L3,Label,\"Proceso de Elite\",10,+40,120,20,\"\""
+    Set dvar2b = "TBPROC,TextBox,\"%existsdefault(FVCTarget,'elitedangerous64.exe')\",%(Col1),+0,230,20,\"Establecer el proceso al que se le enviarán los atajos del teclado (normalmente EliteDangerous)\""
+
+    Set dvar3a = "L3,Label,\"Errores\",10,+40,120,20,\"\""
+    Set dvar3b = "CBERR,ComboBox,\"%ExistsDefault(FVCSilentError,'Report Once')\",%(Col1),+0,230,20,\"Seleccionar que sucede cuando un error ocurre tal como un atajo no encontrado\",Report Always,Report Once,Never Report"
+
+    Set dvar4a = "L3,Label,\"Errores\",10,+40,120,20,\"\""
+    Set dvar4b = "CBANN,CheckBox,\"Anunciar Errores\",%(Col1),+0,200,20,\"If an error occurs, speak the error\",%IsPresent(FVCControls,TagAnnounciate,0)"
+
+    Set dvar41a = "L3,Label,\"Diálogo\",10,+40,120,20,\"\""
+    Set dvar41b = "CBSPK,CheckBox,\"Deshabilitar respuesta verbal\",%(Col1),+0,200,20,\"Deshabilita todas las respuestas verbales\",%IsPresent(FVCControls,TagDisableSpeech,0)"
+
+    Set dvar5a = "L3,Label,\"General\",10,+40,120,20,\"\""
+    Set dvar5b = "CBWEL,CheckBox,\"Deshabilitar Mensaje de Bienvenida\",%(Col1),+0,400,20,\"Disable the welcome voice message\",%IsPresent(FVCControls,TagWelcome,0)"
+    Set dvar5c = "CBFAIL,CheckBox,\"Mostrar Reconocimiento de Voz Fallido\",%(Col1),+30,400,20,\"Show any failed voice recognition attempts\",%IsPresent(FVCControls,TagShowFailed,0)"
+
+    Set dvar6a = "L2,Label,\"End Timeout\",10,+40,120,20,\"\""
+    Set dvar6b = "TBET,TextBox,\"%existsdefault(FVCEndTimeout,'150')\",%(Col1),+0,220,20,\"Time to wait if speech is unambigious before recognising the phrase (ms)\""
+    Set dvar7a = "L2,Label,\"Amb. Timeout\",10,+40,120,20,\"\""
+    Set dvar7b = "TBETA,TextBox,\"%existsdefault(FVCEndTimeoutAmbiguous,'500')\",%(Col1),+0,220,20,\"Time to wait if speech is ambigious (multiple matches) before recognising the phrase (ms)\""
+
+    Set dvar8a = "L2,Label,\"Pulsa para Hablar\",10,+40,120,20,\"\""
+    Set dvar8b = "PTT,ComboBox,\"%(FVCPressToTalk)\",%(Col1),+0,120,20,\"Seleccionar modo Pulsar para Hablar\",Off,Toggle,Hold"
+
+    Set dvarcancel = "Cancel,Button,\"Cancel\",150,%eval('%(height)-40'),80,20,\"Press for Cancel\""
+    Set dvarok = "OK,Button,\"OK\",+100,+0,80,20,\"Press for OK\""
+
+    Dialog D1, "Free Voice Control Configuration", "450,%(height)", dvar
+
+    While D1 $!= Cancel And D1 $!= Escape
+        If D1 $== OK
+            Let good = 1
+
+            DialogControl D1,Get TBCONF
+            Set res = %eval(DialogResult,Try)
+            If res $== NAN
+                MessageBox "Number is not an integer","Confidence Level"
+                Let good = 0
+            Else 
+                PersistentGlobal FVCConfidence = %(res)
+                Perform VoiceRecognitionConfidenceLevel %eval('%(FVCConfidence)/100.0')
+
+            Let updatetimeouts = 0
+
+            DialogControl D1,Get TBET
+            Set res = %eval(DialogResult,Try)
+            If res $== NAN Or res < 0 Or res > 9999
+                MessageBox "Number is not an integer or not in range","End Timeout"
+                Let good = 0
+            Else If res != %(FVCEndTimeout)
+                PersistentGlobal FVCEndTimeout = %(res)
+                Set updatetimeouts = 1
+
+            DialogControl D1,Get TBETA
+            Set res = %eval(DialogResult,Try)
+            If res $== NAN Or res < 0 Or res > 9999
+                MessageBox "Number is not an integer or not in range","Ambiguous End Timeout"
+                Let good = 0
+            Else If res != %(FVCEndTimeoutAmbiguous)
+                PersistentGlobal FVCEndTimeoutAmbiguous = %(res)
+                Set updatetimeouts = 1
+
+            If good IsTrue
+                DialogControl D1,Get TBPROC
+                PersistentGlobal FVCTarget = %(DialogResult)
+                Static KeyProcessTo = %(FVCTarget)              // programs using Key in here pick up global KeyProcessTo, set it to the perisistent for ours
+
+                DialogControl D1,Get CBERR
+                PersistentGlobal FVCSilentError = %(DialogResult)
+
+                PersistentGlobal FVCControls = ""
+                Call SetSO(ctrl="CBWEL",flag="%(TagWelcome)")
+                Call SetSO(ctrl="CBANN",flag="%(TagAnnounciate)")
+                Call SetSO(ctrl="CBFAIL",flag="%(TagShowFailed)")
+                Call SetSO(ctrl="CBSPK",flag="%(TagDisableSpeech)")
+
+                If FVCControls Contains %(TagDisableSpeech)     // global speech disable
+                    Static SpeechDisable = 1
+                Else 
+                    Static SpeechDisable = 0
+
+                DialogControl D1,Get PTT
+                PersistentGlobal FVCPressToTalk = %(DialogResult)
+
+                If FVCPressToTalk $== Off Or FVCPressToTalk $== Toggle
+                    Perform VoiceRecognitionEvent 1
+                Else 
+                    Perform VoiceRecognitionEvent 0
+
+                If updatetimeouts IsTrue
+                    Perform VoiceRecognitionParameters 0,0,%(FVCEndTimeout),%(FVCEndTimeoutAmbiguous)
+
+                Call SetKeyVariables
+                Break 
+
+        DialogControl D1,Continue
+
+    DialogControl D1, Close
+
+END PROGRAM
+
+//*************************************************************
+// SetSO
+// Events: None
+//*************************************************************
+PROGRAM SetSO
+
+DialogControl D1,Get %(ctrl)
+If DialogResult IsTrue
+    PersistentGlobal FVCControls += %(flag)
+
+END PROGRAM
+
+//*************************************************************
+// GenericReply
+// Events: None
+//*************************************************************
+PROGRAM GenericReply
+
+// System Panel, Target Panel, Role Panel, Quick Comms, Communication Panel, Close Panel, Head Look, Camera, Orbit Lines, Take Photo
+
+Say "Voice Input %(VoiceInput) recognised"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Failed
+// Events: onVoiceInputFailed
+//*************************************************************
+PROGRAM VoiceInput_Failed
+
+If FVCControls Contains %(TagShowFailed)
+    Print Failed voice recognition with %(VoiceInput) at %(VoiceConfidence)%
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Landing_GearToggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar|Desplegar|Retraer] Tren de aterrizaje")
+//*************************************************************
+PROGRAM VoiceInput_Landing_GearToggle
+
+Rem Autogenerated V1
+Key {LandingGearToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Landing_GearUp
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Landing_GearUp
+
+Rem Autogenerated V1
+Key {LandingGearToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Landing_GearDown
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Landing_GearDown
+
+Rem Autogenerated V1
+Key {LandingGearToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Chaff
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Desplegar] señuelos")
+//*************************************************************
+PROGRAM VoiceInput_Chaff
+
+Rem Autogenerated V1
+Key {FireChaffLauncher}
+Say "Lanzando señuelos;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Shield_Cell
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Recargar escudos;Disparar|Activar|Desplegar célula de escudo;Célula de escudo")
+//*************************************************************
+PROGRAM VoiceInput_Shield_Cell
+
+Rem Autogenerated V1
+Key {UseShieldCell}
+Say "Recargando Activando célula de energía;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Lights_On
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Encender Luces;Enciende las Luces")
+//*************************************************************
+PROGRAM VoiceInput_Lights_On
+
+Rem Autogenerated V1
+Key {ShipSpotLightToggle}
+Say "Luces encendidas"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Lights_Off
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Apagar Luces; Apaga las Luces")
+//*************************************************************
+PROGRAM VoiceInput_Lights_Off
+
+Rem Autogenerated V1
+Key {ShipSpotLightToggle}
+Say "Luces apagadas;Luces desactivadas"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Lights_Toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] Luces")
+//*************************************************************
+PROGRAM VoiceInput_Lights_Toggle
+
+Rem Autogenerated V1
+Key {ShipSpotLightToggle}
+Say Entendido;Hecho
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Heat_Sink
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Desplegar] eyector térmico")
+//*************************************************************
+PROGRAM VoiceInput_Heat_Sink
+
+Rem Autogenerated V1
+Key {DeployHeatSink}
+Say "Activando eyector de calor;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Deploy_Cargo_Scoop
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Desplegar|Retraer] Bodega de carga")
+//*************************************************************
+PROGRAM VoiceInput_Deploy_Cargo_Scoop
+
+Rem Autogenerated V1
+Key {ToggleCargoScoop}
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Retract_Cargo_Scoop
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Retract_Cargo_Scoop
+
+Rem Autogenerated V1
+Key {ToggleCargoScoop}
+Say "Bodega de carga retraída;Bodega retraída;en marcha;entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Microphone_Mute
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Silenciar micrófono")
+//*************************************************************
+PROGRAM VoiceInput_Microphone_Mute
+
+Rem Autogenerated V1
+Key {MicrophoneMute}
+Say "Accionando Micrófono"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Charge_ECM
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Desplegar] contra medidas [electrónicas] ")
+//*************************************************************
+PROGRAM VoiceInput_Charge_ECM
+
+Rem Autogenerated V1
+Key {ChargeECM}
+Say "Desplegando;Desplegando contramedidas electrónicas"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Weapons_Colour
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] color de las armas")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Weapons_Colour
+
+Rem Autogenerated V1
+Key {WeaponColourToggle}
+Say "Cambiado color de armas;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Engine_Colour
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] color del motor")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Engine_Colour
+
+Rem Autogenerated V1
+Key {EngineColourToggle}
+Say "Cambiando color del motor;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Flight_Assist
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar|Encender|Activar|Apagar|Desactivar] Asistente de vuelo")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Flight_Assist
+
+Rem Autogenerated V1
+Key {ToggleFlightAssist}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Flight_Assist_On
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Flight_Assist_On
+
+Rem Autogenerated V1
+Key {ToggleFlightAssist}
+Say "Entendido;Asistente activado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Flight_Assist_Off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Flight_Assist_Off
+
+Rem Autogenerated V1
+Key {ToggleFlightAssist}
+Say "Asistente desactivado;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Boost
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Boost;Postquemador)
+//*************************************************************
+PROGRAM VoiceInput_Boost
+
+Rem Autogenerated V1
+Key {UseBoostJuice}
+Say "Agárrate fuerte;boost"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Hyperspace
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto")
+//*************************************************************
+PROGRAM VoiceInput_Hyperspace
+
+Rem Autogenerated V1
+Key {Hyperspace}
+Say "Entendido;En marcha;Saltando"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_HUDModeToggle_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "alternar|cambiar modo")
+//*************************************************************
+PROGRAM VoiceInput_HUDModeToggle_Ship
+
+Rem Autogenerated V1
+Key {PlayerHUDModeToggle}
+Say "Modo cambiado;Entendido;Hecho"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Drop
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Termina|Finaliza|Cancela|Salir [de] supercrucero")
+//*************************************************************
+PROGRAM VoiceInput_Drop
+
+Rem Autogenerated V1
+Key {Supercruise}
+Say "Saliendo de supercrucero;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Supercruise
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Saltar a] Supercrucero")
+//*************************************************************
+PROGRAM VoiceInput_Supercruise
+
+Rem Autogenerated V1
+Key {Supercruise}
+Say "Iniciando salto a supercrucero;Supercrucero activado;Entrando en supercrucero"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Orbit_Lines
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] líneas orbitales")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Orbit_Lines
+
+Rem Autogenerated V1
+Key {OrbitLinesToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Select_Target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Apuntar;Seleccionar objetivo")
+//*************************************************************
+PROGRAM VoiceInput_Select_Target
+
+Rem Autogenerated V1
+Key {SelectTarget}
+Say "Adquiriendo objetivo;Objetivo Adquirido;En la mira"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Minus100
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reversa al máximo;Marcha atrás al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Minus100
+
+Rem Autogenerated V1
+Key {SetSpeedMinus100}
+Say "Marcha atrás al máximo;Retroceso a máxima potencia"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Minus75
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reversa al setenta y cinco [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_Minus75
+
+Rem Autogenerated V1
+Key {SetSpeedMinus75}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Minus50
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reversa al cincuenta [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_Minus50
+
+Rem Autogenerated V1
+Key {SetSpeedMinus50}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Minus25
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reversa al veinticinco [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_Minus25
+
+Rem Autogenerated V1
+Key {SetSpeedMinus25}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Stop
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores|Impulsores fuera;Apagar|Detener motores|impulsores")
+//*************************************************************
+PROGRAM VoiceInput_Stop
+
+Rem Autogenerated V1
+Key {SetSpeedZero}
+Say "Impulsores en cero"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_25
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores|Impulsores al veinticinco [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_25
+
+Rem Autogenerated V1
+Key {SetSpeed25}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_50
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Motores|Impulsores] [a] media marcha;[Motores|Impulsores] [al] cincuenta [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_50
+
+Rem Autogenerated V1
+Key {SetSpeed50}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_75
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores|Impulsores al setenta y cinco [por ciento]")
+//*************************************************************
+PROGRAM VoiceInput_75
+
+Rem Autogenerated V1
+Key {SetSpeed75}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_100
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores|Impulsores al cien [por ciento];[Motores|Impulsores] a toda marcha|máquina")
+//*************************************************************
+PROGRAM VoiceInput_100
+
+Rem Autogenerated V1
+Key {SetSpeed100}
+Say "Motores al máximo;a toda marcha;en marcha"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_NightVision
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] Vision Nocturna"), onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar|Activar|Desactivar] visión nocturna")
+//*************************************************************
+PROGRAM VoiceInput_NightVision
+
+Rem Autogenerated V1
+Key {NightVisionToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Rotational_Correction_Toggle
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] corrección rotacional")
+//*************************************************************
+PROGRAM VoiceInput_Rotational_Correction_Toggle
+
+Rem Autogenerated V1
+Key {DisableRotationCorrectToggle}
+Say "Calculando rotación"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Próximo|Siguiente objetivo")
+//*************************************************************
+PROGRAM VoiceInput_Next_Target
+
+Rem Autogenerated V1
+Key {CycleNextTarget}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Objetivo anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_target
+
+Rem Autogenerated V1
+Key {CyclePreviousTarget}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Highest_Threat
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Objetivo peligroso")
+//*************************************************************
+PROGRAM VoiceInput_Highest_Threat
+
+Rem Autogenerated V1
+Key {SelectHighestThreat}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Hostile
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente enemigo")
+//*************************************************************
+PROGRAM VoiceInput_Next_Hostile
+
+Rem Autogenerated V1
+Key {CycleNextHostileTarget}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_Hostile
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Enemigo anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_Hostile
+
+Rem Autogenerated V1
+Key {CyclePreviousHostileTarget}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Target_Wing_man_1
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Equipo uno")
+//*************************************************************
+PROGRAM VoiceInput_Target_Wing_man_1
+
+Rem Autogenerated V1
+Key {TargetWingman0}
+Say "Miembro 1 seleccionado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Target_Wing_man_2
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Equipo dos")
+//*************************************************************
+PROGRAM VoiceInput_Target_Wing_man_2
+
+Rem Autogenerated V1
+Key {TargetWingman1}
+Say "Miembro 2 seleccionado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Target_Wing_man_3
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Equipo tres")
+//*************************************************************
+PROGRAM VoiceInput_Target_Wing_man_3
+
+Rem Autogenerated V1
+Key {TargetWingman2}
+Say "Miembro 3 seleccionado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Select_Wing_man_target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Objetivo equipo")
+//*************************************************************
+PROGRAM VoiceInput_Select_Wing_man_target
+
+Rem Autogenerated V1
+Key {SelectTargetsTarget}
+Say "Objetivo de compañero seleccionado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Wingman_Nav_Lock
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Bloquear|Bloqueo baliza [de] [equipo|navegación]")
+//*************************************************************
+PROGRAM VoiceInput_Wingman_Nav_Lock
+
+Rem Autogenerated V1
+Key {WingNavLock}
+Say "Enlazados con compañero de equipo"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Subsystem
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente subsistema [siguiente]")
+//*************************************************************
+PROGRAM VoiceInput_Next_Subsystem
+
+Rem Autogenerated V1
+Key {CycleNextSubsystem}
+Say Apuntando;Enseguida;Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_Subsystem
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Subsistema anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_Subsystem
+
+Rem Autogenerated V1
+Key {CyclePreviousSubsystem}
+Say Apuntando;Enseguida;Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Resume_Route
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Restaurar ruta [de navegación]")
+//*************************************************************
+PROGRAM VoiceInput_Resume_Route
+
+Rem Autogenerated V1
+Key {TargetNextRouteSystem}
+Say "Ruta re-establecida"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Fire_Group_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente grupo [de acción]")
+//*************************************************************
+PROGRAM VoiceInput_Next_Fire_Group_Ship
+
+Rem Autogenerated V1
+Key {CycleFireGroupNext}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_Fire_Group_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Grupo [de acción] anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_Fire_Group_Ship
+
+Rem Autogenerated V1
+Key {CycleFireGroupPrevious}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Deploy_Weapons
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Desplegar|Retraer Armas;Armas Fuera|Dentro")
+//*************************************************************
+PROGRAM VoiceInput_Deploy_Weapons
+
+Rem Autogenerated V1
+Key {DeployHardpointToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Retract_Weapons
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Retract_Weapons
+
+Rem Autogenerated V1
+Key {DeployHardpointToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Silent_Running
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] Navegación silenciosa")
+//*************************************************************
+PROGRAM VoiceInput_Silent_Running
+
+Rem Autogenerated V1
+Key {ToggleButtonUpInput}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Radar_Range
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar rango [del] radar|sensor")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Radar_Range
+
+Rem Autogenerated V1
+Key {RadarIncreaseRange}
+Say "Rango aumentado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Decrease_Radar_Range
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Disminuir rango [del] radar|sensor")
+//*************************************************************
+PROGRAM VoiceInput_Decrease_Radar_Range
+
+Rem Autogenerated V1
+Key {RadarDecreaseRange}
+Say "Rango disminuido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Long_Range_Scan
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Sensores al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Long_Range_Scan
+
+Rem Autogenerated V1
+Key "{RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange}"
+Say "Sensores al máximo"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Short_Range_Scan
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Sensores al mínimo")
+//*************************************************************
+PROGRAM VoiceInput_Short_Range_Scan
+
+Rem Autogenerated V1
+Key "{RadarDecreaseRange} {RadarDecreaseRange} {RadarDecreaseRange} {RadarDecreaseRange}"
+Say "Escaneando solo las cercanías;Sensores al mínimo"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Medium_Range_Scan
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Restablecer Sensores")
+//*************************************************************
+PROGRAM VoiceInput_Medium_Range_Scan
+
+Rem Autogenerated V1
+Key "{RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarIncreaseRange} {RadarDecreaseRange}"
+Say "Sensores restablecidos;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Reset_Head_Position
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Centrar vista")
+//*************************************************************
+PROGRAM VoiceInput_Reset_Head_Position
+
+Rem Autogenerated V1
+Key {HMDReset}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Target_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] Panel de objetivo")
+//*************************************************************
+PROGRAM VoiceInput_Target_Panel_Ship
+
+Rem Autogenerated V1
+Key {FocusLeftPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Systems_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] Panel del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Systems_Panel_Ship
+
+Rem Autogenerated V1
+Key {FocusRightPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Role_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] Panel de rol")
+//*************************************************************
+PROGRAM VoiceInput_Role_Panel_Ship
+
+Rem Autogenerated V1
+Key {FocusRadarPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Communication_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] Panel de comunicaciones")
+//*************************************************************
+PROGRAM VoiceInput_Communication_Panel_Ship
+
+Rem Autogenerated V1
+Key {FocusCommsPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar panel")
+//*************************************************************
+PROGRAM VoiceInput_Close_Panel_Ship
+
+Rem Autogenerated V1
+Key {UIFocus}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Quick_Comms_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] comunicaciones rápidas")
+//*************************************************************
+PROGRAM VoiceInput_Quick_Comms_Ship
+
+Rem Autogenerated V1
+Key {QuickCommsPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_Galaxy_Map_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Open_Galaxy_Map_Ship
+
+Rem Autogenerated V1
+Key {GalaxyMapOpen}
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_Galaxy_Map_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;cerrar mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Close_Galaxy_Map_Ship
+
+Rem Autogenerated V1
+Key {GalaxyMapOpen}
+Say "Cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_System_Map_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Open_System_Map_Ship
+
+Rem Autogenerated V1
+Key {SystemMapOpen}
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_System_Map_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Cerrar] mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Close_System_Map_Ship
+
+Rem Autogenerated V1
+Key {SystemMapOpen}
+Say "cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Vista libre;Liberar vista")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look
+
+Rem Autogenerated V1
+Key {HeadLookToggle}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Game_Menu
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] Menú del juego")
+//*************************************************************
+PROGRAM VoiceInput_Game_Menu
+
+Rem Autogenerated V1
+Key {Pause}
+Say "Abriendo Menu del juego"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Friends_Menu_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] menú de amigos|amistad")
+//*************************************************************
+PROGRAM VoiceInput_Friends_Menu_Ship
+
+Rem Autogenerated V1
+Key {FriendsMenu}
+Say "Abriendo menú de amigos"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel siguiente;Siguiente Panel")
+//*************************************************************
+PROGRAM VoiceInput_Next_Panel_Ship
+
+Rem Autogenerated V1
+Key {CycleNextPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_Panel_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_Panel_Ship
+
+Rem Autogenerated V1
+Key {CyclePreviousPanel}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_Reset
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Mirada al frente")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_Reset
+
+Rem Autogenerated V1
+Key {HeadLookReset}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_Up
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Vista arriba")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_Up
+
+Rem Autogenerated V1
+Key {HeadLookPitchUp}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_Down
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Vista abajo")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_Down
+
+Rem Autogenerated V1
+Key {HeadLookPitchDown}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_Left
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Vista a la izquierda")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_Left
+
+Rem Autogenerated V1
+Key {HeadLookYawLeft}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_Right
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Vista a la derecha")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_Right
+
+Rem Autogenerated V1
+Key {HeadLookYawRight}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_FullLeft
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Mirar a la izquierda")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_FullLeft
+
+Rem Autogenerated V1
+Key "{HeadLookYawLeft} {HeadLookYawLeft} {HeadLookYawLeft}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_FullRight
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Mirar a la derecha")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_FullRight
+
+Rem Autogenerated V1
+Key "{HeadLookYawRight} {HeadLookYawRight} {HeadLookYawRight}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Head_Look_FullUp
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Mirar arriba")
+//*************************************************************
+PROGRAM VoiceInput_Head_Look_FullUp
+
+Rem Autogenerated V1
+Key "{HeadLookPitchUp} {HeadLookPitchUp} {HeadLookPitchUp} {HeadLookPitchUp}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Recall_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Llamar nave")
+//*************************************************************
+PROGRAM VoiceInput_Recall_Ship
+
+Rem Autogenerated V1
+Key {RecallDismissShip}
+Say "Llamando nave"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Dismiss_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Despedir Nave")
+//*************************************************************
+PROGRAM VoiceInput_Dismiss_Ship
+
+Rem Autogenerated V1
+Key {RecallDismissShip}
+Say "Despidiendo nave"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Drive_Assist
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] asistente [de conducción]")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Drive_Assist
+
+Rem Autogenerated V1
+Key {ToggleDriveAssist}
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Drive_Assist_On
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Drive_Assist_On
+
+Rem Autogenerated V1
+Key {ToggleDriveAssist}
+Say "Asistente encendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Drive_Assist_Off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Drive_Assist_Off
+
+Rem Autogenerated V1
+Key {ToggleDriveAssist}
+Say "Asistente desactivado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_LaunchNPCFighter
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Lanzar caza")
+//*************************************************************
+PROGRAM VoiceInput_LaunchNPCFighter
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} [50,50]#2{UI_Left} [50,50]#3{UI_Up} [50,50]{UI_Down} [50,50]{UI_Right} [50,500]{UI_Select} [50,50]#5{UI_Up} [50,200]{UI_Down} [50,200]{UI_Select} [50,50]{FocusRadarPanel} "
+Say "Lanzando caza;Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_LaunchInFighter
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Abordar caza")
+//*************************************************************
+PROGRAM VoiceInput_LaunchInFighter
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} [50,50]#2{UI_Left} [50,50]#3{UI_Up} [50,50]{UI_Down} [50,50]{UI_Right} [50,500]{UI_Select} [50,50]#5{UI_Up} [50,200]{UI_Select} [50,50]{FocusRadarPanel} "
+Say "Buena suerte comandante"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SwitchFighterInFighter
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Nave] cambio de mando;Cambiar piloto|caza caza]")
+//*************************************************************
+PROGRAM VoiceInput_SwitchFighterInFighter
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} [50,50]#2{UI_Left} [50,50]#3{UI_Up} [50,50]{UI_Right} [50,50]{UI_Right} [50,300]{UI_Select} [50,50]{UI_Up} [50,200]{UI_Select} [50,50]{FocusRadarPanel}"
+Say "Cambiando a nave nodriza"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SwitchFighterInShip
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Caza] cambio de mando;Cambiar piloto|caza caza]")
+//*************************************************************
+PROGRAM VoiceInput_SwitchFighterInShip
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} [50,50]#2{UI_Left} [50,50]#3{UI_Up} [50,50]{UI_Down} [50,50]#3{UI_Right} [50,50]{UI_Left} [50,200]{UI_Select} [50,50]{UI_Up} [50,200]{UI_Select} [50,50]{FocusRadarPanel}"
+Say "Buena suerte comandante"
+
+END PROGRAM
+
+//*************************************************************
+// FighterLaunched
+// Events: LaunchFighter
+//*************************************************************
+PROGRAM FighterLaunched
+
+StaticLet FighterLaunched = 1
+
+If EventClass_PlayerControlled IsFalse
+    Events enable "*NPCControlled*","","","",""
+    Print NPC Fighter commands active
+    Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// FighterDocked
+// Events: DockFighter
+//*************************************************************
+PROGRAM FighterDocked
+
+If FighterLaunched IsTrue
+    Events disable "*NPCControlled*","","","",""
+    Print NPC Fighter commands disabled
+    StaticLet FighterNPCMode = 0
+    Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// FighterDestroyed
+// Events: FighterDestroyed
+//*************************************************************
+PROGRAM FighterDestroyed
+
+If FighterLaunched IsTrue
+    Events disable "*NPCControlled*","","","",""
+    Print NPC Fighter commands disabled
+    StaticLet FighterNPCMode = 0
+    Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Dock
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Permiso para abordar"), onVoiceInput?(VoiceInput MatchSemicolonList "Caza regresa")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Dock
+
+Rem Autogenerated V1
+Key {OrderRequestDock}
+Say "Permiso concedido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Defensive
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza defensivo")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Defensive
+
+Rem Autogenerated V1
+Key {OrderDefensiveBehaviour}
+Say "Modo defensivo"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Aggressive
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza agresivo")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Aggressive
+
+Rem Autogenerated V1
+Key {OrderAggressiveBehaviour}
+Say "Al ataque"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza a mi objetivo")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Target
+
+Rem Autogenerated V1
+Key {OrderFocusTarget}
+Say "Lo tengo en la mira"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_HoldFire
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza alto el fuego")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_HoldFire
+
+Rem Autogenerated V1
+Key {OrderHoldFire}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_HoldPosition
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza mantén|mantener posición")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_HoldPosition
+
+Rem Autogenerated V1
+Key {OrderHoldPosition}
+Say "Manteniendo posición"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Follow
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza seguir|sígueme")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Follow
+
+Rem Autogenerated V1
+Key {OrderFollow}
+Say "Te sigo"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Fighter_Open
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Caza abrir ordenes;Abrir ordenes de Caza;Ordenar caza")
+//*************************************************************
+PROGRAM VoiceInput_Fighter_Open
+
+Rem Autogenerated V1
+Key {OpenOrders}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_Defensive
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave defensiva")
+//*************************************************************
+PROGRAM VoiceInput_Ship_Defensive
+
+Rem Autogenerated V1
+Key {OrderDefensiveBehaviour}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_Aggressive
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave Agresiva")
+//*************************************************************
+PROGRAM VoiceInput_Ship_Aggressive
+
+Rem Autogenerated V1
+Key {OrderAggressiveBehaviour}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_Target
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave a mi objetivo")
+//*************************************************************
+PROGRAM VoiceInput_Ship_Target
+
+Rem Autogenerated V1
+Key {OrderFocusTarget}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_HoldFire
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave alto el fuego")
+//*************************************************************
+PROGRAM VoiceInput_Ship_HoldFire
+
+Rem Autogenerated V1
+Key {OrderHoldFire}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_HoldPosition
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave mantén|mantener posición")
+//*************************************************************
+PROGRAM VoiceInput_Ship_HoldPosition
+
+Rem Autogenerated V1
+Key {OrderHoldPosition}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_Follow
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave seguir|sígueme")
+//*************************************************************
+PROGRAM VoiceInput_Ship_Follow
+
+Rem Autogenerated V1
+Key {OrderFollow}
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Ship_Open
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Nave abrir ordenes;Abrir ordenes de nave;Ordenar nave")
+//*************************************************************
+PROGRAM VoiceInput_Ship_Open
+
+Rem Autogenerated V1
+Key {OpenOrders}
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Engine_Power_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los motor|motores")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Engine_Power_Ship
+
+Rem Autogenerated V1
+Key {IncreaseEnginesPower}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Weapons_Power_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a las armas")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Weapons_Power_Ship
+
+Rem Autogenerated V1
+Key {IncreaseWeaponsPower}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Systems_Power_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los sistemas|escudos")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Systems_Power_Ship
+
+Rem Autogenerated V1
+Key {IncreaseSystemsPower}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Reset_Power_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Restaurar|Reiniciar|Restablecer|Balancear poder|energía")
+//*************************************************************
+PROGRAM VoiceInput_Reset_Power_Ship
+
+Rem Autogenerated V1
+Key {ResetPowerDistribution}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_WS_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Armas y escudos;escudos y armas")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_WS_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseSystemsPower} {IncreaseWeaponsPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_SpeedAttack_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque veloz")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_SpeedAttack_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxWeapons_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Armas al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxWeapons_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower} {IncreaseWeaponsPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxShields_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Escudos|Sistemas al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxShields_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseSystemsPower} {IncreaseSystemsPower} {IncreaseEnginesPower} {IncreaseSystemsPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxEngines_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxEngines_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseSystemsPower} {IncreaseEnginesPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_Balanced_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque balanceado")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_Balanced_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_AttackMode_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Modo Ataque;Ataque Pesado;A la carga")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_AttackMode_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_FastAttack_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque rápido")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_FastAttack_Ship
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution} {IncreaseWeaponsPower} {IncreaseEnginesPower}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Escape_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Escape de emergencia;Graciosa huída;Sálvese quien pueda")
+//*************************************************************
+PROGRAM VoiceInput_Escape_Ship
+
+Rem Autogenerated V1
+Key "{SetSpeed100} {UseBoostJuice} {ResetPowerDistribution} {IncreaseEnginesPower} {IncreaseEnginesPower} {IncreaseSystemsPower} {IncreaseEnginesPower} {SetSpeed100}"
+Say "Vámonos de aqui;no tienes que decírmelo dos veces;en marcha;sálvese quien pueda!"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Screenshot
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Tomar foto;Captura de pantalla")
+//*************************************************************
+PROGRAM VoiceInput_Screenshot
+
+Rem Autogenerated V1
+Key "F10"
+Say "click;di patata;di wishky; foto tomada"
+
+END PROGRAM
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CAMERA CONTROL
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+PROGRAM VoiceInput_CameraMainShip
+
+Key "{PhotoCameraToggle}"
+Say "Toggling Camera Mode;Acknowledge"
+
+StaticLet CameraMode = !%(CameraMode)
+
+If CameraMode IsTrue
+    Events enable "*CameraOn*","","","",""
+    Print Camera commands active for ship
+Else 
+    Events disable "*CameraOn*","","","",""
+    Print Camera commands disactivated
+
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_CameraSRV
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] cámara")
+//*************************************************************
+PROGRAM VoiceInput_CameraSRV
+
+Key "{PhotoCameraToggle_Buggy}"
+Say ""
+
+StaticLet CameraMode = !%(CameraMode)
+
+If CameraMode IsTrue
+    Events enable "*CameraOn*","","","",""
+    Print Camera commands active for SRV
+Else 
+    Events disable "*CameraOn*","","","",""
+    Print Camera commands disactivated
+
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_CameraOnFoot
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Modo] Cámara [externa]")
+//*************************************************************
+PROGRAM VoiceInput_CameraOnFoot
+
+Key "{PhotoCameraToggle_Humanoid}"
+Say ""
+
+StaticLet CameraMode = !%(CameraMode)
+
+If CameraMode IsTrue
+    Events enable "*CameraOn:All*","","","",""
+    Print Camera commands active for on foot
+Else 
+    Events disable "*CameraOn:All*","","","",""
+    Print Camera commands disactivated
+
+Perform BeginVoiceRecognition
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Free
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar cámara libre]")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Free
+
+Rem Autogenerated V1
+Key "{ToggleFreeCam}"
+Say "Hecho"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_PreviousCam
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara anterior")
+//*************************************************************
+PROGRAM VoiceInput_Camera_PreviousCam
+
+Rem Autogenerated V1
+Key "{VanityCameraScrollLeft}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_NextCam
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara siguiente;Siguiente cámara")
+//*************************************************************
+PROGRAM VoiceInput_Camera_NextCam
+
+Rem Autogenerated V1
+Key "{VanityCameraScrollRight}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_One
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara uno;Cámara frontal cabina")
+//*************************************************************
+PROGRAM VoiceInput_Camera_One
+
+Rem Autogenerated V1
+Key "{VanityCameraOne}"
+Say "Cámara 1"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Two
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara dos;Cámara trasera cabina")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Two
+
+Rem Autogenerated V1
+Key "{VanityCameraTwo}"
+Say "Cámara 2"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Three
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara tres;Cámara piloto")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Three
+
+Rem Autogenerated V1
+Key "{VanityCameraThree}"
+Say "Cámara 3"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Four
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara cuatro;Cámara piloto secundaria")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Four
+
+Rem Autogenerated V1
+Key "{VanityCameraFour}"
+Say "Cámara 4"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Five
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara cinco;Cámara copiloto uno")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Five
+
+Rem Autogenerated V1
+Key "{VanityCameraFive}"
+Say "Cámara 5"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Six
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara seis;Cámara copiloto dos")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Six
+
+Rem Autogenerated V1
+Key "{VanityCameraSix}"
+Say "Cámara 6"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Seven
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara siete;Cámara frontal")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Seven
+
+Rem Autogenerated V1
+Key "{VanityCameraSeven}"
+Say "Cámara 7"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Eight
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara ocho;Cámara trasera")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Eight
+
+Rem Autogenerated V1
+Key "{VanityCameraEight}"
+Say "Cámara 8"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Nine
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cámara nueve;Cámara inferior|baja")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Nine
+
+Rem Autogenerated V1
+Key "{VanityCameraNine}"
+Say "Cámara 9"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Hud
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] HUD")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Hud
+
+Rem Autogenerated V1
+Key "{FreeCamToggleHUD}"
+Say "Entendido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrSpeed
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar velocidad [de] [la] cámara")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrSpeed
+
+Rem Autogenerated V1
+Key "{FreeCamSpeedInc}"
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrSpeed
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Disminuir|Reducir velocidad [de] [la] cámara")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrSpeed
+
+Rem Autogenerated V1
+Key "{FreeCamSpeedDec}"
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Stabiliser
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] Estabilizador [de] [la] cámara")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Stabiliser
+
+Rem Autogenerated V1
+Key "{ToggleRotationLock}"
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_ShipControls
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] control de la nave")
+//*************************************************************
+PROGRAM VoiceInput_Camera_ShipControls
+
+Rem Autogenerated V1
+Key "{FixCameraRelativeToggle}"
+Say Entendido;Hecho
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_Attach
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Toggle Camera [World] Attach|World")
+//*************************************************************
+PROGRAM VoiceInput_Camera_Attach
+
+Rem Autogenerated V1
+Key "{FixCameraWorldToggle}"
+Say Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_ExitFree
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Salir de cámara libre")
+//*************************************************************
+PROGRAM VoiceInput_Camera_ExitFree
+
+Rem Autogenerated V1
+Key "{QuitCamera}"
+Say "Drón recuperado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrZoom
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Acercar [cámara]")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrZoom
+
+Rem Autogenerated V1
+Key "{FreeCamZoomIn} {FreeCamZoomIn}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrZoom
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Alejar [cámara]")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrZoom
+
+Rem Autogenerated V1
+Key "{FreeCamZoomOut} {FreeCamZoomOut}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_IncrBlur
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar desenfoque")
+//*************************************************************
+PROGRAM VoiceInput_Camera_IncrBlur
+
+Rem Autogenerated V1
+Key "{FStopInc}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Camera_DecrBlur
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Disminuir desenfoque")
+//*************************************************************
+PROGRAM VoiceInput_Camera_DecrBlur
+
+Rem Autogenerated V1
+Key "{FStopDec}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Handbrake
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] freno de emergencia|mano")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Handbrake
+
+Rem Autogenerated V1
+Key "{AutoBreakBuggyButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Headlights
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] luces")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Headlights
+
+Rem Autogenerated V1
+Key "{HeadlightsBuggyButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Toggle_Turret
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] torreta")
+//*************************************************************
+PROGRAM VoiceInput_Toggle_Turret
+
+Rem Autogenerated V1
+Key "{ToggleBuggyTurretButton}"
+Say "Preparando torreta"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SelectTargetSRV
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Seleccionar objetivo")
+//*************************************************************
+PROGRAM VoiceInput_SelectTargetSRV
+
+Rem Autogenerated V1
+Key "{SelectTarget_Buggy}"
+Say "Objetivo adquirido"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmbarkSRV
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "abordar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_EmbarkSRV
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} #2{UI_Left} #3{UI_Up} {UI_Down} {UI_Right} {UI_Select}"
+Say "En marcha;Enseguída"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Target_Panel_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] ojetivo")
+//*************************************************************
+PROGRAM VoiceInput_Target_Panel_Buggy
+
+Rem Autogenerated V1
+Key {FocusLeftPanel_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Systems_Panel_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] sistemas")
+//*************************************************************
+PROGRAM VoiceInput_Systems_Panel_Buggy
+
+Rem Autogenerated V1
+Key {FocusRightPanel_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Role_Panel_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir|Cerrar] Panel [de] Rol")
+//*************************************************************
+PROGRAM VoiceInput_Role_Panel_Buggy
+
+Rem Autogenerated V1
+Key {FocusRadarPanel_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Communication_Panel_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] panel [de] comunicaciones")
+//*************************************************************
+PROGRAM VoiceInput_Communication_Panel_Buggy
+
+Rem Autogenerated V1
+Key {FocusCommsPanel_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_Panel_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar panel")
+//*************************************************************
+PROGRAM VoiceInput_Close_Panel_Buggy
+
+Rem Autogenerated V1
+Key {UIFocus_Buggy}
+Say "Cerrando"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Quick_Comms_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] comunicaciones rápidas")
+//*************************************************************
+PROGRAM VoiceInput_Quick_Comms_Buggy
+
+Rem Autogenerated V1
+Key {QuickCommsPanel_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_Galaxy_Map_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Open_Galaxy_Map_Buggy
+
+Rem Autogenerated V1
+Key "{GalaxyMapOpen_Buggy}"
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_Galaxy_Map_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Close_Galaxy_Map_Buggy
+
+Rem Autogenerated V1
+Key "{GalaxyMapOpen_Buggy}"
+Say "Cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_System_Map_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Open_System_Map_Buggy
+
+Rem Autogenerated V1
+Key "{SystemMapOpen_Buggy}"
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_System_Map_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Close_System_Map_Buggy
+
+Rem Autogenerated V1
+Key "{SystemMapOpen_Buggy}"
+Say "Cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_System_Map_Buggy
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_System_Map_Buggy
+
+Rem Autogenerated V1
+Key "{SystemMapOpen_Buggy}"
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Next_Fire_Group_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente grupo [de acción]")
+//*************************************************************
+PROGRAM VoiceInput_Next_Fire_Group_Buggy
+
+Rem Autogenerated V1
+Key {BuggyCycleFireGroupNext}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Previous_Fire_Group_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Grupo [de acción] anterior")
+//*************************************************************
+PROGRAM VoiceInput_Previous_Fire_Group_Buggy
+
+Rem Autogenerated V1
+Key {BuggyCycleFireGroupPrevious}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Engine_Power_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al el|los motor|motores")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Engine_Power_Buggy
+
+Rem Autogenerated V1
+Key {IncreaseEnginesPower_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Weapons_Power_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a las armas")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Weapons_Power_Buggy
+
+Rem Autogenerated V1
+Key {IncreaseWeaponsPower_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Increase_Systems_Power_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Aumentar|Más energía|poder a|al los sistemas|escudos")
+//*************************************************************
+PROGRAM VoiceInput_Increase_Systems_Power_Buggy
+
+Rem Autogenerated V1
+Key {IncreaseSystemsPower_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Reset_Power_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reiniciar|Balancear|Restablecer poder|energía")
+//*************************************************************
+PROGRAM VoiceInput_Reset_Power_Buggy
+
+Rem Autogenerated V1
+Key {ResetPowerDistribution_Buggy}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_WS_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Armas y escudos;Escudos y armas")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_WS_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseSystemsPower_Buggy} {IncreaseWeaponsPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_SpeedAttack_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque veloz")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_SpeedAttack_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseEnginesPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxWeapons_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Armas al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxWeapons_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseWeaponsPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxShields_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Escudos al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxShields_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseSystemsPower_Buggy} {IncreaseSystemsPower_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseSystemsPower_Buggy}"
+Say "Escudos al máximo;Desviando energía a los escudos;Escudos priorizados"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_MaxEngines_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Motores al máximo")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_MaxEngines_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseSystemsPower_Buggy} {IncreaseEnginesPower_Buggy}"
+Say "Motores al máximo;Desviando energía a los motores;Potencia máxima a los motores"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_Balanced_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque balanceado")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_Balanced_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseEnginesPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_AttackMode_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Modo de ataque;Ataque pesado;A la carga")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_AttackMode_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseEnginesPower_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseEnginesPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Weapons_FastAttack_Buggy
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ataque rápido")
+//*************************************************************
+PROGRAM VoiceInput_Weapons_FastAttack_Buggy
+
+Rem Autogenerated V1
+Key "{ResetPowerDistribution_Buggy} {IncreaseWeaponsPower_Buggy} {IncreaseEnginesPower_Buggy}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RequestDocking_Ship
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Solicitar] permiso de|para aterrizaje|aterrizar"), onVoiceInput?(VoiceInput MatchSemicolonList "[Solicitar] permiso para abordar")
+//*************************************************************
+PROGRAM VoiceInput_RequestDocking_Ship
+
+Rem Autogenerated V1
+Key "[50,500]{FocusLeftPanel} [50,100]#2{CycleNextPanel} [2000]!{UI_Up} ^{UI_Up} {UI_Right} {UI_Select} [50,100]#1{CycleNextPanel} {FocusLeftPanel}"
+Say "Solicitando permiso para abordar;Permiso de aterrizaje solicitado;Enviando solicitud de abordaje"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_toggle
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_toggle
+
+Popout "Spanel" toggle
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_on
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_on
+
+Popout "Spanel" on
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Summary_Panel_off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Summary_Panel_off
+
+Popout "Spanel" off
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_toggle
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_toggle
+
+Popout "Tripanel" toggle
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_on
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_on
+
+Popout "Trippanel" on
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Trippanel_Panel_off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Trippanel_Panel_off
+
+Popout "Trippanel" off
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_toggle
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_toggle
+
+Popout "Notepanel" toggle
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_on
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_on
+
+Popout "Notepanel" on
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Notepanel_Panel_off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Notepanel_Panel_off
+
+Popout "Notepanel" off
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_toggle
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_toggle
+
+Popout "Routetracker" toggle
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_on
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_on
+
+Popout "RouteTracker" on
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RouteTracker_Panel_off
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_RouteTracker_Panel_off
+
+Popout "RouteTracker" off
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Interact_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Interactuar;Recoger;Tomar;Agarrar)
+//*************************************************************
+PROGRAM VoiceInput_Interact_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidPrimaryInteractButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InteractSecondary_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Presionar secundario")
+//*************************************************************
+PROGRAM VoiceInput_InteractSecondary_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidSecondaryInteractButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_HolsterWeapon
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Enfundar [Arma];Retraer [herramienta]")
+//*************************************************************
+PROGRAM VoiceInput_HolsterWeapon
+
+Rem Autogenerated V1
+Key "{HumanoidHideWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Grenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Lanzar|Tirar|Arrojar Granada")
+//*************************************************************
+PROGRAM VoiceInput_Grenade
+
+Rem Autogenerated V1
+Key "{HumanoidThrowGrenadeButton}"
+Say "Lanzando"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_NextGrenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Próxima granada")
+//*************************************************************
+PROGRAM VoiceInput_NextGrenade
+
+Rem Autogenerated V1
+Key "{HumanoidSelectNextGrenadeTypeButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_PreviousGrenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Granada anterior")
+//*************************************************************
+PROGRAM VoiceInput_PreviousGrenade
+
+Rem Autogenerated V1
+Key "{HumanoidSelectPreviousGrenadeTypeButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Reload
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Recargar [arma]")
+//*************************************************************
+PROGRAM VoiceInput_Reload
+
+Rem Autogenerated V1
+Key "{HumanoidReloadButton}"
+Say Recargando
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Switch
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cambiar [arma]")
+//*************************************************************
+PROGRAM VoiceInput_Switch
+
+Rem Autogenerated V1
+Key "{HumanoidSwitchWeapon}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_PrimaryWeapon
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Arma] principal")
+//*************************************************************
+PROGRAM VoiceInput_PrimaryWeapon
+
+Rem Autogenerated V1
+Key "{HumanoidSelectPrimaryWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SecondaryWeapon
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Arma] secundaria")
+//*************************************************************
+PROGRAM VoiceInput_SecondaryWeapon
+
+Rem Autogenerated V1
+Key "{HumanoidSelectSecondaryWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SelectUtility
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar|Selecciona] Utilidad")
+//*************************************************************
+PROGRAM VoiceInput_SelectUtility
+
+Rem Autogenerated V1
+Key "{HumanoidSelectUtilityWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_NextWeapon
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente [Arma]")
+//*************************************************************
+PROGRAM VoiceInput_NextWeapon
+
+Rem Autogenerated V1
+Key "{HumanoidSelectNextWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_PreviousWeapon
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Arma] anterior")
+//*************************************************************
+PROGRAM VoiceInput_PreviousWeapon
+
+Rem Autogenerated V1
+Key "{HumanoidSelectPreviousWeaponButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Flashlight
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Linterna;[fuera] Luces [fuera]")
+//*************************************************************
+PROGRAM VoiceInput_Flashlight
+
+Rem Autogenerated V1
+Key "{HumanoidToggleFlashlightButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_NightVision
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] Vision Nocturna"), onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar|Activar|Desactivar] visión nocturna")
+//*************************************************************
+PROGRAM VoiceInput_NightVision
+
+Rem Autogenerated V1
+Key "{HumanoidToggleNightVisionButton}"
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Shields
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar|Activar|Desactivar] escudos")
+//*************************************************************
+PROGRAM VoiceInput_Shields
+
+Rem Autogenerated V1
+Key "{HumanoidToggleShieldsButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ClearAuthority
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Limpiar|Borrar autoridad|autorización")
+//*************************************************************
+PROGRAM VoiceInput_ClearAuthority
+
+Rem Autogenerated V1
+Key "{HumanoidClearAuthorityLevel}"
+Say "Borrando registro"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Health
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Curar;recargar salud")
+//*************************************************************
+PROGRAM VoiceInput_Health
+
+Rem Autogenerated V1
+Key "{HumanoidHealthPack}"
+Say "Administrando Primeros Auxilios;Ha estado cerca"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Battery
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Recargar] baterías")
+//*************************************************************
+PROGRAM VoiceInput_Battery
+
+Rem Autogenerated V1
+Key "{HumanoidBattery}"
+Say "Recargando;Energía recargada"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_FragGrenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] granada de fragmentación")
+//*************************************************************
+PROGRAM VoiceInput_FragGrenade
+
+Rem Autogenerated V1
+Key "{HumanoidSelectFragGrenade}"
+Say Fragmentación
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EMPGrenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] granada de pulso")
+//*************************************************************
+PROGRAM VoiceInput_EMPGrenade
+
+Rem Autogenerated V1
+Key "{HumanoidSelectEMPGrenade}"
+Say Pulso
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ShieldGrenade
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] granada de escudo")
+//*************************************************************
+PROGRAM VoiceInput_ShieldGrenade
+
+Rem Autogenerated V1
+Key "{HumanoidSelectShieldGrenade}"
+Say Escudo
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Recharge
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] herramienta de recarga;link de energía")
+//*************************************************************
+PROGRAM VoiceInput_Recharge
+
+Rem Autogenerated V1
+Key "{HumanoidSwitchToRechargeTool}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_CompAnalyser
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] analizador [de composición]")
+//*************************************************************
+PROGRAM VoiceInput_CompAnalyser
+
+Rem Autogenerated V1
+Key "{HumanoidSwitchToCompAnalyser}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_SuitTool
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Seleccionar] herramienta [del traje]")
+//*************************************************************
+PROGRAM VoiceInput_SuitTool
+
+Rem Autogenerated V1
+Key "{HumanoidSwitchToSuitTool}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ToolMode
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] modo de herramienta;[Cambiar] modo de herramienta")
+//*************************************************************
+PROGRAM VoiceInput_ToolMode
+
+Rem Autogenerated V1
+Key "{HumanoidToggleToolModeButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_Galaxy_Map_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico"), onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa de la galaxia;[Abrir] mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Open_Galaxy_Map_Humanoid
+
+Rem Autogenerated V1
+Key "{GalaxyMapOpen_Humanoid}"
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_Galaxy_Map_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico"), onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa de la galaxia;Cerrar mapa galáctico")
+//*************************************************************
+PROGRAM VoiceInput_Close_Galaxy_Map_Humanoid
+
+Rem Autogenerated V1
+Key "{GalaxyMapOpen_Humanoid}"
+Say "Cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Open_System_Map_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa del sistema"), onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Open_System_Map_Humanoid
+
+Rem Autogenerated V1
+Key "{SystemMapOpen_Humanoid}"
+Say "Abriendo mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Close_System_Map_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa del sistema"), onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar mapa del sistema")
+//*************************************************************
+PROGRAM VoiceInput_Close_System_Map_Humanoid
+
+Rem Autogenerated V1
+Key "{SystemMapOpen_Humanoid}"
+Say "Cerrando mapa"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_MissionHelp_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] ayuda [de] misión")
+//*************************************************************
+PROGRAM VoiceInput_MissionHelp_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidToggleMissionHelpPanelButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_FocusComms_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Centrar] panel de comunicación|comunicaciones"), onVoiceInput?(VoiceInput MatchSemicolonList "[Centrar] panel de comunicación|comunicaciones")
+//*************************************************************
+PROGRAM VoiceInput_FocusComms_Humanoid
+
+Rem Autogenerated V1
+Key "{FocusCommsPanel_Humanoid}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_QuickComms_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] [panel] [de] comunicaciones rápidas"), onVoiceInput?(VoiceInput MatchSemicolonList "[Alternar] [panel] [de] comunicaciones rápidas")
+//*************************************************************
+PROGRAM VoiceInput_QuickComms_Humanoid
+
+Rem Autogenerated V1
+Key "{QuickCommsPanel_Humanoid}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Abrir|Alternar|Cerrar Panel de Insight"), onVoiceInput?(VoiceInput MatchSemicolonList "Abrir|Alternar|Cerrar Panel de Insight")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_RecallShip_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Llamar nave")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_RecallShip_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#1{UI_Up} [50,500]#1{UI_Select} [50,50]#1{UI_Back}"
+Say "Llamando nave"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_DismissShip_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Despedir nave")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_DismissShip_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#1{UI_Up} [50,500]#1{UI_Select} [50,50]#1{UI_Back}"
+Say "Despidiendo nave;nave despedida"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Taxi_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Pedir|Solicitar|Llamar|Reservar Taxi|Lanzadera|Apex")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Taxi_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#2{UI_Up} [50,50]#1{UI_Select}"
+Say "Solicitando Taxi"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_CancelTaxi_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Cancelar Taxi|Lanzadera|Apex")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_CancelTaxi_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#2{UI_Up} [50,500]#1{UI_Select} [50,50]{UI_Down} [50,500]{UI_Select} [50,50]{UI_Up} [50,500]{UI_Select} [50,50]{UI_Back}"
+Say "Taxi cancelado"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Navigation_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] navegación"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] navegación")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Navigation_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,500]#1{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Contacts_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] contactos"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] contactos")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Contacts_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#2{UI_Up} [50,50]{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Transactions_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] transacciones"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] transacciones")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Transactions_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Left} [50,50]#1{UI_Down} [50,50]{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Backpack_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] mochila;Panel [de] inventario"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] mochila;Panel [de] inventario")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Backpack_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Down} [50,50]{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Commander_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] comandante"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] comandante")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Commander_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Codex_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] códice"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] códice")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Codex_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]{UI_Up} [50,50]{UI_Select}"
+Say "Abriendo códice"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Powerplay_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Pane [de] Powerplay|Potencias"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] Powerplay|Potencias")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Powerplay_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#2{UI_Up} [50,50]{UI_Select}"
+Say "Abriendo Powerplay"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Squadrons_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de|del] escuadrón"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de|del] escuadrón")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Squadrons_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#3{UI_Up}  [50,50]{UI_Select}"
+Say "Abriendo Panel de escuadrón"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Engineer_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] ingenieros"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] ingenieros")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Engineer_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#2{UI_Down} [50,50]{UI_Select}"
+Say "Abriendo Panel de ingenieros"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_InsightPanel_Galnet_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel de Galnet|noticias"), onVoiceInput?(VoiceInput MatchSemicolonList "Panel de Galnet|noticias")
+//*************************************************************
+PROGRAM VoiceInput_InsightPanel_Galnet_Humanoid
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#1{UI_Down} [50,50]{UI_Select}"
+Say "Revisando Galnet"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ClosePanel_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Close Panel"), onVoiceInput?(VoiceInput MatchSemicolonList "Close Panel")
+//*************************************************************
+PROGRAM VoiceInput_ClosePanel_Humanoid
+
+Rem Autogenerated V1
+Key "[50,50]#1{UI_Back}"
+Say Entendido;Cerrando
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmotePoint
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Apuntar)
+//*************************************************************
+PROGRAM VoiceInput_EmotePoint
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot1}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteWave
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Hola)
+//*************************************************************
+PROGRAM VoiceInput_EmoteWave
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot2}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteAgree
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "de acuerdo")
+//*************************************************************
+PROGRAM VoiceInput_EmoteAgree
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot3}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteDisagree
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "en desacuerdo")
+//*************************************************************
+PROGRAM VoiceInput_EmoteDisagree
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot4}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteGo
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Vamos)
+//*************************************************************
+PROGRAM VoiceInput_EmoteGo
+
+Rem Autogenerated V1
+Key {HumanoidEmoteSlot5}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteStop
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Para;Alto;Detente)
+//*************************************************************
+PROGRAM VoiceInput_EmoteStop
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot6}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteApplaud
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Aplaudir)
+//*************************************************************
+PROGRAM VoiceInput_EmoteApplaud
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot7}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EmoteSalute
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Saludo)
+//*************************************************************
+PROGRAM VoiceInput_EmoteSalute
+
+Rem Autogenerated V1
+Key "{HumanoidEmoteSlot8}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_EnterLift_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Elevador;Apretar botón")
+//*************************************************************
+PROGRAM VoiceInput_EnterLift_Humanoid
+
+Rem Autogenerated V1
+Key "[50,500]{HumanoidPrimaryInteractButton} [50,500]{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_DisembarkLanded
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Desembarcar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_DisembarkLanded
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} {UI_Left} {UI_Left} {UI_Up} {UI_Up} {UI_Up} {UI_Right} {UI_Select}"
+Say "Hora de estirar las piernas;Entendido;Vaya con precaución comandante"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_DisembarkLandedSRV
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Desembarcar a VRS"), onVoiceInput?(VoiceInput MatchSemicolonList "Desembarcar a VRS")
+//*************************************************************
+PROGRAM VoiceInput_DisembarkLandedSRV
+
+Rem Autogenerated V1
+Key "{FocusRadarPanel} {UI_Left} {UI_Left} {UI_Up} {UI_Up} {UI_Up} {UI_Down} {UI_Down} {UI_Right} {UI_Select}"
+Say "Preparando VRS"
+
+END PROGRAM
+
+//*************************************************************
+// DockedEvent
+// Events: Docked
+//*************************************************************
+PROGRAM DockedEvent
+
+Static StarPortMenu = 1
+
+END PROGRAM
+
+//*************************************************************
+// EmbarkEvent
+// Events: Embark
+//*************************************************************
+PROGRAM EmbarkEvent
+
+Static StarPortMenu = 1
+
+END PROGRAM
+
+//*************************************************************
+// MoveStarPortServices
+// Events: None
+//*************************************************************
+PROGRAM MoveStarPortServices
+
+Rem keep track of current cursor pos..
+
+While StarPortMenu < %(pos)
+    Key "{UI_Down}"
+    StaticLet StarPortMenu = %(StarPortMenu)+1
+
+Rem 
+While StarPortMenu > %(pos)
+    Key "{UI_Up}"
+    StaticLet StarPortMenu = %(StarPortMenu)-1
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_StarPortServices
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Abrir] servicios [locales]")
+//*************************************************************
+PROGRAM VoiceInput_StarPortServices
+
+Call MoveStarPortServices(pos=1)
+Key "{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_LaunchDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Despegar)
+//*************************************************************
+PROGRAM VoiceInput_LaunchDocked
+
+Call MoveStarPortServices(pos=2)
+Key "{UI_Select}"
+Say "Despegando"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_DisembarkDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Desembarcar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_DisembarkDocked
+
+Call MoveStarPortServices(pos=3)
+Key "{UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RefuelDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Repostar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_RefuelDocked
+
+Call MoveStarPortServices(pos=1)
+Key "{UI_Up} {UI_Select} {UI_Down}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RepairDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reparar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_RepairDocked
+
+Call MoveStarPortServices(pos=1)
+Key "{UI_Up} {UI_Right} {UI_Select} {UI_Left} {UI_Down}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_RestockDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Re-aprovisionar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_RestockDocked
+
+Call MoveStarPortServices(pos=1)
+Key "{UI_Up} {UI_Right} {UI_Right} {UI_Select} {UI_Left} {UI_Left} {UI_Down}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ReturnToSurfaceDocked
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Ir al hangar;regresar a [la] superficie")
+//*************************************************************
+PROGRAM VoiceInput_ReturnToSurfaceDocked
+
+Call MoveStarPortServices(pos=1)
+Key "{UI_Up} {UI_Right} {UI_Right} {UI_Right} {UI_Select} {UI_Left} {UI_Left} {UI_Left} {UI_Down}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_DisembarkDockedSRV
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_DisembarkDockedSRV
+
+Rem Autogenerated V1
+Key ""
+Say ""
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Embark_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Abordar [nave]")
+//*************************************************************
+PROGRAM VoiceInput_Embark_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidPrimaryInteractButton} {UI_Select}"
+Say "Bienvenido abordo;Bienvenido de vuelta"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Manage_Inventory_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Administrar] Inventario")
+//*************************************************************
+PROGRAM VoiceInput_Manage_Inventory_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidPrimaryInteractButton} [50,50]{UI_Down} {UI_Select}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Resupply_Inventory_Humanoid
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Reaprovisionar|Rellenar inventario")
+//*************************************************************
+PROGRAM VoiceInput_Resupply_Inventory_Humanoid
+
+Rem Autogenerated V1
+Key "{HumanoidPrimaryInteractButton} [50,50]#2{UI_Down} [50,500]{UI_Select} [50,50]{UI_Back}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_ScanSystem
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Escanear sistema")
+//*************************************************************
+PROGRAM VoiceInput_ScanSystem
+
+Key "!{SecondaryFire}"
+Say "Escanenando"
+Timer ScanSystemTimer,6000
+
+END PROGRAM
+
+//*************************************************************
+// ScanSystemTimer
+// Events: onTimer?(TimerName $== ScanSystemTimer)
+//*************************************************************
+PROGRAM ScanSystemTimer
+
+Key "^{SecondaryFire}"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceActivatedKey
+// Events: onEliteInputRaw?(Device $== Keyboard And EventName $== RControlKey)
+//*************************************************************
+PROGRAM VoiceActivatedKey
+
+Rem Print VA %(Device), EventName:%(EventName) Pressed:%(Pressed) Value:%(Value)
+
+If Pressed IsTrue
+    If VRKeyDown == 0                                           // debound key repeats
+        If FVCPressToTalk $== Toggle
+            Perform VoiceRecognitionEvent Toggle
+            Perform VoiceRecognitionEvent Status
+            Say "%ifnonzero(VoiceRecognitionEvent,'enabled','disabled')"
+
+        Else If FVCPressToTalk $== Hold
+            Perform VoiceRecognitionEvent 1
+            Rem CScore has problems with short samples near its sampling length, so make it longer then shape it
+            Play TONE,Frequency=512,Duration=250,Attack=20,Sustain=60,Release=20,Volume=20
+
+        Static VRKeyDown = 1
+Else 
+    If FVCPressToTalk $== Hold
+        Perform VoiceRecognitionEvent 0
+        Rem CScore has problems with short samples near its sampling length, so make it longer then shape it
+        Play TONE,Frequency=256,Duration=250,Attack=20,Sustain=60,Release=20,Volume=20
+
+    Static VRKeyDown = 0
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Hiperespacio
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput_Hiperespacio
+
+Rem Autogenerated V1
+Key F2
+Say Saltando;Entendido
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput__salto_al__hiperespacio
+// Events: None
+//*************************************************************
+PROGRAM VoiceInput__salto_al__hiperespacio
+
+Rem Autogenerated V1
+Key {Hyperspace}
+Say "Saltando al hiperespacio;Entendido;En marcha"
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput__Saltar_al__Hiperespacio
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Saltar al] Hiperespacio;Saltar;Siguiente salto")
+//*************************************************************
+PROGRAM VoiceInput__Saltar_al__Hiperespacio
+
+Rem Autogenerated V1
+Key {Hyperspace}
+
+END PROGRAM
+
+//*************************************************************
+// VoiceInput_Panel__de__portanaves
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] portanaves")
+//*************************************************************
+PROGRAM VoiceInput_Panel__de__portanaves
+
+Rem Autogenerated V1
+Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#3{UI_Down}  [50,50]{UI_Select}"
+Say "Abriendo panel del portanaves"
+
+END PROGRAM
+
