@@ -14,7 +14,7 @@ REM then wintitle, refname (for DB), Description, icon filename (relative to plu
 INSTALL PlugInPanel=DemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"Demo Python Addon Panel",DemoPythonv1,"Demonstration of a python script interacting with EDD","snake.png","Plugins\DemoPlugin"
 
 REM We need to download the plugin, so from this github folder, download all files found in it to Plugins/...
-INSTALL DownloadFolder=Plugins/DemoPlugin,Plugins\DemoPlugin
+INSTALL DownloadFolder=Plugins/DemoPlugin;Plugins\DemoPlugin
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
 
