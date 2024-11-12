@@ -1,0 +1,124 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Action interface for a python plugin, responsible for creating the panel UI"
+INSTALL ShortDescription="Action Python Plugin"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.0.0.0
+INSTALL Location=.
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup - called by the ZMQ panel on startup to allow the UI to be set up
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+set snakepng = %combinepaths(ActionPackFolder,"snake.png")
+
+rem Print *** Python Plugin Action script running %(snakepng)
+
+Set evar01 = DGV,dgv,"",Dock:Fill,10,10,10,10,"",0;(text,"Index",100,Numeric),(text,"Time",200),(text,"Info",200),(text,"Detailed",300)
+Set evar02 = RTB,richtextbox,"",Dock:Top,0,0,1,100,"Log"
+Set evar03 = P1,flowpanel,"",Dock:Top,0,0,1,96,"",Horizontal,"100,64,128,64"
+
+rem see the action doc for the format of the drop down button.
+Set evarp1-0 = DDB,dropdownbutton,File:%(snakepng),In:P1,0,0,28,28,"Drop down","",1,0,0,0,24,24;("T1","Entry 1"),("T2","Entry 2"),("T3", "Entry 3"),("T4","Entry 4"),("T1;T2","Group 1",,,"Group"),("T3;T4","Group 2",,,"Group"),("B1","Close",,,Button)
+Set evarp1-1 = RELOAD,Button,"Reload",In:P1,0,0,50,28,"Reload grid"
+Set evarp1-2 = HIDE,Button,"Hide",In:P1,0,0,50,28,"Hide DDB"
+Set evarp1-3 = DISABLE,Button,"Disable",In:P1,0,0,50,28,"Disable DDB"
+set evarp1-X = RB1,Button,"Remove",In:P1,0,0,50,28,"To be removed by code"
+
+DialogControl UC, AddRange evar 
+
+rem print a line to the RTB - example
+DialogControl UC, setescape RTB="UIInterface.act created items\r\n"
+
+END PROGRAM
+
+//*************************************************************
+// Open file dialog 
+// Folder = folder to present
+// Filter = filter, such as Log files|*.log|All Files|*.*
+// DefaultExtension, such as *.ext
+// Check_BOOL = 1/0
+// Returns {DialogResult:"OK/Cancel","FileName":""}
+//*************************************************************
+
+PROGRAM OpenFileDialog
+FileDialog openfile,"%(Folder)",%(Filter),%(DefaultExtension),%iftrue(%(Check_BOOL),"On","Off")
+set json.DialogResult = %(DialogResult)
+set json.FileName = %(FileName)
+return %ToJson(json)
+END PROGRAM
+
+//*************************************************************
+// Save file dialog 
+// Folder = folder to present
+// Filter = filter, such as Log files|*.log|All Files|*.*
+// DefaultExtension, such as *.ext
+// WarnOnOverwrite_BOOL = 1/0
+// Returns {DialogResult:"OK/Cancel","FileName":""}
+//*************************************************************
+
+PROGRAM SaveFileDialog
+FileDialog savefile,"%(Folder)",%(Filter),%(DefaultExtension),%iftrue(%(WarnOnOverwrite_BOOL),"On","Off")
+set json.DialogResult = %(DialogResult)
+set json.FileName = %(FileName)
+return %ToJson(json)
+END PROGRAM
+
+
+//*************************************************************
+// Folder file dialog 
+// RootFolder = folder to present. See https://learn.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=net-8.0&redirectedfrom=MSDN
+// Description = text prompt
+// Returns {DialogResult:"OK/Cancel","FolderName":""}
+//*************************************************************
+
+PROGRAM FolderDialog
+FileDialog folder,"%(Description)","%(RootFolder)"
+set json.DialogResult = %(DialogResult)
+set json.FolderName = %(FolderName)
+return %ToJson(json)
+END PROGRAM
+
+
+//*************************************************************
+// Input Box
+// Caption
+// PromptList = list of prompts
+// DefaultList = list of default values
+// FeatureList = empty or MultiLine
+// ToolTipList = list of tooltips
+// Returns {DialogResult:"OK/Cancel","FolderName":""}
+//*************************************************************
+
+PROGRAM InputBox
+InputBox "%(Caption)","%(PromptList)","%(DefaultList)","%(FeatureList)","%(ToolTipList)"
+set json.DialogResult = %iftrue(%(InputBoxOK),"OK","Cancel")
+set i = 1
+while %exist("InputBox%(i)") IsTrue
+	set json.Input%(i) = %expand("InputBox%(i)")
+    let i = %(i)+1
+rem pragma dumpvars *
+return %ToJson(json)
+END PROGRAM
+
+
+//*************************************************************
+// Info Box
+// Caption
+// Message 
+// Returns DialogResult:OK
+//*************************************************************
+
+PROGRAM InfoBox
+InfoBox "%(Message)","%(Caption)"
+set json.DialogResult = OK
+rem pragma dumpvars *
+return %ToJson(json)
+END PROGRAM
+

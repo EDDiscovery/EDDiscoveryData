@@ -1,0 +1,30 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Python Panel Demo. This demonstrates a downloadable Python add in.\r\nYou need to have Python3 installed to run this."
+INSTALL ShortDescription="Python Panel Demo"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.1.0.0
+INSTALL Location=Actions
+
+REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a panel type
+REM then followed by the type which must be at present ZMQPanel
+REM then wintitle, refname (for DB), Description, icon filename (relative to plugin folder), Plugin Folder in AppData structure
+INSTALL PlugInPanel=DemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"Demo Python Addon Panel",DemoPythonv1,"Demonstration of a python script interacting with EDD","snake.png","Plugins\DemoPlugin"
+
+REM We need to download the plugin, so from this github folder, download all files found in it to Plugins/...
+INSTALL OtherFolder=Plugins/DemoPlugin,Plugins\DemoPlugin
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Print Demo Python Panel plugin present
+
+END PROGRAM
+

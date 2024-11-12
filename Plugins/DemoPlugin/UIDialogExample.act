@@ -1,0 +1,49 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="Demonstration of a dialog forms file for the python plugin"
+INSTALL ShortDescription="Action Python Plugin"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.0.0.0
+INSTALL Location=.
+
+//*************************************************************
+// Demo Dialog
+//*************************************************************
+
+PROGRAM DemoDialog
+
+// expecting PATH
+
+Set width = 400
+
+Set dvar1c = BBROWSE,Button,Browse,10,10,100,20,"Select file"
+Set dvar1d = TBLF,TextBox,%(PATH),10,60,300,20
+
+Set dvarok = OK,Button,"OK",In:Bottom,%eval(%(width)-120),4,100,20,"Press for OK"
+Set dvarclose = Cancel,Button,"Cancel",In:Bottom,%eval(%(width)-240),4,100,20,"Press for Cancel"
+
+Dialog D1, "Test Dialog", "%(width),250", dvar, TopPanel:32, BottomPanel:32
+
+While D1 $!= Cancel And D1 $!= Escape 
+    If D1 $== BBROWSE
+        DialogControl D1,Get TBLF
+        print paYth %(DialogResult)
+        FileDialog openfile,"%DirectoryName(DialogResult)","Log files|*.log|All Files|*.*",*.log,on
+        If FileName IsNotEmpty
+            DialogControl D1,Set TBLF=%(FileName)
+    If D1 $== OK
+        DialogControl D1,Get TBLF
+        // form up JSON compatible variables (see ToJSON documentation). We use the root name json to identify them, and . to indicate object. will make { Path=.., Success=true}
+        Set json.Path=%(DialogResult)
+        Set json.Success_BOOL=1
+        return %tojson(json)
+
+    DialogControl D1, Continue
+
+// indicate cancel
+Set json.Success_BOOL=0
+return %tojson(json)
+     
+END PROGRAM
