@@ -34,24 +34,28 @@ import time
 #				length = number of entries to send. Can be longer than whats available from start
 #		server responsetype = requesttype
 #				start = requested start address
-#				length = number of entries sent, 0 if start is out of range and none is available
+#				length = number of entries sent, 0 if start is out of range or no history
 #				commander = string, name of commander
-#				rows[] containing an object of journal entries, and example is below:
+#				rows[] containing an object of journal entries. May be zero length.
 #
 # client requesttype = "historyjid"
-#				jid to request
+#				jid = journal Id to request (this is inside journalEntry, not the history index)
 #		server responsetype = requesttype
-#				jid back
-#				entry = None if does not exist, or
-#				length = number of entries sent, 0 if start is out of range and none is available
-#				commander = string, name of commander
-#				rows[] containing an object of journal entries, and example is below:
+#				jid = requested Id
+#				entry = None if does not exist, or entry below.
 #
-#		Each entry/row contains:
-#			Index is the number used to look it up, EntryNumber is 1.. based. Unfiltered index is the entry number without all the filtered out entries 
+#	For both history and historyjid, then each entry contains:
+#			Index is the number used to look it up in history, 
+#			EntryNumber is 1.. based. 
+#			Unfiltered index is the entry number without all the filtered out entries 
 #			 {"EntryNumber":22036,"Index":22035,"UnfilteredIndex":24753,
 #			 .. Journal Entry itself
-#			 "journalEntry":{"Station":"Two","StationType":"Crater Outpost","FDStationType":"CraterOutpost","CarrierDockingAccess":null,"StarSystem":"Eowyg Auscs FG-Y d34","MarketID":3534247946,"Commodities":[],"Id":2269018,"TLUId":2757,"IsJournalSourced":true,"CommanderId":36,"EventTypeID":"Market","EventTypeStr":"Market","EventTimeUTC":"2024-10-06T13:52:39Z","EventTimeLocal":"2024-10-06T14:52:39Z","SyncedEDSM":false,"SyncedEDDN":false,"StartMarker":false,"StopMarker":false,"IsBeta":false,"IsHorizons":true,"IsOdyssey":true,"GameVersion":"4.0.0.1808","Build":"r304197/r0 ","FullPath":"c:\\code\\logs\\empty\\Journal.2024-10-06T015203.01.log","SNC":null},
+#			 "journalEntry":{"Station":"Two","StationType":"Crater Outpost","FDStationType":"CraterOutpost","CarrierDockingAccess":null,"StarSystem":"Eowyg Auscs FG-Y d34","MarketID":3534247946,"Commodities":[],
+#				"Id":2269018,"TLUId":2757,"IsJournalSourced":true,"CommanderId":36,
+#				"EventTypeID":"Market","EventTypeStr":"Market","EventTimeUTC":"2024-10-06T13:52:39Z","EventTimeLocal":"2024-10-06T14:52:39Z",
+#				"IsBeta":false,"IsHorizons":true,"IsOdyssey":true,"GameVersion":"4.0.0.1808","Build":"r304197/r0 ",
+#				"FullPath":"c:\\code\\logs\\empty\\Journal.2024-10-06T015203.01.log",
+#				"SNC":null},
 #			 .. System records where we are for all records
 #			 "System":{"Source":"FromJournal","MainStarType":"A","Name":"Eowyg Auscs FG-Y d34","X":23091.96875,"Y":29.8125,"Z":19516.3125,"HasCoordinate":true,"SystemAddress":1183557095691,"EDSMID":null},
 #			 "EventSummary":"Market","isTravelling":false,"TravelledTimeSec":0,"TravelledDistance":0.0,"TravelledJumps":0,"TravelledMissingJumps":0,
@@ -63,9 +67,10 @@ import time
 # client requesttype = "missions" - request mission information at an historic point in time given by the journal entry
 #				entry = history entry for information to report on. If out of range, the latest history entry is used
 #		server responsetype = requesttype
-#				entry = history entry for information to report on
-#				current = Array of mission data of currently active missions
-#				previous = Array of mission data of previous missions
+#				entry = entry requested
+#				entryreturned = entry returned, or -1 for no data.
+#				current = Array of mission data of currently active missions, or None if no information
+#				previous = Array of mission data of previous missions, or None if no information
 #				Each mission data entry contains data from https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Stats/MissionList.cs
 #					e.Missions is the journal entry MissionAccepted
 #					e.Completed is the journal entry MissionCompleted, null if not complete
@@ -77,13 +82,14 @@ import time
 # client requesttype = "ship" - request ship information on current ship at this journal entry
 #				entry = history entry for information to report on. If out of range, the latest history entry is used
 #		server responsetype = requesttype
-#				entry = history entry for information to report on
-#				ship object containing information on ID, State, ShipType, ShipFD, etc. 
+#				entry = entry requested
+#				entryreturned = entry returned, or -1 for no data.
+#				ship= object containing information on ID, State, ShipType, ShipFD, etc, or None if no history
 #				See https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Ships/Ship.cs
 #
 # client requesttype = "shiplist" - request ship list information at this point in time
 #		server responsetype = requesttype
-#				shiplist containing
+#				shiplist = shiplist or None if no information. It contains:
 #					CurrentShipID Key string 
 #					Ships object contains ship data, keys by Key String
 #					StoredModules object containing StoredModules array of modules in store. Each module is an object
@@ -92,10 +98,12 @@ import time
 # client requesttype = "suitsweapons" - request ship information on current ship at this journal entry
 #				entry = history entry for information to report on. If out of range, the latest history entry is used
 #		server responsetype = requesttype
-#				entry = history entry for information to report on
-#				suits object containing keys of suit information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitInformation.cs
-#				weapons object containing keys of weapon information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitWeapons.cs
-#				loadouts oject containing keys of loadouts information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitLoadouts.cs
+#				entry = entry requested
+#				entryreturned = entry returned, or -1 for no data.
+#				if no history, the following will each be None
+#					suits object containing keys of suit information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitInformation.cs
+#					weapons object containing keys of weapon information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitWeapons.cs
+#					loadouts oject containing keys of loadouts information at this point. https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Suit/SuitLoadouts.cs
 #
 # client requesttype = "carrier" - request latest carrier data
 #		server responsetype = requesttype
@@ -117,7 +125,7 @@ import time
 # client requesttype = "scandata" - request scan data about system
 #				system = system name
 #				systemid = 56 bit system id, may be None
-#				weblookup = Not present or None: use EDD data only, or EDSM, Spansh, SpandThenEDSM, All
+#				weblookup = Not present or None: use EDD data only, or EDSM, Spansh, SpanshThenEDSM, All
 #		server responsetype = requesttype
 #				system = system name
 #				systemid = 56 bit system id, may be None
@@ -127,7 +135,7 @@ import time
 #				faction = string of faction name
 #		server responsetype = requesttype
 #				faction = string of faction name
-#				data = Faction data. See https://github.com/EDDiscovery/EliteDangerousCore/blob/master/EliteDangerous/Stats/Stats.cs
+#				data = Faction data or None if no known faction. See https://github.com/EDDiscovery/EliteDangerousCore/blob/master/EliteDangerous/Stats/Stats.cs
 #
 # client requesttype = "factions" - request information about faction
 #		server responsetype = requesttype
