@@ -22,6 +22,7 @@ EVENT onStartup, onStartup, "", Condition AlwaysTrue
 // onStartup
 // Events: onStartup
 //*************************************************************
+
 PROGRAM onStartup
 
 Print Demo Python Panel plugin present

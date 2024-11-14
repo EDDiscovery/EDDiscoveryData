@@ -7,7 +7,6 @@ import zmq
 import queue
 import time
 import json
-import serial
 
 # Printing this is telling EDD that everything is ok
 print("Module Check OK")
