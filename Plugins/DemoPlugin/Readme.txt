@@ -1,14 +1,19 @@
 Demonstration Python Plugin
 
-Must have:
+This Folder contains:
 
 Config
 ------
 
 config.json - contains configuration for how to launch the plugin. 
-    The "Python" section is used to tell it that the panel is python and the launch parameters, and what modules should be installed if checkmodules.py fails
+    The "Python" section is used to tell it that the panel is python and the launch parameters, and what modules should be installed if checkmodules.py fails.
     
-    
+    The "Panel" section is used to configure the EDD form. 
+        SupportTransparency : True/False (Default if not Present) : TBD
+        DefaultTransparent : True/False (Default if not Present) : TBD
+        Hidden : True/False (Default if not Present) : If set true, hide the EDD pop out window when python connects. You must have PopOutOnly set below in PlugInPanel (see below)
+                   This allows a headless EDD panel to run a python plugin in GUI/Text mode, instead of using the EDD panel as the UI.
+                   
 Graphics Files
 --------------
 
@@ -56,15 +61,34 @@ Visual Studio Debugging files
     Run the python program in visual studio.  The program will connect to EDD and you can debug the plugin
     
     
+Additional Actions File Required
+--------------------------------
 
-    
+In ActionFiles\V1 you need a action file for this plugin.
+
+This action file needs to have the following statements:
+
+ACTIONFILE V4
+ENABLED True
+INSTALL LongDescription="Description.."
+INSTALL ShortDescription="Short name"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.1.0.0
+INSTALL Location=Actions
+
+REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a panel type
+REM then followed by the type which must be at present ZMQPanel
+REM then wintitle, refname (for DB), Description, icon filename (relative to plugin folder), Plugin Folder in AppData structure, Pop Out Only (True/False)
+INSTALL PlugInPanel=DemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"Demo Python Addon Panel",DemoPythonv1,"Demonstration of a python script interacting with EDD","snake.png","Plugins\DemoPlugin",false
+REM We need to download the plugin, so from this github folder, download all files found in it to Plugins/...
+INSTALL DownloadFolder=Plugins/DemoPlugin;Plugins\DemoPlugin
 
 
-    
+Then optionally OnStartup/OnInstall statements to present info to the user.  
+
+The plugin cannot call programs in this action file, or any main action files.  
 
 
+ 
 
-        
-
-For a pyth
 

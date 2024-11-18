@@ -3,6 +3,8 @@ import zmq
 import queue
 import time
 
+# MASTER VERSION
+
 # server is stateless
 #
 # Variables
@@ -22,15 +24,16 @@ import time
 #               apiversion = 1
 #				historylength = X (number of history entries currently loaded, may be zero)
 #				commander = commander loaded (may be blank, none loaded yet)
-#				config = config string (this code uses JSON) to configure tool with.  
+#				config = config string (this code uses JSON) to configure tool with.
 #						If no config has been set, this will be empty, and edd.py will edd.Config to an empty JSON object
 #
 # client requesttype = "exit"	: Sent by client either because it wants to exit, or the server asked for a termination
 #				reason = "string" : Reason for exit.  Empty string or reason for error
 #				config = config string (this code uses  JSON). EDD, if not empty will store the config string in the user panel data store of EDD
+#               close = false/true : Close if possible. Only works on pop out windows
 #
 # client requesttype = "history"
-#				start = history entry start position 
+#				start = history entry start position
 #				length = number of entries to send. Can be longer than whats available from start
 #		server responsetype = requesttype
 #				start = requested start address
@@ -45,9 +48,9 @@ import time
 #				entry = None if does not exist, or entry below.
 #
 #	For both history and historyjid, then each entry contains:
-#			Index is the number used to look it up in history, 
-#			EntryNumber is 1.. based. 
-#			Unfiltered index is the entry number without all the filtered out entries 
+#			Index is the number used to look it up in history,
+#			EntryNumber is 1.. based.
+#			Unfiltered index is the entry number without all the filtered out entries
 #			 {"EntryNumber":22036,"Index":22035,"UnfilteredIndex":24753,
 #			 .. Journal Entry itself
 #			 "journalEntry":{"Station":"Two","StationType":"Crater Outpost","FDStationType":"CraterOutpost","CarrierDockingAccess":null,"StarSystem":"Eowyg Auscs FG-Y d34","MarketID":3534247946,"Commodities":[],
@@ -76,7 +79,7 @@ import time
 #					e.Completed is the journal entry MissionCompleted, null if not complete
 #					e.Redirected is the journal entry MissionRedirected (may be null)
 #					e.CargoDepot is the journal entry CargoDepot (may be null)
-#					e.OriginatingSystem, e.MissionEndTime, 
+#					e.OriginatingSystem, e.MissionEndTime,
 #					e.State (InProgress,Completed,Abandoned,Failed,Died)
 #
 # client requesttype = "ship" - request ship information on current ship at this journal entry
@@ -90,7 +93,7 @@ import time
 # client requesttype = "shiplist" - request ship list information at this point in time
 #		server responsetype = requesttype
 #				shiplist = shiplist or None if no information. It contains:
-#					CurrentShipID Key string 
+#					CurrentShipID Key string
 #					Ships object contains ship data, keys by Key String
 #					StoredModules object containing StoredModules array of modules in store. Each module is an object
 #				See https://github.com/EDDiscovery/EliteDangerousCore/blob/d94c3f775e714f97a42d38758734929a5ae3c24b/EliteDangerous/Ships/ShipList.cs
@@ -149,7 +152,7 @@ import time
 #
 ################################################################################################ REQUESTS TO RUN ACTION PROGRAMS
 #
-# client requesttype = "runactionprogram"	- in the .act files of the plugin try and find program and run it.  
+# client requesttype = "runactionprogram"	- in the .act files of the plugin try and find program and run it.
 #				name = "program name"
 #				[variables] = JSON of variables to give to program.  Such as an object containing { "Fred"=10, "Jim"= "Jimmy", "Sheila" = [1,2,3], "George"=true}
 #						 these will appear in the action program.  Bools will appear with the postfix _BOOL (George_BOOL)
@@ -187,7 +190,7 @@ import time
 #
 # push server responsetype = "edduievent"
 #				type = UI event type
-#				event = JSON of a EDD UI event. 
+#				event = JSON of a EDD UI event.
 #				See EDD for UI events they consist of events from status.json and some journal events such as music/fsdtarget.
 #				Important one sent at startup is UIOverallStatus which gives you broad info on current state: {'responsetype': 'edduievent', 'type': 'UIOverallStatus', 'event': {'MajorMode': 'None', 'Mode': 'None', 'Flags': [], 'Focus': 'NoFocus', 'Pips': {'Valid': False, 'Systems': -1.7976931348623157e+308, 'Engines': -1.7976931348623157e+308, 'Weapons': -1.7976931348623157e+308}, 'Firegroup': -1, 'Fuel': -1.0, 'Reserve': -1.0, 'Cargo': -1, 'Pos': {'ValidPosition': False, 'Latitude': -999999.0, 'Longitude': -999999.0, 'ValidAltitude': False, 'Altitude': -999999.0, 'AltitudeFromAverageRadius': False}, 'ValidHeading': False, 'Heading': -999999.0, 'ValidRadius': False, 'PlanetRadius': -999999.0, 'LegalState': None, 'BodyName': None, 'Health': -1.0, 'LowHealth': False, 'Gravity': -1.0, 'Temperature': -1.0, 'TemperatureState': 'Normal', 'Oxygen': -1.0, 'LowOxygen': False, 'BreathableAtmosphere': False, 'FSDState': 'Normal', 'SelectedWeapon': None, 'SelectedWeapon_Localised': None, 'DestinationName': '', 'DestinationBodyID': 0, 'DestinationSystemAddress': 0, 'EventTimeUTC': '2024-09-08T15:00:58Z', 'EventTypeID': 'OverallStatus', 'EventTypeStr': 'OverallStatus', 'EventRefresh': False}}
 #
@@ -203,7 +206,7 @@ import time
 #				Z = z coord
 #
 #
-################################################################################################ UI Interaction 
+################################################################################################ UI Interaction
 # See Action Document DialogControl section and the commands in it, this mirrors those commands
 #
 # push responsetype = "uievent"
@@ -215,7 +218,7 @@ import time
 #
 #		See action doc for list of triggers (in Dialog section).  Event will be the text after the name
 #		DGV right click menu will return value=right click menu tag, value2 = row.  Data will be text representation of these both.
-#		A window sizing event is reported as {'responsetype': 'uievent', 'control': 'UC', 'event': 'Resize', 'data': '941,620', 'value': {'IsEmpty': False, 'Width': 941, 'Height': 620}}					 
+#		A window sizing event is reported as {'responsetype': 'uievent', 'control': 'UC', 'event': 'Resize', 'data': '941,620', 'value': {'IsEmpty': False, 'Width': 941, 'Height': 620}}					
 #
 # client requesttype = "uisuspend" - suspend update to this control pending updates. Use resume to continue normal operation
 #				control = "control name"
@@ -255,7 +258,7 @@ import time
 #							 Object is: row:  Integer -1 to insert at start, -2 to append at end
 #										[headertext] : String, set the header text optionally to this text
 #							            [cellstart] : Integer, first cell number. 0 if not present.  Only if overwriting rows, new rows must start with cell 0
-#							            JArray cells, optional, each one an object containing: 
+#							            JArray cells, optional, each one an object containing:
 #											type : Always "text" at present (may be expanded later for different cell types)
 #							                [tooltip] optional tooltip to assign
 #							                [cell] optional cell number override, only for overrighting rows not for new rows, restart count at this value
@@ -357,13 +360,14 @@ class EDD:
 		print("EDD initialising, connecting to " + connectstr)
 		self.worker.connect(connectstr)
 		self.messq = []
-		
+        self.Config = dict()
+
 ########################################################################################## Start/Exit
 
 	def SendStart(self,version,timeout = DefaultTimeout) -> bool:
 		data = {'requesttype':'start', 'version':version, 'apiversion':1}
 		self.worker.send_string(json.dumps(data));
-	
+
 		ret = self.Poll("start",timeout)
 
 		self.EDDVersion = ""				# indicates no version
@@ -373,18 +377,16 @@ class EDD:
 			self.HistoryLength = ret["historylength"]
 			self.Commander = ret["commander"]
 			config = ret["config"]
-			if config == "":
-				self.Config = json.loads("{}")
-			else:
+			if config != "":
 				self.Config = json.loads(config)
-			print(f"EDD Start {self.EDDVersion} API {self.APIVersion} Cmdr {self.Commander} History {self.HistoryLength} Config {self.Config}")				
+			print(f"EDD Start {self.EDDVersion} API {self.APIVersion} Cmdr {self.Commander} History {self.HistoryLength} Config {self.Config}")
 			return True
 		else:
 			print("No start return")
 			return False
 
-	def SendExit(self,reason) -> None:
-		data = {'requesttype':'exit', 'reason':reason, 'config':json.dumps(self.Config) }
+	def SendExit(self,reason,close=False) -> None:
+		data = {'requesttype':'exit', 'reason':reason, 'config':json.dumps(self.Config), 'close':close }
 		self.worker.send_string(json.dumps(data))
 		
 ########################################################################################## Requests
@@ -536,9 +538,9 @@ class EDD:
 		self.worker.send_string(json.dumps(data));
 
 	def UISetDGVSetting(self, control, columnreorder, percolumnwordwrap, allowheadervisibility, singlerowselect) -> None:
-		data = {'requesttype':'uisetdgvsetting', 'control':control , 
-		  'columnreorder': columnreorder, 
-		  'percolumnwordwrap': percolumnwordwrap, 
+		data = {'requesttype':'uisetdgvsetting', 'control':control ,
+		  'columnreorder': columnreorder,
+		  'percolumnwordwrap': percolumnwordwrap,
 		  'allowheadervisibility': allowheadervisibility,
 		  'singlerowselect': singlerowselect
 		  }
