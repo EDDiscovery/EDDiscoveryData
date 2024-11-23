@@ -2,10 +2,10 @@
 
 ENABLED True
 
-INSTALL LongDescription="This is the version 20 of the voice pack for EDD, for version 17+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
+INSTALL LongDescription="This is the version 23 of the German voice pack for EDD, for version 18.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=20.0.1.2
-INSTALL MinEDVersion=16.2.1.0
+INSTALL Version=23.0.0.0
+INSTALL MinEDVersion=18.1.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -24,6 +24,9 @@ INSTALL DisableOther14=VoicePackV16
 INSTALL DisableOther15=VoicePackV17
 INSTALL DisableOther16=VoicePackV18
 INSTALL DisableOther17=VoicePackV19
+INSTALL DisableOther18=VoicePackV20
+INSTALL DisableOther19=VoicePackV21
+INSTALL DisableOther20=VoicePackV22
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -31,7 +34,7 @@ INSTALL OtherFile3=npcpostfix.mp3;Sounds
 
 GROUP Combat
 
-EVENT Bounty, GenericResponse, "", Condition AlwaysFalse
+EVENT Bounty, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyAmmo, GenericResponse, "", Condition AlwaysTrue
 EVENT CapShipBond, GenericResponse, "", Condition AlwaysTrue
 EVENT CockpitBreached, GenericResponse, Volume=100, Condition AlwaysTrue
@@ -104,12 +107,12 @@ EVENT SellExplorationData, SellExplorationData, "", Condition AlwaysTrue
 
 GROUP Flight
 
-EVENT ApproachBody, GenericResponse, QueueLimit=5000, Condition AlwaysTrue
-EVENT ApproachSettlement, GenericResponse, QueueLimit=1000, Condition AlwaysTrue
+EVENT ApproachBody, ApproachBody, QueueLimit=20000, Condition AlwaysTrue
+EVENT ApproachSettlement, GenericResponse, QueueLimit=20000, Condition AlwaysTrue
 EVENT Docked, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingCancelled, DockingCancelled, "", Condition AlwaysTrue
 EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
-EVENT DockingGranted, GenericDelayedResponse, "Delay=15000,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
+EVENT DockingGranted, GenericDelayedResponse, "Delay=15,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
 EVENT onTimer, DockingGrantedResponse, "", TimerName Contains VoicePackDockingGrantedDelay
 EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
@@ -308,6 +311,10 @@ EVENT UIGlideMode, GenericResponseUI, "", EventClass_EventRefresh IsFalse And Ev
 EVENT UISelectedWeapon, SelectedWeapon, "", EventClass_EventRefresh IsFalse
 EVENT UIMusic, Music, "", EventClass_EventRefresh IsFalse
 
+GROUP PanelEvents
+
+EVENT onSurveyor, SurveyorPanel, "", Condition AlwaysTrue
+
 GROUP Other
 
 EVENT onEDSMSync, EDSMSync, "", Condition AlwaysTrue
@@ -375,46 +382,47 @@ Static say_refresh $+= %ifequal(RK_Class_Combat,"Harmless","Harmloser ")
 Static say_refresh $+= 'Kommandant %(Commander), '
 Static say_refresh $+= %ifzero(LAST_OnFoot,"%ifnonzero(LAST_IsSRV,\"Sie sitzen in einem \",\"Sie fliegen eine \") 
 Static say_refresh $+= %ship(LAST_ShipType)") 
-Static say_refresh $+= ' mit %hnum(LED_Credits,HNumList) Kredits'
+Static say_refresh $+= ' mit %hnum(LED_Credits,HNumList) Credits'
 
 Static say_ApproachBody $= Erreiche Objekt %body(EventClass_Body,EventStarSystem,say_ss)<;>Objekt %body(EventClass_Body,EventStarSystem,say_ss) in Reichweite, Kommandant<;>Schiff erreicht Objekt %body(EventClass_Body,EventStarSystem,say_ss), Kommandant
-Static say_ApproachSettlement $= Erreichen %replace(EventClass_Name,'+','')<;>Siedlung %replace(EventClass_Name,'+','') wird erreicht                         
+Static say_ApproachBodyWarning $= Warnung Kommandant, Körper mit hoher Schwerkraft, %hnum(S_Body_gravityg,HNumList) Jesus, Körpername %body(EventClass_Body,EventStarSystem,say_ss), Mit Vorsicht vorgehen<;>Warnung! %body(EventClass_Body,EventStarSystem,say_ss) hat hohe Schwerkraft, %hnum(S_Body_gravityg,HNumList) Jesus, Mit Vorsicht vorgehen
+Static say_ApproachSettlement $= Erreichen %replace(EventClass_Name,'+','')<;>Siedlung %replace(EventClass_Name,'+','') wird erreicht  
 Static say_AfmuRepairs $= Modul %(EventClass_ModuleLocalised) zu %round(EventClass_Health,0,0) Prozent repariert
 Static say_AppliedToSquadron $= Staffel %(EventClass_Name) beigetreten
 Static say_AsteroidCracked $= Asteroid %(EventClass_Body) geknackt, Kommandant<;>Bumm!<;>%(EventClass_Body) geknackt, Kommandant
 
-Static say_Bounty $= "Das Kopfgeld für dieses Schiff beträgt %hnum(EventClass_TotalReward,HNumList) Kredits, Fraktion war %rs(\"%alt(EventClass_VictimFactionLocalised,EventClass_VictimFaction)\",say_ss)"
-Static say_BuyAmmo $= Munition gekauft, %(EventClass_Cost) Kredits<;>Das kostete %(EventClass_Cost) Kredits
-Static say_BuyExplorationData $= Karte des Sternensystems %star(EventClass_System,say_ss) gekauft für %(EventClass_Cost) Kredits
-Static say_BuyDrones $= Sie kauften %(EventClass_Count) %(EventClass_Type), zu einem Preis von %(EventClass_TotalCost) Kredits
-Static say_BuyTradeData $= Sie kauften Handelsdaten für das System %star(EventClass_System,say_ss), Kosten, %(EventClass_Cost) Kredits
+Static say_Bounty $= "Das Kopfgeld für dieses Schiff beträgt %hnum(EventClass_TotalReward,HNumList) Credits, Fraktion war %rs(\"%alt(EventClass_VictimFactionLocalised,EventClass_VictimFaction)\",say_ss)"
+Static say_BuyAmmo $= Munition gekauft, %(EventClass_Cost) Credits<;>Das kostete %(EventClass_Cost) Credits
+Static say_BuyExplorationData $= Karte des Sternensystems %star(EventClass_System,say_ss) gekauft für %(EventClass_Cost) Credits
+Static say_BuyDrones $= Sie kauften %(EventClass_Count) %(EventClass_Type), zu einem Preis von %(EventClass_TotalCost) Credits
+Static say_BuyTradeData $= Sie kauften Handelsdaten für das System %star(EventClass_System,say_ss), Kosten, %(EventClass_Cost) Credits
 
-Static say_BuyMicroResources $= %ifgt(EventClass_Resource_Count,1,'%(EventClass_Resource_Count) Stück','') %(EventClass_Resource_Name_Localised) gekauft, Preis ist %(EventClass_Price) Kredits
-Static say_BuySuit $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Kredits gekauft
-Static say_BuyWeapon $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Kredits gekauft
+Static say_BuyMicroResources $= %ifgt(EventClass_Resource_Count,1,'%(EventClass_Resource_Count) Stück','') %(EventClass_Resource_Name_Localised) gekauft, Preis ist %(EventClass_Price) Credits
+Static say_BuySuit $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Credits gekauft
+Static say_BuyWeapon $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Credits gekauft
 Static say_BookDropship $= Bestätigt Kommandant, Sie haben sich zum Militärdienst bei %star(EventClass_DestinationSystem,say_ss), %(EventClass_DestinationLocation) gemeldet 
-Static say_BookTaxi $= Bestätigt Kommandant, Sie buchen ein Apex-Taxi nach %star(EventClass_DestinationSystem,say_ss), %(EventClass_DestinationLocation), Kosten %hnum(EventClass_Cost,HNumList) Kredits
+Static say_BookTaxi $= Bestätigt Kommandant, Sie buchen ein Apex-Taxi nach %star(EventClass_DestinationSystem,say_ss), %(EventClass_DestinationLocation), Kosten %hnum(EventClass_Cost,HNumList) Credits
 
-Static say_CancelTaxi $= Bestätigt Kommandant, Taxi wurde storniert, Erstattung %hnum(EventClass_Refund,HNumList) Kredits
+Static say_CancelTaxi $= Bestätigt Kommandant, Taxi wurde storniert, Erstattung %hnum(EventClass_Refund,HNumList) Credits
 Static say_CancelDropship $= Bestätigt Kommandant, Landungsschiff storniert, zurücktreten.<;> Das war knapp, Kommandant, gut, dass Sie abgesagt haben!
 
-Static say_CargoDepot $= "%ifequal(EventClass_UpdateEnum,\"Collect\",\"{{{Sie haben %(EventClass_FriendlyCargoType) eingesammelt, Anzahl, %(EventClass_Count), es bleiben \")"
-Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"{{{Sie haben %(EventClass_FriendlyCargoType) geliefert, Anzahl,  %(EventClass_Count), es bleiben \")"
-Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"WingUpdate\",\"Geschwader Update für eine Frachtmission \")"
-Static say_CargoDepot $+= "%(EventClass_ItemsToGo) übrig, %round(EventClass_ProgressPercent,1,\"0.#\") Prozent geliefert."
+Static say_CargoDepot $= "%ifequal(EventClass_UpdateEnum,\"Collect\",\"Sie haben %(EventClass_Count) von %(EventClass_FriendlyCargoType) eingesammelt, es bleiben \")"
+Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"Sie haben %(EventClass_Count) von %(EventClass_FriendlyCargoType) geliefert, es bleiben \")"
+Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"WingUpdate\",\"Aktualisierung der Frachtmission, \")"
+Static say_CargoDepot $+= "%(EventClass_ItemsToGo) Stück übrig, %round(EventClass_ProgressPercent,1,\"0.#\") Prozent."
 
-Static say_CapShipBond $= Belohnung für den Kampf mit GroßFighteren von der Fraktion %rs(EventClass_AwardingFaction,say_ss) gegen %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) Kredits
+Static say_CapShipBond $= Belohnung für den Kampf mit GroßFighteren von der Fraktion %rs(EventClass_AwardingFaction,say_ss) gegen %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) Credits
 Static say_CockpitBreached $= Alarm, Alarm, Cockpit hat Risse. Fliegen sie schnellstmöglich zu einem Landeplatz<;>Notfall, Verlust des Cockpit Verdecks, Abbruch<;>Notfall, Cockpit Verdeck ist gebrochen
 Static say_CollectCargo $= "%(EventClass_FriendlyType) {{{aufgenommen<;>gesammelt<;>aufgeschöpft}}} %iftrue(EventClass_Stolen,\", Warnung, Kommandant, diese Fracht ist gestohlen\")"
-Static say_CommitCrimeFine $= Ordnungsstrafe verhängt, Kommandant, %sc(EventClass_CrimeType) bei %rs(EventClass_Faction,say_ss), Betrag %hnum(EventClass_Fine,HNumList) Kredits
-Static say_CommitCrimeBounty $= Verbrechen verübt, Kommandant, %sc(EventClass_CrimeType) bei %rs(EventClass_Faction,say_ss), Kopfgeld auf Sie ist %hnum(EventClass_Bounty,HNumList) Kredits
+Static say_CommitCrimeFine $= Ordnungsstrafe verhängt, Kommandant, Vorwurf ist %(EventClass_CrimeType), %ifnotempty(EventClass_Victim,' Opfer ist %(EventClass_VictimLocalised), ')gegen Fraktion %rv(EventClass_Faction,say_ss), Betrag %hnum(EventClass_Fine,HNumList) Kredits
+Static say_CommitCrimeBounty $= Verbrechen verübt, Kommandant, %(EventClass_CrimeType),%ifnotempty(EventClass_Victim,' Opfer ist %(EventClass_VictimLocalised), ')gegen Fraktion %rv(EventClass_Faction,say_ss), Kopfgeld ist %hnum(EventClass_Bounty,HNumList) Kredits
 Static say_CommunityGoal $= Aktuelle Community-Ziele sind %(EventClass_CommunityGoalList)
 Static say_CommunityGoalJoin $= Trete dem Community-Ziel %sc(EventClass_Name) bei, es befindet sich im %star(EventClass_System,say_ss) System
-Static say_CommunityGoalReward $= Community-Ziel %sc(EventClass_Name), aus dem %star(EventClass_System,say_ss) System, belohnte dich mit %hnum(EventClass_Reward,HNumList) Kredits
+Static say_CommunityGoalReward $= Community-Ziel %sc(EventClass_Name), aus dem %star(EventClass_System,say_ss) System, belohnte dich mit %hnum(EventClass_Reward,HNumList) Credits
 Static say_CommunityGoalDiscard $= Community-Ziel %sc(EventClass_Name) verlassen, es befand sich im System %star(EventClass_System,say_ss) 
 Static say_CrewAssign $= "Mannschaftsmitglied %(EventClass_Name), %ifequal(EventClass_Role,\"Active\",\" meldet sich zum Dienst\",\" in der Rolle, %(EventClass_Role)\")"
 Static say_CrewFire $= {{{Mannschaftsmitglied %(EventClass_Name) }}}gefeuert<;>entlassen<;>wird ausbezahlt, auf Wiedersehen Trottel
-Static say_CrewHire $= "{{{Mannschaftsmitglied %(EventClass_Name) angeworben %ifnotempty(EventClass_Faction,\", Fraktion %rs(EventClass_Faction,say_ss)\"), Rang %(EventClass_CombatRank), Kosten, %(EventClass_Cost) Kredits.}}} Willkommen im Team<;>Willkommen an Bord"
+Static say_CrewHire $= "{{{Mannschaftsmitglied %(EventClass_Name) angeworben %ifnotempty(EventClass_Faction,\", Fraktion %rs(EventClass_Faction,say_ss)\"), Rang %(EventClass_CombatRank), Kosten, %(EventClass_Cost) Credits.}}} Willkommen im Team<;>Willkommen an Bord"
 
 Static say_ChangeCrewRole $= Besatzungsrolle geändert in %(EventClass_Role)<;>Steuerung auf %(EventClass_Role) getauscht
 Static say_CrewMemberJoins $= Mannschaftsmitglied %(EventClass_Crew) gesellt sich zu uns auf der %(EventShip_ShortName), Willkommen, Kommandant<;>Willkommen auf unserem Schiff Kommandant %(EventClass_Crew) 
@@ -425,7 +433,7 @@ Static say_JoinACrew $= Verstärkt Kommandant %(EventClass_Captain) als Mannscha
 Static say_QuitACrew $= Schiff von Kommandant %(EventClass_Captain) wird verlassen<;>Rücktritt von meinem Auftrag, Kommandant %(EventClass_Captain)
 Static say_KickCrewMember $= Entlasse %(EventClass_Crew)<;>Kommandant %(EventClass_Crew) abgezogen<;>%(EventClass_Crew) wird vom Schiff entfernt
 
-Static say_ClearSavedGame $= Wahnsinn! Das sind eine Menge weggeworferner Kredits, Spielstand gelöscht!<;>Spiel gelöscht.
+Static say_ClearSavedGame $= Wahnsinn! Das sind eine Menge weggeworferner Credits, Spielstand gelöscht!<;>Spiel gelöscht.
 Static say_CodexEntry $= Kodexeintrag %(EventClass_Name_Localised) erzeugt
 
 Static say_CollectItems $= %(EventClass_Resource_Name_Localised) {{{abgeholt<;>gesammelt<;>gegriffen}}}
@@ -440,7 +448,7 @@ Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootStarPort"," Sternenhaf
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planet %body(EventClass_Body,EventStarSystem,say_ss)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootFleetCarrier"," Flottenträger %(EventStationName)")    
 
-Static say_DatalinkVoucher $= {{{Gescannte Datenverbindung<;> Heruntergeladene Datenverbindung}}}{{{, der erhaltene Gutschein hat einen Wert von<;>, der Wert ist}}} %hnum(EventClass_Reward,HNumList) Kredits, erhalten von %rs(EventClass_PayeeFaction,say_ss)
+Static say_DatalinkVoucher $= {{{Gescannte Datenverbindung<;> Heruntergeladene Datenverbindung}}}{{{, der erhaltene Gutschein hat einen Wert von<;>, der Wert ist}}} %hnum(EventClass_Reward,HNumList) Credits, erhalten von %rs(EventClass_PayeeFaction,say_ss)
 Static say_DatalinkScan $= Gescannte Datenverbindung, %(EventClass_MessageLocalised)
 Static say_DataScanned $= %sc(EventClass_Type) gescannt
 Static say_DiscoveryScan $= "{{{Gescanntes System, %(EventClass_Bodies)<;>Systemscan zeigt %(EventClass_Bodies)}}}{{{ %ifeq(EventClass_Bodies,1,\"Objekt\",\"Objekte\") }}}{{{gefunden<;>erkannt}}}{{{ Kommandant<;>}}}"
@@ -470,16 +478,16 @@ Static say_DockingGranted12 $= zwölf Uhr
 Static say_DockingGrantedD2 $= "an der Hafeneinfahrt;am Ende des Hafens"
 Static say_DockingGrantedD4 $= "an der Hafeneinfahrt;nahe der Mitte;in mittlerer Entfernung;am Ende des Hafens"
 Static say_DockingGrantedD5 $= "an der Hafeneinfahrt;nahe der Mitte;in der Mitte des Hafens;in mittlerer Entfernung;am Ende des Hafens"
-Static say_DockingGrantedGRN $= ", wenn die grüne Steuerbord Navigationsleuchte der Station rechts ist<;>, wenn die rote Backbord Navigationsleuchte der Station links ist"
+Static say_DockingGrantedGRN $= " {{{, wenn die grüne Navigationsleuchte der Station Steuerbord ist.<;>, wenn die rote Navigationsleuchte der Station Backbord ist.}}} "
 
-Static say_DockingRequested $= Landungs-Anfrage gesendet<;>Landung anfordern
-Static say_DockingTimeout $= Zu spät Kommandant, die Erlaubnis zum Andocken wurde entzogen<;>Zu langsam Kommandant, Erlaubnis zum Andocken zurückgezogen
-Static say_DockingCancelled $= Andocken abgebrochen<;>Landungs-Anfrage abgebrochen
+Static say_DockingRequested $= Landungs Anfrage gesendet an %(EventClass_StationName)<;>Andocken angefordert von %(EventClass_StationName)<;>%(EventClass_StationName), Andocken angefragt
+Static say_DockingTimeout $= Zu spät Kommandant, die Erlaubnis zum Andocken wurde von %(EventClass_StationName) entzogen<;>Zu langsam Kommandant, Erlaubnis zum Andocken an %(EventClass_StationName) wurde zurückgezogen
+Static say_DockingCancelled $= Andocken abgebrochen<;>Landungs Anfrage abgebrochen
 Static say_DockFighter $= Kriegsschiff an Mutterschiff angedockt Kommandant<;>Kriegsschiff wieder an Bord<;>Das Kriegsschiff hat erfolgreich angedockt, Kommandant<;>Kriegsschiff gelandet
 
 Static say_DisbandedSquadron $= Geschwader %(EventClass_Name) aufgelöst Kommandant
 
-Static say_DropshipDeploy $= {Bereithalten Kommandant, Abwurf<;>Bereiten Sie sich darauf vor, Kommandant, dass Sie in wenigen Augenblicken abgeworfen werden}
+Static say_DropshipDeploy $= {{{Bereithalten Kommandant, Abwurf<;>Bereiten Sie sich darauf vor, Kommandant, dass Sie in wenigen Augenblicken abgeworfen werden}}}
 
 Static say_Embark $= {{{Einstieg<;>Willkommen an Bord Kommandant, Einstieg}}} %iftrue(EventClass_Taxi,'in Apex Taxi','%iftrue(EventClass_SRV,"in SRV","in Schiff")')
 
@@ -501,8 +509,8 @@ Static say_EndCrewSession $= "{{{Crew Session beendet<;>Crew-Sitzung beenden}}}{
 
 Static say_EjectCargo $= "%iftrue(EventClass_Abandoned,\"Werfe\",\"Stoße\") %(EventClass_Count) Einheiten %(EventClass_FriendlyType) über Bord<;>%(EventClass_FriendlyType) ausgeworfen<;> %(EventClass_FriendlyType) abgeladen"
 
-Static say_FetchRemoteModule $= Modul %sc(EventClass_StoredItemLocalised) wird abgerufen, Kosten %hnum(EventClass_TransferCost,HNumList) Kredits
-Static say_FactionKillBond $= Belohnung für den Kampf der Fraktion %rs(EventClass_AwardingFaction,say_ss) gegen %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) Kredits
+Static say_FetchRemoteModule $= Modul %sc(EventClass_StoredItemLocalised) wird abgerufen, Kosten %hnum(EventClass_TransferCost,HNumList) Credits
+Static say_FactionKillBond $= Belohnung für den Kampf der Fraktion %rs(EventClass_AwardingFaction,say_ss) gegen %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) Credits
 
 Static say_Friends $= "%ifEqual(EventClass_Status,\"Offline\",\"Freund \")%ifEqual(EventClass_Status,\"Online\",\"Freund \")%(EventClass_Name) %ReplaceVar(EventClass_Status,say_friendsub)"
 Static say_friendsub1 $= hinzugefügt<;>wurde als Freund hinzugefügt
@@ -516,17 +524,23 @@ Static say_FighterDestroyed $= Alarm, Kommandant Fighter wurde zerstört<;>Fight
 
 // not used Static say_FSDTarget $= Targetted system %star(EventClass_StarSystem,say_ss)<;>%star(EventClass_StarSystem,say_ss) Selected<;> %star(EventClass_StarSystem,say_ss) locked in
 Static say_FSSAllBodiesFound $= Alle Körper gefunden<;>Glückwunsch, Alle Körper gefunden<;> System gescannt<;> Scan koplett, Kommandant
-Static say_FSSDiscoveryScan $+= "%ifEQ(EventClass_Progress,100,\" %(EventClass_BodyCount) Körper gescannt, Fortschritt beträgt 100 Prozent<;> %(EventClass_BodyCount) Körper gescannt, Scan komplett\",\"Fortschritt %round(EventClass_Progress,0,0) Prozent, %(EventClass_BodyCount) Körper gescannt. Weitere Scans nötig!<;>Weitere Scans nötig! Fortschritt beträgt aktuell %round(EventClass_Progress,0,0) Prozent. \")"
+Static say_FSSDiscoveryScan $+= "%ifEQ(EventClass_Progress,100,\" %(EventClass_BodyCount) Körper gescannt, Fortschritt beträgt 100 Prozent<;> %(EventClass_BodyCount) Körper gescannt, Scan komplett \",\" Fortschritt %round(EventClass_Progress,0,0) Prozent, %(EventClass_BodyCount) Körper gescannt. Weitere Scans nötig!<;>Weitere Scans nötig! Fortschritt beträgt aktuell %round(EventClass_Progress,0,0) Prozent. \")"
 
-Static say_FSSSignalDiscovered1 $= %ifcontains(EventClass_Signals[1]_SignalName,'USS_','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)') {{{entdeckt<;>gefunden}}}
-Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Bedrohungsstufe %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', Fraktion %(EventClass_Signals[1]_SpawningFaction_Localised)')
-Static say_FSSSignalDiscoveredN $= %(EventClass_SignalsCount) Signale gefunden.
+Static say_FSSSignalDiscovered1 $= {{{Erkannt <;>Entdeckt <;>Gefunden }}} 
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Carrier','Träger, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Station','Station, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Installation','Installation, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Megaship','Mega Schiff, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Titan','Titan, ')
+Static say_FSSSignalDiscovered1 $+= %ifcontains(EventClass_Signals[1]_ClassOfSignal,'USS','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
+Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Bedrohungsstufe %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', der Fraktion %rv(EventClass_Signals[1]_SpawningFaction_Localised,say_ss)')
+Static say_FSSSignalDiscoveredN $= %(EventClass_SignalsCount) Signale gefunden
 
 Static say_EngineerProgressRank $= Glückwunsch, Sie haben den Rang %(EventClass_Engineers[1]_Rank) bei Ingenieur %(EventClass_Engineers[1]_Engineer) erreicht.
 Static say_EngineerProgressState $= Ingenieur %(EventClass_Engineers[1]_Engineer) hat Ihren Status auf %(EventClass_Engineers[1]_Progress) gesetzt.
 Static say_EngineerProgress $= %ifeq(EventClass_EngineersCount,1,'%ifnotempty(EventClass_Engineers[1]_Progress,say_EngineerProgressState,say_EngineerProgressRank)')
 
-Static say_IngenieurContribution $= "%ifequal(EventClass_Type,\"Kredits\", \"Beitrag %(EventClass_Quantity) Kredits \")"
+Static say_IngenieurContribution $= "%ifequal(EventClass_Type,\"Credits\", \"Beitrag %(EventClass_Quantity) Credits \")"
 Static say_IngenieurContribution $+= "%ifequal(EventClass_Type,\"Material\", \"Beitrag %(EventClass_Quantity) %(EventClass_Material_Localised) \")"
 Static say_IngenieurContribution $+= "%ifequal(EventClass_Type,\"Waren\", \"Beitrag %(EventClass_Quantity) %(EventClass_Commodity_Localised) \")"
 Static say_IngenieurContribution $+= an Ingenieur %(EventClass_Ingenieur)
@@ -540,12 +554,12 @@ Static say_EscapeInterdiction $= Umgehung des Verbots durch %iftrue(EventClass_I
 Static say_EscapeInterdictionPlayer $= Kommandant %(EventClass_Interdictor_Localised)
 Static say_EscapeInterdictionNPC $= N P C %(EventClass_Interdictor_Localised)
 
-Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{%round(EventClass_Scooped,1,0.#) Tonnen }}}{{{getankt<;>gesammelt}}}, %ifeq(EventShip_FuelCapacity,EventClass_Total,\"Tank voll\",\"%round(EventClass_Total,1,0.#) von %round(EventShip_FuelCapacity,1,0.#) Tonnen getankt.\")')"
+Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{%round(EventClass_Scooped,1,0.#) Tonnen }}}{{{getankt<;>gesammelt}}}, %ifeq(EventShip_FuelCapacity,EventClass_Total,\"Tank voll\",\"%round(EventClass_Total,1,0.#) von %round(EventShip_FuelCapacity,1,0.#) Tonnen im Tank.\")')"
 
 Static say_FSDJump $= "Angekommen bei %star(EventClass_StarSystem,say_ss), Sprungdistanz %round(EventClass_JumpDist,1,0.#) Lichtjahre"
 Static say_FSDJumpVisit $= Erster Besuch, <;> Zweiter Besuch, <;> Dritter Besuch, <;> Vierter Besuch, <;> Fünfter Besuch, <;> Sechster Besuch, <;>
 Static say_FSDJumpFuel $= , %round(EventClass_FuelUsed,1,0.#) Tonnen Treibstoff verbraucht
-Static say_FSDJumpFaction $= ", System kontrolliert von %rs(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,\"None\",\"im Zustand %(EventClass_FactionState)\")"    // EventClass_FactionState when none !?
+Static say_FSDJumpFaction $= ", System kontrolliert von %rs(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,\"None\",\"im Zustand %(EventClass_FactionState_Localised)\")"    // EventClass_FactionState when none !?
 Static say_FSDJumpFuelWarning $= , Alarm Kommandant, Treibstoffstand ist niedrig<;>, Treibstoffstand ist niedrig<;>, Warnung, hier geht das Benzin zur Neige
 
 Static say_HullDamageCritical $= Alarm, Alarm, Beschädigung kritisch bei %(health) %
@@ -589,15 +603,15 @@ Static say_MaterialCollected $= %(EventClass_Count) Stück %(EventClass_Friendly
 Static say_MaterialDiscarded $= %(EventClass_Count) Stück %(EventClass_FriendlyName) gelöscht
 Static say_MaterialDiscovered $= Neues Material %(EventClass_FriendlyName) entdeckt
 Static say_MaterialTrade $= %(EventClass_Paid_Quantity) Stück %(EventClass_Paid_Material_Localised) getauscht für %(EventClass_Received_Quantity) Stück %(EventClass_Received_Material_Localised)
-Static say_MarketBuy $= %(EventClass_Count) Einheiten %(EventClass_Type_Localised) gekauft, Kaufpreis ist %(EventClass_BuyPrice) Kredits, Kosten sind %hnum(EventClass_TotalCost,HNumList) Kredits
-Static say_MarketSell $= %(EventClass_Count) Einheiten %(EventClass_Type_Localised) verkauft, Verkaufspreis ist %(EventClass_SellPrice) Kredits, Ertrag %hnum(EventClass_TotalSale,HNumList) Kredits, Gesamtgewinn %hnum(profit,HNumList) Kredits
+Static say_MarketBuy $= %(EventClass_Count) Einheiten %(EventClass_Type_Localised) gekauft, Kaufpreis ist %(EventClass_BuyPrice) Credits, Kosten sind %hnum(EventClass_TotalCost,HNumList) Credits
+Static say_MarketSell $= %(EventClass_Count) Einheiten %(EventClass_Type_Localised) verkauft, Verkaufspreis ist %(EventClass_SellPrice) Credits, Ertrag %hnum(EventClass_TotalSale,HNumList) Credits, Gesamtgewinn %hnum(profit,HNumList) Credits
 Static say_MiningRefined $= Raffinierte %(EventClass_FriendlyType)<;>%(EventClass_FriendlyType) raffiniert
 
 Static say_MissionAbandoned $= %sc(EventClass_Name) wurde aufgegeben<;>Abgebrochener Auftrag %sc(EventClass_Name)<;>Abgebrochene Mission %sc(EventClass_Name)
+
 Static say_MissionAccepted $= "%sc(EventClass_Name) akzeptiert %ifnotempty(EventClass_Faction,\"von Fraktion %rs(EventClass_Faction,say_ss),\")"
 Static say_MissionAccepted $+= "%ifequal(EventClass_Name,\"Mission Courier\",\"Kuriermission\")"
 Static say_MissionAccepted $+= "%ifequal(EventClass_Name,\"Mission Collect Industrial\",\"Industriegüter Sammel Mission\")"
-Static say_MissionAccepted $+= " akzeptiert %ifnotempty(EventClass_Faction,\"von Fraktion %rs(EventClass_Faction,say_ss). Missionsziel ist \")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationSystem,\" Ziel der Mission ist %star(EventClass_DestinationSystem,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationStation,\" Station %(EventClass_DestinationStation),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Target,\" Ziel ist %(EventClass_TargetLocalised),\")"
@@ -608,29 +622,30 @@ Static say_MissionAccepted $+= "%ifnotempty(EventClass_Expiry,\" %datedeltaforma
 Static say_MissionCompleted $= "{{{Herzlichen Glückwunsch, <;>gut gemacht, Kommandant, <;>Gute Arbeit, <;>Großartig! }}} %sc(EventClass_Name) abgeschlossen %ifnotempty(EventClass_Faction,\"von Fraktion %rs(EventClass_Faction,say_ss), \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Target,\" Ziel war %(EventClass_TargetLocalised), \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"von Fraktion %rs(EventClass_TargetFaction,say_ss), \")"
-Static say_MissionCompleted $+= "%ifnotempty(EventClass_Reward,\"Belohnung sind %hnum(EventClass_Reward,HNumList) Kredits\")"
-Static say_MissionFailed $= %sc(EventClass_Name) ist fehlgeschlagen<;>Mission fehlgeschlagen %sc(EventClass_Name)
-Static say_MissionRedirected $= %sc(EventClass_Name) Ziel wurde geändert %(EventClass_NewDestinationStation) zu System %(EventClass_NewDestinationSystem)<;>Neues Ziel für %sc(EventClass_Name), fliege zu %(EventClass_NewDestinationStation) in System %(EventClass_NewDestinationSystem)
+Static say_MissionCompleted $+= "%ifnotempty(EventClass_Reward,\"Belohnung sind %hnum(EventClass_Reward,HNumList) Credits\")"
 
-Static say_ModuleBuy $= "Modul %sc(EventClass_BuyItemLocalised) ausgerüstet %ifnonzero(EventClass_BuyPrice,', Kosten %hnum(EventClass_BuyPrice,HNumList) Kredits'), auf Schiff %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \") %sc(EventClass_Slot)."
+Static say_MissionFailed $= %sc(EventClass_Name) ist fehlgeschlagen<;>Mission fehlgeschlagen %sc(EventClass_Name)
+Static say_MissionRedirected $= Mission %(EventClass_LocalisedName) hat ihr Ziel auf %(EventClass_NewDestinationStation) in System geändert %(EventClass_NewDestinationSystem)<;>Neues Ziel für Mission %(EventClass_LocalisedName), fliege zu %(EventClass_NewDestinationStation) in System %(EventClass_NewDestinationSystem)
+
+Static say_ModuleBuy $= "Modul %sc(EventClass_BuyItemLocalised) ausgerüstet %ifnonzero(EventClass_BuyPrice,', Kosten %hnum(EventClass_BuyPrice,HNumList) Credits'), auf Schiff %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \") %sc(EventClass_Slot)."
 // when new func system comes in, fix this back to hnum.. condition execution
-Static say_ModuleBuy $+= "%ifnotempty(EventClass_SellItemLocalised,\" Modul %(EventClass_SellItemLocalised) für %hnum(EventClass_SellPrice,HNumList) Kredits verkauft.\")"
+Static say_ModuleBuy $+= "%ifnotempty(EventClass_SellItemLocalised,\" Modul %(EventClass_SellItemLocalised) für %hnum(EventClass_SellPrice,HNumList) Credits verkauft.\")"
 
 Static say_ModuleRetrieve $= "Modul %sc(EventClass_RetrievedItemLocalised) abgerufen und an das Schiff %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \")%sc(EventClass_Slot) montiert."
-Static say_ModuleSell $= "Modul %sc(EventClass_SellItemLocalised) entfernt, Rückerstattungspreis ist %hnum(EventClass_SellPrice,HNumList) Kredits, im Schiff %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \")%sc(EventClass_Slot)."
-Static say_ModuleSellRemote $= Remote-Modul %sc(EventClass_SellItemLocalised) verkauft, Verkaufspreis ist %hnum(EventClass_SellPrice,HNumList) Kredits.
-Static say_ModuleStore $= "Modul %sc(EventClass_StoredItemLocalised) vom Schiff %ship(EventClass_Ship) demontiert. %ifnotempty(EventClass_Cost,\"Die Kosten für das Lagern sind %hnum(EventClass_Cost,HNumList) Kredits\")"
+Static say_ModuleSell $= "Modul %sc(EventClass_SellItemLocalised) entfernt, Rückerstattungspreis ist %hnum(EventClass_SellPrice,HNumList) Credits, im Schiff %ship(EventClass_Ship) in %ifnotcontains(EventClass_Slot,\"slot\",\"slot \")%sc(EventClass_Slot)."
+Static say_ModuleSellRemote $= Remote-Modul %sc(EventClass_SellItemLocalised) verkauft, Verkaufspreis ist %hnum(EventClass_SellPrice,HNumList) Credits.
+Static say_ModuleStore $= "Modul %sc(EventClass_StoredItemLocalised) vom Schiff %ship(EventClass_Ship) demontiert. %ifnotempty(EventClass_Cost,\"Die Kosten für das Lagern sind %hnum(EventClass_Cost,HNumList) Credits\")"
 Static say_ModuleSwap $= "Austausch von Modulen zwischen %ifnotcontains(EventClass_FromSlot,\"slot\",\"slot \")%sc(EventClass_FromSlot) und %ifnotcontains(EventClass_ToSlot,\"slot\",\"slot \")%sc(EventClass_ToSlot)"
 Static say_MassModuleStore $= Mehrere Module vom Schiff %ship(EventClass_Ship) gelagert.
 
 Static say_NavBeaconScan $= %(EventClass_NumBodies) Körper in diesem System gescannt.
-Static say_NpcCrewPaidWage $= Besatzungsmitglied %(EventClass_Name) bekam %hnum(EventClass_Amount,HNumList) Kredits Lohn<;> Lohn, %hnum(EventClass_Amount,HNumList) Kredits für Besatzungsmitglied %(EventClass_Name)
+Static say_NpcCrewPaidWage $= Besatzungsmitglied %(EventClass_Name) bekam %hnum(EventClass_Amount,HNumList) Credits Lohn<;> Lohn, %hnum(EventClass_Amount,HNumList) Credits für Besatzungsmitglied %(EventClass_Name)
 Static say_NpcCrewRank $= {{{Glückwünsche!<;>Gute Arbeit!}}} Besatzungmitglied %(EventClass_Name) wurde zum %sc(EventClass_RankCombat) befördert.
 
-Static say_PayBounties $= "Kopfgeld in Höhe von %(EventClass_Amount) Kredits bezahlt Kommandant %ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
+Static say_PayBounties $= "Kopfgeld in Höhe von %(EventClass_Amount) Credits bezahlt Kommandant %ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
 
-Static say_PayFines $= "Strafen in Höhe von %(EventClass_Amount) Kredits bezahlt Kommandant%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
-Static say_PayLegacyFines $= "Bußgelder in Höhe von %(EventClass_Amount) Kredits bezahlt Kommandant%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision an den Makler von %(EventClass_BrokerPercentage) Prozent\")"
+Static say_PayFines $= "Strafen in Höhe von %(EventClass_Amount) Credits bezahlt Kommandant%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
+Static say_PayLegacyFines $= "Bußgelder in Höhe von %(EventClass_Amount) Credits bezahlt Kommandant%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision an den Makler von %(EventClass_BrokerPercentage) Prozent\")"
 Static say_Promotion $= Herzlichen Glückwunsch, Sie wurden befördert!
 Static say_Promotion $+= "%ifnotempty(EventClass_Combat,\", Kampfrang %sc(EventClass_Combat)\")"
 Static say_Promotion $+= "%ifnotempty(EventClass_Trade,\", Handelsrang %sc(EventClass_Trade)\")"
@@ -640,25 +655,25 @@ Static say_Promotion $+= "%ifnotempty(EventClass_Empire,\", Imperiumsrang %sc(Ev
 Static say_PowerplayCollect $= Gesammelte Powerplay-Rohstoffe zur Lieferung für %(EventClass_Power), %sc(EventClass_Type), %(EventClass_Count) Stück
 Static say_PowerplayDefect $= Überlaufen von %(EventClass_FromPower) zu %(EventClass_ToPower)
 Static say_PowerplayDeliver $= Lieferung von Powerplay-Rohstoffen für Macht %(EventClass_Power), %sc(EventClass_Type), %(EventClass_Count) Stück
-Static say_PowerplayFastTrack $= Schnelle Zahlung an die Macht %(EventClass_Power), Kosten sind %hnum(EventClass_Cost,HNumList) Kredits
+Static say_PowerplayFastTrack $= Schnelle Zahlung an die Macht %(EventClass_Power), Kosten sind %hnum(EventClass_Cost,HNumList) Credits
 Static say_PowerplayJoin $= Beitritt zu %(EventClass_Power), viel Glück Kommandant
 Static say_PowerplayLeave $= Verlassen von %(EventClass_Power)
-Static say_PowerplaySalary $= Power-Play-Gehalt erhalten von %(EventClass_Power) in Höhe von %hnum(EventClass_Amount,HNumList) Kredits
+Static say_PowerplaySalary $= Power-Play-Gehalt erhalten von %(EventClass_Power) in Höhe von %hnum(EventClass_Amount,HNumList) Credits
 Static say_PowerplayVote $= Für die Macht %(EventClass_Power) gestimmt, Übernahme des Systems %star(EventClass_System,say_ss), Die Stimmen sind derzeit %(EventClass_Votes)
 Static say_PowerplayVoucher $= "Belohnung für Power Play-Kampf von %(EventClass_Power) in Systemen %expandarray(EventClass_Systems,\", \",0,20,splitcaps)"
 Static say_PVPKill $= Gratulation, dieser Abschaum %(EventClass_CombatRank) Kommandant %(EventClass_Victim) drückt jetzt im Himmel oder in der Hölle das Unkraut hoch<;>%(EventClass_CombatRank) Kommandant %(EventClass_Victim) in eine andere Welt entsandt<;>%(EventClass_CombatRank) Kommandant %(EventClass_Victim) . Er wusste nicht, was auf ihn zukommt, der Trottel
 
 Static say_RebootRepair $= "Module neu starten und reparieren %expandarray(EventClass_FriendlySlots,\", \",0,20,splitcaps)"
-Static say_RedeemVoucher $= "Löse %(EventClass_Type) mit Wert %hnum(EventClass_Amount,HNumList) Kredits ein, %ifnotempty(EventClass_Faction,\" von Fraktion %sc(EventClass_Faction)\")%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
+Static say_RedeemVoucher $= "Löse %(EventClass_Type) mit Wert %hnum(EventClass_Amount,HNumList) Credits ein, %ifnotempty(EventClass_Faction,\" von Fraktion %sc(EventClass_Faction)\")%ifnonzero(EventClass_BrokerPercentage,\", mit einer Provision von %(EventClass_BrokerPercentage) Prozent an den Broker\")"
 
-Static say_Repair $= {{{%(EventClass_ItemLocalised) repariert Kommandant<;>%(EventClass_ItemLocalised) repariert}}}. Kosten sind %hnum(EventClass_Cost,HNumList) Kredits
+Static say_Repair $= {{{%(EventClass_ItemLocalised) repariert Kommandant<;>%(EventClass_ItemLocalised) repariert}}}. Kosten sind %hnum(EventClass_Cost,HNumList) Credits
 Static say_RepairDrone $= Drohne reparierte %round(EventClass_HullRepaired,1,0.#) Rumpf, %round(EventClass_CockpitRepaired,1,0.#) Cockpit, %round(EventClass_CorrosionRepaired,1,0.#) Korrosion
 
-Static say_RepairAll $= {{{Schaden repariert<;>Schiff vollständig repariert}}}{{{. Kosten %hnum(EventClass_Cost,HNumList) Kredits. }}}Bereit für Action, Kommandant<;> Bereit zum Starten
-Static say_RefuelAll $= {{{Schiff vollgetankt<;>Schiff betankt}}}, Kosten %(EventClass_Cost) Kredits, Treibstoff %round(EventClass_Amount,1,0.0) Tonnen
-Static say_RefuelPartial $= Schiff teilweise betankt, Kosten %(EventClass_Cost) Kredits, Treibstoff %round(EventClass_Amount,1,0.0) Tonnen
-Static say_RestockVehicle $= %(EventClass_Count) %(EventClass_Type) vom Typ %(EventClass_Loadout) gekauft, Kosten %hnum(EventClass_Cost,HNumList) Kredits
-Static say_Resurrect $= {{{Wie von Zauberhand leben Sie wieder, Kommandant %(Commander)<;>Wieder am Leben Kommandant, um einen weiteren Tag zu überleben}}} %ifnonzero(EventClass_Cost,', die Kosten waren  %hnum(EventClass_Cost,HNumList) Kredits')
+Static say_RepairAll $= {{{Schaden repariert<;>Schiff vollständig repariert}}}{{{. Kosten %hnum(EventClass_Cost,HNumList) Credits. }}}Bereit für Action, Kommandant<;> Bereit zum Starten
+Static say_RefuelAll $= {{{Schiff vollgetankt<;>Schiff betankt}}}, Kosten %(EventClass_Cost) Credits, Treibstoff %round(EventClass_Amount,1,0.0) Tonnen
+Static say_RefuelPartial $= Schiff teilweise betankt, Kosten %(EventClass_Cost) Credits, Treibstoff %round(EventClass_Amount,1,0.0) Tonnen
+Static say_RestockVehicle $= %(EventClass_Count) %(EventClass_Type) vom Typ %(EventClass_Loadout) gekauft, Kosten %hnum(EventClass_Cost,HNumList) Credits
+Static say_Resurrect $= {{{Wie von Zauberhand leben Sie wieder, Kommandant %(Commander)<;>Wieder am Leben Kommandant, um einen weiteren Tag zu überleben}}} %ifnonzero(EventClass_Cost,', die Kosten waren  %hnum(EventClass_Cost,HNumList) Credits')
 Static say_ReceiveText $= Nachricht von %(EventClass_FromLocalised), %(EventClass_MessageLocalised)
 
 Static say_RenameSuitLoadout $= Bestätigt Kommandant, %(EventClass_SuitName_Localised) Konfiguration umbenannt in %rv(EventClass_LoadoutName,suit_loadoutrename)
@@ -667,15 +682,15 @@ Static say_SAAScanComplete $= Oberflächen-Scan-Analyse von %body(EventClass_Bod
 
 Static say_SAASignalsFound $= %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' und ') Oberflächensignale am Körper %body(EventClass_BodyName,EventStarSystem,say_ss) gefunden
 
-Static say_SellExplorationData $= Verkaufte %(EventClass_SystemsCount) Sternsysteme für %hnum(EventClass_BaseValue,HNumList) Kredits.
-Static say_SellExplorationDataBonus $= Und entdeckten %(EventClass_DiscoveredCount) Körper für einen Bonus von %hnum(EventClass_Bonus,HNumList) Kredits
+Static say_SellExplorationData $= Verkaufte %(EventClass_SystemsCount) Sternsysteme für %hnum(EventClass_BaseValue,HNumList) Credits.
+Static say_SellExplorationDataBonus $= Und entdeckten %(EventClass_DiscoveredCount) Körper für einen Bonus von %hnum(EventClass_Bonus,HNumList) Credits
 
-Static say_MultiSellExplorationData $= Verkaufte %(EventClass_SystemsCount) Sternsysteme für %hnum(EventClass_TotalEarnings,HNumList) Kredits.
+Static say_MultiSellExplorationData $= Verkaufte %(EventClass_SystemsCount) Sternsysteme für %hnum(EventClass_TotalEarnings,HNumList) Credits.
 
 Static say_ScanOrganic $= %(EventClass_ScanType) %(EventClass_Species_Localised), Gattung %(EventClass_Genus_Localised)
-Static say_SellOrganicData $= Verkaufte %(EventClass_BiosCount) Biologische Daten für %hnum(EventClass_TotalValue,HNumList) Kredits.
-Static say_SellSuit $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Kredits verkauft
-Static say_SellWeapon $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Kredits verkauft
+Static say_SellOrganicData $= Verkaufte %(EventClass_BiosCount) Biologische Daten für %hnum(EventClass_TotalValue,HNumList) Credits.
+Static say_SellSuit $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Credits verkauft
+Static say_SellWeapon $= %(EventClass_Name_Localised) für %hnum(EventClass_Price,HNumList) Credits verkauft
 
 Static suit_loadoutrename1 = "-<;> Bindestrich "
 Static suit_loadoutrename2 = "_<;> Unterstrich "
@@ -683,13 +698,13 @@ Static suit_loadoutrename2 = ".<;> Punkt "
 Static say_SwitchSuitLoadout $= {{{Kommandant, <;>Bestätigt Kommandant, <;> }}}Anzug gewechselt auf %(EventClass_SuitName_Localised), Inhalt %rv(EventClass_LoadoutName,suit_loadoutrename)
 Static say_SuitLoadout $= {{{Kommandant, Sie tragen<;>Anzug ist}}} %(EventClass_SuitName_Localised), Inhalt %rv(EventClass_LoadoutName,suit_loadoutrename)
 
-Static say_SellShipOnRebuy $= %(EventClass_ShipType) Typ Schiff für %hnum(EventClass_ShipPrice,HNumList) Kredits zur Finanzierung des Rückkaufs des aktuellen Schiffs verkauft
+Static say_SellShipOnRebuy $= %(EventClass_ShipType) Typ Schiff für %hnum(EventClass_ShipPrice,HNumList) Credits zur Finanzierung des Rückkaufs des aktuellen Schiffs verkauft
 Static say_SendText $= Nachricht an %(EventClass_To_Localised) gesendet
 
 Static say_Scanned $= "Warnung, %ifequal(EventClass_ScanType,\"Cargo\",\"Fracht\",%(EventClass_ScanType)) Scan erkannt<;>Ein Schiff führt einen %ifequal(EventClass_ScanType,\"Cargo\",\"Fracht\",%(EventClass_ScanType)) Scan auf uns aus<;>%ifequal(EventClass_ScanType,\"Cargo\",\"Fracht\",%(EventClass_ScanType)) Scan erkannt, Kommandant<;>Wir werden auf %ifequal(EventClass_ScanType,\"Cargo\",\"Fracht\",%(EventClass_ScanType)) gescannt<;>%ifequal(EventClass_ScanType,\"Cargo\",\"Fracht\",%(EventClass_ScanType)) Scan erkannt"
 
 // always said on star
-Static say_ScanStar $= "Stern %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText) %ifgt(EventClass_EstimatedValue,19999,\", Wert %hnum(EventClass_EstimatedValue,HNumList) Kredits\") gescannt"
+Static say_ScanStar $= "Stern %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText) %ifgt(EventClass_EstimatedValue,19999,\", Wert %hnum(EventClass_EstimatedValue,HNumList) Credits\") gescannt"
 // gated on ScanStarMassDisable
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) Sternmassen
 Static say_ScanStarMassMag $+= , Absolute Helligkeit %round(EventClass_nAbsoluteMagnitude,1,M0.#) mag
@@ -701,7 +716,7 @@ Static say_ScanStarAge $= , Alter %hnum(%eval('%(EventClass_nAge)*1000000.0'),HN
 Static say_ScanPlanet $= "%Body(EventClass_StarSystem,EventStarSystem,say_ss) %Body(EventClass_BodyName,EventStarSystem,say_ss) %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\"),"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Metal-rich body\",\"Metallreicher Planet\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"High metal content world\",\"Planet mit hochwertigen Metallen\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Rocky body\",\"Steinerner Planet\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Rocky body\",\"Gesteinsplanet\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Icy body\",\"Eisplanet\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Rocky ice world\",\"Felsiger Eisplanet\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Earth-like world\",\"Erdähnliche Welt\")"
@@ -711,19 +726,19 @@ Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Water giant\",\"Was
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Water giant with life\",\"Wasserriese mit Leben\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Gas giant with water-based life\",\"Gasriese mit wasserbasiertem Leben\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Gas giant with ammonia-based life\",\"Gasriese mit ammoniakbasiertem Leben\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Class I gas giant\",\"Gasriese Klasse I\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Class II gas giant\",\"Gasriese Klasse II\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Class III gas giant\",\"Gasriese Klasse III\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Class IV gas giant\",\"Gasriese Klasse IV\")"
-Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Class V gas giant\",\"Gasriese Klasse V\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Sudarsky Class I gas giant\",\"Gasriese Klasse I\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Sudarsky Class II gas giant\",\"Gasriese Klasse II\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Sudarsky Class III gas giant\",\"Gasriese Klasse III\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Sudarsky Class IV gas giant\",\"Gasriese Klasse IV\")"
+Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Sudarsky Class V gas giant\",\"Gasriese Klasse V\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Helium-rich gas giant\",\"Heliumreicher Gasriese\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Helium gas giant\",\"Helium-Gasriese\")"
 Static say_ScanPlanet $+= "%ifequal(EventClass_PlanetClass,\"Unknown planet type\",\"Unbekannte Planetenart\")"
 Static say_ScanPlanet $+= " gescannt"
 // gated on ScanPlanetBasicInformationDisable
-Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) Kredits\")"
+Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) Credits\")"
 Static say_ScanPlanetDistance $= , Entfernung %hnum(EventClass_DistanceFromArrivalLS,HNumList) Lichtsekunden
-Static say_ScanPlanetLandable $= , landbar
+Static say_ScanPlanetLandable $= , Landbar
 Static say_ScanPlanetAtmosphere $= , %ifequal(EventClass_AtmosphereID,"No_atmosphere","Keine ")
 Static say_ScanPlanetAtmosphere $+= %ifcontains(EventClass_AtmosphereProperty,"Hot","heiße, ")
 Static say_ScanPlanetAtmosphere $+= %ifcontains(EventClass_AtmosphereProperty,"Thick","dichte, ")
@@ -770,8 +785,8 @@ Static say_ScanNavStarNeutron $= "%(EventClass_BodyName) ist ein Neutronenstern,
 Static say_Screenshot $= Bildschirmfoto des Körpers %body(EventClass_Body,EventStarSystem,say_ss) aufgenommen
 Static say_ScientificResearch $= Beitrag zur wissenschaftlichen Forschung %sc(EventClass_Name), %(EventClass_Count) Einheiten, %sc(EventClass_Category) Kategorie
 
-Static say_SearchAndRescue $= Lieferung %(EventClass_Count) %(EventClass_FriendlyName) zu Such- und Rettungskontakt. Belohnung ist %(EventClass_Reward) Kredits
-Static say_SellDrones $= %(EventClass_Count) %(EventClass_Type) für %(EventClass_TotalSale) Kredits verkauft
+Static say_SearchAndRescue $= Lieferung %(EventClass_Count) %(EventClass_FriendlyName) zu Such- und Rettungskontakt. Belohnung ist %(EventClass_Reward) Credits
+Static say_SellDrones $= %(EventClass_Count) %(EventClass_Type) für %(EventClass_TotalSale) Credits verkauft
 Static say_SelfDestruct $= Vorbereitung für den Start der Fluchtkapsel Kommandant, Selbstzerstörung
 
 Static say_SharedBookmarkToSquadron $= Lesezeichen mit Geschwader %(EventClass_Name) geteilt
@@ -779,20 +794,20 @@ Static say_SharedBookmarkToSquadron $= Lesezeichen mit Geschwader %(EventClass_N
 Static say_ShipTargeted1 $+= Pilot %(EventClass_PilotName_Localised), %(EventClass_PilotRank), in einer %ship(EventClass_Ship_Localised)
 Static say_ShipTargeted2 $+= Schild %round(EventClass_ShieldHealth,1,0.#) Prozent, Rumpf %round(EventClass_HullHealth,1,0.#) Prozent
 Static say_ShipTargeted3 $+= "%ifeq(levelscanned,0,\"Ziel %(EventClass_PilotName_Localised), \")"
-Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','Schiff ist %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Kopfgeld %hnum(EventClass_Bounty,HNumList) Kredits') %ifnotempty(EventClass_Faction,', Fraktion %(EventClass_Faction)')
+Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','Schiff ist %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Kopfgeld %hnum(EventClass_Bounty,HNumList) Credits') %ifnotempty(EventClass_Faction,', Fraktion %(EventClass_Faction)')
 
 Static say_SRVDestroyed $= {{{Bumm<;>Explosion<;>Kapau}}} Ihr SRV ist zerstört. Rückkehr zum Mutterschiff 
-Static say_SystemsShutdown $= {{{Warnung, <;>Achtung, <;>Sei vorbereitet, }{Feindliches Schiff<;>Anderes Schiff}}} hat die Systeme deaktiviert
+Static say_SystemsShutdown $= {{{Warnung, <;>Achtung, <;>Sei vorbereitet, }}}{{{Feindliches Schiff<;>Anderes Schiff}}} hat die Systeme deaktiviert
 
-Static say_ShipyardBuy $= Schiff %ship(EventClass_ShipType) gekauft, Kosten %hnum(EventClass_ShipPrice,HNumList) Kredits
+Static say_ShipyardBuy $= Schiff %ship(EventClass_ShipType) gekauft, Kosten %hnum(EventClass_ShipPrice,HNumList) Credits
 Static say_ShipyardBuy $+= "%ifnotempty(EventClass_StoreOldShip,\", Schiff %ship(EventClass_StoreOldShip) in hangar eingelagert\")"
-Static say_ShipyardBuy $+= "%ifnotempty(EventClass_SellOldShip,\", Schiff %ship(EventClass_SellOldShip) für %(EventClass_SellPrice) Kredits verkauft\")"
-Static say_ShipyardSell $= "Schiff %ship(EventClass_ShipType) für %hnum(EventClass_ShipPrice,HNumList) Kredits verkauft%ifnotempty(EventClass_System, \" in system %star(EventClass_System,say_ss)\")"
+Static say_ShipyardBuy $+= "%ifnotempty(EventClass_SellOldShip,\", Schiff %ship(EventClass_SellOldShip) für %(EventClass_SellPrice) Credits verkauft\")"
+Static say_ShipyardSell $= "Schiff %ship(EventClass_ShipType) für %hnum(EventClass_ShipPrice,HNumList) Credits verkauft%ifnotempty(EventClass_System, \" in system %star(EventClass_System,say_ss)\")"
 Static say_ShipyardNew $= {{{Herzlichen Glückwunsch }}}{{{zum Kauf eines brandneuen<;>zu Ihrem Neukauf von einer}}} %ship(EventClass_ShipType) Schiff
 Static say_ShipyardSwap $= Schiff %ship(EventClass_StoreOldShip) mit einer %ship(EventClass_ShipType) getauscht
 Static say_ShipyardTransfer $= Bestellte den Transfer des Schiffes %ship(EventClass_ShipType) 
 Static say_ShipyardTransfer $+= %ifnonzero(EventClass_Distance,' von System %star(EventClass_FromSystem,say_ss), Entfernung %round(EventClass_Distance,1,0.0) Lichtjahre, Eintreffen in %eval("%(EventClass_nTransferTime)/60.0","ERROR","0.#") Minuten')
-Static say_ShipyardTransfer $+= , Kosten %hnum(EventClass_TransferPrice,HNumList) Kredits
+Static say_ShipyardTransfer $+= , Kosten %hnum(EventClass_TransferPrice,HNumList) Credits
 
 Static say_SupercruiseEntry $= Warp Generatoren an<;>Supercruiseflug gestartet<;>F S A Antrieb gestartet<;>Festhalten, Supercruise-Flug<;> F S A an
 Static say_SupercruiseExit $= {{{Verlasse Supercruiseflug<;>Normaler Raum Kommandant<;>F S A aus, Impuls Antrieb eingeschaltet}}}
@@ -824,8 +839,8 @@ Static say_TechnologyBroker $= "Der Technologie-Broker hat einen Gegenstand frei
 Static say_Undocked $= Abgedockt von %sc(EventClass_StationName) guten Flug Kommandant<;>Schiff bereit, Sie haben die Kontrolle Kommandant<;> Maschinen laufen, verlassen %sc(EventClass_StationName)<;>Verlassen Station %sc(EventClass_StationName)
 Static say_USSDrop $= In U S S Typ %(EventClass_USSTypeLocalised) gefallen, Bedrohungsstufe ist %(EventClass_USSThreat)
 
-Static say_UpgradeSuit $= {{{Kommandant, <;>}}}Aufwertung von %(EventClass_Name_Localised) Klasse %(EventClass_Class)%ifnonzero(EventClass_Cost,', Kosten waren %hnum(EventClass_Cost,HNumList) Kredits')
-Static say_UpgradeWeapon $= {{{Kommandant, <;>}}}Aufwertung von %(EventClass_Name_Localised) zu Klasse %(EventClass_Class)%ifnonzero(EventClass_Cost,', Kosten waren %hnum(EventClass_Cost,HNumList) Kredits')
+Static say_UpgradeSuit $= {{{Kommandant, <;>}}}Aufwertung von %(EventClass_Name_Localised) Klasse %(EventClass_Class)%ifnonzero(EventClass_Cost,', Kosten waren %hnum(EventClass_Cost,HNumList) Credits')
+Static say_UpgradeWeapon $= {{{Kommandant, <;>}}}Aufwertung von %(EventClass_Name_Localised) zu Klasse %(EventClass_Class)%ifnonzero(EventClass_Cost,', Kosten waren %hnum(EventClass_Cost,HNumList) Credits')
 Static say_UseConsumable $= {{{Kommandant, <;>}}}%(EventClass_Resource_Name_Localised) verbraucht
 
 Static say_VehicleSwitch $= Wechsle zu %sc(EventClass_To)
@@ -838,23 +853,55 @@ Static say_WingInvite $= Eingeladen in das Geschwader von Kommandant %(EventClas
 Static say_WonATrophyForSquadron $= Herzlichen Glückwunsch, Sie haben eine Trophäe für Geschwader %(EventClass_Name) gewonnen
 // other stuff
 
-Static say_EDSM $= Erste Entdeckung von %replace(EventStarList,';',',')
+Static say_EDSM $= EDSM First discovery
+
+// VP30, surveyor
+// The list of Event Names from surveyor (encoded in say_surveyor_<trigger>) is in the Action Document under onSurveyor event
+// only included the ones which add information over the basic scan output
+Static say_surveyor_prefixphrase $= "Landvermesser berichtet für Körper %(KörperKurzname), "
+Static say_surveyor_Discovery $= "Eine Entdeckung, %(Daten), "
+Static say_surveyor_MiningSignals $= "Bergbau-Signale, "
+Static say_surveyor_GeoSignals $= "Geologische Signale, "
+Static say_surveyor_BioSignals $= "Biologische Signale, "
+Static say_surveyor_ThargoidSignals $= "Thargoid-Signale, "
+Static say_surveyor_GuardianSignals $= "Wächter-Signale, "
+Static say_surveyor_HumanSignals $= "Menschliche Signale, "
+Static say_surveyor_OtherSignals $= "Andere Signale, "
+Static say_surveyor_TinyPlanetRadius $= "Winziger Radius, "
+Static say_surveyor_HugePlanetRadius $= "Großer Radius, "
+Static say_surveyor_HighGravity $= "Warnung vor hoher Schwerkraft %(data) Gee, "
+Static say_surveyor_Earthlike $= "Das ist ein erdähnlicher Planet!, "
+Static say_surveyor_WaterWorld $= "Wasserwelt, "
+Static say_surveyor_AmmoniaWorld $= "Ammoniak-Welt, "
 
 Rem subsitution patterns (ss1,ss2 etc) for faction and body name fields
-Static say_ssn0 $= "-; dash "
+Static say_ssn0 $= "-; Strich "
 Static say_ssn1 $= " I ; 1 "
 Static say_ssn2 $= " II ; 2 "
 Static say_ssn3 $= " III ; 3 "
 Static say_ssn4 $= "q\" IV ; 4 \""
 Static say_ssn5 $= " V ; 5 "
+Static say_ssn6 $= "G.;G "
 
 Rem say subsitution patterns, applied after the phrase has been made, are called say_txN in the same form as above.
 
 Static say_tx1 $= terraforming; Terra Forming
 Static say_tx2 $= terraformable; terraformbar
 Static say_tx3 $= "CMDR ;Kommandant "
-Static say_tx4 $= " Cr ; Kredits "
+Static say_tx4 $= " Cr ; Credits "
 Static say_tx5 $= "Mk. ;Mark "
+Static say_tx6 $= " CMDRs; Kommandanten"
+Static say_tx7 $= " cmdr; Kommandanten"
+Static say_tx8 $= "O7; Grüße "
+Static say_tx9 $= " O7; , Gruß"
+Rem removed, matching 61.07 Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
+Static say_tx11 $= "R;\s+07; Grüße Kommandant, "
+
+Rem print Replace Test
+Rem print %replacevar("Hello O7","say_tx")
+Rem print %replacevar("O7","say_tx")
+Rem print %replacevar("07","say_tx")
+Rem print %replacevar(" 907","say_tx")
 
 // Phonemes
 
@@ -976,55 +1023,6 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
     Static say_tx_constellation39 = r;\b(Tucanae)\b;<phoneme alphabet='ipa' ph = 'tuːˈkɑːniː'>Tucanae</phoneme>
     Static say_tx_constellation40 = r;\b(Wredguia)\b;<phoneme alphabet='ipa' ph = 'ˈredɡaɪə'>Wredguia</phoneme>
 
-// Ships names
-Static say_tx_ship1 = r;\b(Type 9 Heavy)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'naɪn'>9</phoneme><phoneme alphabet='ipa' ph = 'ˈhev.i'>Heavy</phoneme>
-Static say_tx_ship2 = r;\b(Python)\b;<phoneme alphabet='ipa' ph = 'ˈpaɪ.θɑːn'>Python</phoneme>
-Static say_tx_ship3 = r;\b(Anaconda)\b;<phoneme alphabet='ipa' ph = 'ˌæn.əˈkɑːn.də'>Anaconda</phoneme>
-Static say_tx_ship4 = r;\b(Sidewinder Mk I)\b;<phoneme alphabet='ipa' ph = 'saɪdˈwaɪn.dɚ'>Sidewinder</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'wʌn'>I</phoneme>
-Static say_tx_ship5 = r;\b(Asp Explorer)\b;<phoneme alphabet='ipa' ph = 'æsp'>Asp</phoneme><phoneme alphabet='ipa' ph = 'ɪkˈsplɔːr.ɚ'>Explorer</phoneme>
-Static say_tx_ship6 = r;\b(Diamondback Explorer)\b;<phoneme alphabet='ipa' ph = 'ˈdaɪ.ə.məndbæk'>Diamondback</phoneme><phoneme alphabet='ipa' ph = 'ɪkˈsplɔːr.ɚ'>Explorer</phoneme>
-Static say_tx_ship7 = r;\b(Krait Mk II)\b;<phoneme alphabet='ipa' ph = 'kræt'>Krait</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'tuː'>II</phoneme>
-Static say_tx_ship8 = r;\b(Cobra Mk III)\b;<phoneme alphabet='ipa' ph = 'ˈkoʊ.brə'>Cobra</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'θriː'>III</phoneme>
-Static say_tx_ship9 = r;\b(Imperial Cutter)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪr.i.əl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈkʌt̬.ɚ'>Cutter</phoneme>
-Static say_tx_ship10 = r;\b(Vulture)\b;<phoneme alphabet='ipa' ph = 'ˈvʌl.tʃɚ'>Vulture</phoneme>
-Static say_tx_ship11 = r;\b(Federal Corvette)\b;<phoneme alphabet='ipa' ph = 'ɪˈfed.ɚ.əl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'kɔːrˈvet'>Corvette</phoneme>
-Static say_tx_ship12 = r;\b(Fer de Lance)\b;<phoneme alphabet='ipa' ph = 'ˈfer'>Fer</phoneme><phoneme alphabet='ipa' ph = 'dɪ-'>de</phoneme><phoneme alphabet='ipa' ph = 'læns'>Lance</phoneme>
-Static say_tx_ship13 = r;\b(Krait Phantom)\b;<phoneme alphabet='ipa' ph = 'kræt'>Krait</phoneme><phoneme alphabet='ipa' ph = 'fæn.t̬əm'>Phantom</phoneme>
-Static say_tx_ship14 = r;\b(Imperial Courier)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪr.i.əl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈkʊr.i.ɚ'>Courier</phoneme>
-Static say_tx_ship15 = r;\b(Viper Mk III)\b;<phoneme alphabet='ipa' ph = 'vaɪ.pɚ'>Viper</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'θriː'>III</phoneme>
-Static say_tx_ship16 = r;\b(Imperial Eagle)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪr.i.əl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈiː.ɡəl'>Eagle</phoneme>
-Static say_tx_ship17 = r;\b(Eagle Mk II)\b;<phoneme alphabet='ipa' ph = 'ˈiː.ɡəl'>Eagle</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'tuː'>II</phoneme>
-Static say_tx_ship18 = r;\b(Alliance Chieftain)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪ.əns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'ˈtʃiːf.tən'>Chieftain</phoneme>
-Static say_tx_ship19 = r;\b(Type 10 Defender)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'ten'>10</phoneme><phoneme alphabet='ipa' ph = 'dɪˈfen.dɚ'>Defender</phoneme>
-Static say_tx_ship20 = r;\b(Type 6 Transporter)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'sɪks'>6</phoneme><phoneme alphabet='ipa' ph = 'trænˈspɔːr.t̬ɚ'>Transporter</phoneme>
-Static say_tx_ship21 = r;\b(Dolphin)\b;<phoneme alphabet='ipa' ph = 'ˈdɑːl.fɪn'>Dolphin</phoneme>
-Static say_tx_ship22 = r;\b(Imperial Cutter)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪr.i.əl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈklɪp.ɚ'>Clipper</phoneme>
-Static say_tx_ship23 = r;\b(Hauler)\b;<phoneme alphabet='ipa' ph = 'ˈhɔː.lər'>Hauler</phoneme>
-Static say_tx_ship24 = r;\b(Mamba)\b;<phoneme alphabet='ipa' ph = 'ˈmæm.bə'>Mamba</phoneme>
-Static say_tx_ship25 = r;\b(Viper Mk III)\b;<phoneme alphabet='ipa' ph = 'vaɪ.pɚ'>Viper</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mk</phoneme><phoneme alphabet='ipa' ph = 'fɔːr'>IV</phoneme>
-Static say_tx_ship26 = r;\b(Type 7 Transporter)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'ˈsev.ən'>7</phoneme><phoneme alphabet='ipa' ph = 'trænˈspɔːr.t̬ɚ'>Transporter</phoneme>
-Static say_tx_ship22 = r;\b(Beluga Liner)\b;<phoneme alphabet='ipa' ph = 'bəˈluːɡə'>Beluga</phoneme><phoneme alphabet='ipa' ph = 'ˈlaɪ.nɚ'>Liner</phoneme>
-Static say_tx_ship28 = r;\b(Adder)\b;<phoneme alphabet='ipa' ph = 'ˈæd.ɚ'>Adder</phoneme>
-Static say_tx_ship29 = r;\b(Keelback)\b;<phoneme alphabet='ipa' ph = 'kiːlbæk'>Keelback</phoneme>
-Static say_tx_ship30 = r;\b(Alliance Challenger)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪ.əns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'ˈtʃæl.ɪn.dʒɚ'>Challenger</phoneme>
-Static say_tx_ship31 = r;\b(Orca)\b;<phoneme alphabet='ipa' ph = 'ˈɔːr.kə'>Orca</phoneme>
-Static say_tx_ship32 = r;\b(Federal Assault Ship)\b;<phoneme alphabet='ipa' ph = 'ˈfed.ɚ.əl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'əˈsɑːlt'>Assault</phoneme><phoneme alphabet='ipa' ph = 'ʃɪp'>Ship</phoneme>
-Static say_tx_ship33 = r;\b(Federal Gunship)\b;<phoneme alphabet='ipa' ph = 'ˈfed.ɚ.əl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'ˈɡʌn.ʃɪp'>Gunship</phoneme>
-Static say_tx_ship34 = r;\b(Diamondback Scout)\b;<phoneme alphabet='ipa' ph = 'ˈdaɪ.ə.məndbæk'>Diamondback</phoneme><phoneme alphabet='ipa' ph = 'skaʊt'>Scout</phoneme>
-Static say_tx_ship35 = r;\b(Federal Dropship)\b;<phoneme alphabet='ipa' ph = 'ˈfed.ɚ.əl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'drɑːpʃɪp'>Dropship</phoneme>
-Static say_tx_ship36 = r;\b(Alliance Crusader)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪ.əns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'kruːˈseɪ.dɚ'>Crusader</phoneme>
-Static say_tx_ship37 = r;\b(Asp Scout)\b;<phoneme alphabet='ipa' ph = 'æsp'>Asp</phoneme><phoneme alphabet='ipa' ph = 'skaʊt'>Scout</phoneme>
-
-// Faction names
-
-// Faction state, EventClass_FactionState
-Static say_tx_state1 = r;\b(Boom)\b;<phoneme alphabet='ipa' ph = 'buːm'>Boom</phoneme>
-
-// EventClass_Name
-
-// Elite Dangerous Discovery
-Static say_tx_edd = r;\b(Elite Dangerous Discovery)\b;<phoneme alphabet='ipa' ph = 'iˈliːt'>Elite</phoneme><phoneme alphabet='ipa' ph = 'ˈdeɪn.dʒɚ.əs'>Dangerous</phoneme><phoneme alphabet='ipa' ph = 'dɪˈskʌv.ɚ.i'>Discovery</phoneme>
-
 // Set speech = "Welcome to Tucanae"
 // rem  Set speech = "%replacevar(speech,\"say_tx\")"
 // Set speech = %replacevar(speech,"say_tx")
@@ -1090,6 +1088,8 @@ END PROGRAM
 PROGRAM Initialise
 
 MenuItem VoiceMenuConfigureVoice,add-ons,"Sprachsynthese-Konfiguration",speaker
+MenuItem VoiceMenuConfigureText,add-ons,"Sprache Textnachrichten Sprachkonfiguration",speaker
+MenuItem VoiceMenuConfigureNPCEffects,add-ons,"Stimme NPC-Sprachkonfiguration",speaker
 MenuItem VoiceMenuConfigureVerbosity,add-ons,"Voice Pack-Konfiguration",speaker
 MenuItem VoiceMenuConfigureNPCVoices,add-ons,"NPC-Stimme wählen",speaker
 MenuItem VoiceMenuConfigureSpeechFile,add-ons,"Sprachdatei bearbeiten",missioncompleted
@@ -1132,6 +1132,7 @@ If %(RefreshCount) <= 1
     Event PREFIX RK_ LAST Rank
     Rem pragma dumpvars LAST*
     Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
+
     If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
         Call speak(speech="%(speech)")
 
@@ -1170,14 +1171,60 @@ If sayit IsFalse
     Rem print not saying mate %(EventClass_Channel)
     Return 
 
-If EventClass_Channel $!= npc                                   // non NPC, is said by the main computer voice
-    Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
-    Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
-    Call speak(speech="%(speech)")
+If EventClass_Channel $!= npc                                   // non NPC, is said by the text computer voice
+    If SpeechControls NotContains TEXTVoicesEnable;
+        Set v = say_%(EventClass_EventTypeStr)                  // make up variable name from event name
+        Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+        // passing -999 or empty string makes the options inert
+        Call speak(speech="%(speech)",Volume="%ExistsDefault(TextVolume,'-999')",Voice="%ExistsDefault(TextVoiceName,'')",Rate="%ExistsDefault(TextVoiceRate,'-999')",EffectVars="%ExistsDefault(TextVoiceEffects,'')")
+    Else 
+        Set from = %(EventClass_FromLocalised)
+        Set textvar = "say_text_%SafeVarName(\"%(from)\")"
+        If "%exist(\"%(textvar)\")" IsTrue
+            Set voice = %indirect(textvar)
+            Set pitchshift = "%expand(\"%(textvar)_pitch\")"
+            Set rate = "%expand(\"%(textvar)_rate\")"
+        Else 
+            Let voicecount = %WordListCount(NPCVoiceNames)
+            // print %(NPCVoiceNames) count %(voicecount)
+            Let rnvoice = %Random(voicecount)
+            Set voice = %WordListEntry(NPCVoiceNames,rnvoice)
+            // print ..pick %(rnvoice) %(voice)
+
+            // if same as co-pilot voice, shift it off
+            If SpeechVoice IsPresent And voice $== %(SpeechVoice)
+                If %Random(2) == 0
+                    Let pitchshift = 70+%Random(20)
+                Else 
+                    Let pitchshift = 107+%Random(15)
+            Else 
+                Let pitchshift = 70+%Random(50)
+
+            If pitchshift < 80
+                Let rate = %Random(3)+1
+            Else If pitchshift < 101
+                Let rate = %Random(5)-2
+            Else 
+                Let rate = %Random(4)-2
+            Static %(textvar) = %(voice)
+            Static %(textvar)_pitch = %(pitchshift)
+            Static %(textvar)_rate = %(rate)
+
+        // Print for %(from) chose %(voice) at pitch %(pitchshift) rate %(rate)
+
+        If TextVoiceEffects IsPresent
+            Set effects = NoGlobalEffects=1,%(TextVoiceEffects),PitchShift=%(pitchshift)
+        Else 
+            Set effects = NoGlobalEffects=1,PitchShift=%(pitchshift)
+
+        Set speech = '%(EventClass_MessageLocalised)'
+
+        Call speak(speech="%(speech)",Volume="%ExistsDefault(TextVolume,'-999')",EffectVars="%(effects)",Voice="%(voice)",Rate="%(rate)",QueueLimit="20000")
+
 Else If SpeechControls NotContains NPCVoicesEnable;
     Set v = say_%(EventClass_EventTypeStr)                      // make up variable name from event name
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
-    Call speak(speech="%(speech)")
+    Call speak(speech="%(speech)",Volume="%ExistsDefault(TextVolume,'-999')",Voice="%ExistsDefault(TextVoiceName,'')",Rate="%ExistsDefault(TextVoiceRate,'-999')",EffectVars="%ExistsDefault(TextVoiceEffects,'')")
 Else 
     Rem pragma dumpvars *
     Set from = %(EventClass_FromLocalised)
@@ -1229,8 +1276,16 @@ Else
 
     Set speech = %(EventClass_MessageLocalised)
 
-    // we override the SoundEffects global by providing at least on speech effect, PitchShift
-    Call speak(speech="%(speech)",Voice="%(voice)",PitchShift="%(pitchshift)",PrefixSound="%(presound)",PostfixSound="%(postsound)",MixSound="%(mixsound)",Rate="%(rate)",QueueLimit="5000")
+    If NPCVoiceEffects IsPresent
+        Set effects = NoGlobalEffects=1,%(NPCVoiceEffects),PitchShift=%(pitchshift)
+    Else 
+        Set effects = NoGlobalEffects=1,PitchShift=%(pitchshift)
+
+    Set volume = %ExistsDefault(NPCVoiceVolume,'-999')
+
+    // Print NPC Sound effects %(effects) : rate %(rate) : voice %(voice) : volume %(volume)
+    // we override the SoundEffects global by providing at least on speech effect, PitchShift, or the effect vars if present
+    Call speak(speech="%(speech)",Volume="%(volume)",EffectVars="%(effects)",Voice="%(voice)",PrefixSound="%(presound)",PostfixSound="%(postsound)",MixSound="%(mixsound)",Rate="%(rate)",QueueLimit="5000")
 
 END PROGRAM
 
@@ -1594,7 +1649,7 @@ If EventClass_Status $== ""
     Else 
         Let online = %(EventClass_OnlineCount)
         Let offline = %(EventClass_OfflineCount)
-        Let totalother = %(EventClass_StatusListCount) - %(offline) - %(online)
+        Let totalother = %(EventClass_OtherCount)
 
         Static say_FriendsSummation $= "%ifnonzero(online,'%(online) %ifgt(online,\'1\',\'friends are\',\'friend is\') online.') "
         Static say_FriendsSummation $+= "%ifnonzero(offline,'%(offline) %ifgt(offline,\'1\',\'friends\',\'friend\') have gone offline.') "
@@ -1799,8 +1854,32 @@ END PROGRAM
 //*************************************************************
 PROGRAM Menus
 
-If MenuName Contains ConfigureVoice
-    Perform ConfigureVoice "Configure Voice Synthesis"
+If MenuName Contains ConfigureCoPilot
+    Rem sets the globals SpeechVoice, SpeechVolume, SpeechRate, SpeechEffects
+    Perform ConfigureVoice "Configure Co-Pilot Voice Synthesis"
+
+If MenuName Contains ConfigureNPCEffects
+    Set vv = %ExistsDefault(NPCVoiceVolume,SpeechVolume,"60")
+    Set ve = %ExistsDefault(NPCVoiceEffects,SpeechEffects,"")
+    Perform ConfigureVoice "Configure NPC Voice Synthesis",NOVOICENAME,%(vv),NORATE,%(ve)
+    If DialogResult IsTrue
+        PersistentGlobal NPCVoiceVolume=%(Volume)
+        PersistentGlobal NPCVoiceEffects=%(Effects)
+
+If MenuName Contains ConfigureText
+    Pragma dumpvars TextVoice* 
+    Pragma dumpvars Speech*
+    Set vn = %ExistsDefault(TextVoiceName,SpeechVoice,"Default")
+    Set vv = %ExistsDefault(TextVoiceVolume,SpeechVolume,"60")
+    Set vr = %ExistsDefault(TextVoiceRate,SpeechRate,"0")
+    Set ve = %ExistsDefault(TextVoiceEffects,SpeechEffects,"")
+    Perform ConfigureVoice "Configure Text Voice Synthesis",%(vn),%(vv),%(vr),%(ve)
+    If DialogResult IsTrue
+        PersistentGlobal TextVoiceName=%(VoiceName)
+        PersistentGlobal TextVoiceVolume=%(Volume)
+        PersistentGlobal TextVoiceRate=%(Rate)
+        PersistentGlobal TextVoiceEffects=%(Effects)
+        Pragma dumpvars TextV*
 
 If MenuName Contains ConfigureSpeechFile
     Perform EditSpeechText
@@ -1854,195 +1933,197 @@ If MenuName Contains ConfigureNPCVoices
 If MenuName Contains ShowHelp
     MessageBox "Voice Pack (C) ED Discovery team\r\n\r\nAdd-Ons verwenden | um diese Funktion zu aktivieren oder zu deaktivieren\r\nVerwenden Sie die Optionen zur Sprachkonfiguration im Menü Add-Ons, um die Sprachausgabe zu konfigurieren\r\nund Sprachpaketoptionen einzustellen","Voice Pack"
 
-If MenuName Contains ConfigureVerbosity
+    If MenuName Contains ConfigureVerbosity
 
-    Set lab = 10
-    Set labw = 140
-    Set col1 = 150
-    Set col2 = 400
-    Set col3 = 650
-    Set colw = 240
-    Set ls = +30
-    Set lsm = +40
-    Set width = 1000
-    Set Def = ""
-    Set dvar1a = "L2,Label,\"Sprachdatei\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Leer bedeutet, dass keine Sprachdatei vorhanden ist, ansonsten geben Sie die Datei ein oder verwenden Sie Durchsuchen\""
-    Set dvar1c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Wählen Sie die Datei, in die die Sprachausgabe geschrieben werden soll\""
+        Set lab = 10
+        Set labw = 140
+        Set col1 = 150
+        Set col2 = 400
+        Set col3 = 650
+        Set colw = 240
+        Set ls = +30
+        Set lsm = +40
+        Set width = 1000
+        Set Def = ""
+        Set dvar1a = "L2,Label,\"Speech file\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Leer bedeutet, dass keine Sprachdatei vorhanden ist, ansonsten die Datei eingeben oder durchsuchen\""
+        Set dvar1c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Datei auswählen, in die die Sprachausgabe geschrieben werden soll\""
 
-    Set dvar2a = "CBPR,CheckBox,\"Datum/Uhrzeit ins Log schreiben\",%(col1),%(ls),%(colw),20,\"Uhrzeit und Datum vor dem Text ausgeben\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
-    Set dvar2b = "CBLL,CheckBox,\"Nur aktuelles Log\",%(col2),+0,%(colw),20,\"Protokoll vor jeder Sprachausgabe löschen\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
+        Set dvar2a = "CBPR,CheckBox,\"Datum/Uhrzeit im Protokoll drucken\",%(col1),%(ls),%(colw),20,\"Uhrzeit und Datum vor dem Text drucken\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
+        Set dvar2b = "CBLL,CheckBox,\"Nur letztes protokollieren\",%(col2),+0,%(colw),20,\"Protokoll vor jeder Sprachausgabe löschen\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
 
-    Set dvar3a = "L2,Label,\"Allgemeines\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar3b = "CBD,CheckBox,\"Sprachausgabe deaktivieren\",%(col1),+0,%(colw),20,\"Sprachausgabe deaktivieren, nur Logdatei wird geschrieben\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
-    Set dvar3c = "CBSSML,CheckBox,\"SSML deaktivieren\",%(col2),+0,%(colw),20,\"SSML deaktivieren(Erfordert einen Neustart des ED)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
-    Set dvar3d = "CBWEL,CheckBox,\"Begrüßungsmeldung deaktivieren\",%(col3),+0,%(colw),20,\"Deaktivieren Sie die Willkommensnachricht\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
-    Set dvar3e = "CBSUB,CheckBox,\"Untertitel\",%(col1),%(ls),%(colw),20,\"Untertitelbox einschalten\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
-    Set dvar4b = "CBFR,CheckBox,\"Freundschaftsstatus deaktivieren\",%(col2),+0,%(colw),20,\"Freundschaftsstatus online/offline ist stummgeschaltet\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
+        Set dvar3a = "L2,Label,\"General\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar3b = "CBD,CheckBox,\"Sprachausgabe deaktivieren\",%(col1),+0,%(colw),20,\"Sprachausgabe deaktivieren, nur Textausgabe aktiviert\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
+        Set dvar3c = "CBSSML,CheckBox,\"SSML deaktivieren\",%(col2),+0,%(colw),20,\"SSML deaktivieren (Neustart von ED erforderlich)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
+        Set dvar3d = "CBWEL,CheckBox,\"Willkommensnachricht deaktivieren\",%(col3),+0,%(colw),20,\"Die Willkommensnachricht deaktivieren\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
+        Set dvar3e = "CBSUB,CheckBox,\"Untertitel\",%(col1),%(ls),%(colw),20,\"Untertitelbox einschalten\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
+        Set dvar4b = "CBFR,CheckBox,\"Freundesstatus deaktivieren\",%(col2),+0,%(colw),20,\"Freundesstatus online/offline ist stummgeschaltet\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
 
-    Set dvar5a = "L3,Label,\"Texte\",%(lab),%(lsm),%(labw),20,\"\""
-    Let npcdisable = "!%IsPresent(SpeechControls,\"NPCChatterDisable;\",0)"
+        Set dvar5a = "L3,Label,\"Texts\",%(lab),%(lsm),%(labw),20,\"\""
+        Let npcdisable = "!%IsPresent(SpeechControls,\"NPCChatterDisable;\",0)"
 
-    Set dvar5b = "CBN1,CheckBox,\"NPC-Texte aktivieren\",%(col1),+0,%(colw),20,\"Alle NPC-Texte aktivieren\",%(npcdisable)"    // name kept for backwards compat
-    Set dvar5c = "CBNS,CheckBox,\"NPC-Sounds deaktivieren\",%(col2),+0,%(colw),20,\"Intro/Out-Sounds bei NPC-Texten deaktivieren\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
-    Set dvar5d = "CBNMV,CheckBox,\"NPC Unterschiedliche Stimmen\",%(col3),+0,%(colw),20,\"Wähle verschiedene Stimmen für jeden NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+        Set dvar5b = "CBN1,CheckBox,\"NPC-Texte aktivieren\",%(col1),+0,%(colw),20,\"Alle NPC-Texte aktivieren\",%(npcdisable)"    // name kept for backwards compat
+        Set dvar5c = "CBNS,CheckBox,\"NPC-Sounds deaktivieren\",%(col2),+0,%(colw),20,\"Intro/Out-Sounds bei NPC-Texten deaktivieren\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
+        Set dvar5d = "CBNMV,CheckBox,\"NPC Unterschiedliche Stimmen\",%(col3),+0,%(colw),20,\"Wähle verschiedene Stimmen für jeden NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+        Set dvar5z = "CBNTV,CheckBox,\"Texts Different Voices\",%(col1),%(ls),%(colw),20,\"Use Different voices for each text message\",%IsPresent(SpeechControls,\"TEXTVoicesEnable;\",0)"
 
-    Set dvar5e = "CBN2,CheckBox,\"Geschwadertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Staffeltexte aktivieren\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
-    Set dvar5f = "CBN3,CheckBox,\"Geschwadertexte aktivieren\",%(col2),+0,%(colw),20,\"Alle Geschwadertexte aktivieren\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
-    Set dvar5g = "CBN4,CheckBox,\"Lokale Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle lokalen Texte aktivieren\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
+        Set dvar5e = "CBN2,CheckBox,\"Geschwadertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Staffeltexte aktivieren\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
+        Set dvar5f = "CBN3,CheckBox,\"Geschwadertexte aktivieren\",%(col2),+0,%(colw),20,\"Alle Geschwadertexte aktivieren\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
+        Set dvar5g = "CBN4,CheckBox,\"Lokale Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle lokalen Texte aktivieren\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
 
-    Set dvar5h = "CBN5,CheckBox,\"Freundestexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Freundestexte aktivieren\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
-    Set dvar5j = "CBN6,CheckBox,\"VoiceChat-Texte aktivieren\",%(col2),+0,%(colw),20,\"Alle Voice-Chat-Texte aktivieren\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
-    Set dvar5k = "CBN7,CheckBox,\"SternSystem-Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle Sternsystemtexte aktivieren\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
+        Set dvar5h = "CBN5,CheckBox,\"Freundestexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Freundestexte aktivieren\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
+        Set dvar5j = "CBN6,CheckBox,\"VoiceChat-Texte aktivieren\",%(col2),+0,%(colw),20,\"Alle Voice-Chat-Texte aktivieren\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
+        Set dvar5k = "CBN7,CheckBox,\"SternSystem-Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle Sternsystemtexte aktivieren\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
 
-    Set dvar5m = "CBN8,CheckBox,\"Spielertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Spielertexte aktivieren\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
-    Set dvar5n = "CBN9,CheckBox,\"Alle anderen Texte aktivieren\",%(col2),+0,%(colw),20,\"Andere Arten von Texten aktivieren\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
+        Set dvar5m = "CBN8,CheckBox,\"Spielertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Spielertexte aktivieren\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
+        Set dvar5n = "CBN9,CheckBox,\"Alle anderen Texte aktivieren\",%(col2),+0,%(colw),20,\"Andere Arten von Texten aktivieren\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
 
-    Set dvar6a = "L3,Label,\"FSA Sprung\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar6b = "CBF,CheckBox,\"Systeminfo nur erster Sprung\",%(col1),+0,%(colw),20,\"Systeminformationen nur beim ersten Sprung zum System ansagen\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
-    Set dvar6c = "CBFL,CheckBox,\"Berichte über den Treibstoffstand deaktivieren\",%(col2),+0,%(colw),20,\"Treibstoffstandberichte deaktivieren\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
-    Set dvar6d = "CBFR,CheckBox,\"Fraktionsberichte deaktivieren\",%(col3),+0,%(colw),20,\"Fraktionsberichte bei FSA-Sprüngen deaktivieren\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
+        Set dvar6a = "L3,Label,\"FSA Sprung\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar6b = "CBF,CheckBox,\"Systeminfo nur erster Sprung\",%(col1),+0,%(colw),20,\"Systeminformationen nur beim ersten Sprung zum System ansagen\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
+        Set dvar6c = "CBFL,CheckBox,\"Berichte über den Treibstoffstand deaktivieren\",%(col2),+0,%(colw),20,\"Treibstoffstandberichte deaktivieren\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
+        Set dvar6d = "CBFR,CheckBox,\"Fraktionsberichte deaktivieren\",%(col3),+0,%(colw),20,\"Fraktionsberichte bei FSA-Sprüngen deaktivieren\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
 
-    Set dvar7a = "L3,Label,\"Sterntypen ausschließen\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Schließen Sie diese Sterne vom Auslesen der nach dem Sprung gelesenen Systeminformationen aus, Sterntypen OBAFGKM, H,N,TTS, Wx etc, durch Komma oder Leerzeichen getrennt\""
+        Set dvar7a = "L3,Label,\"Sterntypen ausschließen\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Schließen Sie diese Sterne vom Auslesen der nach dem Sprung gelesenen Systeminformationen aus, Sterntypen OBAFGKM, H,N,TTS, Wx etc, durch Komma oder Leerzeichen getrennt\""
 
-    Set dvar8a = "L3,Label,\"Scannen\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar8b = "CBSM,CheckBox,\"Sternmasse/Mag deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren Sie Scan-Berichte über Masse und Helligkeit von Sternen\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
-    Set dvar8c1 = "CBSAS,CheckBox,\"Auto-Scan aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie das Aufsagen automatisch gescannter Einträge\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
+        Set dvar8a = "L3,Label,\"Scannen\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar8b = "CBSM,CheckBox,\"Sternmasse/Mag deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren Sie Scan-Berichte über Masse und Helligkeit von Sternen\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
+        Set dvar8c1 = "CBSAS,CheckBox,\"Auto-Scan aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie das Aufsagen automatisch gescannter Einträge\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
 
-    Set dvar8d = "CBPB,CheckBox,\"Planet Grundlagen deaktivieren\",%(col1),%(ls),%(colw),20,\"Deaktivieren Sie Scan-Berichte von Planeten Landbarer Zustand, Atmosphäre\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
-    Set dvar8e = "CBPCR,CheckBox,\"Kredits deaktivieren\",%(col2),+0,%(colw),20,\"Kredits Berichte deaktivieren\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
-    Set dvar8f = "CBPDS,CheckBox,\"Distanz deaktivieren\",%(col3),+0,%(colw),20,\"Entfernungsberichte aktivieren\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
+        Set dvar8d = "CBPB,CheckBox,\"Planet Grundlagen deaktivieren\",%(col1),%(ls),%(colw),20,\"Deaktivieren Sie Scan-Berichte von Planeten Landbarer Zustand, Atmosphäre\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
+        Set dvar8e = "CBPCR,CheckBox,\"Credits deaktivieren\",%(col2),+0,%(colw),20,\"Credits Berichte deaktivieren\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
+        Set dvar8f = "CBPDS,CheckBox,\"Distanz deaktivieren\",%(col3),+0,%(colw),20,\"Entfernungsberichte aktivieren\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
 
-    Set dvar8g = "CBPF,CheckBox,\"Planet Erweitert aktivieren\",%(col1),%(ls),%(colw),20,\"Aktivieren Sie Scan-Berichte über erweiterte Informationen zu Planeten\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
-    Set dvar8h = "CBPM,CheckBox,\"Planet Materialien aktivieren\",%(col2),+0,%(colw),20,\"Aktivieren von Scan-Berichten über Planetenmaterialien\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
-    Set dvar8i = "CBBC,CheckBox,\"Gürtelcluster aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie Scan-Berichte von Gürtel Klustern\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
+        Set dvar8g = "CBPF,CheckBox,\"Planet Erweitert aktivieren\",%(col1),%(ls),%(colw),20,\"Aktivieren Sie Scan-Berichte über erweiterte Informationen zu Planeten\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
+        Set dvar8h = "CBPM,CheckBox,\"Planet Materialien aktivieren\",%(col2),+0,%(colw),20,\"Aktivieren von Scan-Berichten über Planetenmaterialien\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
+        Set dvar8i = "CBBC,CheckBox,\"Gürtelcluster aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie Scan-Berichte von Gürtel Klustern\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
-    Set dvar8j = "L3,Label,\"Mindestwert:\",%(col1),%(ls),80,20,\"\""
-    Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Legen Sie den Mindestwert der zu berichtenden Scans fest\""
-    Set dvar8l = "CBDF,CheckBox,\"Nicht entdeckt\",%(col2),+0,%(colw),20,\"Nur Berichte über Scans mit deaktivierter Entdeckungsmarkierung\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
-    Set dvar8m = "CBMF,CheckBox,\"Nicht kartographiert\",%(col3),+0,%(colw),20,\"Nur Berichte über Scans mit deaktiviertem Mapping-Flag\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
+        Set dvar8j = "L3,Label,\"Mindestwert:\",%(col1),%(ls),80,20,\"\""
+        Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Legen Sie den Mindestwert der zu berichtenden Scans fest\""
+        Set dvar8l = "CBDF,CheckBox,\"Nicht entdeckt\",%(col2),+0,%(colw),20,\"Nur Berichte über Scans mit deaktivierter Entdeckungsmarkierung\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
+        Set dvar8m = "CBMF,CheckBox,\"Nicht kartographiert\",%(col3),+0,%(colw),20,\"Nur Berichte über Scans mit deaktiviertem Mapping-Flag\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
-    Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
-    Set dvar9b = "CBED,CheckBox,\"EDSM-Info deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller EDSM-Suchvorgänge für Systeminformationen\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
-    Set dvar9c = "CBES,CheckBox,\"Kurzer Überblick\",%(col2),+0,%(colw),20,\"Erstelle eine kurze Zusammenfassung anstelle der vollständigen Informationen\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
-    Set dvar9d = "CBEM,CheckBox,\"Mond-Informationen\",%(col3),+0,%(colw),20,\"Mondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
-    Set dvar9e = "CBESM,CheckBox,\"Untermond-Informationen\",%(col1),%(ls),%(colw),20,\"Untermondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
-    Set dvar9f = "CBEAT,CheckBox,\"Information zur Atmosphäre\",%(col2),+0,%(colw),20,\"Atmosphäreninformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
-    Set dvar9g = "CBEVC,CheckBox,\"Informationen zum Vulkanismus\",%(col3),+0,%(colw),20,\"Vulkanismus-Informationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
-    Set dvar9h = "CBEMA,CheckBox,\"Informationen zu Materialien\",%(col1),%(ls),%(colw),20,\"Materialinformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
-    Set dvar9i = "CBEMFD,CheckBox,\"EDSM-Erstaufklärung deaktivieren\",%(col2),+0,%(colw),20,\"Deaktivieren Sie die EDSM-Ersterkennungsmeldung\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
+        Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
+        Set dvar9b = "CBED,CheckBox,\"EDSM-Info deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller EDSM-Suchvorgänge für Systeminformationen\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
+        Set dvar9c = "CBES,CheckBox,\"Kurzer Überblick\",%(col2),+0,%(colw),20,\"Erstelle eine kurze Zusammenfassung anstelle der vollständigen Informationen\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
+        Set dvar9d = "CBEM,CheckBox,\"Mond-Informationen\",%(col3),+0,%(colw),20,\"Mondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
+        Set dvar9e = "CBESM,CheckBox,\"Untermond-Informationen\",%(col1),%(ls),%(colw),20,\"Untermondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
+        Set dvar9f = "CBEAT,CheckBox,\"Information zur Atmosphäre\",%(col2),+0,%(colw),20,\"Atmosphäreninformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
+        Set dvar9g = "CBEVC,CheckBox,\"Informationen zum Vulkanismus\",%(col3),+0,%(colw),20,\"Vulkanismus-Informationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
+        Set dvar9h = "CBEMA,CheckBox,\"Informationen zu Materialien\",%(col1),%(ls),%(colw),20,\"Materialinformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
+        Set dvar9i = "CBEMFD,CheckBox,\"EDSM-Erstaufklärung deaktivieren\",%(col2),+0,%(colw),20,\"Deaktivieren Sie die EDSM-Ersterkennungsmeldung\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
 
-    Set dvar10a = "L3,Label,\"Nav-Bake\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Auswählen, was nach dem Scannen einer Navigationsbake angesagt wird\",Summary,No Speech on Scan,Full Scan Speech"
+        Set dvar10a = "L3,Label,\"Nav-Bake\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Auswählen, was nach dem Scannen einer Navigationsbake angesagt wird\",Summary,No Speech on Scan,Full Scan Speech"
 
-    Set dvar11a = "L3,Label,\"Zielen\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar11b = "CBTarget,CheckBox,\"Zielberichte deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller Meldungen über anvisierte Schiffe\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+        Set dvar11a = "L3,Label,\"Zielen\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar11b = "CBTarget,CheckBox,\"Zielberichte deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller Meldungen über anvisierte Schiffe\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
 
-    Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar12b = "CBODYSW,CheckBox,\"Disable Sel Weapon\",%(col1),+0,%(colw),20,\"Disable the Selected Weapon message\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
+        Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
+        Set dvar12b = "CBODYSW,CheckBox,\"Disable Sel Weapon\",%(col1),+0,%(colw),20,\"Disable the Selected Weapon message\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
 
-    Set dvarok = "OK,Button,\"OK\",%eval(%(width)-140),%(lsm),120,20,\"Für OK drücken\""
-    Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-280),+0,120,20,\"Zum Abbrechen drücken\""
+        Set dvarok = "OK,Button,\"OK\",%eval(%(width)-140),%(lsm),120,20,\"Für OK drücken\""
+        Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-280),+0,120,20,\"Zum Abbrechen drücken\""
 
-    Dialog D1, "Voice Pack Konfiguration", "%(width),750", dvar
+        Dialog D1, "Voice Pack Konfiguration", "%(width),750", dvar
 
-    While D1 $!= Cancel And D1 $!= Escape
-        If D1 $== BBROWSE
-            FileDialog savefile,c:,"Log files|*.log|All Files|*.*",*.log,on
-            If FileName IsNotEmpty
-                DialogControl D1,Set TBLF=%(FileName)
+        While D1 $!= Cancel And D1 $!= Escape
+            If D1 $== BBROWSE
+                FileDialog savefile,c:,"Log files|*.log|All Files|*.*",*.log,on
+                If FileName IsNotEmpty
+                    DialogControl D1,Set TBLF=%(FileName)
 
-        If D1 $== OK
-            Let good = 1
+            If D1 $== OK
+                Let good = 1
 
-            PersistentGlobal SpeechControls = ""
+                PersistentGlobal SpeechControls = ""
 
-            // in order
-            Call SetSO(ctrl="CBPR",flag="LogTimeDate;")
-            Call SetSO(ctrl="CBLL",flag="LogLastOnly;")
-            Call SetSO(ctrl="CBD",flag="PrintOnly;")
+                // in order
+                Call SetSO(ctrl="CBPR",flag="LogTimeDate;")
+                Call SetSO(ctrl="CBLL",flag="LogLastOnly;")
+                Call SetSO(ctrl="CBD",flag="PrintOnly;")
 
-            Call SetSO(ctrl="CBFR",flag="FriendsStatusDisable;")
-            Call SetSO(ctrl="CBWEL",flag="WelcomeMessageDisable;")
-            Call SetSO(ctrl="CBSUB",flag="Subtitles;")
+                Call SetSO(ctrl="CBFR",flag="FriendsStatusDisable;")
+                Call SetSO(ctrl="CBWEL",flag="WelcomeMessageDisable;")
+                Call SetSO(ctrl="CBSUB",flag="Subtitles;")
 
-            Call SetSO(ctrl="CBSSML",flag="SSMLDisable;")
+                Call SetSO(ctrl="CBSSML",flag="SSMLDisable;")
 
-            Call SetSO(ctrl="CBN1",flag="NPCChatterDisable;",State=0)
-            Call SetSO(ctrl="CBNS",flag="NPCSoundsDisable;")
-            Call SetSO(ctrl="CBN2",flag="SquadronTextsEnable;")
-            Call SetSO(ctrl="CBN3",flag="WingTextsEnable;")
-            Call SetSO(ctrl="CBN4",flag="LocalTextsEnable;")
-            Call SetSO(ctrl="CBN5",flag="FriendTextsEnable;")
-            Call SetSO(ctrl="CBN6",flag="VoiceChatTextsEnable;")
-            Call SetSO(ctrl="CBN7",flag="StarSystemTextsEnable;")
-            Call SetSO(ctrl="CBN8",flag="PlayerTextsEnable;")
-            Call SetSO(ctrl="CBN9",flag="AnyOtherTextsEnable;")
-            Call SetSO(ctrl="CBNMV",flag="NPCVoicesEnable;")
+                Call SetSO(ctrl="CBN1",flag="NPCChatterDisable;",State=0)
+                Call SetSO(ctrl="CBNS",flag="NPCSoundsDisable;")
+                Call SetSO(ctrl="CBN2",flag="SquadronTextsEnable;")
+                Call SetSO(ctrl="CBN3",flag="WingTextsEnable;")
+                Call SetSO(ctrl="CBN4",flag="LocalTextsEnable;")
+                Call SetSO(ctrl="CBN5",flag="FriendTextsEnable;")
+                Call SetSO(ctrl="CBN6",flag="VoiceChatTextsEnable;")
+                Call SetSO(ctrl="CBN7",flag="StarSystemTextsEnable;")
+                Call SetSO(ctrl="CBN8",flag="PlayerTextsEnable;")
+                Call SetSO(ctrl="CBN9",flag="AnyOtherTextsEnable;")
+                Call SetSO(ctrl="CBNMV",flag="NPCVoicesEnable;")
+                Call SetSO(ctrl="CBNTV",flag="TEXTVoicesEnable;")
 
-            Call SetSO(ctrl="CBF",flag="FirstJumpOnly;")
-            Call SetSO(ctrl="CBFL",flag="FuelLevelDisable;")
-            Call SetSO(ctrl="CBFR",flag="FSDFactionDisable;")
+                Call SetSO(ctrl="CBF",flag="FirstJumpOnly;")
+                Call SetSO(ctrl="CBFL",flag="FuelLevelDisable;")
+                Call SetSO(ctrl="CBFR",flag="FSDFactionDisable;")
 
-            Call SetSO(ctrl="CBSM",flag="ScanStarMassDisable;")
-            Call SetSO(ctrl="CBSAS",flag="ScanAutoScanEnable;")
-            Call SetSO(ctrl="CBPB",flag="ScanPlanetBasicInformationDisable;")
-            Call SetSO(ctrl="CBPCR",flag="ScanPlanetCreditsDisable;")
-            Call SetSO(ctrl="CBPDS",flag="ScanPlanetDistanceDisable;")
-            Call SetSO(ctrl="CBPF",flag="ScanPlanetExtendedInformationEnable;")
-            Call SetSO(ctrl="CBPM",flag="ScanPlanetMaterialInformationEnable;")
-            Call SetSO(ctrl="CBBC",flag="ScanPlanetBeltClusters;")
-            Call SetSO(ctrl="CBDF",flag="ScanNotDiscovered;")
-            Call SetSO(ctrl="CBMF",flag="ScanNotMapped;")
+                Call SetSO(ctrl="CBSM",flag="ScanStarMassDisable;")
+                Call SetSO(ctrl="CBSAS",flag="ScanAutoScanEnable;")
+                Call SetSO(ctrl="CBPB",flag="ScanPlanetBasicInformationDisable;")
+                Call SetSO(ctrl="CBPCR",flag="ScanPlanetCreditsDisable;")
+                Call SetSO(ctrl="CBPDS",flag="ScanPlanetDistanceDisable;")
+                Call SetSO(ctrl="CBPF",flag="ScanPlanetExtendedInformationEnable;")
+                Call SetSO(ctrl="CBPM",flag="ScanPlanetMaterialInformationEnable;")
+                Call SetSO(ctrl="CBBC",flag="ScanPlanetBeltClusters;")
+                Call SetSO(ctrl="CBDF",flag="ScanNotDiscovered;")
+                Call SetSO(ctrl="CBMF",flag="ScanNotMapped;")
 
-            Call SetSO(ctrl="CBED",flag="EDSMInformationDisable;")
-            Call SetSO(ctrl="CBES",flag="EDSMSummaryEnable;")
-            Call SetSO(ctrl="CBEM",flag="EDSMMoonsEnable;")
-            Call SetSO(ctrl="CBESM",flag="EDSMSubMoonsEnable;")
-            Call SetSO(ctrl="CBEAT",flag="EDSMAtmosphereEnable;")
-            Call SetSO(ctrl="CBEVC",flag="EDSMVolcanismEnable;")
-            Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
-            Call SetSO(ctrl="CBEMFD",flag="EDSMFDDisable;")
+                Call SetSO(ctrl="CBED",flag="EDSMInformationDisable;")
+                Call SetSO(ctrl="CBES",flag="EDSMSummaryEnable;")
+                Call SetSO(ctrl="CBEM",flag="EDSMMoonsEnable;")
+                Call SetSO(ctrl="CBESM",flag="EDSMSubMoonsEnable;")
+                Call SetSO(ctrl="CBEAT",flag="EDSMAtmosphereEnable;")
+                Call SetSO(ctrl="CBEVC",flag="EDSMVolcanismEnable;")
+                Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
+                Call SetSO(ctrl="CBEMFD",flag="EDSMFDDisable;")
 
-            Call SetSO(ctrl="CBTarget",flag="TargetReportingDisabled;")
+                Call SetSO(ctrl="CBTarget",flag="TargetReportingDisabled;")
 
-            Call SetSO(ctrl="CBODYSW",flag="ODYDisSelWeapon;")
+                Call SetSO(ctrl="CBODYSW",flag="ODYDisSelWeapon;")
 
-            Rem print Result %(SpeechControls)
+                Rem print Result %(SpeechControls)
 
-            DialogControl D1,Get TBSTAR
-            PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
+                DialogControl D1,Get TBSTAR
+                PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
 
-            DialogControl D1,Get CBXNav
-            PersistentGlobal SpeechNavBeacon = %(DialogResult)
+                DialogControl D1,Get CBXNav
+                PersistentGlobal SpeechNavBeacon = %(DialogResult)
 
-            DialogControl D1,Get TBSV
-            PersistentGlobal SpeechMinScanValue = %(DialogResult)
+                DialogControl D1,Get TBSV
+                PersistentGlobal SpeechMinScanValue = %(DialogResult)
 
-            DialogControl D1,Get TBLF
-            If DialogResult IsNotEmpty And good IsTrue
-                If %fileexists(DialogResult) IsTrue
-                    PersistentGlobal SpeechLog = %(DialogResult)
-                Else 
-                    Let success = %openfile(h1,DialogResult,create)
-                    If success IsTrue
-                        // Print test write to %(DialogResult)
-                        Expr %writeline(h1,"Speech output file")
-                        Expr %closefile(h1)
+                DialogControl D1,Get TBLF
+                If DialogResult IsNotEmpty And good IsTrue
+                    If %fileexists(DialogResult) IsTrue
                         PersistentGlobal SpeechLog = %(DialogResult)
                     Else 
-                        MessageBox "Sprachprotokollpfad(Log) ungültig","Falscher Dateiname gegeben"
-                        Let good = 0
-            Else 
-                PersistentGlobal SpeechLog = ""
+                        Let success = %openfile(h1,DialogResult,create)
+                        If success IsTrue
+                            // Print test write to %(DialogResult)
+                            Expr %writeline(h1,"Speech output file")
+                            Expr %closefile(h1)
+                            PersistentGlobal SpeechLog = %(DialogResult)
+                        Else 
+                            MessageBox "Sprachprotokollpfad(Log) ungültig","Fehlerhafter Dateiname angegeben"
+                            Let good = 0
+                Else 
+                    PersistentGlobal SpeechLog = ""
 
-            If good IsTrue
-                Break 
+                If good IsTrue
+                    Break 
 
-        DialogControl D1,Continue
+            DialogControl D1,Continue
 
-    DialogControl D1, Close
+        DialogControl D1, Close
 
 END PROGRAM
 
@@ -2131,18 +2212,18 @@ END PROGRAM
 PROGRAM DockingGrantedResponse
 
 Event From %(EventJID) INFO
-// print docking granted response for %(EventClass_StationType) on pad %(EventClass_LandingPad)
+// print docking granted response for %(EventClass_FDStationType) on pad %(EventClass_LandingPad)
 // pragma dumpvars EC*
 
 Set dockingcomputer = %FindInArray(EC_Ship_Module,_Item,"Docking Computer",0,1000,contains;ignoremissing)
-Set starports = Orbis;Coriolis;Bernal;Ocellus;Asteroid Base
+Set starports = Orbis;Coriolis;Bernal;Ocellus;AsteroidBase
 
 // print DGR %(dockingcomputer) : %(DockingMusic)
 
 If dockingcomputer != -1 And DockingMusic == 1
     Set v = say_DockingComputer
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
-Else If %(EventClass_StationType) MatchSemicolon %(starports)
+Else If %(EventClass_FDStationType) MatchSemicolon %(starports)
     Set v = say_DockingGrantedCO
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
     If %(EventClass_LandingPad) <= 4
@@ -2181,7 +2262,8 @@ Else If %(EventClass_StationType) MatchSemicolon %(starports)
         Let lp = %(EventClass_LandingPad)-40
         Set speech += " %(say_DockingGranted5) %wordof(say_DockingGrantedD5,lp)"
 
-    Set speech += %(say_DockingGrantedGRN)
+    Set v = say_DockingGrantedGRN
+    Set speech += '%phrase("%indirect(v)","<;>","{{{","}}}")'
 Else 
     Set v = say_DockingGranted
     Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
@@ -2194,23 +2276,42 @@ If speech IsNotEmpty
 END PROGRAM
 
 //*************************************************************
+// ApproachBody
+// Events: ApproachBody(QueueLimit=20000)
+//*************************************************************
+PROGRAM ApproachBody
+
+Scan "%(EventClass_StarSystem)" "%(EventBodyName)"
+Rem pragma dumpvars S_*
+
+If %(S_BodyFound) IsTrue And S_Body_gravityg IsPresent And %(S_Body_gravityg) $!= "" And %(S_Body_gravityg) >= 2.0
+    Set v = say_ApproachBodyWarning
+Else 
+    Set v = say_ApproachBody
+
+Set speech = '%phrase("%indirect(v)","<;>","{{{","}}}")'
+Call speak(speech="%(speech)")
+
+END PROGRAM
+
+//*************************************************************
 // GenericResponse
-// Events: Bounty?(Condition AlwaysFalse), BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction
-// Events: FactionKillBond, FighterDestroyed, FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines
-// Events: PVPKill, RedeemVoucher, Scanned, CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole
-// Events: CrewAssign, CrewFire, CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession
-// Events: JoinACrew, KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution
-// Events: EngineerProgress, EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan
-// Events: FSSDiscoveryScan, SAAScanComplete, SAASignalsFound, ApproachBody(QueueLimit=5000), ApproachSettlement(QueueLimit=1000)
-// Events: Docked, DockingDenied, DockingRequested, DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage
-// Events: LeaveBody(QueueLimit=5000), LaunchSRV, Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked
-// Events: USSDrop, MissionAbandoned, MissionAccepted, MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked
-// Events: MiningRefined, MaterialCollected, MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan
-// Events: DatalinkVoucher, DataScanned, Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect
-// Events: PowerplayDefect, PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote
-// Events: PowerplayVoucher, AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore
-// Events: ModuleBuy, ModuleRetrieve, ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName
-// Events: ShipyardBuy, ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
+// Events: Bounty, BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction, FactionKillBond, FighterDestroyed
+// Events: FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines, PVPKill, RedeemVoucher, Scanned
+// Events: CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole, CrewAssign, CrewFire
+// Events: CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew
+// Events: KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution, EngineerProgress
+// Events: EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan
+// Events: SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested
+// Events: DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000), LaunchSRV
+// Events: Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned, MissionAccepted
+// Events: MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected, MaterialDiscarded
+// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned, Promotion
+// Events: Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect, PowerplayDeliver
+// Events: PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs
+// Events: BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
+// Events: ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy
+// Events: ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
 // Events: Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, AppliedToSquadron
 // Events: DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron, SharedBookmarkToSquadron
 // Events: SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData, CargoDepot, EjectCargo
@@ -2290,7 +2391,7 @@ END PROGRAM
 
 //*************************************************************
 // GenericDelayedResponse
-// Events: DockingGranted(Delay=15000,DelayName=VoicePackDockingGrantedDelay), BookDropship(Delay=5000), BookTaxi(Delay=5000)
+// Events: DockingGranted(Delay=15,DelayName=VoicePackDockingGrantedDelay), BookDropship(Delay=5000), BookTaxi(Delay=5000)
 // Events: BuyMicroResources(Delay=100), BuySuit(Delay=100), CancelDropship(Delay=5000), CancelTaxi(Delay=5000)
 //*************************************************************
 PROGRAM GenericDelayedResponse
@@ -2312,7 +2413,8 @@ END PROGRAM
 PROGRAM speak
 
 Rem required: speech
-Rem optional: Volume, QueueLimit, Priority, FinishEvent, Wait, Voice, PitchShift, PrefixSound, PostfixSound, MixSound, Rate
+Rem optional: Volume, QueueLimit, Priority, FinishEvent, Wait, Voice, PrefixSound, PostfixSound, MixSound, Rate
+Rem EffectVars present: Add these effects in
 
 Rem Print SAY: %(speech)
 
@@ -2327,10 +2429,7 @@ If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
 
 // Print SAY: %(speech)
 
-If PitchShift IsPresent                                         // if we have a pitch, give it to it
-    Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , PitchShift ="%existsdefault(PitchShift,\"100\")" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
-Else                                                            // don't give it so it applies the standard SoundEffects variable
-    Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
+Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%existsdefault(EffectVars,'')" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 
 Rem print Say Said %(SaySaid) %(speech)
 If SpeechControls IsPresent And SpeechControls Contains Subtitles; And SaySaid $!= !LIMIT
@@ -2386,7 +2485,7 @@ END PROGRAM
 
 //*************************************************************
 // subtitleDialogControl
-// Events: OnNonModalDialog?(Dialog $== SDIAG)
+// Events: onNonModalDialog?(Dialog $== SDIAG)
 //*************************************************************
 PROGRAM subtitleDialogControl
 
@@ -2423,6 +2522,9 @@ END PROGRAM
 //*************************************************************
 PROGRAM SayPhoneme
 
+Call speak(speech="Hello boys")
+Call speak(speech="Hello there",EffectVars="PitchShift=100,EchoMix=20,EchoFeedback=10,EchoDelay=100",Voice="Microsoft Hedda Desktop",Rate="2")
+
 // use to test phoneme list
 // Foreach v in say_tx_star*
 // Foreach v in say_tx_power*
@@ -2437,12 +2539,41 @@ PROGRAM SayPhoneme
 // Say "%(str)"
 // Ivona British Amy not working with phonemes, tried various things, not working
 
-InputBox "Phonem eintragen","IPA:","%existsdefault(SayPhonemeLast,'')"
-If InputBox1 IsPresent
-    Global SayPhonemeLast = %(InputBox1)
-    // Set str = <phoneme alphabet='ipa' ph = '%(InputBox1)'>Phonem fehlgeschlagen, dies kann an der gewählten Stimme liegen, z.B. unterstützen Ivona-Stimmen nicht alle Phoneme</phoneme>
-    Print %(SayPhonemeLast)
-    Say "%(SayPhonemeLast)"
+// InputBox "Enter phoneme","IPA:","%existsdefault(SayPhonemeLast,'')"
+// If InputBox1 IsPresent
+// Global SayPhonemeLast = %(InputBox1)
+// Set str = <phoneme alphabet='ipa' ph = '%(InputBox1)'>Phoneme failed, this may be due to voice selected, for instance Ivona voices do not support all phonemes</phoneme>
+// Print %(SayPhonemeLast)
+// Say "%(SayPhonemeLast)"
+
+END PROGRAM
+
+//*************************************************************
+// SurveyorPanel
+// Events: onSurveyor
+//*************************************************************
+PROGRAM SurveyorPanel
+
+Rem print VoicePack Surveyor Panel run `%(Body)` `%(BodyShortName)`
+Rem pragma dumpvars EventName*
+Rem pragma dumpvars Value*
+
+Set speech = ""
+
+ForEach eventn in EventName*
+    Set data = %indirect("Value%(Index)")
+    Set eventid = %indirect(eventn)
+
+    Rem print .. Event %(Index) : %(eventid) : '%(data)'
+
+    If "%exist(\"say_surveyor_%(eventid)\")" IsTrue
+        Set speech += %expand("say_surveyor_%(eventid)")
+    Else 
+        Rem print "Rejected saying %(eventid)"
+
+If speech IsNotEmpty
+    Set speech = "%expand(say_surveyor_prefixphrase)%(speech)"
+    Call speak(speech="%(speech)")
 
 END PROGRAM
 
