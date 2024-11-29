@@ -1,11 +1,11 @@
 ﻿ACTIONFILE V4
 
-ENABLED False
+ENABLED True
 
-INSTALL LongDescription="Esta es la versión 21 del paquete de voz para EDD, para la versión 17.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
+INSTALL LongDescription="Esta es la versión 23 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=21.0.0.0
-INSTALL MinEDVersion=17.0.100.0
+INSTALL Version=23.0.0.0
+INSTALL MinEDVersion=18.1.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -13,18 +13,21 @@ INSTALL DisableOther3=SpanishVoicePackV3
 INSTALL DisableOther4=SpanishVoicePackV4
 INSTALL DisableOther5=SpanishVoicePackV5
 INSTALL DisableOther6=SpanishVoicePackV6
-INSTALL DisableOther7=SpanishVoicePackV8
-INSTALL DisableOther8=SpanishVoicePackV9
-INSTALL DisableOther9=SpanishVoicePackV10
-INSTALL DisableOther10=SpanishVoicePackV11
-INSTALL DisableOther11=SpanishVoicePackV12
-INSTALL DisableOther12=SpanishVoicePackV14
-INSTALL DisableOther13=SpanishVoicePackV15
-INSTALL DisableOther14=SpanishVoicePackV16
-INSTALL DisableOther14=SpanishVoicePackV17
-INSTALL DisableOther14=SpanishVoicePackV18
-INSTALL DisableOther15=SpanishVoicePackV19
-INSTALL DisableOther16=SpanishVoicePackV20
+INSTALL DisableOther7=SpanishVoicePackV7
+INSTALL DisableOther8=SpanishVoicePackV8
+INSTALL DisableOther9=SpanishVoicePackV9
+INSTALL DisableOther10=SpanishVoicePackV10
+INSTALL DisableOther11=SpanishVoicePackV11
+INSTALL DisableOther12=SpanishVoicePackV12
+INSTALL DisableOther13=SpanishVoicePackV13
+INSTALL DisableOther14=SpanishVoicePackV14
+INSTALL DisableOther15=SpanishVoicePackV15
+INSTALL DisableOther16=SpanishVoicePackV16
+INSTALL DisableOther17=SpanishVoicePackV17
+INSTALL DisableOther18=SpanishVoicePackV18
+INSTALL DisableOther19=SpanishVoicePackV19
+INSTALL DisableOther20=SpanishVoicePackV20
+INSTALL DisableOther21=SpanishVoicePackV22
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -32,7 +35,7 @@ INSTALL OtherFile3=npcpostfix.mp3;Sounds
 
 GROUP Combat
 
-EVENT Bounty, GenericResponse, "", Condition AlwaysFalse
+EVENT Bounty, GenericResponse, "", Condition AlwaysTrue
 EVENT BuyAmmo, GenericResponse, "", Condition AlwaysTrue
 EVENT CapShipBond, GenericResponse, "", Condition AlwaysTrue
 EVENT CockpitBreached, GenericResponse, Volume=100, Condition AlwaysTrue
@@ -309,6 +312,10 @@ EVENT UIGlideMode, GenericResponseUI, "", EventClass_EventRefresh IsFalse And Ev
 EVENT UISelectedWeapon, SelectedWeapon, "", EventClass_EventRefresh IsFalse
 EVENT UIMusic, Music, "", EventClass_EventRefresh IsFalse
 
+GROUP PanelEvents
+
+EVENT onSurveyor, SurveyorPanel, "", Condition AlwaysTrue
+
 GROUP Other
 
 EVENT onEDSMSync, EDSMSync, "", Condition AlwaysTrue
@@ -356,8 +363,8 @@ Static say_UISelectedUnarmedFromWeapon $= {{{Arma guardada<;>Almacenada arma}}}
 // Static say_UIIsInDanger $= '%iftrue(EventClass_Danger,"","Fuera de peligro comandate<;>Situacón normal, el peligro ha pasado")'
 
 Static say_welcome $= Pack de voz activado
-Static say_install $= Ha instalado el paquete de voz para <phoneme alphabet='ipa' ph = 'iˈliːt'>Elite</phoneme> <phoneme alphabet='ipa' ph = 'deɪnʤərəs'>Dangerous</phoneme> Discóveri, versión en español
-Static say_shutdown $= Adiós comandante, hasta la próxima<;>Cerrando <phoneme alphabet='ipa' ph = 'iˈliːt'>Elite</phoneme> <phoneme alphabet='ipa' ph = 'deɪnʤərəs'>Dangerous</phoneme> Discóveri<;>Vaya con precaución Comandante<;>Me despido Comandante<;>Hasta otra Comandante<;>Cambio y cierro Comandante
+Static say_install $= Ha instalado el paquete de voz para Elite Dangerous Discovery, versión en español
+Static say_shutdown $= Adiós comandante, hasta la próxima<;>Cerrando Elite Dangerous Discovery<;>Vaya con precaución Comandante<;>Me despido Comandante<;>Hasta otra Comandante<;>Cambio y cierro Comandante
 Static say_refresh $= 'Bienvenido comandante %existsdefault(RK_Class_Combat,"") %(Commander), %ifzero(LAST_OnFoot,"%ifnonzero(LAST_IsSRV,\"conduciendo\",\"pilotando\") una %ship(LAST_ShipType)") con %hnum(LED_Credits,HNumList) créditos'
 
 Static say_ApproachBody $= Aproximándose al cuerpo: %body(EventClass_Body,EventStarSystem,say_ss)<;>Cuerpo: %body(EventClass_Body,EventStarSystem,say_ss) a su alcance comandante<;>Nave acercándose al cuerpo: %body(EventClass_Body,EventStarSystem,say_ss), comandante
@@ -367,7 +374,7 @@ Static say_AfmuRepairs $= Módulo %(EventClass_ModuleLocalised) reparado al %rou
 Static say_AppliedToSquadron $= Solicitud enviada a la Flota %(EventClass_Name)
 Static say_AsteroidCracked $= Asteroide %(EventClass_Body) agrietado Comandante<;>Bum!<;>%(EventClass_Body) agrietado Comandante
 
-Static say_Bounty $= "La recompensa por esa nave es de %hnum(EventClass_TotalReward,HNumList) créditos, la facción era %rs(\"%alt(EventClass_VictimFactionLocalised,EventClass_VictimFaction)\",say_ss)"
+Static say_Bounty $= "Recompensa %ifnotempty(EventClass_TargetLocalised, 'por %(EventClass_TargetLocalised) ')%ifnotempty( EventClass_PilotName_Localised, ', Pilot %(EventClass_PilotName_Localised), ') adquirida por %hnum(EventClass_TotalReward,HNumList) créditos, la facción era %rv(EventClass_VictimFactionLocalised,say_ss)"
 Static say_BuyAmmo $= Munición comprada, %(EventClass_Cost) créditos<;>El rearme ha costado %(EventClass_Cost) créditos
 Static say_BuyExplorationData $= Comprado mapa del sistema estelar %star(EventClass_System,say_ss) por %(EventClass_Cost) créditos
 Static say_BuyDrones $= Comprado %(EventClass_Count) %(EventClass_Type) por un total de %(EventClass_TotalCost) créditos
@@ -387,18 +394,18 @@ Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"Deliver\",\"{Entrega
 Static say_CargoDepot $+= "%ifequal(EventClass_UpdateEnum,\"WingUpdate\",\"Actualización del equipo en la misión de carga \")"
 Static say_CargoDepot $+= "%(EventClass_ItemsToGo) elementos restantes, %round(EventClass_ProgressPercent,1,\"0.#\") porciento."
 
-Static say_CapShipBond $= Recompensa por la nave combatiente de la facción  %rs(EventClass_AwardingFaction,say_ss) contra %rs(EventClass_VictimFaction,say_ss), %hnum(EventClass_Reward,HNumList) créditos
+Static say_CapShipBond $= Recompensa por la nave capital de la facción %rv(EventClass_AwardingFaction_Localised,say_ss) contra %rv(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) créditos
 Static say_CockpitBreached $= Alerta, Alerta! Brecha en la cabina. Diríjase a una estación de inmediato<;>Emergencia, pérdida de la cúpula de la cabina, abortar<;>Emergencia, Rotura de la cabina de mando
 Static say_CollectCargo $= "{{{Recogido<;>Recolectado<;>Capturado}}} %(EventClass_FriendlyType) %iftrue(EventClass_Stolen,\", Advertencia comandante, esta carga es robada\")"
-Static say_CommitCrimeFine $= Multa interpuesta Comandante, %sc(EventClass_CrimeType) en %rs(EventClass_Faction,say_ss), cuesta %hnum(EventClass_Fine,HNumList) créditos
-Static say_CommitCrimeBounty $= Crimen cometido Comandante, %sc(EventClass_CrimeType) en %rs(EventClass_Faction,say_ss), la recompensa por ti es de %hnum(EventClass_Bounty,HNumList) créditos
+Static say_CommitCrimeFine $= Multa interpuesta Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"), %ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), cuesta %hnum(EventClass_Fine,HNumList) créditos
+Static say_CommitCrimeBounty $= Crimen cometido Comandante, %replacevar(EventClass_FDCrimeType,"say_crime"), %ifnotempty(EventClass_Victim,' en %(EventClass_VictimLocalised), ')contra la facción %rv(EventClass_Faction,say_ss), la recompensa por ti es de %hnum(EventClass_Bounty,HNumList) créditos
 Static say_CommunityGoal $= Los logros de la comunidad son %(EventClass_CommunityGoalList)
 Static say_CommunityGoalJoin $= Uniéndose a logro de la comunidad %sc(EventClass_Name), situado en el sistema %star(EventClass_System,say_ss)
 Static say_CommunityGoalReward $= meta de la comunidad %sc(EventClass_Name), situado en el sistema %star(EventClass_System,say_ss), le recompensó con %hnum(EventClass_Reward,HNumList) créditos
 Static say_CommunityGoalDiscard $= no participamos en la meta de la comunidad %sc(EventClass_Name), situado en el sistema  %star(EventClass_System,say_ss)
 Static say_CrewAssign $= "Miembro de la tripulación %(EventClass_Name), %ifequal(EventClass_Role,\"Active\",\" preparado para la acción\",\" situado en %(EventClass_Role)\")"
 Static say_CrewFire $= {{{Miembro de la tripulación %(EventClass_Name) }}}expulsado<;>despedido<;>se le pagó el finiquito, hasta nunca mamón
-Static say_CrewHire $= "{{{Contratado un nuevo miembro de la tripulación %(EventClass_Name)%ifnotempty(EventClass_Faction,\", de la facción %rs(EventClass_Faction,say_ss)\"), rango %(EventClass_CombatRank), costando %(EventClass_Cost) créditos.}}} Bienvenido al equipo<;> Bienvenido a bordo"
+Static say_CrewHire $= "{{{Contratado un nuevo miembro de la tripulación %(EventClass_Name)%ifnotempty(EventClass_Faction,\", de la facción %rv(EventClass_Faction,say_ss)\"), rango %(EventClass_CombatRank), costando %(EventClass_Cost) créditos.}}} Bienvenido al equipo<;> Bienvenido a bordo"
 
 Static say_ChangeCrewRole $= Puesto tripulante cambió a %(EventClass_Role)<;>Pasó a controlar %(EventClass_Role)
 Static say_CrewMemberJoins $= Tripulante %(EventClass_Crew) se nos une en %(EventShip_ShortName), Bienvenido Comandante<;>Bienvenido Comandante %(EventClass_Crew) a nuestra nave
@@ -424,7 +431,7 @@ Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootStarPort"," Puerto est
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootPlanet"," Planeta: %body(EventClass_Body,EventStarSystem,say_ss)")
 Static say_Disembark $+= %ifequal(EventCurrentMode,"OnFootFleetCarrier"," Portanaves: %(EventStationName)")
 
-Static say_DatalinkVoucher $= {{{Enlace de datos escaneado<;>Enlace de datos descargado}}}{{{, el vale recibido tiene un valor de:<;>, valor de:}}} %hnum(EventClass_Reward,HNumList) créditos de parte de %rs(EventClass_PayeeFaction,say_ss)
+Static say_DatalinkVoucher $= {{{Enlace de datos escaneado<;>Enlace de datos descargado}}}{{{, el vale recibido tiene un valor de:<;>, valor de:}}} %hnum(EventClass_Reward,HNumList) créditos de parte de %rv(EventClass_PayeeFaction,say_ss)
 Static say_DatalinkScan $= Enlace de datos analizado, %(EventClass_MessageLocalised)
 Static say_DataScanned $= Escaneado %sc(EventClass_Type)
 Static say_DiscoveryScan $= "{{{Sistema Escaneado, %(EventClass_Bodies)<;>La exploración del sistema revela %(EventClass_Bodies)}}}{{{ %ifeq(EventClass_Bodies,1,\"cuerpo\",\"cuerpos\") }}}{{{descubierto<;>detectado}}}{{{ Comandante<;>}}}"
@@ -432,8 +439,8 @@ Static say_Died $= Aquí yacen los huesos del comandante %(Commander), muerto y 
 Static say_Docked $= "{{{Estacionado en %(EventClass_StationName), %ifnotempty(EventClass_StationType,\"%(EventClass_StationType) type\")}}}{{{. }}}{{{Esta es una estación con una economía basada en %(EventClass_Economy_Localised) <;>La economía es %(EventClass_Economy_Localised)}}}"
 Static say_DockSRV $= Vehículo de Reconocimiento de Superficie a bordo Comandante<;>embarcado en la nave nodriza Comandante, prepárese para las operaciones de vuelo<;>Entrando en la nave nodriza
 
-Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason
-Static dockingresponse = "No hay lugar comandante;La nave es demasiado grande comandante;somos hostiles con esta facción comandante; Tenemos cuentas pendientes con esta facción comandante;Estamos aún muy lejos de la estación comandante; Hay un caza desplegado comandante;no han dado una razón"
+Static dockingdeniedlist = No Space;Too Large;Hostile;Offences;Distance;Active Fighter;No Reason;Restricted Access
+Static dockingresponse = "No hay lugar comandante;La nave es demasiado grande comandante;somos hostiles con esta facción comandante; Tenemos cuentas pendientes con esta facción comandante;Estamos aún muy lejos de la estación comandante; Hay un caza desplegado comandante;no han dado una razón;Accesso Restringido"
 Static say_DockingDenied $= %(EventClass_StationName) ha denegado la solicitud. %wordof(dockingresponse,%wordfind(dockingdeniedlist,EventClass_Reason))
 
 Static say_DockingGranted $= "Comandante, confirmado estacionamiento en la plataforma: %(EventClass_LandingPad)<;>Confirmada la plataforma %(EventClass_LandingPad) para aterrizar<;> La plataforma %(EventClass_LandingPad) le espera comandante"
@@ -454,7 +461,7 @@ Static say_DockingGranted12 $= las doce en punto
 Static say_DockingGrantedD2 $= cerca;lejos
 Static say_DockingGrantedD4 $= "cerca;cerca de la mitad;a media distancia;lejos"
 Static say_DockingGrantedD5 $= "cerca;cerca de la mitad;en medio;a media distancia;lejos"
-Static say_DockingGrantedGRN $= , cuando la luz verde de navegación de estribor de la estación esté a la derecha<;>, entrando en la estación con la luz verde a la derecha
+Static say_DockingGrantedGRN $= , cuando la luz verde de navegación de estribor de la estación está a la derecha    // <;>, entrando en la estación con la luz verde a la derecha
 
 Static say_DockingRequested $= Solicitud de acoplamiento enviada<;>Acoplamiento solicitado
 Static say_DockingTimeout $= Demasiado tarde comandante, el permiso para atracar ha sido retirado <;>Esperó mucho tiempo comandante, el permiso para aterrizar fue retirado
@@ -465,7 +472,7 @@ Static say_DisbandedSquadron $= Flota %(EventClass_Name) disuelta Comandante
 
 Static say_DropshipDeploy $= {{{Prepárese comandante, desplegando<;>Prepárese comandante, desplegando en un momento}}}
 
-Static say_Embark $= {{{Abordando<;>Bienvenido a bordo comandante, abordando}}} %iftrue(EventClass_Taxi,'Taxi Apex','%iftrue(EventClass_SRV,"VRS","Nave")')
+Static say_Embark $= {{{Abordando}}} %iftrue(EventClass_Taxi,'Taxi Apex','%iftrue(EventClass_SRV,"VRS","Nave")')
 
 Static say_edsmscannoinfo $= Ninguna otra información sobre el sistema<;>La computadora de la nave no tiene otra información sobre este sistema<;>La búsqueda en la WikiPedia ha fallado! No puedo encontrar nada en este sistema<;>No he encontrado información sobre este sistema ni en google, comandante<;>Información del sistema no disponible
 Static say_edsmscanstarsplanets $= "Total de %(totalstars) %ifne(totalstars,\"1\",\"estrellas\",\"estrella\") y %(totalplanets) %ifne(totalplanets,\"1\",\"planetas\",\"planeta\") en este sistema"
@@ -486,7 +493,7 @@ Static say_EndCrewSession $= "{{{Fin de la sesión de tripulación<;>Terminada s
 Static say_EjectCargo $= "%iftrue(EventClass_Abandoned,\"Abandona\",\"Eyecta\") %(EventClass_Count) unidades de %(EventClass_FriendlyType) al espacio<;>Eyectadas %(EventClass_FriendlyType)<;>Soltadas %(EventClass_FriendlyType)"
 
 Static say_FetchRemoteModule $= Módulo %sc(EventClass_StoredItemLocalised) siendo transferido, cuesta %hnum(EventClass_TransferCost,HNumList) créditos
-Static say_FactionKillBond $= Recompensa por combatir para la facción %rs(EventClass_AwardingFaction_Localised,say_ss) contra %rs(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) créditos
+Static say_FactionKillBond $= Recompensa por combatir para la facción %rv(EventClass_AwardingFaction_Localised,say_ss) contra %rv(EventClass_VictimFaction_Localised,say_ss), %hnum(EventClass_Reward,HNumList) créditos
 
 Static say_Friends $= "%ifEqual(EventClass_Status,\"Offline\",\"Comandante \")%ifEqual(EventClass_Status,\"Online\",\"Comandante \")%(EventClass_Name) %ReplaceVar(EventClass_Status,say_friendsub)"
 Static say_friendsub1 $= Added;Ha sido Agregado como Amigo
@@ -500,10 +507,16 @@ Static say_FighterDestroyed $= Alerta Comandante, el caza ha sido destruido<;>El
 
 // not used Static say_FSDTarget $= Sistema de destino %star(EventClass_StarSystem,say_ss)<;>%star(EventClass_StarSystem,say_ss) Seleccionado<;> %star(EventClass_StarSystem,say_ss) bloqueado
 Static say_FSSAllBodiesFound $= Todos los cuerpos hallados<;>Felicitaciones, encontrados todos los cuerpos<;>Sistema completamente analizado
-Static say_FSSDiscoveryScan $= "%ifEQ(EventClass_Progress,100,\"\", \"Escaneados: %(EventClass_BodyCount) cuerpos. el progreso del escaneo es de %round(EventClass_Progress,0,0) porciento<;>Escaneado %(EventClass_BodyCount) cuerpos, %round(EventClass_Progress,0,0) porciento completado"
+Static say_FSSDiscoveryScan $= "%ifEQ(EventClass_Progress,100,\"\", \"Escaneados: %(EventClass_BodyCount) cuerpos. el progreso del escaneo es de %round(EventClass_Progress,0,0) porciento<;>Escaneado %(EventClass_BodyCount) cuerpos, %round(EventClass_Progress,0,0) porciento completado\")"
 
-Static say_FSSSignalDiscovered1 $= {{{Detectado<;>Descubierto<;>Encontrado}}} %ifcontains(EventClass_Signals[1]_SignalName,'USS_','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
-Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Threat level %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', Faction %(EventClass_Signals[1]_SpawningFaction_Localised)')
+Static say_FSSSignalDiscovered1 $= {{{Detectado<;>Descubierto<;>Encontrado}}} 
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Carrier','Portanaves, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Station','Estación, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Installation','Instalación, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Megaship','Mega Nave, ')
+Static say_FSSSignalDiscovered1 $+= %ifequal(EventClass_Signals[1]_ClassOfSignal,'Titan','Titán, ')
+Static say_FSSSignalDiscovered1 $+= %ifcontains(EventClass_Signals[1]_ClassOfSignal,'USS','%(EventClass_Signals[1]_USSTypeLocalised)','%(EventClass_Signals[1]_SignalName_Localised)')
+Static say_FSSSignalDiscovered1 $+= %ifnotempty(EventClass_Signals[1]_ThreatLevel, ', Nivel de amenaza: %(EventClass_Signals[1]_ThreatLevel)') %ifnotempty(EventClass_Signals[1]_SpawningFaction_Localised, ', de la facción %rv(EventClass_Signals[1]_SpawningFaction_Localised,say_ss)')
 Static say_FSSSignalDiscoveredN $= Detectadas %(EventClass_SignalsCount) señales
 
 Static say_EngineerProgressRank $= Enhorabuena, has ascendido al rango %(EventClass_Engineers[1]_Rank), con el ingeniero %(EventClass_Engineers[1]_Engineer)
@@ -528,7 +541,7 @@ Static say_FuelScoop $= "%ifgt(EventClass_Scooped,0.1,'{{{Repostado<;>Rellenado}
 Static say_FSDJump $= "Llegada al sistema %star(EventClass_StarSystem,say_ss), %(visit) distancia del salto: %round(EventClass_JumpDist,1,0.#) años luz"
 Static say_FSDJumpVisit $= Primera visita, ;Segunda visita, ;Tercera visita, ;Cuarta visita, ;Quinta visita, ;Sexta visita,;
 Static say_FSDJumpFuel $= , combustible consumido %round(EventClass_FuelUsed,1,0.#) toneladas
-Static say_FSDJumpFaction $= ", Sistema controlado por %rs(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"en un estado de %(EventClass_FactionState)\")')"
+Static say_FSDJumpFaction $= ", Sistema controlado por %rv(EventClass_Faction,say_ss) %ifnotequal(EventClass_FactionState,'none', '%ifnotempty(EventClass_FactionState,\"en un estado de %(EventClass_FactionState)\")')"
 Static say_FSDJumpFuelWarning $= , Alerta comandante, el nivel de combustible es bajo<;>, el nivel de combustible es bajo<;>, Advertencia, está bajando el combustible
 
 Static say_HullDamageCritical $= Alerta, Alerta, daño crítico, al %(health) %
@@ -546,7 +559,7 @@ Static say_InterdictionFailureNPC $= Falló en la interdicción del P N J %(Even
 Static say_Interdicted $= %iftrue(EventClass_IsPlayer,say_InterdictedPlayer) %iffalse(EventClass_IsPlayer,say_InterdictedNPC)
 Static say_InterdictedPlayer $= Alerta de comandante!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdicción por parte de comandante  %(EventClass_CombatRank) %(EventClass_Interdictor)
 Static say_InterdictedNPC $= Alerta de P N J!, %iftrue(EventClass_Submitted,say_InterdictedSubmitted) interdicción por parte de %(EventClass_Interdictor_Localised), %ifnotempty(EventClass_Faction,say_InterdictedFaction)
-Static say_InterdictedFaction $= de la facción %rs(EventClass_Faction,say_ss)
+Static say_InterdictedFaction $= de la facción %rv(EventClass_Faction,say_ss)
 Static say_InterdictedSubmitted $= Sometido a
 
 Static say_InvitedToSquadron $= Invitado a la flota %(EventClass_Name)<;>Flota %(EventClass_Name) quiere que te unas a ellos Comandante.
@@ -572,25 +585,27 @@ Static say_MaterialCollected $= Recolectados %(EventClass_Count) elementos de ma
 Static say_MaterialDiscarded $= Material desechado: %(EventClass_FriendlyName), %(EventClass_Count) elementos
 Static say_MaterialDiscovered $= Descubierto nuevo material: %(EventClass_FriendlyName)
 Static say_MaterialTrade $= Intercambiado %(EventClass_Paid_Quantity) de %(EventClass_Paid_Material_Localised) para %(EventClass_Received_Quantity) de %(EventClass_Received_Material_Localised)
-Static say_MarketBuy $= Comprado %(EventClass_Count) unidades de %(EventClass_Type_Localised), El precio de compra es %hnum(EventClass_BuyPrice,HNumList) créditos %ifgt(EventClass_Count,1,', El coste total es de %hnum(EventClass_TotalCost,HNumList) créditos
+Static say_MarketBuy $= Comprado %(EventClass_Count) unidades de %(EventClass_Type_Localised), El precio de compra es %hnum(EventClass_BuyPrice,HNumList) créditos %ifgt(EventClass_Count,1,', El coste total es de %hnum(EventClass_TotalCost,HNumList) créditos')
 Static say_MarketSell $= Vendido %(EventClass_Count) unidades de %(EventClass_Type_Localised)<;> El precio de venta es %hnum(EventClass_SellPrice,HNumList) créditos')%ifne(EventClass_TotalSale,profit,', la venta total es de %hnum(EventClass_TotalSale,HNumList) créditos'), usted obtuvo de beneficio %hnum(profit,HNumList) créditos
 Static say_MiningRefined $= Refinado %(EventClass_FriendlyType)<;>%(EventClass_FriendlyType) Refinado
 
 Static say_MissionAbandoned $= %sc(EventClass_Name) ha sido abandonado<;>Misión abandonada: %sc(EventClass_Name)<;>Misión abortada: %sc(EventClass_Name)
-Static say_MissionAccepted $= "%sc(EventClass_Name) aceptado %ifnotempty(EventClass_Faction,\"desde la facción %rs(EventClass_Faction,say_ss),\")"
+
+Static say_MissionAccepted $= "%(EventClass_LocalisedName) aceptado %ifnotempty(EventClass_Faction,\"desde la facción %rv(EventClass_Faction,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationSystem,\" El destino de la misión es %star(EventClass_DestinationSystem,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_DestinationStation,\" estación %(EventClass_DestinationStation),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Target,\" El objetivo es %(EventClass_Target),\")"
-Static say_MissionAccepted $+= "%ifnotempty(EventClass_TargetFaction,\"de %rs(EventClass_TargetFaction,say_ss) facción,\")"
+Static say_MissionAccepted $+= "%ifnotempty(EventClass_TargetFaction,\"de la facción %rv(EventClass_TargetFaction,say_ss),\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_PassengerType,\"recogiendo %(EventClass_PassengerCount) pasajeros de tipo %(EventClass_PassengerType).\")"
 Static say_MissionAccepted $+= "%ifnotempty(EventClass_Expiry,\" %datedeltaformatnow(EventClass_Expiry,'Esta misión expira en [d día{s|} ][h hora{s|} ][Md minuto{s|} ][Sh segundo{s|}].','Esta misión expiró el [D]',longdatetime)\")"
 
-Static say_MissionCompleted $= "{{{Felicitaciones, <;>Bien hecho Comandante, <;>Buen trabajo, <;>Espléndido! }}}%sc(EventClass_Name) completado %ifnotempty(EventClass_Faction,\"de la facción %rs(EventClass_Faction,say_ss), \")"
+Static say_MissionCompleted $= "{{{Felicitaciones, <;>Bien hecho Comandante, <;>Buen trabajo, <;>Espléndido! }}}%(EventClass_LocalisedName) completado %ifnotempty(EventClass_Faction,\"de la facción %rv(EventClass_Faction,say_ss), \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Target,\" el objetivo era %(EventClass_TargetLocalised), \")"
-Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"de %rs(EventClass_TargetFaction,say_ss) facción, \")"
+Static say_MissionCompleted $+= "%ifnotempty(EventClass_TargetFaction,\"de la facción %rv(EventClass_TargetFaction,say_ss), \")"
 Static say_MissionCompleted $+= "%ifnotempty(EventClass_Reward,\"La recompensa es %hnum(EventClass_Reward,HNumList) créditos\")"
-Static say_MissionFailed $= %sc(EventClass_Name) ha fracasado<;>Misión fallida: %sc(EventClass_Name)
-Static say_MissionRedirected $= %sc(EventClass_Name) ha cambiado su destino a: %(EventClass_NewDestinationStation) en el sistema %(EventClass_NewDestinationSystem)<;>Nuevo destino para %sc(EventClass_Name), ir a: %(EventClass_NewDestinationStation) en el sistema %(EventClass_NewDestinationSystem)
+
+Static say_MissionFailed $= Misión %(EventClass_LocalisedName) ha fracasado<;>Misión fallida: %sc(EventClass_Name)
+Static say_MissionRedirected $= Misión %(EventClass_LocalisedName) ha cambiado su destino a: %(EventClass_NewDestinationStation) en el sistema %(EventClass_NewDestinationSystem)<;>Nuevo destino para la misión %(EventClass_LocalisedName), ir a: %(EventClass_NewDestinationStation) en el sistema %(EventClass_NewDestinationSystem)
 
 Static say_ModuleBuy $= "Módulo %sc(EventClass_BuyItemLocalised) fitted%ifnonzero(EventClass_BuyPrice,', coste %hnum(EventClass_BuyPrice,HNumList) créditos'), en la nave %ship(EventClass_Ship) en %ifnotcontains(EventClass_Slot,\"slot\",\"slot \")%sc(EventClass_Slot)."
 // when new func system comes in, fix this back to hnum.. condition execution
@@ -607,10 +622,10 @@ Static say_NavBeaconScan $= Analizados %(EventClass_NumBodies) cuerpos en este s
 Static say_NpcCrewPaidWage $= Tripulante remunerado %(EventClass_Name) %hnum(EventClass_Amount,HNumList) créditos')
 Static say_NpcCrewRank $= {{{Felicidades, bien hecho}}} Tripulante %(EventClass_Name) ascendido a %sc(EventClass_RankCombat)
 
-Static say_PayBounties $= "pagado %hnum(EventClass_Amount,HNumList) créditos en recompensas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
+Static say_PayBounties $= "Pagado %hnum(EventClass_Amount,HNumList) créditos en recompensas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
 
-Static say_PayFines $= "pagado %hnum(EventClass_Amount,HNumList) créditos en multas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
-Static say_PayLegacyFines $= "pagado %hnum(EventClass_Amount,HNumList) créditos en multas heredadas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
+Static say_PayFines $= "Pagado %hnum(EventClass_Amount,HNumList) créditos en multas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
+Static say_PayLegacyFines $= "Pagado %hnum(EventClass_Amount,HNumList) créditos en multas heredadas Comandante %ifnonzero(EventClass_BrokerPercentage,\", con una comisión al broker de %(EventClass_BrokerPercentage) porciento\")"
 Static say_Promotion $= Felicidades, has sido ascendido!
 Static say_Promotion $+= "%ifnotempty(EventClass_Combat,\", Rango de combate a %sc(EventClass_Combat)\")"
 Static say_Promotion $+= "%ifnotempty(EventClass_Trade,\", rango comercial a %sc(EventClass_Trade)\")"
@@ -629,7 +644,7 @@ Static say_PowerplayVoucher $= "Recompensa por el combate Power Play de %(EventC
 Static say_PVPKill $= Felicidades, esa escoria de comandante %(EventClass_CombatRank) %(EventClass_Victim) estará revolviéndose en el cielo o en el infierno<;>comandante %(EventClass_CombatRank) %(EventClass_Victim) está criando malvas<;>comandante %(EventClass_CombatRank) %(EventClass_Victim) no las vio venir, imbécil
 
 Static say_RebootRepair $= "Reiniciando y reparando Módulos %expandarray(EventClass_FriendlySlots,\", \",0,20,splitcaps)"
-Static say_RedeemVoucher $= "Reclamando %(EventClass_Type) de valor %hnum(EventClass_Amount,HNumList) créditos, %ifnotempty(EventClass_Faction,\" de la facción %sc(EventClass_Faction)\")%ifnonzero(EventClass_BrokerPercentage,\", con una comisión para el broker de %(EventClass_BrokerPercentage) porciento\")"
+Static say_RedeemVoucher $= "Reclamado %(EventClass_Type) de valor %hnum(EventClass_Amount,HNumList) créditos, %ifnotempty(EventClass_Faction,' de la facción %rv(EventClass_Faction,say_ss)')%ifnonzero(EventClass_BrokerPercentage,', con una comisión para el broker del %(EventClass_BrokerPercentage) porciento')"
 
 Static say_Repair $= {{{%(EventClass_ItemLocalised) reparado comandante<;>%(EventClass_ItemLocalised) reparado}}}. El costo fue: %hnum(EventClass_Cost,HNumList) créditos
 Static say_RepairDrone $= Reparado por el dron, Casco: %round(EventClass_HullRepaired,1,0.#), Cabina: %round(EventClass_CockpitRepaired,1,0.#), Corrosión: %round(EventClass_CorrosionRepaired,1,0.#)
@@ -639,13 +654,13 @@ Static say_RefuelAll $= {{{Nave totalmente repostada<;>Nave reabastecida}}}, el 
 Static say_RefuelPartial $= Nave parcialmente repostada, el coste es de %(EventClass_Cost) créditos, con %round(EventClass_Amount,1,0.0) toneladas de combustible
 Static say_RestockVehicle $= Comprado %(EventClass_Count) %(EventClass_Type) del tipo %(EventClass_Loadout), Costó %(EventClass_Cost) créditos
 Static say_Resurrect $= {{{Como por arte de magia, estás vivo de nuevo Comandante %(Commander)<;>Vivo de nuevo Comandante, para luchar otro día.}}}%ifnonzero(EventClass_Cost,', el costo fue %hnum(EventClass_Cost,HNumList) créditos')
-Static say_ReceiveText $= Mensaje de %(EventClass_FromLocalised): %(EventClass_MessageLocalised)
+Static say_ReceiveText $= %(EventClass_FromLocalised) says: %(EventClass_MessageLocalised)
 
 Static say_RenameSuitLoadout $= Confirmado Comandante, equipamiento %(EventClass_SuitName_Localised) renombrado como %rv(EventClass_LoadoutName,suit_loadoutrename)
 
 Static say_SAAScanComplete $= Análisis de exploración de superficies en %body(EventClass_BodyName,EventStarSystem,say_ss), completo comandante, usadas %(EventClass_ProbesUsed) sondas <;> %body(EventClass_BodyName,EventStarSystem,say_ss), Escaneo completo con %(EventClass_ProbesUsed) sondas usadas
 
-Static say_SAASignalsFound $= %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y ') señales de superficie encontradas en el cuerpo: %body(EventClass_BodyName,EventStarSystem,say_ss)
+Static say_SAASignalsFound $= Señales de superficie de tipo: %expandarray(EventClass_Signals,", ",1,20,'','_Type_Localised', ' y '), encontradas en el cuerpo: %body(EventClass_BodyName,EventStarSystem,say_ss)
 
 Static say_SellExplorationData $= Vendido %(EventClass_SystemsCount) sistemas estelares por %hnum(EventClass_BaseValue,HNumList) créditos.
 Static say_SellExplorationDataBonus $= Y descubrió %(EventClass_DiscoveredCount) cuerpos por %hnum(EventClass_Bonus,HNumList)  créditos de bonificación.
@@ -661,7 +676,7 @@ Static suit_loadoutrename1 = "-; guión "
 Static suit_loadoutrename2 = "_; barra baja "
 Static suit_loadoutrename2 = ".; punto "
 Static say_SwitchSuitLoadout $= {{{Comandante, <;>Confirmado Comandante, }}}Cambiado traje %(EventClass_SuitName_Localised), por %rv(EventClass_LoadoutName,suit_loadoutrename)
-Static say_SuitLoadout $= {{{Comandante, su traje<;>El traje es}}} %(EventClass_SuitName_Localised), equipamiento %rv(EventClass_LoadoutName,suit_loadoutrename)
+Static say_SuitLoadout $= {{{Vistiendo<;>El traje es}}} %(EventClass_SuitName_Localised), equipamiento %rv(EventClass_LoadoutName,suit_loadoutrename)
 
 Static say_SellShipOnRebuy $= Vendida nave tipo %(EventClass_ShipType) por %hnum(EventClass_ShipPrice,HNumList) créditos para financiar la recompra de la nave actual
 Static say_SendText $= Mensaje enviado a %(EventClass_To_Localised)
@@ -669,7 +684,7 @@ Static say_SendText $= Mensaje enviado a %(EventClass_To_Localised)
 Static say_Scanned $= Advertencia, escaneo de %(EventClass_ScanType) detectado<;>Una nave está realizando un escaneo de %(EventClass_ScanType) sobre nosotros<;>Escaneo de %(EventClass_ScanType) detectado comandante<;>Estamos siendo escaneados para %(EventClass_ScanType)<;>Escaneo de %(EventClass_ScanType) detectado
 
 // always said on star
-Static say_ScanStar $= Estrella escaneada %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText)%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
+Static say_ScanStar $= "Estrella escaneada %Body(EventClass_BodyName,EventStarSystem,say_ss), %(EventClass_StarTypeText)%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 // gated on ScanStarMassDisable
 Static say_ScanStarMassMag $= , %roundnz(EventClass_nStellarMass,1,0.#,4) masas estelares
 Static say_ScanStarMassMag $+= , Magnitud absoluta %round(EventClass_nAbsoluteMagnitude,1,M0.#)
@@ -678,7 +693,7 @@ Static say_ScanStarRadius $= , Radio %roundnz(radius,2,0.#,4) soles
 Static say_ScanStarAge $= , antigüedad %hnum(%eval('%(EventClass_nAge)*1000000.0'),HNumList) años
 
 // always said on planet
-Static say_ScanPlanet $= "Escaneado: %Body(EventClass_BodyName,EventStarSystem,say_ss). %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rs(EventClass_PlanetClass,say_ss)\")"
+Static say_ScanPlanet $= "Escaneado: %Body(EventClass_BodyName,EventStarSystem,say_ss). %ifnotempty(EventClass_TerraformState,\",%sc(EventClass_TerraformState)\")%ifnotempty(EventClass_PlanetClass,\", %rv(EventClass_PlanetTypeText,say_ss)\")"
 // gated on ScanPlanetBasicInformationDisable
 Static say_ScanPlanetCredits $= "%ifgt(EventClass_EstimatedValue,19999,\", %hnum(EventClass_EstimatedValue,HNumList) créditos\")"
 Static say_ScanPlanetDistance $= , Distancia %hnum(EventClass_DistanceFromArrivalLS,HNumList) segundos luz
@@ -701,7 +716,7 @@ Static say_ScanPlanetNoSurfacePressure $= , Sin presión superficial
 Static say_ScanPlanetMaterials $= ", Materiales detectados %ExpandVars(EventClass_Materials_,\", \",0,1000,\"nameonly splitcaps\")"
 
 // If Nav sequence is in operation, gated on SpeechNavBeacon being Summary
-Static say_ScanNav $= %(navbeaconstarcount) Star%ifgt(navbeaconstarcount,'1','s') y %(navbeaconplanetcount) otros cuerpos. %(navbeaconextra)
+Static say_ScanNav $= %(navbeaconstarcount) Estrella%ifgt(navbeaconstarcount,'1','s') y %(navbeaconplanetcount) otros cuerpos. %(navbeaconextra)
 Static say_ScanNavPlanetEarthlike $= "%(EventClass_BodyName) es como la tierra, "
 Static say_ScanNavPlanetAmmonia $= "%(EventClass_BodyName) es un mundo acuático, "
 Static say_ScanNavPlanetWaterWorld $= "%(EventClass_BodyName) es un mundo de Amoníaco, "
@@ -718,24 +733,24 @@ Static say_SelfDestruct $= Preparándose para el lanzamiento de la cápsula de e
 Static say_SharedBookmarkToSquadron $= Marcador compartido con la Flota %(EventClass_Name)
 
 Static say_ShipTargeted1 $+= El piloto es %(EventClass_PilotName_Localised), %(EventClass_PilotRank), en una %ship(EventClass_Ship_Localised)
-Static say_ShipTargeted2 $+= Escudo %round(EventClass_ShieldHealth,1,0.#) porciento, Casco a %round(EventClass_HullHealth,1,0.#) porciento
+Static say_ShipTargeted2 $+= Escudo %round(EventClass_ShieldHealth,1,0.#) por ciento, Casco a %round(EventClass_HullHealth,1,0.#) por ciento
 Static say_ShipTargeted3 $+= "%ifeq(levelscanned,0,\"Apuntado %(EventClass_PilotName_Localised), \")"
-Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Fuera de la ley','La nave es %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Recompensa %hnum(EventClass_Bounty,HNumList) créditos') %ifnotempty(EventClass_Faction,', Facción %(EventClass_Faction)')
+Static say_ShipTargeted3 $+= %ifnotequal(EventClass_LegalStatus,'Lawless','La nave es %(EventClass_LegalStatus)')%ifnotempty(EventClass_Bounty,', Recompensa %hnum(EventClass_Bounty,HNumList) créditos') %ifnotempty(EventClass_Faction,', Facción %rv(EventClass_Faction,say_ss)')
 
-Static say_SRVDestroyed $= {{{Bum<;>Paf<;>Catapúm}}} Su VSR está destruido. Regresando a la nave nodriza
+Static say_SRVDestroyed $= {{{Bum<;>Paf<;>Catapúm}}}. Su VRS está destruido. Regresando a la nave nodriza
 Static say_SystemsShutdown $= {{{Alerta, <;>Peligro, <;>Prepárese, }}}{{{Nave enemiga<;>Otra nave}}} ha inutilizado la nave
 
 Static say_ShipyardBuy $= Compró una nave %ship(EventClass_ShipType) por %hnum(EventClass_ShipPrice,HNumList) créditos
 Static say_ShipyardBuy $+= "%ifnotempty(EventClass_StoreOldShip,\", Nave almacenada %ship(EventClass_StoreOldShip) en el hangar\")"
 Static say_ShipyardBuy $+= "%ifnotempty(EventClass_SellOldShip,\", Vendió la nave %ship(EventClass_SellOldShip) por %hnum(EventClass_SellPrice,HNumList) créditos\")"
 Static say_ShipyardSell $= "Vendió la nave %ship(EventClass_ShipType) por %hnum(EventClass_ShipPrice,HNumList) créditos%ifnotempty(EventClass_System, \" en el sistema %star(EventClass_System,say_ss)\")"
-Static say_ShipyardNew $= {{{Felicitaciones por }}}{{{comprar una nueva<;>su nueva compra de una}}} %ship(EventClass_ShipType) que es el tipo de nave
+Static say_ShipyardNew $= {{{Felicitaciones por }}}{{{comprar una nueva<;>su compra de una nueva}}} nave del tipo %ship(EventClass_ShipType)
 Static say_ShipyardSwap $= Nave intercambiada: %ship(EventClass_StoreOldShip) por una %ship(EventClass_ShipType)
 Static say_ShipyardTransfer $= Ordenó la transferencia de la nave %ship(EventClass_ShipType)
 Static say_ShipyardTransfer $+= %ifnonzero(EventClass_Distance,' desde el sistema  %star(EventClass_FromSystem,say_ss), a una distancia de %round(EventClass_Distance,1,0.0) años luz, tardará %eval("%(EventClass_nTransferTime)/60.0","ERROR","0.#") minutes')
 Static say_ShipyardTransfer $+= , el coste será %hnum(EventClass_TransferPrice,HNumList) créditos
 
-Static say_SupercruiseEntry $= Motores de distorsión encendidos<;>Supercrucero activado<;>Motor de distorsión conectado<;>Agárrate fuerte, Saltamos a Supercrucero
+Static say_SupercruiseEntry $= Motor de distorsión encendido<;>Supercrucero activado<;>Motor de distorsión conectado<;>Agárrate fuerte, Saltamos a Supercrucero
 Static say_SupercruiseExit $= {{{Saliendo de Supercrucero <;>Espacio normal, comandante<;>Motor de distorsión desconectado, Impulso activado}}}
 Static say_SupercruiseExit $+= "%ifnotempty(EventClass_BodyType,\", Llegada a %(EventClass_BodyType)\") %ifnotempty(EventClass_Body,\" %body(EventClass_Body,EventStarSystem,say_ss)\")"
 
@@ -759,7 +774,7 @@ Static say_SquadronCreated $= Creación de un nueva Flota %(EventClass_Name)<;>C
 Static say_SquadronDemotion $= {{{Te debes haber portado mal!<;>Oh, Dios mío<;>Oh, no}}}, Has sido degradado por tu Flota %(EventClass_Name) al rango de %(EventClass_NewRank)
 Static say_SquadronPromotion $= {{{Bien hecho<;>Felicidades<;>Bravo!}}} Has sido ascendido por tu Flota %(EventClass_Name) al rango de %(EventClass_NewRank)
 
-Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Aterrizaje exitoso, comandante<;>Aterrizaje, comandante<;>Contacto!}}}{{{ con latitud %round(EventClass_Latitude,2,M0.##), y Longitud %round(EventClass_Longitude,2,M0.##), }}}Bien hecho comandante<;>Motores apagados<;>Prepárese para operaciones en superficie','Nave de regreso de la órbita y lista para embarque;Nave aterrizada, listo para desembarcar')
+Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Aterrizaje exitoso, comandante<;>Aterrizaje, comandante<;>Contacto!}}}{{{ con latitud %round(EventClass_Latitude,2,0.##), y Longitud %round(EventClass_Longitude,2,0.##), }}}Bien hecho comandante<;>Motores apagados<;>Prepárese para operaciones en superficie','Nave de regreso de la órbita y lista para embarque<;>Nave aterrizada, listo para abordar')
 Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",0,9,\"\",\"_Name_Localised\")"
 
 Static say_Undocked $= Despegando de %sc(EventClass_StationName), feliz vuelo comandante<;>Nave lista, al mando Comandante<;> Motores encendidos, saliendo de: %sc(EventClass_StationName)<;>Abandonando estación %sc(EventClass_StationName)
@@ -779,7 +794,26 @@ Static say_WingInvite $= Invitado al equipo por %(EventClass_Name)
 Static say_WonATrophyForSquadron $= Felicidades, has ganado un trofeo para la Flota %(EventClass_Name)
 // other stuff
 
-Static say_EDSM $= Primer Descubrimiento en EDSM
+Static say_EDSM $= Primer descubrimiento en EDSM
+
+// VP30, surveyor
+// The list of Event Names from surveyor (encoded in say_surveyor_<trigger>) is in the Action Document under onSurveyor event
+// only included the ones which add information over the basic scan output
+Static say_surveyor_prefixphrase $= "Reporte del agrimensor para el cuerpo: %(BodyShortName), "
+Static say_surveyor_Discovery $= "Un descubrimiento, %(data), "
+Static say_surveyor_MiningSignals $= "Señales de minería, "
+Static say_surveyor_GeoSignals $= "Señales geológicas, "
+Static say_surveyor_BioSignals $= "Señales biológicas, "
+Static say_surveyor_ThargoidSignals $= "Señales Thargoide, "
+Static say_surveyor_GuardianSignals $= "Señales Guardián, "
+Static say_surveyor_HumanSignals $= "Señales humanas, "
+Static say_surveyor_OtherSignals $= "Otras señales, "
+Static say_surveyor_TinyPlanetRadius $= "Radio diminuto, "
+Static say_surveyor_HugePlanetRadius $= "Radio enorme, "
+Static say_surveyor_HighGravity $= "Advertencia de gravedad alta, %(data) G, "
+Static say_surveyor_Earthlike $= "Es un planeta como la Tierra!, "
+Static say_surveyor_WaterWorld $= "Mundo acuático, "
+Static say_surveyor_AmmoniaWorld $= "Mundo de amonio, "
 
 Rem subsitution patterns (ss1,ss2 etc) for faction and body name fields
 Static say_ssn0 $= "-; guión "
@@ -788,6 +822,7 @@ Static say_ssn2 $= " II ; 2 "
 Static say_ssn3 $= " III ; 3 "
 Static say_ssn4 $= "q\" IV ; 4 \""
 Static say_ssn5 $= " V ; 5 "
+Static say_ssn6 $= "G.;G "
 
 Rem say subsitution patterns, applied after the phrase has been made, are called say_txN in the same form as above.
 
@@ -800,7 +835,7 @@ Static say_tx6 $= " CMDRs; Commanders"
 Static say_tx7 $= " cmdr; Commander"
 Static say_tx8 $= "O7; Saludos "
 Static say_tx9 $= " O7; , Saludos"
-Static say_tx10 $= "R;[^0-9]07; Saludos, "
+Rem removed, matching 61.07 Static say_tx10 $= "R;[^0-9]07; Salute Commander, "
 Static say_tx11 $= "R;\s+07; Saludos, "
 Static say_tx12 $= " CMDTs; Comandantes"
 Static say_tx13 $= " cmdt; Comandante"
@@ -810,6 +845,50 @@ Rem print %replacevar("Hello O7","say_tx")
 Rem print %replacevar("O7","say_tx")
 Rem print %replacevar("07","say_tx")
 Rem print %replacevar(" 907","say_tx")
+
+// Crimes
+Static say_crime01 $= "onfoot_assault; Asalto a una persona"
+Static say_crime02 $= "assault; Asalto"
+Static say_crime03 $= "collidedAtSpeedInNoFireZone_hulldamage; Colisión a alta velocidad en zona de fuego restringido con daño al casco"
+Static say_crime04 $= "collidedAtSpeedInNoFireZone; Colisión a alta velocidad en zona de fuego restringido"
+Static say_crime05 $= "disobeyPolice; Desobedecer a la Policía"
+Static say_crime06 $= "dockingMajorBlockingAirlock; Bloqueo de la esclusa"
+Static say_crime07 $= "dockingMajorBlockingLandingPad; Bloqueo de plataforma de aterrizaje"
+Static say_crime08 $= "dockingMajorTresspass; Acceso no autorizado"
+Static say_crime09 $= "dockingMinorBlockingAirlock; Bloqueo de la esclusa"
+Static say_crime10 $= "dockingMinorBlockingLandingPad; Bloqueo de plataforma de aterrizaje"
+Static say_crime11 $= "dockingMinorTresspass; Acceso no autorizado"
+Static say_crime12 $= "dumpingDangerous; Expulsión  de cargamento no permitido"
+Static say_crime13 $= "dumpingNearStation; Expulsión de cargamento cerca de la estación"
+Static say_crime14 $= "fireInNoFireZone; Uso de armas en zona de fuego restringido"
+Static say_crime15 $= "fireInStation; Uso de armas dentro de la estación"
+Static say_crime16 $= "illegalCargo; Cargamento Ilegal"
+Static say_crime17 $= "interdiction; Interdicción"
+Static say_crime18 $= "onFoot_murder; Asesinato"
+Static say_crime19 $= "murder; Asesinato"
+Static say_crime20 $= "onFoot_arcCutterUse; Uso de Arc Cutter"
+Static say_crime21 $= "onFoot_breakingAndEntering; Allanamiento"
+Static say_crime22 $= "onFoot_carryingIllegalData; Transporte de datos ilegales"
+Static say_crime23 $= "onFoot_carryingIllegalGoods; Transporte de bienes ilegales"
+Static say_crime24 $= "onFoot_carryingStolenGoods; Transporte de bienes robados"
+Static say_crime25 $= "onFoot_damagingDefences; Daño a las defensas"
+Static say_crime26 $= "onFoot_dataTransfer; Transferencia de datos"
+Static say_crime27 $= "onFoot_detectionOfWeapon; Arma detectada"
+Static say_crime28 $= "onFoot_eBreachUse; Uso de fisura"
+Static say_crime29 $= "onFoot_failureToSubmitToPolice; Fallo a someterse a la policía"
+Static say_crime30 $= "onFoot_identityTheft; Robo de identidad"
+Static say_crime31 $= "onFoot_overchargeIntent; Intento de sobrecarga"
+Static say_crime32 $= "onfoot_overchargedPort; Puerto sobrecargado"
+Static say_crime33 $= "onFoot_profileCloningIntent; Intento de clonación perfil"
+Static say_crime34 $= "onFoot_propertyTheft; Robo de bienes"
+Static say_crime35 $= "onFoot_recklessEndangerment; Poner en peligro la seguridad"
+Static say_crime36 $= "onFoot_theft; Robo"
+Static say_crime37 $= "onFoot_trespass; Acceso no autorizado"
+Static say_crime38 $= "passengerWanted; Transporte de pasajero buscado"
+Static say_crime39 $= "piracy; Piratería"
+Static say_crime40 $= "recklessWeaponsDischarge; Disparo negligente de armas"
+Static say_crime41 $= "shuttleDestruction; Destrucción de lanzadera de Apex"
+Static say_crime42 $= "stationtamperingminor; Manipulación de una estación"
 
 // Phonemes
 
@@ -826,7 +905,9 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
     Static say_tx_power8 = Zachary Hudson;<phoneme alphabet='ipa' ph='ˈzækərɪ'>Zachary</phoneme> <phoneme alphabet='ipa' ph='ˈhʌdsən'>Hudson</phoneme>
     Static say_tx_power9 = Zemina Torval;<phoneme alphabet='ipa' ph='zəˈmiːnə'>Zemina</phoneme> <phoneme alphabet='ipa' ph='tɔːˈvæl'>Torval</phoneme>
     Static say_tx_power10 = Li Yong-Rui;<phoneme alphabet='ipa' ph='liː'>Li</phoneme> <phoneme alphabet='ipa' ph='ˈjɒŋ'>Yong</phoneme> <phoneme alphabet='ipa' ph='reɪ'>Rui</phoneme>
-    Static say_tx_power11 = Yuri Grom;<phoneme alphabet='ipa' ph='jʊəˈriː'>Yuri</phoneme> <phoneme alphabet='ipa' ph='ˈɡrɒm'>Grom</phoneme>
+    Static say_tx_power11 = Yuri Grom;<phoneme alphabet='ipa' ph='jʊˈriː'>Yuri</phoneme> <phoneme alphabet='ipa' ph='ˈɡrɒm'>Grom</phoneme>
+    Static say_tx_power12 = Jerome Archer;<phoneme alphabet='ipa' ph='ʝˈeɾom'>Jerome</phoneme> <phoneme alphabet='ipa' ph='aɾt͡ʃˈeɾ'>Archer</phoneme>
+    Static say_tx_power13 = Nakato Kaine;<phoneme alphabet='ipa' ph='nakˈato'>Nakato</phoneme> <phoneme alphabet='ipa' ph='kˈe͡ɪn'>Kaine</phoneme>
 
     Rem bad phonemes say_tx_star54 = r;\b(Taygeta)\b;<phoneme alphabet='ipa' ph = 'teɪˈɪdtə'>Taygeta</phoneme>
     Rem say_tx_star14 = r;\b(Celaeno)\b;<phoneme alphabet='ipa' ph = 'sᵻˈliːnoʊ'>Celaeno</phoneme>
@@ -931,6 +1012,51 @@ If SpeechControls NotPresent Or SpeechControls NotContains SSMLDisable;
     // Static say_tx_constellation39 = r;\b(Tucanae)\b;<phoneme alphabet='ipa' ph = 'tuːˈkɑːniː'>Tucanae</phoneme>
     Static say_tx_constellation40 = r;\b(Wredguia)\b;<phoneme alphabet='ipa' ph = 'ˈredɡaɪə'>Wredguia</phoneme>
 
+    // Ships names
+    Static say_tx_ship01 = r;\b(Adder)\b;<phoneme alphabet='ipa' ph = 'ˈædəɾ'>Adder</phoneme>
+    Static say_tx_ship02 = r;\b(Alliance Challenger)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪəns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'ˈʧælɪndʒər'>Challenger</phoneme>
+    Static say_tx_ship03 = r;\b(Alliance Chieftain)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪəns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'ˈʧiːftən'>Chieftain</phoneme>
+    Static say_tx_ship04 = r;\b(Alliance Crusader)\b;<phoneme alphabet='ipa' ph = 'əˈlaɪəns'>Alliance</phoneme><phoneme alphabet='ipa' ph = 'krʊ.ˈseɪˌdəɾ'>Crusader</phoneme>
+    // Static say_tx_ship05 = r;\b(Anaconda)\b;<phoneme alphabet='ipa' ph = 'ˌanaˈkonda'>Anaconda</phoneme>
+    Static say_tx_ship06 = r;\b(Asp Explorer)\b;<phoneme alphabet='ipa' ph = 'æsp'>Asp</phoneme><phoneme alphabet='ipa' ph = 'ɪkˈsplɔːɾəɾ'>Explorer</phoneme>
+    Static say_tx_ship07 = r;\b(Asp Scout)\b;<phoneme alphabet='ipa' ph = 'æsp'>Asp</phoneme><phoneme alphabet='ipa' ph = 'skaʊt'>Scout</phoneme>
+    Static say_tx_ship08 = r;\b(Beluga Liner)\b;<phoneme alphabet='ipa' ph = 'bəˈluːɡa'>Beluga</phoneme><phoneme alphabet='ipa' ph = 'ˈlaɪnəɾ'>Liner</phoneme>
+    // Static say_tx_ship09 = r;\b(Cobra Mark 3)\b;<phoneme alphabet='ipa' ph = 'ˈko.brə'>Cobra</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mark</phoneme><phoneme alphabet='ipa' ph = 'θriː'>3</phoneme>
+    // Static say_tx_ship10 = r;\b(Cobra Mark 4)\b;<phoneme alphabet='ipa' ph = 'ˈko.brə'>Cobra</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mark</phoneme><phoneme alphabet='ipa' ph = 'fɔːɾ'>4</phoneme>
+    Static say_tx_ship11 = r;\b(Diamondback Explorer)\b;<phoneme alphabet='ipa' ph = 'ˈdaɪəməndbæk'>Diamondback</phoneme><phoneme alphabet='ipa' ph = 'ɪkˈsplɔːɾəɾ'>Explorer</phoneme>
+    Static say_tx_ship12 = r;\b(Diamondback Scout)\b;<phoneme alphabet='ipa' ph = 'ˈdaɪəməndbæk'>Diamondback</phoneme><phoneme alphabet='ipa' ph = 'skaʊt'>Scout</phoneme>
+    Static say_tx_ship13 = r;\b(Dolphin)\b;<phoneme alphabet='ipa' ph = 'ˈdɒlfɪn'>Dolphin</phoneme>
+    Static say_tx_ship14 = r;\b(Eagle)\b;<phoneme alphabet='ipa' ph = 'ˈiːɣəl'>Eagle</phoneme>
+    Static say_tx_ship15 = r;\b(Federal Assault Ship)\b;<phoneme alphabet='ipa' ph = 'ˈfɛdəɾɛl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'œˈsɔlt͡ʃ'>Assault</phoneme><phoneme alphabet='ipa' ph = 'ʃɪp'>Ship</phoneme>
+    Static say_tx_ship16 = r;\b(Federal Corvette)\b;<phoneme alphabet='ipa' ph = 'ˈfɛdəɾəl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'ˈkɔɾvɛʈ'>Corvette</phoneme>
+    Static say_tx_ship17 = r;\b(Federal Dropship)\b;<phoneme alphabet='ipa' ph = 'ˈfɛdəɾəl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'ˈdrɒpˌʃɪp'>Dropship</phoneme>
+    Static say_tx_ship18 = r;\b(Federal Gunship)\b;<phoneme alphabet='ipa' ph = 'ˈfɛdəɾəl'>Federal</phoneme><phoneme alphabet='ipa' ph = 'ˈɡʌnʃɪp'>Gunship</phoneme>
+    Static say_tx_ship19 = r;\b(Fer de Lance)\b;<phoneme alphabet='ipa' ph = 'ˈfɛːʁ'>Fer</phoneme><phoneme alphabet='ipa' ph = 'dø'>de</phoneme><phoneme alphabet='ipa' ph = 'ləːɳʂ'>Lance</phoneme>
+    Static say_tx_ship20 = r;\b(Hauler)\b;<phoneme alphabet='ipa' ph = 'ˈhɔːləɾ'>Hauler</phoneme>
+    Static say_tx_ship21 = r;\b(Imperial Clipper)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪɾiəl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈklɪpəɾ'>Clipper</phoneme>
+    Static say_tx_ship22 = r;\b(Imperial Courier)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪɾiəl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈkʊɾiəɾ'>Courier</phoneme>
+    Static say_tx_ship23 = r;\b(Imperial Cutter)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪɾiəl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈkʌtəɾ'>Cutter</phoneme>
+    Static say_tx_ship24 = r;\b(Imperial Eagle)\b;<phoneme alphabet='ipa' ph = 'ɪmˈpɪɾiəl'>Imperial</phoneme><phoneme alphabet='ipa' ph = 'ˈiːɣəl'>Eagle</phoneme>
+    Static say_tx_ship25 = r;\b(Keelback)\b;<phoneme alphabet='ipa' ph = 'ˈkiːlbæk'>Keelback</phoneme>
+    Static say_tx_ship26 = r;\b(Krait Mark 2)\b;<phoneme alphabet='ipa' ph = 'kɾeɪt'>Krait</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mark</phoneme><phoneme alphabet='ipa' ph = 'tuː'>2</phoneme>
+    Static say_tx_ship27 = r;\b(Krait Phantom)\b;<phoneme alphabet='ipa' ph = 'kɾeɪt'>Krait</phoneme><phoneme alphabet='ipa' ph = 'ˌfænt̬ɒm'>Phantom</phoneme>
+    // Static say_tx_ship28 = r;\b(Mamba)\b;<phoneme alphabet='ipa' ph = 'ˈmamba'>Mamba</phoneme>
+    // Static say_tx_ship29 = r;\b(Orca)\b;<phoneme alphabet='ipa' ph = 'ˈɔɾka'>Orca</phoneme>
+    Static say_tx_ship30 = r;\b(Python)\b;<phoneme alphabet='ipa' ph = 'ˈpaɪ.θon'>Python</phoneme>
+    Static say_tx_ship31 = r;\b(Sidewinder)\b;<phoneme alphabet='ipa' ph = 'saɪdˈwaɪn.dɚ'>Sidewinder</phoneme>
+    Static say_tx_ship32 = r;\b(Type 10 Defender)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'tɛn'>10</phoneme><phoneme alphabet='ipa' ph = 'dɪˈfɛnðəɾ'>Defender</phoneme>
+    Static say_tx_ship33 = r;\b(Type 6 Transporter)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'sɪks'>6</phoneme><phoneme alphabet='ipa' ph = 'trænˈspɔːr.t̬əɾ'>Transporter</phoneme>
+    Static say_tx_ship34 = r;\b(Type 7 Transporter)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'ˈsɛvən'>7</phoneme><phoneme alphabet='ipa' ph = 'trænsˈpɔːɾtəɾ'>Transporter</phoneme>
+    Static say_tx_ship35 = r;\b(Type 9 Heavy)\b;<phoneme alphabet='ipa' ph = 'taɪp'>Type</phoneme><phoneme alphabet='ipa' ph = 'naɪn'>9</phoneme><phoneme alphabet='ipa' ph = 'ˈhɛvi'>Heavy</phoneme>
+    Static say_tx_ship36 = r;\b(Viper Mark 3)\b;<phoneme alphabet='ipa' ph = 'ˈvaɪpɛɾ'>Viper</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mark</phoneme><phoneme alphabet='ipa' ph = 'θriː'>3</phoneme>
+    Static say_tx_ship37 = r;\b(Viper Mark 4)\b;<phoneme alphabet='ipa' ph = 'ˈvaɪpɛɾ'>Viper</phoneme><phoneme alphabet='ipa' ph = 'mɑːrk'>Mark</phoneme><phoneme alphabet='ipa' ph = 'fɔːɾ'>4</phoneme>
+    Static say_tx_ship38 = r;\b(Vulture)\b;<phoneme alphabet='ipa' ph = 'ˈvʌl.t͡ʃəɾ'>Vulture</phoneme>
+
+    Static say_tx_fc01 = r;\b(Drake)\b;<phoneme alphabet='ipa' ph = 'dreɪk'>Drake</phoneme>
+
+    // Elite Dangerous Discovery
+    Static say_tx_edd = r;\b(Elite Dangerous Discovery)\b;<phoneme alphabet='ipa' ph = 'eˈliːt'>Elite</phoneme><phoneme alphabet='ipa' ph = 'ˈdeɪnʤəɾøs'>Dangerous</phoneme><phoneme alphabet='ipa' ph = 'dɪsˈkʌvəɾi'>Discovery</phoneme>
+
 // Set speech = "Welcome to Tucanae"
 // rem  Set speech = "%replacevar(speech,\"say_tx\")"
 // Set speech = %replacevar(speech,"say_tx")
@@ -984,7 +1110,10 @@ PROGRAM onInstall
 
 If InstallList Contains VoicePack
     Call SetUpLanguage
-    Say %(say_install)
+    Set speech = %(say_install)
+
+If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
+    Call speak(speech="%(speech)")
 Call Initialise
 
 END PROGRAM
@@ -999,9 +1128,9 @@ MenuItem VoiceMenuConfigureCoPilot,add-ons,"Configuración de voz del copiloto",
 MenuItem VoiceMenuConfigureText,add-ons,"Configuración de voz para mensajes de texto",speaker
 MenuItem VoiceMenuConfigureNPCEffects,add-ons,"Configuración de voz para P N J",speaker
 MenuItem VoiceMenuConfigureVerbosity,add-ons,"Configuración del Paquete de Voz",speaker
-MenuItem VoiceMenuConfigureNPCVoices,add-ons,"Seleccione voz del PNJ",speaker
+MenuItem VoiceMenuConfigureNPCVoices,add-ons,"Seleccione voz de PNJ",speaker
 MenuItem VoiceMenuConfigureSpeechFile,add-ons,"Editar archivo de voz",missioncompleted
-MenuItem VoiceMenuShowHelp,help,"Voice Pack",speaker
+MenuItem VoiceMenuShowHelp,help,"Paquete de Voz",speaker
 
 END PROGRAM
 
@@ -1040,6 +1169,7 @@ If %(RefreshCount) <= 1
     Event PREFIX RK_ LAST Rank
     Rem pragma dumpvars LAST*
     Set speech = '%phrase("%expand(say_refresh)","<;>","{{{","}}}")'
+
     If SpeechControls IsPresent And SpeechControls NotContains WelcomeMessageDisable;
         Call speak(speech="%(speech)")
 
@@ -1921,10 +2051,10 @@ If MenuName Contains ConfigureVerbosity
     Set dvar9i = "CBEMFD,CheckBox,\"Desactivar Primer Descubrimiento EDSM \",%(col2),+0,%(colw),20,\"Desactiva los mensajes de primer descubrimiento en EDSM\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
 
     Set dvar10a = "L3,Label,\"Baliza de Navegación\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Seleccione que se habla después de escanear la baliza de navegación\",Resumen,Sin habla del escaneo,Hablar el escaneo completo"
+    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Seleccione que se habla después de escanear la baliza de navegación\",Summary,No Speech on Scan,Full Scan Speech"
 
-    Set dvar11a = "L3,Label,\"Seleccion Objetivos\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar11b = "CBTarget,CheckBox,\"Descativar los informes de objetivos\",%(col1),+0,%(colw),20,\"Desactiva todos los informes de naves objetivo\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+    Set dvar11a = "L3,Label,\"Selección Objetivos\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar11b = "CBTarget,CheckBox,\"Desactivar los informes de objetivos\",%(col1),+0,%(colw),20,\"Desactiva todos los informes de naves objetivo\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
 
     Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
     Set dvar12b = "CBODYSW,CheckBox,\"Desactivar arma seleccionada\",%(col1),+0,%(colw),20,\"Deshabilita el mensaje de arma seleccionada\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
@@ -2190,7 +2320,7 @@ PROGRAM ApproachBody
 Scan "%(EventClass_StarSystem)" "%(EventBodyName)"
 Rem pragma dumpvars S_*
 
-If %(S_BodyFound) IsTrue And %(S_Body_gravity) $!= "" And %(S_Body_gravity) >= 2.0
+If %(S_BodyFound) IsTrue And S_Body_gravityg IsPresent And %(S_Body_gravityg) $!= "" And %(S_Body_gravityg) >= 2.0
     Set v = say_ApproachBodyWarning
 Else 
     Set v = say_ApproachBody
@@ -2202,20 +2332,20 @@ END PROGRAM
 
 //*************************************************************
 // GenericResponse
-// Events: Bounty?(Condition AlwaysFalse), BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction
-// Events: FactionKillBond, FighterDestroyed, FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines
-// Events: PVPKill, RedeemVoucher, Scanned, CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole
-// Events: CrewAssign, CrewFire, CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession
-// Events: JoinACrew, KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution
-// Events: EngineerProgress, EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan
-// Events: FSSDiscoveryScan, SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied
-// Events: DockingRequested, DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000)
-// Events: LaunchSRV, Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned
-// Events: MissionAccepted, MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected
-// Events: MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned
-// Events: Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect
-// Events: PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher
-// Events: AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
+// Events: Bounty, BuyAmmo, CapShipBond, CockpitBreached(Volume=100), DockFighter, EscapeInterdiction, FactionKillBond, FighterDestroyed
+// Events: FighterRebuilt, Interdicted, LaunchFighter, PayFines, PayBounties, PayLegacyFines, PVPKill, RedeemVoucher, Scanned
+// Events: CollectCargo, CommunityGoalDiscard, CommunityGoalJoin, CommunityGoalReward, ChangeCrewRole, CrewAssign, CrewFire
+// Events: CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew
+// Events: KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution, EngineerProgress
+// Events: EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan
+// Events: SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested
+// Events: DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000), LaunchSRV
+// Events: Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned, MissionAccepted
+// Events: MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected, MaterialDiscarded
+// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned, Promotion
+// Events: Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect, PowerplayDeliver
+// Events: PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs
+// Events: BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
 // Events: ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy
 // Events: ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
 // Events: Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, AppliedToSquadron
@@ -2333,7 +2463,7 @@ If SpeechControls IsPresent And SpeechControls Contains PrintOnly;
 // if QueueLimit IsPresent
 // print Queued %(QueueLimit) for %(speech)
 
-Print SAY: %(speech)
+// Print SAY: %(speech)
 
 Say %(speech), Literal=1, Voice="%existsdefault(Voice,\"\")", Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", QueueLimit="%existsdefault(QueueLimit,'0')", DontSpeak="%(ds)", FinishEvent="%existsdefault(FinishEvent,\"\")" , Wait="%existsdefault(Wait,\"0\")" , Para ="%existsdefault(EffectVars,'')" , PrefixSound ="%existsdefault(PrefixSound,\"\")" , PostfixSound ="%existsdefault(PostfixSound,\"\")" , MixSound ="%existsdefault(MixSound,\"\")" , Rate ="%existsdefault(Rate,\"-999\")"
 
@@ -2451,6 +2581,35 @@ Call speak(speech="Hello there",EffectVars="PitchShift=100,EchoMix=20,EchoFeedba
 // Set str = <phoneme alphabet='ipa' ph = '%(InputBox1)'>Phoneme failed, this may be due to voice selected, for instance Ivona voices do not support all phonemes</phoneme>
 // Print %(SayPhonemeLast)
 // Say "%(SayPhonemeLast)"
+
+END PROGRAM
+
+//*************************************************************
+// SurveyorPanel
+// Events: onSurveyor
+//*************************************************************
+PROGRAM SurveyorPanel
+
+Rem print VoicePack Surveyor Panel run `%(Body)` `%(BodyShortName)`
+Rem pragma dumpvars EventName*
+Rem pragma dumpvars Value*
+
+Set speech = ""
+
+ForEach eventn in EventName*
+    Set data = %indirect("Value%(Index)")
+    Set eventid = %indirect(eventn)
+
+    Rem print .. Event %(Index) : %(eventid) : '%(data)'
+
+    If "%exist(\"say_surveyor_%(eventid)\")" IsTrue
+        Set speech += %expand("say_surveyor_%(eventid)")
+    Else 
+        Rem print "Rejected saying %(eventid)"
+
+If speech IsNotEmpty
+    Set speech = "%expand(say_surveyor_prefixphrase)%(speech)"
+    Call speak(speech="%(speech)")
 
 END PROGRAM
 
