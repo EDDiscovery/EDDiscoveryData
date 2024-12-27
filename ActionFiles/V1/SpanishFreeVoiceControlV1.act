@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="Esta es la primera edición en español del paquete Free Voice Control para EDD, compatible con las versiones 15+\r\n\r\nFree voice control te permite controlar Elite: Dangerous a través de tu micrófono. Viene preconfigurado con una serie de comandos de voz que automáticamente corresponden a tu configuración en el juego (siempre y cuando estén ligadas al teclado).\r\n\r\nPuedes pedir que despliegue el tren de aterrizaje, abra el mapa de la galaxia, ajustar la distribución de energía - todo con la voz! Hay mas de 130+ comandos hasta el momento.\r\n\r\nInstala gratis hoy!"
 INSTALL ShortDescription="Free Voice Control en Español"
-INSTALL Version=1.0.0.0
+INSTALL Version=1.0.1.0
 INSTALL MinEDVersion=15.0.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=FreeVoiceControlV1
@@ -20,7 +20,8 @@ EVENT onVoiceInput, VoiceInput_Shield_Cell, "", VoiceInput MatchSemicolonList "R
 EVENT onVoiceInput, VoiceInput_Chaff, "", VoiceInput MatchSemicolonList "[Desplegar] señuelos"
 EVENT onVoiceInput, VoiceInput_Heat_Sink, "", VoiceInput MatchSemicolonList "[Desplegar] eyector térmico"
 EVENT onVoiceInput, VoiceInput_Charge_ECM, "", VoiceInput MatchSemicolonList "[Desplegar] contra medidas [electrónicas] "
-EVENT onVoiceInput, VoiceInput__Saltar_al__Hiperespacio, "", VoiceInput MatchSemicolonList "[Saltar al] Hiperespacio;Saltar;Siguiente salto"
+EVENT onVoiceInput, VoiceInput_FSD, "", VoiceInput MatchSemicolonList "[Activar] Motor de distorsión;[Activar] eme de de"
+EVENT onVoiceInput, VoiceInput_Hyperspace, "", VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto"
 EVENT onVoiceInput, VoiceInput_Supercruise, "", VoiceInput MatchSemicolonList "[Saltar a] Supercrucero"
 EVENT onVoiceInput, VoiceInput_Deploy_Weapons, "", VoiceInput MatchSemicolonList "Desplegar|Retraer Armas;Armas Fuera|Dentro"
 EVENT onVoiceInput, VoiceInput_Landing_GearToggle, "", VoiceInput MatchSemicolonList "[Alternar|Desplegar|Retraer] Tren de aterrizaje"
@@ -36,13 +37,13 @@ EVENT onVoiceInput, VoiceInput_LaunchNPCFighter, "", VoiceInput MatchSemicolonLi
 GROUP MainShipNormalSpace-Fighter:Flight
 
 EVENT onVoiceInput, VoiceInput_Toggle_Flight_Assist, "", VoiceInput MatchSemicolonList "[Alternar|Encender|Activar|Apagar|Desactivar] Asistente de vuelo"
-EVENT onVoiceInput, VoiceInput_Boost, "", VoiceInput MatchSemicolonList Boost;Postquemador
+EVENT onVoiceInput, VoiceInput_Boost, "", VoiceInput MatchSemicolonList Bust|Turbo|Postquemador
 EVENT onVoiceInput, VoiceInput_Increase_Radar_Range, "", VoiceInput MatchSemicolonList "Aumentar rango [del] radar|sensor"
 EVENT onVoiceInput, VoiceInput_Decrease_Radar_Range, "", VoiceInput MatchSemicolonList "Disminuir rango [del] radar|sensor"
 EVENT onVoiceInput, VoiceInput_Long_Range_Scan, "", VoiceInput MatchSemicolonList "Sensores al máximo"
 EVENT onVoiceInput, VoiceInput_Short_Range_Scan, "", VoiceInput MatchSemicolonList "Sensores al mínimo"
 EVENT onVoiceInput, VoiceInput_Medium_Range_Scan, "", VoiceInput MatchSemicolonList "Restablecer Sensores"
-EVENT onVoiceInput, VoiceInput_Next_Subsystem, "", VoiceInput MatchSemicolonList "Siguiente subsistema [siguiente]"
+EVENT onVoiceInput, VoiceInput_Next_Subsystem, "", VoiceInput MatchSemicolonList "Siguiente subsistema;Subsistema siguiente"
 EVENT onVoiceInput, VoiceInput_Previous_Subsystem, "", VoiceInput MatchSemicolonList "Subsistema anterior"
 
 GROUP MainShipNormalSpace-Fighter:Targeting
@@ -119,11 +120,12 @@ EVENT onVoiceInput, VoiceInput_Wingman_Nav_Lock, "", VoiceInput MatchSemicolonLi
 EVENT onVoiceInput, VoiceInput_ScanSystem, "", VoiceInput MatchSemicolonList "Escanear sistema"
 EVENT onVoiceInput, VoiceInput_Toggle_Orbit_Lines, "", VoiceInput MatchSemicolonList "[Alternar] líneas orbitales"
 EVENT onVoiceInput, VoiceInput_Resume_Route, "", VoiceInput MatchSemicolonList "Restaurar ruta [de navegación]"
+EVENT onVoiceInput, VoiceInput_FSD, "", VoiceInput MatchSemicolonList "[Activar] Motor de distorsión;[Activar] eme de de"
 EVENT onVoiceInput, VoiceInput_Hyperspace, "", VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto"
 
 GROUP MainShipSupercruise-MainShipNormalSpace:HUDMode
 
-EVENT onVoiceInput, VoiceInput_HUDModeToggle_Ship, "", VoiceInput MatchSemicolonList "alternar|cambiar modo"
+EVENT onVoiceInput, VoiceInput_HUDModeToggle_Ship, "", VoiceInput MatchSemicolonList "alternar|cambiar [a] modo [análisis|combate]"
 
 GROUP MainShipNormalSpace-MainShipSupercruise-MainShipDockedStarport-MainShipDockedPlanet-MainShipLanded-Fighter-Taxi:Panels
 
@@ -221,7 +223,7 @@ EVENT onVoiceInput, VoiceInput_ClosePanel_Humanoid, "", VoiceInput MatchSemicolo
 GROUP OnFootPlanet-OnFootStation:Emotes
 
 EVENT onVoiceInput, VoiceInput_EmotePoint, "", VoiceInput MatchSemicolonList Apuntar
-EVENT onVoiceInput, VoiceInput_EmoteWave, "", VoiceInput MatchSemicolonList "Hola hola"
+EVENT onVoiceInput, VoiceInput_EmoteWave, "", VoiceInput MatchSemicolonList Hola
 EVENT onVoiceInput, VoiceInput_EmoteAgree, "", VoiceInput MatchSemicolonList "de acuerdo"
 EVENT onVoiceInput, VoiceInput_EmoteDisagree, "", VoiceInput MatchSemicolonList "en desacuerdo"
 EVENT onVoiceInput, VoiceInput_EmoteGo, "", VoiceInput MatchSemicolonList Vamos
@@ -251,9 +253,9 @@ EVENT onVoiceInput, VoiceInput_InsightPanel_Codex_Humanoid, "", VoiceInput Match
 EVENT onVoiceInput, VoiceInput_InsightPanel_Powerplay_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] Powerplay|Potencias"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Squadrons_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de|del] escuadrón"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Engineer_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] ingenieros"
-EVENT onVoiceInput, VoiceInput_Panel__de__portanaves, "", VoiceInput MatchSemicolonList "Panel [de] portanaves"
+EVENT onVoiceInput, VoiceInput_InsightPanel_Fleetcarrier_Humanoid, "", VoiceInput MatchSemicolonList "Panel [de] portanaves"
 EVENT onVoiceInput, VoiceInput_InsightPanel_Galnet_Humanoid, "", VoiceInput MatchSemicolonList "Panel de Galnet|noticias"
-EVENT onVoiceInput, VoiceInput_ClosePanel_Humanoid, "", VoiceInput MatchSemicolonList "Close Panel"
+EVENT onVoiceInput, VoiceInput_ClosePanel_Humanoid, "", VoiceInput MatchSemicolonList "Cerrar Panel"
 
 GROUP OnFootPlanet-OnFootStation:Misc
 
@@ -364,7 +366,6 @@ EVENT Embark, EmbarkEvent, "", Condition AlwaysTrue
 EVENT LaunchFighter, FighterLaunched, "", Condition AlwaysTrue
 EVENT DockFighter, FighterDocked, "", Condition AlwaysTrue
 EVENT FighterDestroyed, FighterDestroyed, "", Condition AlwaysTrue
-
 
 //*************************************************************
 // onStartup
@@ -713,6 +714,7 @@ PROGRAM VoiceInput_Landing_GearToggle
 
 Rem Autogenerated V1
 Key {LandingGearToggle}
+Say "Entendido;En marcha"
 
 END PROGRAM
 
@@ -919,7 +921,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Boost
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList Boost;Postquemador)
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList Bust|Turbo|Postquemador)
 //*************************************************************
 PROGRAM VoiceInput_Boost
 
@@ -930,8 +932,20 @@ Say "Agárrate fuerte;boost"
 END PROGRAM
 
 //*************************************************************
+// VoiceInput_FSD
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Activar] Motor de distorsión;[Activar] eme de de"), onVoiceInput?(VoiceInput MatchSemicolonList "[Activar] Motor de distorsión;[Activar] eme de de")
+//*************************************************************
+PROGRAM VoiceInput_FSD
+
+Rem Autogenerated V1
+Key {HyperSuperCombination}
+Say "Entendido;En marcha;Saltando"
+
+END PROGRAM
+
+//*************************************************************
 // VoiceInput_Hyperspace
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto"), onVoiceInput?(VoiceInput MatchSemicolonList "[Salto al] hiperespacio;saltar;siguiente salto")
 //*************************************************************
 PROGRAM VoiceInput_Hyperspace
 
@@ -942,8 +956,20 @@ Say "Entendido;En marcha;Saltando"
 END PROGRAM
 
 //*************************************************************
+// VoiceInput_Supercruise
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Saltar a] Supercrucero")
+//*************************************************************
+PROGRAM VoiceInput_Supercruise
+
+Rem Autogenerated V1
+Key {Supercruise}
+Say "Iniciando salto a supercrucero;Supercrucero activado;Entrando en supercrucero"
+
+END PROGRAM
+
+//*************************************************************
 // VoiceInput_HUDModeToggle_Ship
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "alternar|cambiar modo")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "alternar|cambiar [a] modo [análisis|combate]")
 //*************************************************************
 PROGRAM VoiceInput_HUDModeToggle_Ship
 
@@ -962,18 +988,6 @@ PROGRAM VoiceInput_Drop
 Rem Autogenerated V1
 Key {Supercruise}
 Say "Saliendo de supercrucero;Entendido"
-
-END PROGRAM
-
-//*************************************************************
-// VoiceInput_Supercruise
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Saltar a] Supercrucero")
-//*************************************************************
-PROGRAM VoiceInput_Supercruise
-
-Rem Autogenerated V1
-Key {Supercruise}
-Say "Iniciando salto a supercrucero;Supercrucero activado;Entrando en supercrucero"
 
 END PROGRAM
 
@@ -1253,7 +1267,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_Next_Subsystem
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente subsistema [siguiente]")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Siguiente subsistema;Subsistema siguiente")
 //*************************************************************
 PROGRAM VoiceInput_Next_Subsystem
 
@@ -2842,7 +2856,7 @@ END PROGRAM
 PROGRAM VoiceInput_RequestDocking_Ship
 
 Rem Autogenerated V1
-Key "[50,500]{FocusLeftPanel} [50,100]#2{CycleNextPanel} [2000]!{UI_Up} ^{UI_Up} {UI_Right} {UI_Select} [50,100]#1{CycleNextPanel} {FocusLeftPanel}"
+Key "[50,500]{FocusLeftPanel} [50,100]#2{CycleNextPanel} {UI_Right} {UI_Select} [50,100]#2{CycleNextPanel} {FocusLeftPanel}"
 Say "Solicitando permiso para abordar;Permiso de aterrizaje solicitado;Enviando solicitud de abordaje"
 
 END PROGRAM
@@ -3531,7 +3545,7 @@ END PROGRAM
 
 //*************************************************************
 // VoiceInput_ClosePanel_Humanoid
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Close Panel"), onVoiceInput?(VoiceInput MatchSemicolonList "Close Panel")
+// Events: onVoiceInput?(VoiceInput MatchSemicolonList "Close Panel"), onVoiceInput?(VoiceInput MatchSemicolonList "Cerrar Panel")
 //*************************************************************
 PROGRAM VoiceInput_ClosePanel_Humanoid
 
@@ -3881,45 +3895,10 @@ Else
 END PROGRAM
 
 //*************************************************************
-// VoiceInput_Hiperespacio
-// Events: None
-//*************************************************************
-PROGRAM VoiceInput_Hiperespacio
-
-Rem Autogenerated V1
-Key F2
-Say Saltando;Entendido
-
-END PROGRAM
-
-//*************************************************************
-// VoiceInput__salto_al__hiperespacio
-// Events: None
-//*************************************************************
-PROGRAM VoiceInput__salto_al__hiperespacio
-
-Rem Autogenerated V1
-Key {Hyperspace}
-Say "Saltando al hiperespacio;Entendido;En marcha"
-
-END PROGRAM
-
-//*************************************************************
-// VoiceInput__Saltar_al__Hiperespacio
-// Events: onVoiceInput?(VoiceInput MatchSemicolonList "[Saltar al] Hiperespacio;Saltar;Siguiente salto")
-//*************************************************************
-PROGRAM VoiceInput__Saltar_al__Hiperespacio
-
-Rem Autogenerated V1
-Key {Hyperspace}
-
-END PROGRAM
-
-//*************************************************************
-// VoiceInput_Panel__de__portanaves
+// VoiceInput_InsightPanel_Fleetcarrier_Humanoid
 // Events: onVoiceInput?(VoiceInput MatchSemicolonList "Panel [de] portanaves")
 //*************************************************************
-PROGRAM VoiceInput_Panel__de__portanaves
+PROGRAM VoiceInput_InsightPanel_Fleetcarrier_Humanoid
 
 Rem Autogenerated V1
 Key "[600,50]{HumanoidOpenAccessPanelButton} [50,50]{UI_Right} [50,50]#3{UI_Down}  [50,50]{UI_Select}"
