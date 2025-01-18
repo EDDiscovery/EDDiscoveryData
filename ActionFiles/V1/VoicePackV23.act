@@ -112,7 +112,7 @@ EVENT ApproachSettlement, GenericResponse, QueueLimit=20000, Condition AlwaysTru
 EVENT Docked, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingCancelled, DockingCancelled, "", Condition AlwaysTrue
 EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
-EVENT DockingGranted, GenericDelayedResponse, "Delay=15,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
+EVENT DockingGranted, GenericDelayedResponse, "Delay=10000,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
 EVENT onTimer, DockingGrantedResponse, "", TimerName Contains VoicePackDockingGrantedDelay
 EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
