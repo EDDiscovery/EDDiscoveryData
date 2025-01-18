@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 23 of the voice pack for EDD, for version 18.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=23.2.0.0
+INSTALL Version=23.3.0.0
 INSTALL MinEDVersion=18.1.6.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
@@ -639,10 +639,10 @@ Static say_PowerplayJoin $= Joining %(EventClass_Power), good luck Commander
 Static say_PowerplayLeave $= Leaving %(EventClass_Power)
 Static say_PowerplaySalary $= Power play salary received from %(EventClass_Power) of %hnum(EventClass_Amount,HNumList) credits
 Static say_PowerplayVote $= Voted for power %(EventClass_Power) to take over system %star(EventClass_System,say_ss), votes are currently %(EventClass_Votes)
-Static say_PowerplayVoucher $= "Reward for Power Play combat from %(EventClass_Power) in systems %expandarray(EventClass_Systems,\", \",0,20,splitcaps)"
+Static say_PowerplayVoucher $= "Reward for Power Play combat from %(EventClass_Power) in systems %expandarray(EventClass_Systems,\", \",1,20,splitcaps)"
 Static say_PVPKill $= Congratulations, that scum %(EventClass_CombatRank) Commander %(EventClass_Victim) is pushing up the weeds now in heaven or hell<;>%(EventClass_CombatRank) Commander %(EventClass_Victim) despatched to another world<;>%(EventClass_CombatRank) Commander %(EventClass_Victim) never knew what was coming, sucker
 
-Static say_RebootRepair $= "Rebooting and repairing modules %expandarray(EventClass_FriendlySlots,\", \",0,20,splitcaps)"
+Static say_RebootRepair $= "Rebooting and repairing modules %expandarray(EventClass_FriendlySlots,\", \",1,20,splitcaps)"
 Static say_RedeemVoucher $= "Redeeming %(EventClass_Type) worth %hnum(EventClass_Amount,HNumList) credits, %ifnotempty(EventClass_Faction,' from factions %rv(EventClass_Faction,say_ss)')%ifnonzero(EventClass_BrokerPercentage,', with a commission to the broker of %(EventClass_BrokerPercentage) percent')"
 
 Static say_Repair $= {{{Repaired %(EventClass_ItemLocalised) Commander<;>%(EventClass_ItemLocalised) repaired}}}. Cost is %hnum(EventClass_Cost,HNumList) credits
@@ -774,7 +774,7 @@ Static say_SquadronDemotion $= {{{You've must have been Naughty!<;>oh Dear<;>Oh 
 Static say_SquadronPromotion $= {{{Well Done<;>Congratulations<;>Bravo!}}} You've been promoted by your Squadron %(EventClass_Name) to Rank %(EventClass_NewRank)
 
 Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Landing successful Commander<;>Landed Commander<;>Touchdown!}}}{{{ at Lattitude %round(EventClass_Latitude,2,M0.##), Longitude %round(EventClass_Longitude,2,M0.##), }}}Well done Commander<;>Engines off<;>Prepare for surface operations','Ship returned from orbit and is ready to board<;>Ship landed, ready to board')
-Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",0,9,\"\",\"_Name_Localised\")"
+Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",1,9,\"\",\"_Name_Localised\")"
 
 Static say_Undocked $= Undocked from %sc(EventClass_StationName) fly safe Commander<;>Ship ready, your in control Commander<;> Engines on, departing %sc(EventClass_StationName)<;>Departing station %sc(EventClass_StationName)
 Static say_USSDrop $= {{{Dropped into<;>Entering}}} U S S type %(EventClass_USSTypeLocalised), threat level is %(EventClass_USSThreat)
@@ -786,7 +786,7 @@ Static say_UseConsumable $= {{{Commander, <;>}}}Used %(EventClass_Resource_Name_
 Static say_VehicleSwitch $= Switching to %sc(EventClass_To)
 
 Static say_WingAdd $= Commander %sc(EventClass_Name) has joined the wing
-Static say_WingJoin $= "Joined wing with Commander %expandarray(EventClass_Others,\", Commander \", 0, 32)"
+Static say_WingJoin $= "Joined wing with Commander %expandarray(EventClass_Others,\", Commander \", 1, 32)"
 Static say_WingLeave $= Leaving wing Commander
 Static say_WingInvite $= Invited to wing by %(EventClass_Name)
 
