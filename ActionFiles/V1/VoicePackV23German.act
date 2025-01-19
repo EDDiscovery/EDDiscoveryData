@@ -1,4 +1,4 @@
-﻿ACTIONFILE V4
+ACTIONFILE V4
 
 ENABLED True
 
@@ -1087,7 +1087,7 @@ END PROGRAM
 //*************************************************************
 PROGRAM Initialise
 
-MenuItem VoiceMenuConfigureVoice,add-ons,"Sprachsynthese-Konfiguration",speaker
+MenuItem VoiceMenuConfigureCoPilot,add-ons,"Sprachsynthese-Konfiguration",speaker
 MenuItem VoiceMenuConfigureText,add-ons,"Sprache Textnachrichten Sprachkonfiguration",speaker
 MenuItem VoiceMenuConfigureNPCEffects,add-ons,"Stimme NPC-Sprachkonfiguration",speaker
 MenuItem VoiceMenuConfigureVerbosity,add-ons,"Voice Pack-Konfiguration",speaker
@@ -1933,197 +1933,197 @@ If MenuName Contains ConfigureNPCVoices
 If MenuName Contains ShowHelp
     MessageBox "Voice Pack (C) ED Discovery team\r\n\r\nAdd-Ons verwenden | um diese Funktion zu aktivieren oder zu deaktivieren\r\nVerwenden Sie die Optionen zur Sprachkonfiguration im Menü Add-Ons, um die Sprachausgabe zu konfigurieren\r\nund Sprachpaketoptionen einzustellen","Voice Pack"
 
-    If MenuName Contains ConfigureVerbosity
+If MenuName Contains ConfigureVerbosity
 
-        Set lab = 10
-        Set labw = 140
-        Set col1 = 150
-        Set col2 = 400
-        Set col3 = 650
-        Set colw = 240
-        Set ls = +30
-        Set lsm = +40
-        Set width = 1000
-        Set Def = ""
-        Set dvar1a = "L2,Label,\"Speech file\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Leer bedeutet, dass keine Sprachdatei vorhanden ist, ansonsten die Datei eingeben oder durchsuchen\""
-        Set dvar1c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Datei auswählen, in die die Sprachausgabe geschrieben werden soll\""
+	Set lab = 10
+	Set labw = 140
+	Set col1 = 150
+	Set col2 = 400
+	Set col3 = 650
+	Set colw = 240
+	Set ls = +30
+	Set lsm = +40
+	Set width = 1000
+	Set Def = ""
+	Set dvar1a = "L2,Label,\"Speech file\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Leer bedeutet, dass keine Sprachdatei vorhanden ist, ansonsten die Datei eingeben oder durchsuchen\""
+	Set dvar1c = "BBROWSE,Button,Browse,%(col2),+0,78,20,\"Datei auswählen, in die die Sprachausgabe geschrieben werden soll\""
 
-        Set dvar2a = "CBPR,CheckBox,\"Datum/Uhrzeit im Protokoll drucken\",%(col1),%(ls),%(colw),20,\"Uhrzeit und Datum vor dem Text drucken\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
-        Set dvar2b = "CBLL,CheckBox,\"Nur letztes protokollieren\",%(col2),+0,%(colw),20,\"Protokoll vor jeder Sprachausgabe löschen\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
+	Set dvar2a = "CBPR,CheckBox,\"Datum/Uhrzeit im Protokoll drucken\",%(col1),%(ls),%(colw),20,\"Uhrzeit und Datum vor dem Text drucken\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
+	Set dvar2b = "CBLL,CheckBox,\"Nur letztes protokollieren\",%(col2),+0,%(colw),20,\"Protokoll vor jeder Sprachausgabe löschen\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
 
-        Set dvar3a = "L2,Label,\"General\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar3b = "CBD,CheckBox,\"Sprachausgabe deaktivieren\",%(col1),+0,%(colw),20,\"Sprachausgabe deaktivieren, nur Textausgabe aktiviert\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
-        Set dvar3c = "CBSSML,CheckBox,\"SSML deaktivieren\",%(col2),+0,%(colw),20,\"SSML deaktivieren (Neustart von ED erforderlich)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
-        Set dvar3d = "CBWEL,CheckBox,\"Willkommensnachricht deaktivieren\",%(col3),+0,%(colw),20,\"Die Willkommensnachricht deaktivieren\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
-        Set dvar3e = "CBSUB,CheckBox,\"Untertitel\",%(col1),%(ls),%(colw),20,\"Untertitelbox einschalten\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
-        Set dvar4b = "CBFR,CheckBox,\"Freundesstatus deaktivieren\",%(col2),+0,%(colw),20,\"Freundesstatus online/offline ist stummgeschaltet\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
+	Set dvar3a = "L2,Label,\"General\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar3b = "CBD,CheckBox,\"Sprachausgabe deaktivieren\",%(col1),+0,%(colw),20,\"Sprachausgabe deaktivieren, nur Textausgabe aktiviert\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
+	Set dvar3c = "CBSSML,CheckBox,\"SSML deaktivieren\",%(col2),+0,%(colw),20,\"SSML deaktivieren (Neustart von ED erforderlich)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
+	Set dvar3d = "CBWEL,CheckBox,\"Willkommensnachricht deaktivieren\",%(col3),+0,%(colw),20,\"Die Willkommensnachricht deaktivieren\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
+	Set dvar3e = "CBSUB,CheckBox,\"Untertitel\",%(col1),%(ls),%(colw),20,\"Untertitelbox einschalten\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
+	Set dvar4b = "CBFR,CheckBox,\"Freundesstatus deaktivieren\",%(col2),+0,%(colw),20,\"Freundesstatus online/offline ist stummgeschaltet\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
 
-        Set dvar5a = "L3,Label,\"Texts\",%(lab),%(lsm),%(labw),20,\"\""
-        Let npcdisable = "!%IsPresent(SpeechControls,\"NPCChatterDisable;\",0)"
+	Set dvar5a = "L3,Label,\"Texts\",%(lab),%(lsm),%(labw),20,\"\""
+	Let npcdisable = "!%IsPresent(SpeechControls,\"NPCChatterDisable;\",0)"
 
-        Set dvar5b = "CBN1,CheckBox,\"NPC-Texte aktivieren\",%(col1),+0,%(colw),20,\"Alle NPC-Texte aktivieren\",%(npcdisable)"    // name kept for backwards compat
-        Set dvar5c = "CBNS,CheckBox,\"NPC-Sounds deaktivieren\",%(col2),+0,%(colw),20,\"Intro/Out-Sounds bei NPC-Texten deaktivieren\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
-        Set dvar5d = "CBNMV,CheckBox,\"NPC Unterschiedliche Stimmen\",%(col3),+0,%(colw),20,\"Wähle verschiedene Stimmen für jeden NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
-        Set dvar5z = "CBNTV,CheckBox,\"Texts Different Voices\",%(col1),%(ls),%(colw),20,\"Use Different voices for each text message\",%IsPresent(SpeechControls,\"TEXTVoicesEnable;\",0)"
+	Set dvar5b = "CBN1,CheckBox,\"NPC-Texte aktivieren\",%(col1),+0,%(colw),20,\"Alle NPC-Texte aktivieren\",%(npcdisable)"    // name kept for backwards compat
+	Set dvar5c = "CBNS,CheckBox,\"NPC-Sounds deaktivieren\",%(col2),+0,%(colw),20,\"Intro/Out-Sounds bei NPC-Texten deaktivieren\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
+	Set dvar5d = "CBNMV,CheckBox,\"NPC Unterschiedliche Stimmen\",%(col3),+0,%(colw),20,\"Wähle verschiedene Stimmen für jeden NPC\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+	Set dvar5z = "CBNTV,CheckBox,\"Texts Different Voices\",%(col1),%(ls),%(colw),20,\"Use Different voices for each text message\",%IsPresent(SpeechControls,\"TEXTVoicesEnable;\",0)"
 
-        Set dvar5e = "CBN2,CheckBox,\"Geschwadertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Staffeltexte aktivieren\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
-        Set dvar5f = "CBN3,CheckBox,\"Geschwadertexte aktivieren\",%(col2),+0,%(colw),20,\"Alle Geschwadertexte aktivieren\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
-        Set dvar5g = "CBN4,CheckBox,\"Lokale Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle lokalen Texte aktivieren\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
+	Set dvar5e = "CBN2,CheckBox,\"Geschwadertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Staffeltexte aktivieren\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
+	Set dvar5f = "CBN3,CheckBox,\"Geschwadertexte aktivieren\",%(col2),+0,%(colw),20,\"Alle Geschwadertexte aktivieren\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
+	Set dvar5g = "CBN4,CheckBox,\"Lokale Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle lokalen Texte aktivieren\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
 
-        Set dvar5h = "CBN5,CheckBox,\"Freundestexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Freundestexte aktivieren\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
-        Set dvar5j = "CBN6,CheckBox,\"VoiceChat-Texte aktivieren\",%(col2),+0,%(colw),20,\"Alle Voice-Chat-Texte aktivieren\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
-        Set dvar5k = "CBN7,CheckBox,\"SternSystem-Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle Sternsystemtexte aktivieren\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
+	Set dvar5h = "CBN5,CheckBox,\"Freundestexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Freundestexte aktivieren\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
+	Set dvar5j = "CBN6,CheckBox,\"VoiceChat-Texte aktivieren\",%(col2),+0,%(colw),20,\"Alle Voice-Chat-Texte aktivieren\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
+	Set dvar5k = "CBN7,CheckBox,\"SternSystem-Texte aktivieren\",%(col3),+0,%(colw),20,\"Alle Sternsystemtexte aktivieren\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
 
-        Set dvar5m = "CBN8,CheckBox,\"Spielertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Spielertexte aktivieren\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
-        Set dvar5n = "CBN9,CheckBox,\"Alle anderen Texte aktivieren\",%(col2),+0,%(colw),20,\"Andere Arten von Texten aktivieren\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
+	Set dvar5m = "CBN8,CheckBox,\"Spielertexte aktivieren\",%(col1),%(ls),%(colw),20,\"Alle Spielertexte aktivieren\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
+	Set dvar5n = "CBN9,CheckBox,\"Alle anderen Texte aktivieren\",%(col2),+0,%(colw),20,\"Andere Arten von Texten aktivieren\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
 
-        Set dvar6a = "L3,Label,\"FSA Sprung\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar6b = "CBF,CheckBox,\"Systeminfo nur erster Sprung\",%(col1),+0,%(colw),20,\"Systeminformationen nur beim ersten Sprung zum System ansagen\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
-        Set dvar6c = "CBFL,CheckBox,\"Berichte über den Treibstoffstand deaktivieren\",%(col2),+0,%(colw),20,\"Treibstoffstandberichte deaktivieren\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
-        Set dvar6d = "CBFR,CheckBox,\"Fraktionsberichte deaktivieren\",%(col3),+0,%(colw),20,\"Fraktionsberichte bei FSA-Sprüngen deaktivieren\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
+	Set dvar6a = "L3,Label,\"FSA Sprung\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar6b = "CBF,CheckBox,\"Systeminfo nur erster Sprung\",%(col1),+0,%(colw),20,\"Systeminformationen nur beim ersten Sprung zum System ansagen\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
+	Set dvar6c = "CBFL,CheckBox,\"Berichte über den Treibstoffstand deaktivieren\",%(col2),+0,%(colw),20,\"Treibstoffstandberichte deaktivieren\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
+	Set dvar6d = "CBFR,CheckBox,\"Fraktionsberichte deaktivieren\",%(col3),+0,%(colw),20,\"Fraktionsberichte bei FSA-Sprüngen deaktivieren\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
 
-        Set dvar7a = "L3,Label,\"Sterntypen ausschließen\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Schließen Sie diese Sterne vom Auslesen der nach dem Sprung gelesenen Systeminformationen aus, Sterntypen OBAFGKM, H,N,TTS, Wx etc, durch Komma oder Leerzeichen getrennt\""
+	Set dvar7a = "L3,Label,\"Sterntypen ausschließen\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Schließen Sie diese Sterne vom Auslesen der nach dem Sprung gelesenen Systeminformationen aus, Sterntypen OBAFGKM, H,N,TTS, Wx etc, durch Komma oder Leerzeichen getrennt\""
 
-        Set dvar8a = "L3,Label,\"Scannen\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar8b = "CBSM,CheckBox,\"Sternmasse/Mag deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren Sie Scan-Berichte über Masse und Helligkeit von Sternen\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
-        Set dvar8c1 = "CBSAS,CheckBox,\"Auto-Scan aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie das Aufsagen automatisch gescannter Einträge\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
+	Set dvar8a = "L3,Label,\"Scannen\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar8b = "CBSM,CheckBox,\"Sternmasse/Mag deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren Sie Scan-Berichte über Masse und Helligkeit von Sternen\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
+	Set dvar8c1 = "CBSAS,CheckBox,\"Auto-Scan aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie das Aufsagen automatisch gescannter Einträge\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
 
-        Set dvar8d = "CBPB,CheckBox,\"Planet Grundlagen deaktivieren\",%(col1),%(ls),%(colw),20,\"Deaktivieren Sie Scan-Berichte von Planeten Landbarer Zustand, Atmosphäre\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
-        Set dvar8e = "CBPCR,CheckBox,\"Credits deaktivieren\",%(col2),+0,%(colw),20,\"Credits Berichte deaktivieren\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
-        Set dvar8f = "CBPDS,CheckBox,\"Distanz deaktivieren\",%(col3),+0,%(colw),20,\"Entfernungsberichte aktivieren\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
+	Set dvar8d = "CBPB,CheckBox,\"Planet Grundlagen deaktivieren\",%(col1),%(ls),%(colw),20,\"Deaktivieren Sie Scan-Berichte von Planeten Landbarer Zustand, Atmosphäre\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
+	Set dvar8e = "CBPCR,CheckBox,\"Credits deaktivieren\",%(col2),+0,%(colw),20,\"Credits Berichte deaktivieren\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
+	Set dvar8f = "CBPDS,CheckBox,\"Distanz deaktivieren\",%(col3),+0,%(colw),20,\"Entfernungsberichte aktivieren\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
 
-        Set dvar8g = "CBPF,CheckBox,\"Planet Erweitert aktivieren\",%(col1),%(ls),%(colw),20,\"Aktivieren Sie Scan-Berichte über erweiterte Informationen zu Planeten\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
-        Set dvar8h = "CBPM,CheckBox,\"Planet Materialien aktivieren\",%(col2),+0,%(colw),20,\"Aktivieren von Scan-Berichten über Planetenmaterialien\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
-        Set dvar8i = "CBBC,CheckBox,\"Gürtelcluster aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie Scan-Berichte von Gürtel Klustern\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
+	Set dvar8g = "CBPF,CheckBox,\"Planet Erweitert aktivieren\",%(col1),%(ls),%(colw),20,\"Aktivieren Sie Scan-Berichte über erweiterte Informationen zu Planeten\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
+	Set dvar8h = "CBPM,CheckBox,\"Planet Materialien aktivieren\",%(col2),+0,%(colw),20,\"Aktivieren von Scan-Berichten über Planetenmaterialien\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
+	Set dvar8i = "CBBC,CheckBox,\"Gürtelcluster aktivieren\",%(col3),+0,%(colw),20,\"Aktivieren Sie Scan-Berichte von Gürtel Klustern\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
-        Set dvar8j = "L3,Label,\"Mindestwert:\",%(col1),%(ls),80,20,\"\""
-        Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Legen Sie den Mindestwert der zu berichtenden Scans fest\""
-        Set dvar8l = "CBDF,CheckBox,\"Nicht entdeckt\",%(col2),+0,%(colw),20,\"Nur Berichte über Scans mit deaktivierter Entdeckungsmarkierung\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
-        Set dvar8m = "CBMF,CheckBox,\"Nicht kartographiert\",%(col3),+0,%(colw),20,\"Nur Berichte über Scans mit deaktiviertem Mapping-Flag\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
+	Set dvar8j = "L3,Label,\"Mindestwert:\",%(col1),%(ls),80,20,\"\""
+	Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Legen Sie den Mindestwert der zu berichtenden Scans fest\""
+	Set dvar8l = "CBDF,CheckBox,\"Nicht entdeckt\",%(col2),+0,%(colw),20,\"Nur Berichte über Scans mit deaktivierter Entdeckungsmarkierung\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
+	Set dvar8m = "CBMF,CheckBox,\"Nicht kartographiert\",%(col3),+0,%(colw),20,\"Nur Berichte über Scans mit deaktiviertem Mapping-Flag\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
-        Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
-        Set dvar9b = "CBED,CheckBox,\"EDSM-Info deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller EDSM-Suchvorgänge für Systeminformationen\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
-        Set dvar9c = "CBES,CheckBox,\"Kurzer Überblick\",%(col2),+0,%(colw),20,\"Erstelle eine kurze Zusammenfassung anstelle der vollständigen Informationen\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
-        Set dvar9d = "CBEM,CheckBox,\"Mond-Informationen\",%(col3),+0,%(colw),20,\"Mondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
-        Set dvar9e = "CBESM,CheckBox,\"Untermond-Informationen\",%(col1),%(ls),%(colw),20,\"Untermondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
-        Set dvar9f = "CBEAT,CheckBox,\"Information zur Atmosphäre\",%(col2),+0,%(colw),20,\"Atmosphäreninformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
-        Set dvar9g = "CBEVC,CheckBox,\"Informationen zum Vulkanismus\",%(col3),+0,%(colw),20,\"Vulkanismus-Informationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
-        Set dvar9h = "CBEMA,CheckBox,\"Informationen zu Materialien\",%(col1),%(ls),%(colw),20,\"Materialinformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
-        Set dvar9i = "CBEMFD,CheckBox,\"EDSM-Erstaufklärung deaktivieren\",%(col2),+0,%(colw),20,\"Deaktivieren Sie die EDSM-Ersterkennungsmeldung\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
+	Set dvar9a = "L3,Label,\"EDSM\",10,%(lsm),80,20,\"\""
+	Set dvar9b = "CBED,CheckBox,\"EDSM-Info deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller EDSM-Suchvorgänge für Systeminformationen\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
+	Set dvar9c = "CBES,CheckBox,\"Kurzer Überblick\",%(col2),+0,%(colw),20,\"Erstelle eine kurze Zusammenfassung anstelle der vollständigen Informationen\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
+	Set dvar9d = "CBEM,CheckBox,\"Mond-Informationen\",%(col3),+0,%(colw),20,\"Mondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
+	Set dvar9e = "CBESM,CheckBox,\"Untermond-Informationen\",%(col1),%(ls),%(colw),20,\"Untermondinformationen ansagen\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
+	Set dvar9f = "CBEAT,CheckBox,\"Information zur Atmosphäre\",%(col2),+0,%(colw),20,\"Atmosphäreninformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
+	Set dvar9g = "CBEVC,CheckBox,\"Informationen zum Vulkanismus\",%(col3),+0,%(colw),20,\"Vulkanismus-Informationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
+	Set dvar9h = "CBEMA,CheckBox,\"Informationen zu Materialien\",%(col1),%(ls),%(colw),20,\"Materialinformationen für Planeten ansagen\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
+	Set dvar9i = "CBEMFD,CheckBox,\"EDSM-Erstaufklärung deaktivieren\",%(col2),+0,%(colw),20,\"Deaktivieren Sie die EDSM-Ersterkennungsmeldung\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
 
-        Set dvar10a = "L3,Label,\"Nav-Bake\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Auswählen, was nach dem Scannen einer Navigationsbake angesagt wird\",Summary,No Speech on Scan,Full Scan Speech"
+	Set dvar10a = "L3,Label,\"Nav-Bake\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Auswählen, was nach dem Scannen einer Navigationsbake angesagt wird\",Summary,No Speech on Scan,Full Scan Speech"
 
-        Set dvar11a = "L3,Label,\"Zielen\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar11b = "CBTarget,CheckBox,\"Zielberichte deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller Meldungen über anvisierte Schiffe\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+	Set dvar11a = "L3,Label,\"Zielen\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar11b = "CBTarget,CheckBox,\"Zielberichte deaktivieren\",%(col1),+0,%(colw),20,\"Deaktivieren aller Meldungen über anvisierte Schiffe\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
 
-        Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
-        Set dvar12b = "CBODYSW,CheckBox,\"Disable Sel Weapon\",%(col1),+0,%(colw),20,\"Disable the Selected Weapon message\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
+	Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
+	Set dvar12b = "CBODYSW,CheckBox,\"Disable Sel Weapon\",%(col1),+0,%(colw),20,\"Disable the Selected Weapon message\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
 
-        Set dvarok = "OK,Button,\"OK\",%eval(%(width)-140),%(lsm),120,20,\"Für OK drücken\""
-        Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-280),+0,120,20,\"Zum Abbrechen drücken\""
+	Set dvarok = "OK,Button,\"OK\",%eval(%(width)-140),%(lsm),120,20,\"Für OK drücken\""
+	Set dvarcancel = "Cancel,Button,\"Cancel\",%eval(%(width)-280),+0,120,20,\"Zum Abbrechen drücken\""
 
-        Dialog D1, "Voice Pack Konfiguration", "%(width),750", dvar
+	Dialog D1, "Voice Pack Konfiguration", "%(width),750", dvar
 
-        While D1 $!= Cancel And D1 $!= Escape
-            If D1 $== BBROWSE
-                FileDialog savefile,c:,"Log files|*.log|All Files|*.*",*.log,on
-                If FileName IsNotEmpty
-                    DialogControl D1,Set TBLF=%(FileName)
+	While D1 $!= Cancel And D1 $!= Escape
+		If D1 $== BBROWSE
+			FileDialog savefile,c:,"Log files|*.log|All Files|*.*",*.log,on
+			If FileName IsNotEmpty
+				DialogControl D1,Set TBLF=%(FileName)
 
-            If D1 $== OK
-                Let good = 1
+		If D1 $== OK
+			Let good = 1
 
-                PersistentGlobal SpeechControls = ""
+			PersistentGlobal SpeechControls = ""
 
-                // in order
-                Call SetSO(ctrl="CBPR",flag="LogTimeDate;")
-                Call SetSO(ctrl="CBLL",flag="LogLastOnly;")
-                Call SetSO(ctrl="CBD",flag="PrintOnly;")
+			// in order
+			Call SetSO(ctrl="CBPR",flag="LogTimeDate;")
+			Call SetSO(ctrl="CBLL",flag="LogLastOnly;")
+			Call SetSO(ctrl="CBD",flag="PrintOnly;")
 
-                Call SetSO(ctrl="CBFR",flag="FriendsStatusDisable;")
-                Call SetSO(ctrl="CBWEL",flag="WelcomeMessageDisable;")
-                Call SetSO(ctrl="CBSUB",flag="Subtitles;")
+			Call SetSO(ctrl="CBFR",flag="FriendsStatusDisable;")
+			Call SetSO(ctrl="CBWEL",flag="WelcomeMessageDisable;")
+			Call SetSO(ctrl="CBSUB",flag="Subtitles;")
 
-                Call SetSO(ctrl="CBSSML",flag="SSMLDisable;")
+			Call SetSO(ctrl="CBSSML",flag="SSMLDisable;")
 
-                Call SetSO(ctrl="CBN1",flag="NPCChatterDisable;",State=0)
-                Call SetSO(ctrl="CBNS",flag="NPCSoundsDisable;")
-                Call SetSO(ctrl="CBN2",flag="SquadronTextsEnable;")
-                Call SetSO(ctrl="CBN3",flag="WingTextsEnable;")
-                Call SetSO(ctrl="CBN4",flag="LocalTextsEnable;")
-                Call SetSO(ctrl="CBN5",flag="FriendTextsEnable;")
-                Call SetSO(ctrl="CBN6",flag="VoiceChatTextsEnable;")
-                Call SetSO(ctrl="CBN7",flag="StarSystemTextsEnable;")
-                Call SetSO(ctrl="CBN8",flag="PlayerTextsEnable;")
-                Call SetSO(ctrl="CBN9",flag="AnyOtherTextsEnable;")
-                Call SetSO(ctrl="CBNMV",flag="NPCVoicesEnable;")
-                Call SetSO(ctrl="CBNTV",flag="TEXTVoicesEnable;")
+			Call SetSO(ctrl="CBN1",flag="NPCChatterDisable;",State=0)
+			Call SetSO(ctrl="CBNS",flag="NPCSoundsDisable;")
+			Call SetSO(ctrl="CBN2",flag="SquadronTextsEnable;")
+			Call SetSO(ctrl="CBN3",flag="WingTextsEnable;")
+			Call SetSO(ctrl="CBN4",flag="LocalTextsEnable;")
+			Call SetSO(ctrl="CBN5",flag="FriendTextsEnable;")
+			Call SetSO(ctrl="CBN6",flag="VoiceChatTextsEnable;")
+			Call SetSO(ctrl="CBN7",flag="StarSystemTextsEnable;")
+			Call SetSO(ctrl="CBN8",flag="PlayerTextsEnable;")
+			Call SetSO(ctrl="CBN9",flag="AnyOtherTextsEnable;")
+			Call SetSO(ctrl="CBNMV",flag="NPCVoicesEnable;")
+			Call SetSO(ctrl="CBNTV",flag="TEXTVoicesEnable;")
 
-                Call SetSO(ctrl="CBF",flag="FirstJumpOnly;")
-                Call SetSO(ctrl="CBFL",flag="FuelLevelDisable;")
-                Call SetSO(ctrl="CBFR",flag="FSDFactionDisable;")
+			Call SetSO(ctrl="CBF",flag="FirstJumpOnly;")
+			Call SetSO(ctrl="CBFL",flag="FuelLevelDisable;")
+			Call SetSO(ctrl="CBFR",flag="FSDFactionDisable;")
 
-                Call SetSO(ctrl="CBSM",flag="ScanStarMassDisable;")
-                Call SetSO(ctrl="CBSAS",flag="ScanAutoScanEnable;")
-                Call SetSO(ctrl="CBPB",flag="ScanPlanetBasicInformationDisable;")
-                Call SetSO(ctrl="CBPCR",flag="ScanPlanetCreditsDisable;")
-                Call SetSO(ctrl="CBPDS",flag="ScanPlanetDistanceDisable;")
-                Call SetSO(ctrl="CBPF",flag="ScanPlanetExtendedInformationEnable;")
-                Call SetSO(ctrl="CBPM",flag="ScanPlanetMaterialInformationEnable;")
-                Call SetSO(ctrl="CBBC",flag="ScanPlanetBeltClusters;")
-                Call SetSO(ctrl="CBDF",flag="ScanNotDiscovered;")
-                Call SetSO(ctrl="CBMF",flag="ScanNotMapped;")
+			Call SetSO(ctrl="CBSM",flag="ScanStarMassDisable;")
+			Call SetSO(ctrl="CBSAS",flag="ScanAutoScanEnable;")
+			Call SetSO(ctrl="CBPB",flag="ScanPlanetBasicInformationDisable;")
+			Call SetSO(ctrl="CBPCR",flag="ScanPlanetCreditsDisable;")
+			Call SetSO(ctrl="CBPDS",flag="ScanPlanetDistanceDisable;")
+			Call SetSO(ctrl="CBPF",flag="ScanPlanetExtendedInformationEnable;")
+			Call SetSO(ctrl="CBPM",flag="ScanPlanetMaterialInformationEnable;")
+			Call SetSO(ctrl="CBBC",flag="ScanPlanetBeltClusters;")
+			Call SetSO(ctrl="CBDF",flag="ScanNotDiscovered;")
+			Call SetSO(ctrl="CBMF",flag="ScanNotMapped;")
 
-                Call SetSO(ctrl="CBED",flag="EDSMInformationDisable;")
-                Call SetSO(ctrl="CBES",flag="EDSMSummaryEnable;")
-                Call SetSO(ctrl="CBEM",flag="EDSMMoonsEnable;")
-                Call SetSO(ctrl="CBESM",flag="EDSMSubMoonsEnable;")
-                Call SetSO(ctrl="CBEAT",flag="EDSMAtmosphereEnable;")
-                Call SetSO(ctrl="CBEVC",flag="EDSMVolcanismEnable;")
-                Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
-                Call SetSO(ctrl="CBEMFD",flag="EDSMFDDisable;")
+			Call SetSO(ctrl="CBED",flag="EDSMInformationDisable;")
+			Call SetSO(ctrl="CBES",flag="EDSMSummaryEnable;")
+			Call SetSO(ctrl="CBEM",flag="EDSMMoonsEnable;")
+			Call SetSO(ctrl="CBESM",flag="EDSMSubMoonsEnable;")
+			Call SetSO(ctrl="CBEAT",flag="EDSMAtmosphereEnable;")
+			Call SetSO(ctrl="CBEVC",flag="EDSMVolcanismEnable;")
+			Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
+			Call SetSO(ctrl="CBEMFD",flag="EDSMFDDisable;")
 
-                Call SetSO(ctrl="CBTarget",flag="TargetReportingDisabled;")
+			Call SetSO(ctrl="CBTarget",flag="TargetReportingDisabled;")
 
-                Call SetSO(ctrl="CBODYSW",flag="ODYDisSelWeapon;")
+			Call SetSO(ctrl="CBODYSW",flag="ODYDisSelWeapon;")
 
-                Rem print Result %(SpeechControls)
+			Rem print Result %(SpeechControls)
 
-                DialogControl D1,Get TBSTAR
-                PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
+			DialogControl D1,Get TBSTAR
+			PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
 
-                DialogControl D1,Get CBXNav
-                PersistentGlobal SpeechNavBeacon = %(DialogResult)
+			DialogControl D1,Get CBXNav
+			PersistentGlobal SpeechNavBeacon = %(DialogResult)
 
-                DialogControl D1,Get TBSV
-                PersistentGlobal SpeechMinScanValue = %(DialogResult)
+			DialogControl D1,Get TBSV
+			PersistentGlobal SpeechMinScanValue = %(DialogResult)
 
-                DialogControl D1,Get TBLF
-                If DialogResult IsNotEmpty And good IsTrue
-                    If %fileexists(DialogResult) IsTrue
-                        PersistentGlobal SpeechLog = %(DialogResult)
-                    Else 
-                        Let success = %openfile(h1,DialogResult,create)
-                        If success IsTrue
-                            // Print test write to %(DialogResult)
-                            Expr %writeline(h1,"Speech output file")
-                            Expr %closefile(h1)
-                            PersistentGlobal SpeechLog = %(DialogResult)
-                        Else 
-                            MessageBox "Sprachprotokollpfad(Log) ungültig","Fehlerhafter Dateiname angegeben"
-                            Let good = 0
-                Else 
-                    PersistentGlobal SpeechLog = ""
+			DialogControl D1,Get TBLF
+			If DialogResult IsNotEmpty And good IsTrue
+				If %fileexists(DialogResult) IsTrue
+					PersistentGlobal SpeechLog = %(DialogResult)
+				Else 
+					Let success = %openfile(h1,DialogResult,create)
+					If success IsTrue
+						// Print test write to %(DialogResult)
+						Expr %writeline(h1,"Speech output file")
+						Expr %closefile(h1)
+						PersistentGlobal SpeechLog = %(DialogResult)
+					Else 
+						MessageBox "Sprachprotokollpfad(Log) ungültig","Fehlerhafter Dateiname angegeben"
+						Let good = 0
+			Else 
+				PersistentGlobal SpeechLog = ""
 
-                If good IsTrue
-                    Break 
+			If good IsTrue
+				Break 
 
-            DialogControl D1,Continue
+		DialogControl D1,Continue
 
-        DialogControl D1, Close
+	DialogControl D1, Close
 
 END PROGRAM
 
