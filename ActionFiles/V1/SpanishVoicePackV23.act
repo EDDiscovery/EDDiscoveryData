@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="Esta es la versión 23 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=23.1.0.0
+INSTALL Version=23.2.0.0
 INSTALL MinEDVersion=18.1.6.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
@@ -114,7 +114,7 @@ EVENT ApproachSettlement, GenericResponse, QueueLimit=20000, Condition AlwaysTru
 EVENT Docked, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingCancelled, DockingCancelled, "", Condition AlwaysTrue
 EVENT DockingDenied, GenericResponse, "", Condition AlwaysTrue
-EVENT DockingGranted, GenericDelayedResponse, "Delay=15,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
+EVENT DockingGranted, GenericDelayedResponse, "Delay=10000,DelayName=VoicePackDockingGrantedDelay", Condition AlwaysTrue
 EVENT onTimer, DockingGrantedResponse, "", TimerName Contains VoicePackDockingGrantedDelay
 EVENT DockingRequested, GenericResponse, "", Condition AlwaysTrue
 EVENT DockingTimeout, GenericResponse, "", Condition AlwaysTrue
@@ -502,6 +502,7 @@ Static say_friendsub2 $= Requested;Solicita ser Agregado como Amigo
 Static say_friendsub3 $= Online;Está en línea
 Static say_friendsub4 $= Offline;Se ha Desconectado
 Static say_friendsub5 $= Declined;Ha Declinado su solicitud de amistad
+Static say_friendsub6 $= Lost;Te ha removido de su lista de amigos
 
 Static say_FighterRebuilt $= Caza listo para la acción<;>Nuevo caza preparado Comandante<;>Lanzar Caza cuando esté listo<;>
 Static say_FighterDestroyed $= Alerta Comandante, el caza ha sido destruido<;>El caza ha sido destruido<;>Caza destruido
@@ -641,10 +642,10 @@ Static say_PowerplayJoin $= Unirse a %(EventClass_Power), buena suerte comandant
 Static say_PowerplayLeave $= Saliendo de %(EventClass_Power)
 Static say_PowerplaySalary $= Salario de power play recibido de %(EventClass_Power) por %hnum(EventClass_Amount,HNumList) créditos
 Static say_PowerplayVote $= Votó por la potencia %(EventClass_Power) para apoderarse del sistema %star(EventClass_System,say_ss), los votos son actualmente %(EventClass_Votes)
-Static say_PowerplayVoucher $= "Recompensa por el combate Power Play de %(EventClass_Power) en sistemas %expandarray(EventClass_Systems,\", \",0,20,splitcaps)"
+Static say_PowerplayVoucher $= "Recompensa por el combate Power Play de %(EventClass_Power) en sistemas %expandarray(EventClass_Systems,\", \",1,20,splitcaps)"
 Static say_PVPKill $= Felicidades, esa escoria de comandante %(EventClass_CombatRank) %(EventClass_Victim) estará revolviéndose en el cielo o en el infierno<;>comandante %(EventClass_CombatRank) %(EventClass_Victim) está criando malvas<;>comandante %(EventClass_CombatRank) %(EventClass_Victim) no las vio venir, imbécil
 
-Static say_RebootRepair $= "Reiniciando y reparando Módulos %expandarray(EventClass_FriendlySlots,\", \",0,20,splitcaps)"
+Static say_RebootRepair $= "Reiniciando y reparando Módulos %expandarray(EventClass_FriendlySlots,\", \",1,20,splitcaps)"
 Static say_RedeemVoucher $= "Reclamado %(EventClass_Type) de valor %hnum(EventClass_Amount,HNumList) créditos, %ifnotempty(EventClass_Faction,' de la facción %rv(EventClass_Faction,say_ss)')%ifnonzero(EventClass_BrokerPercentage,', con una comisión para el broker del %(EventClass_BrokerPercentage) porciento')"
 
 Static say_Repair $= {{{%(EventClass_ItemLocalised) reparado comandante<;>%(EventClass_ItemLocalised) reparado}}}. El costo fue: %hnum(EventClass_Cost,HNumList) créditos
@@ -750,7 +751,7 @@ Static say_ShipyardSell $= "Vendió la nave %ship(EventClass_ShipType) por %hnum
 Static say_ShipyardNew $= {{{Felicitaciones por }}}{{{comprar una nueva<;>su compra de una nueva}}} nave del tipo %ship(EventClass_ShipType)
 Static say_ShipyardSwap $= Nave intercambiada: %ship(EventClass_StoreOldShip) por una %ship(EventClass_ShipType)
 Static say_ShipyardTransfer $= Ordenó la transferencia de la nave %ship(EventClass_ShipType)
-Static say_ShipyardTransfer $+= %ifnonzero(EventClass_Distance,' desde el sistema  %star(EventClass_FromSystem,say_ss), a una distancia de %round(EventClass_Distance,1,0.0) años luz, tardará %eval("%(EventClass_nTransferTime)/60.0","ERROR","0.#") minutes')
+Static say_ShipyardTransfer $+= %ifnonzero(EventClass_Distance,' desde el sistema  %star(EventClass_FromSystem,say_ss), a una distancia de %round(EventClass_Distance,1,0.0) años luz, tardará %eval("%(EventClass_nTransferTime)/60.0","ERROR","0.#") minutos')
 Static say_ShipyardTransfer $+= , el coste será %hnum(EventClass_TransferPrice,HNumList) créditos
 
 Static say_SupercruiseEntry $= Motor de distorsión encendido<;>Supercrucero activado<;>Motor de distorsión conectado<;>Agárrate fuerte, Saltamos a Supercrucero
@@ -778,7 +779,7 @@ Static say_SquadronDemotion $= {{{Te debes haber portado mal!<;>Oh, Dios mío<;>
 Static say_SquadronPromotion $= {{{Bien hecho<;>Felicidades<;>Bravo!}}} Has sido ascendido por tu Flota %(EventClass_Name) al rango de %(EventClass_NewRank)
 
 Static say_Touchdown $= %iftrue(EventClass_PlayerControlled,'{{{Aterrizaje exitoso, comandante<;>Aterrizaje, comandante<;>Contacto!}}}{{{ con latitud %round(EventClass_Latitude,2,0.##), y Longitud %round(EventClass_Longitude,2,0.##), }}}Bien hecho comandante<;>Motores apagados<;>Prepárese para operaciones en superficie','Nave de regreso de la órbita y lista para embarque<;>Nave aterrizada, listo para abordar')
-Static say_TechnologyBroker $= "Technology Broker has unlocked item %expandarray(EventClass_ItemsUnlocked,\", \",0,9,\"\",\"_Name_Localised\")"
+Static say_TechnologyBroker $= "El Bróker de tecnología ha desbloqueado el artículo, %expandarray(EventClass_ItemsUnlocked,\", \",1,9,\"\",\"_Name_Localised\")"
 
 Static say_Undocked $= Despegando de %sc(EventClass_StationName), feliz vuelo comandante<;>Nave lista, al mando Comandante<;> Motores encendidos, saliendo de: %sc(EventClass_StationName)<;>Abandonando estación %sc(EventClass_StationName)
 Static say_USSDrop $= Alcanzó la fuente de señal no identificada tipo %(EventClass_USSTypeLocalised), el nivel de amenaza es %(EventClass_USSThreat)
@@ -790,7 +791,7 @@ Static say_UseConsumable $= {{{Comandante, <;>}}}Utilizando %(EventClass_Resourc
 Static say_VehicleSwitch $= Cambiando a %sc(EventClass_To)
 
 Static say_WingAdd $= comandante %sc(EventClass_Name) se ha unido al equipo
-Static say_WingJoin $= "Unido al equipo con comandante %expandarray(EventClass_Others,\", comandante \", 0, 32)"
+Static say_WingJoin $= "Unido al equipo con comandante %expandarray(EventClass_Others,\", comandante \", 1, 32)"
 Static say_WingLeave $= Dejando el equipo
 Static say_WingInvite $= Invitado al equipo por %(EventClass_Name)
 
@@ -2609,7 +2610,7 @@ END PROGRAM
 
 //*************************************************************
 // GenericDelayedResponse
-// Events: DockingGranted(Delay=15,DelayName=VoicePackDockingGrantedDelay), BookDropship(Delay=5000), BookTaxi(Delay=5000)
+// Events: DockingGranted(Delay=10000,DelayName=VoicePackDockingGrantedDelay), BookDropship(Delay=5000), BookTaxi(Delay=5000)
 // Events: BuyMicroResources(Delay=100), BuySuit(Delay=100), CancelDropship(Delay=5000), CancelTaxi(Delay=5000)
 //*************************************************************
 PROGRAM GenericDelayedResponse
