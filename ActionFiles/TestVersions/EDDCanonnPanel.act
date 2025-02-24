@@ -1,0 +1,26 @@
+﻿ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="EDD Canonn Panel Plugin V1. This plugin provides a fully featured EDD panel which has Canonn information."
+INSTALL ShortDescription="EDD Canonn Panel"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.1.10.0
+INSTALL Location=Actions
+INSTALL OtherFile1=EDDCanonnPanel.dll;DLL
+INSTALL NotDisableable=True
+INSTALL NotEditable=True
+
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+
+PROGRAM onInstall
+
+If UpdateList IsPresent
+	If UpdateList Contains "EDDCanonnPanel;"
+		MessageBox "Updated EDD Canonn Panel Plugin. Restart EDD to activate the new version.","EDD Canonn Panel"
+	else if InstallList Contains "EDDCanonnPanel;"
+		MessageBox "Installed EDD Canonn Panel Plugin. Restart EDD to activate it.  When EDD asks for permission to run the EDDCanonnPanel.DLL, allow it","EDD Canonn Panel"
+
+
+END PROGRAM
+
