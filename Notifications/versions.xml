@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Items>
+
+<NotificationsV2>
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="VoicePackV23,23.3.0.0">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost. 
+</Body>
+</Entry>
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="VoicePackV23German,23.0.0.0">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost. 
+</Body>
+<Body Caption="Voice Pack Out Of Date" Lang="de">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost. 
+</Body>
+</Entry>
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="SpanishVoicePackV23,23.2.0.0">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost. 
+</Body>
+<Body Caption="Voice Pack Out Of Date" Lang="es">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost. 
+</Body>
+
+</Entry>
+
+
+</NotificationsV2>
+</Items>
