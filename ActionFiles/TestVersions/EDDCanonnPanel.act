@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="EDD Canonn Panel Plugin V1. This plugin provides a fully featured EDD panel which has Canonn information."
 INSTALL ShortDescription="EDD Canonn Panel"
-INSTALL Version=0.1.0.1
+INSTALL Version=0.1.0.2
 INSTALL MinEDVersion=18.1.10.0
 INSTALL Location=Actions
 INSTALL OtherFile1=EDDCanonnPanel.dll;DLL
