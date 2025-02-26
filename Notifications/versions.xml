@@ -59,5 +59,18 @@ Nota: Al instalar esta nueva versión, cualquier cambio que hayas hecho en el pa
 </Entry>
 
 
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="EDDCannonPanel,0.1.0.2">
+<Body Caption="EDD Canonn Panel Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your EDD Canonn panel is out of date. A new version is now available.  
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+</Body>
+</Entry>
+
+
+
 </NotificationsV2>
 </Items>
