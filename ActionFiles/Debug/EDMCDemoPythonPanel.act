@@ -1,0 +1,41 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="EDMC Python Panel Demo. This demonstrates a downloadable EDMC style Python add in.\r\nYou need to have Python3 installed to run this."
+INSTALL ShortDescription="EDMC Python Panel Demo"
+INSTALL Version=0.1.0.0
+INSTALL MinEDVersion=18.1.0.0
+INSTALL Location=Actions
+
+REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a panel type
+REM then followed by the type which must be at present ZMQPanel
+REM then wintitle, refname (for DB), Description, icon filename (relative to plugin folder), Plugin Folder in AppData structure
+INSTALL PlugInPanel=EDMCDemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"EDMC Python Addon Panel",DemoPythonv1,"Demonstration of a EDMC plugin python script interacting with EDD","snake.png","Plugins\EDMCDemoPlugin",true
+
+REM We need to download the plugin, so from this github folder, download all files found in it to Plugins/...
+INSTALL DownloadFolder=Plugins/DemoPlugin;Plugins\DemoPlugin
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+
+PROGRAM onStartup
+
+Print Demo Python Panel plugin present
+
+END PROGRAM
+
+
+PROGRAM onInstall
+
+If InstallList Contains DemoPythonPanel
+    MessageBox "This addon adds a new panel to EDD\r\n Use the selector (+) tab to either open the new panel in a tab or in a pop out window", OK
+
+END PROGRAM
+
+

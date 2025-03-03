@@ -3,8 +3,6 @@ import zmq
 import queue
 import time
 
-# MASTER VERSION
-
 # Variables
 #    EDD.EDDVersion = version reported by EDD on start
 #    EDD.APIVersion = API Level reported by EDD on start - you can use this to check your plugin can work with this EDD

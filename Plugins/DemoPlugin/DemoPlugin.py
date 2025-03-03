@@ -9,7 +9,7 @@ from edd import EDD
 from GridFill import *
 import keyboard
 
-print(f"Client PI Start on port {sys.argv[1]}")
+print(f"Client PI Start on port {sys.argv[1]} instance {sys.argv[2]}")
 
 eddif = EDD(sys.argv[1])
 griddata = GridFill()
@@ -73,19 +73,19 @@ eddif.UIAddButton("Faction","Faction",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Factions","Factions",0,0,50,22,"Get","P1")
 eddif.UIAddButton("MCMR","MCMR",0,0,50,22,"Get","P1")
 eddif.UIAddButton("JID","HistoryJID",0,0,50,22,"Get","P1")
+eddif.UIAddButton("Journal","Journal",0,0,50,22,"Get","P1")
+eddif.UIAddButton("History","History",0,0,50,22,"Get","P1")
 eddif.UIAddButton("SHLOG","Show Log",0,0,50,22,"Show panel log screen","P1")
 eddif.UIResume("P1")
 
 #remove a control
 
-eddif.UIRemove(["RB1"])
+#eddif.UIRemove(["RB1"])
 
-historyloadlength=5
+historyloadlength=20
 
 # using helper function, talk to EDD and get 100 history entries to fill grid
 griddata.RequestAndFillGrid(eddif,historyloadlength)
-
-print("Listening: X Exit")
 
 ddbvisible = True
 ddbenable = True
@@ -104,14 +104,16 @@ while True:
 			eddif.Config["DGVSettings"] = settings
 			
 			# send exit to EDD and tell it our config
+			print(f"Send terminate")
 			eddif.SendExit("Server requested")
 			break
 		elif responsetype == "historyload":
 			griddata.RequestAndFillGrid(eddif,historyloadlength)
 
 		elif responsetype == "historypush":
-			print(f"History push {p["firstrow"]} {p["commander"]}")
-
+			rows = griddata.FillRows(p["rows"])
+			eddif.UIAddSetRows("DGV",rows)
+			
 		elif responsetype == "journalpush":
 			print(f"Journal push {p["commander"]} {p["journalEntry"]}")
 
@@ -208,12 +210,18 @@ while True:
 			elif controlname == "JID":
 				ret = eddif.RequestHistoryByJID(griddata.LatestJID,100000)		# by JID
 				eddif.UIInfoBox("JID", json.dumps(ret, indent=2), 100000)
+			elif controlname == "Journal":
+				ret = eddif.RequestJournal(0,100000)		# journal JSON records
+				eddif.UIInfoBox("Journal", json.dumps(ret, indent=2), 100000)
+			elif controlname == "History":
+				ret = eddif.RequestHistory(0,10)		# history records
+				eddif.UIInfoBox("History", json.dumps(ret, indent=2), 100000)
 				
 					
 
 	
 	# if keyboard.is_pressed('X'):
-	# 	eddif.SendExit("User Terminated")
+	# 	eddif.SendExit("User Terminated",True)
 	# 	print(f"Sent exit")
 	# 	keyboard.read_key()
 	# 	break

@@ -1,18 +1,17 @@
 {
   "Panel": {
     "SupportTransparency": false,
-    "DefaultTransparent": false
+    "DefaultTransparent": false,
+    "Hidden" :  true
   },
   "Python": {
-    "_DisabledVersion": "3.13",
-
     "_ModulesCheckComment": "Set this variable below to run a python program which imports all the modules your app needs",
     "ModulesCheck": "checkmodules.py",
 
     "_ModulesComment": "Set this array below to the list of modules that EDD installs if checkmodules.py fails",
-    "Modules": [ "zmq", "keyboard" ],
+    "Modules": [ "zmq", "keyboard" ,"semantic_version", "psutil", "watchdog"],
 
-    "Start": "DemoPlugin.py",
+    "Start": "edmcplugin.py",
     "CreateNoWindow": false
   }
 }

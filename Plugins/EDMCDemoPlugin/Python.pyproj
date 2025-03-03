@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f7e5e648-d7bd-4d17-a2e5-842b0961010f</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>DemoPlugin.py</StartupFile>
+    <StartupFile>edmcplugin.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,20 +27,30 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="checkmodules.py" />
-    <Compile Include="DemoPlugin.py" />
+    <Compile Include="config.py" />
     <Compile Include="edd.py" />
-    <Compile Include="GridFill.py" />
+    <Compile Include="edmcplugin.py" />
+    <Compile Include="EDMCLogging.py" />
+    <Compile Include="edmc_data.py" />
+    <Compile Include="edshipyard.py" />
+    <Compile Include="monitor.py" />
+    <Compile Include="plug.py" />
+    <Compile Include="plugins\demoplug1\load.py" />
+    <Compile Include="util_ships.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.11" />
     <InterpreterReference Include="Global|PythonCore|3.13" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config.json" />
-    <Content Include="Readme.txt" />
+    <Content Include="ships.json" />
     <Content Include="snake.png" />
     <Content Include="UIDialogExample.act" />
     <Content Include="UIInterface.act" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\" />
+    <Folder Include="plugins\demoplug1\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

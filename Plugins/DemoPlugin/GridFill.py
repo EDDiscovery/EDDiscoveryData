@@ -9,6 +9,21 @@ from edd import EDD
 import keyboard
 
 class GridFill:
+	def FillRows(self, jrows):
+		rows=[]
+		for entry in jrows:
+			#print(f"Journal {entry}")
+			rows.append( { "row":-1 , "cells": [ 
+										   {"type":"text", "value": entry["Index"]}, 
+										   {"type":"text", "value": entry["journalEntry"]["EventTimeUTC"]}, 
+										   {"type":"text", "value": entry["EventSummary"]}, 
+										   {"type":"text", "value": entry["InfoText"]},
+										   {"type":"text", "value": entry["DetailedText"]} 
+										   ],
+					 })
+	
+		return rows
+
 	def RequestAndFillGrid(self, eddif,length):
 		eddif.UIClear("DGV");
 		self.LastestEntry = self.FirstEntry = -1
@@ -17,16 +32,18 @@ class GridFill:
 		journals = eddif.RequestHistory(eddif.HistoryLength-length,length)
 
 		if not(journals is None) and journals["length"]>0:
-			rows = []
-			for entry in journals["rows"]:
-				#print(f"Journal {entry}")
-				rows.append( { "row":-1 , "cells": [ 
-										   {"type":"text", "value": entry["Index"]}, 
-										   {"type":"text", "value": entry["journalEntry"]["EventTimeUTC"]}, 
-										   {"type":"text", "value": entry["Info"]},
-										   {"type":"text", "value": entry["Detailed"]} 
-										   ],
-					 })
+			rows = self.FillRows(journals["rows"])
+			# rows = []
+			# for entry in journals["rows"]:
+			# 	#print(f"Journal {entry}")
+			# 	rows.append( { "row":-1 , "cells": [ 
+			# 							   {"type":"text", "value": entry["Index"]}, 
+			# 							   {"type":"text", "value": entry["journalEntry"]["EventTimeUTC"]}, 
+			# 							   {"type":"text", "value": entry["EventSummary"]}, 
+			# 							   {"type":"text", "value": entry["InfoText"]},
+			# 							   {"type":"text", "value": entry["DetailedText"]} 
+			# 							   ],
+					 #})
 			#print(f"Row set {rows}")
 			eddif.UIAddSetRows("DGV",rows)
 			self.FirstEntry = journals["start"]
