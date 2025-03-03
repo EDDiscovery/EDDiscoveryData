@@ -4,7 +4,7 @@ ENABLED True
 
 INSTALL LongDescription="EDMC Python Panel Demo. This demonstrates a downloadable EDMC style Python add in.\r\nYou need to have Python3 installed to run this."
 INSTALL ShortDescription="EDMC Python Panel Demo"
-INSTALL Version=0.1.0.0
+INSTALL Version=0.2.0.0
 INSTALL MinEDVersion=18.1.0.0
 INSTALL Location=Actions
 
@@ -14,7 +14,7 @@ REM then wintitle, refname (for DB), Description, icon filename (relative to plu
 INSTALL PlugInPanel=EDMCDemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"EDMC Python Addon Panel",DemoPythonv1,"Demonstration of a EDMC plugin python script interacting with EDD","snake.png","Plugins\EDMCDemoPlugin",true
 
 REM We need to download the plugin, so from this github folder, download all files found in it to Plugins/...
-INSTALL DownloadFolder=Plugins/DemoPlugin;Plugins\DemoPlugin
+INSTALL DownloadFolder=Plugins/EDMCDemoPlugin;Plugins\EDMCDemoPlugin
 
 EVENT onStartup, onStartup, "", Condition AlwaysTrue
 EVENT onInstall, onInstall, "", Condition AlwaysTrue
@@ -26,15 +26,15 @@ EVENT onInstall, onInstall, "", Condition AlwaysTrue
 
 PROGRAM onStartup
 
-Print Demo Python Panel plugin present
+Print EDMC Demo Python Panel plugin present
 
 END PROGRAM
 
 
 PROGRAM onInstall
 
-If InstallList Contains DemoPythonPanel
-    MessageBox "This addon adds a new panel to EDD\r\n Use the selector (+) tab to either open the new panel in a tab or in a pop out window", OK
+If InstallList Contains EDMCDemoPythonPanel;
+    MessageBox "This addon adds a new EDSM Plugin Python Demo panel to EDD\r\n This DOES NOT work and is not complete yet\r\nUse the selector (+) tab to either open the new panel in a tab or in a pop out window", OK
 
 END PROGRAM
 

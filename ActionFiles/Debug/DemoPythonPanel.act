@@ -33,8 +33,8 @@ END PROGRAM
 
 PROGRAM onInstall
 
-If InstallList Contains DemoPythonPanel
-    MessageBox "This addon adds a new panel to EDD\r\n Use the selector (+) tab to either open the new panel in a tab or in a pop out window", OK
+If InstallList Contains DemoPythonPanel;
+    MessageBox "This addon adds a new Python Demo panel to EDD\r\n Use the selector (+) tab to either open the new panel in a tab or in a pop out window", OK
 
 END PROGRAM
 
