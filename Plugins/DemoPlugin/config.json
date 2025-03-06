@@ -1,6 +1,6 @@
 {
   "Panel": {
-    "SupportTransparency": false,
+    "SupportTransparency": true,
     "DefaultTransparent": false
   },
   "Python": {

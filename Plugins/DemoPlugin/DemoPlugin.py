@@ -19,6 +19,8 @@ if eddif.SendStart('1.2.3.4',30000) == False:
 	print("Failed to communicate with EDD")
 	sys.exit(0)
 
+print(f"Transparent control values {eddif.TransparentMode} {eddif.CurrentlyTransparent} {eddif.TransparentColorKey}")
+
 # display on the RTB that we are running
 eddif.UIAddText("RTB", "Python Plugin running\r\n")
 
@@ -68,6 +70,7 @@ eddif.UIAddButton("Carrier","Carrier",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Ledger","Ledger",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Shipyards","Shipyards",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Outfitting","Outfitting",0,0,50,22,"Get","P1")
+eddif.UIAddButton("StationData","Station Data",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Scandata","Scandata",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Faction","Faction",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Factions","Factions",0,0,50,22,"Get","P1")
@@ -107,6 +110,16 @@ while True:
 			print(f"Send terminate")
 			eddif.SendExit("Server requested")
 			break
+		elif responsetype == "settransparency":
+			tmode = p["transparencymode"]
+			ist = p["istransparent"]
+			curback = p["currentbackground"]
+			eddif.CurrentlyTransparent = ist;
+			print(f"SetTransparency {tmode} {ist} {curback}")
+		elif responsetype == "transparencymodechanged":
+			tmode = p["transparencymode"]
+			ist = p["istransparent"]
+			print(f"TransparencyModeChanged {tmode} {ist}")
 		elif responsetype == "historyload":
 			griddata.RequestAndFillGrid(eddif,historyloadlength)
 
@@ -195,6 +208,9 @@ while True:
 			elif controlname == "Outfitting":
 				ret = eddif.RequestOutfitting(100000)
 				eddif.UIInfoBox("Outfitting", json.dumps(ret, indent=2), 100000)
+			elif controlname == "StationData":
+				ret = eddif.RequestStationShipyardOutfitting("Bentham Dock",100000)
+				eddif.UIInfoBox("Station Shipyard/Outfitting", json.dumps(ret, indent=2), 100000)
 			elif controlname == "Scandata":
 				ret = eddif.RequestScandata(griddata.LatestSystem, None, 100000)
 				eddif.UIInfoBox("Scandata", json.dumps(ret, indent=2), 100000)

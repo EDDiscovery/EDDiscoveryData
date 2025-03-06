@@ -38,6 +38,9 @@ class EDD:
 			self.APIVersion = ret["apiversion"]
 			self.HistoryLength = ret["historylength"]
 			self.Commander = ret["commander"]
+			self.TransparentMode = ret["transparencymode"]
+			self.TransparentColorKey = ret["transparencycolorkey"]
+			self.CurrentlyTransparent = ret["istransparent"];
 			config = ret["config"]
 			if config != "":
 				self.Config = json.loads(config)
@@ -94,6 +97,12 @@ class EDD:
 
 	def RequestOutfitting(self, timeout = DefaultTimeout) -> object:
 		return self.CommonRequest('outfitting',timeout)
+
+	def RequestStationShipyardOutfitting(self, station, timeout = DefaultTimeout) -> object:
+		data = {'requesttype':'stationshipyardoutfitting', 'station':station }
+		self.worker.send_string(json.dumps(data));
+		ret = self.PollWithContents(data["requesttype"],'station',station,timeout)
+		return ret
 
 	def RequestScandata(self, system, systemid, timeout = DefaultTimeout) -> object:
 		data = {'requesttype':'scandata', 'system':system, 'systemid':systemid }
