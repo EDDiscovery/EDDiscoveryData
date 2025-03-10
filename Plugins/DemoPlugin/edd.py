@@ -110,6 +110,12 @@ class EDD:
 		ret = self.PollWithContents(data["requesttype"],'system',system,timeout)
 		return ret
 
+	def RequestSpanshdump(self, system, systemid, weblookup, cachelookup, timeout = DefaultTimeout) -> object:
+		data = {'requesttype':'spanshdump', 'system':system, 'systemid':systemid, 'weblookup':weblookup, 'cachelookup':cachelookup }
+		self.worker.send_string(json.dumps(data));
+		ret = self.PollWithContents(data["requesttype"],'system',system,timeout)
+		return ret
+
 	def RequestFaction(self, faction,timeout = DefaultTimeout) -> object:
 		data = {'requesttype':'faction', 'faction':faction }
 		self.worker.send_string(json.dumps(data));
@@ -178,6 +184,7 @@ class EDD:
 
 	def UIAddButton(self, name, text, x,y,width,height,tooltip, inpanel = "",margin="") -> None:
 		self.UIAddBasicItem(name,"Button",text,x,y,width,height,tooltip,inpanel,margin)
+
 	def UIAddCheckBox(self, name, text, x,y,width,height,tooltip, inpanel = "",margin="") -> None:
 		self.UIAddBasicItem(name,"CheckBox",text,x,y,width,height,tooltip,inpanel,margin)
 

@@ -72,6 +72,7 @@ eddif.UIAddButton("Shipyards","Shipyards",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Outfitting","Outfitting",0,0,50,22,"Get","P1")
 eddif.UIAddButton("StationData","Station Data",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Scandata","Scandata",0,0,50,22,"Get","P1")
+eddif.UIAddButton("Spanshdump","Spansh",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Faction","Faction",0,0,50,22,"Get","P1")
 eddif.UIAddButton("Factions","Factions",0,0,50,22,"Get","P1")
 eddif.UIAddButton("MCMR","MCMR",0,0,50,22,"Get","P1")
@@ -214,6 +215,9 @@ while True:
 			elif controlname == "Scandata":
 				ret = eddif.RequestScandata(griddata.LatestSystem, None, 100000)
 				eddif.UIInfoBox("Scandata", json.dumps(ret, indent=2), 100000)
+			elif controlname == "Spanshdump":
+				ret = eddif.RequestSpanshdump(griddata.LatestSystem, None, True, False, 100000)
+				eddif.UIInfoBox("Spanshdump", json.dumps(ret, indent=2), 100000)
 			elif controlname == "Faction":
 				ret = eddif.RequestFaction("Aornum Republic Party", 100000)
 				eddif.UIInfoBox("Faction", json.dumps(ret, indent=2), 100000)
