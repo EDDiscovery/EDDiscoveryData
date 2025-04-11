@@ -59,7 +59,7 @@ Nota: Al instalar esta nueva versión, cualquier cambio que hayas hecho en el pa
 </Entry>
 
 
-<Entry StartUTC="2025-04-11T09:20:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="EDDCanonnPanel,0.4.106.0">
+<Entry StartUTC="2025-04-11T10:30:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="EDDCanonnPanel,0.4.107.0">
 <Body Caption="EDD Canonn Panel Out Of Date" Lang="en">
 *** NEW !!! ***
 
