@@ -36,6 +36,7 @@ Set v6 = v1
 Set v7 = HelloThere
 Set n0 = 0
 Set n3 = 3
+Set nn3 = -3
 Set n7 = 7
 Set n8 = 8
 Set wl1 = one,two,three
@@ -45,6 +46,121 @@ Set wl4 = "\"one\";\"two\";\"three\""
 Set prefix = v
 Set rroot_1 = V1Hello;VReplacedHello
 Set r_name = rroot
+
+// 30 introduces eval to % funcs ints
+
+errorif "EvalSubstring", %substring("abcdefghijkl",Abs(nn3)+2,2) $!= "fg"
+
+// 30.6 introduces error.e with eval engine
+
+errorif "EvalFmtX", %eval('"wkwkkw"+"wl"',Error,N2) $!= "wkwkkwwl"
+errorif.e "EvalFmtE", %eval(10.2+20.4,Error,N2)!=30.6
+errorif "EvalFmtC", %eval(10.2+20.4,Error,N2) $!= "30.60"
+
+// version 30 fixes Do while
+
+Set res = ""
+do
+    Set res += A
+    print do..while %(res)
+While res $!= "AAAAA"
+
+ErrorIf "do.while expr", res $!= "AAAAA"
+ErrorIf.E "do.while expr", res != "AAAAA"
+
+// version 30 expands eval to handle strings 
+errorif.e "EvalString", %eval('"one"=="one"')!=1
+
+// version 30 adds using variables directly in expressions
+Let xxx = n3+1
+ErrorIf "EDD", %(xxx) != 4
+
+Let xxx = Floor(10.3)
+ErrorIf "Eval", %(xxx) != 10
+
+Let xxx = %eval("Floor(20.3)")
+ErrorIf Eval, %(xxx) != 20
+
+Let xxx = %eval("n3+Floor(20.3)")
+ErrorIf "Eval", %(xxx) != 23
+
+If Condition AlwaysTrue
+    Print Condition always true
+Else If Condition AlwaysFalse
+    Print Condition error
+Else 
+    Print Condition error
+
+// version 30 added if.E forms
+
+If.E 10+n3+0!=0
+    Print okay iff
+ElseIf.E 10/1 == 0
+    ErrorIf "IFF - ELSEIFF", Condition AlwaysTrue
+Else 
+    ErrorIf "IFF - ELSE", Condition AlwaysTrue
+
+If.E 10+n3==0
+    ErrorIf "IFF - IFF2", Condition AlwaysTrue
+ElseIf.E 10/1 == 10
+    Print okay iff elseiff
+Else 
+    ErrorIf "IFF - ELSE2", Condition AlwaysTrue
+
+// 30 allowed loop count to be an expression
+
+Set res = ""
+Loop n3+1
+    Set res += A
+ErrorIf "Loop expr", res $!= "AAAA"
+
+print while
+
+Set res = ""
+While res $!= "AAAA"
+    Set res += A
+ErrorIf "while expr", res $!= "AAAA"
+ErrorIf.E "while expr", res != "AAAA"
+
+if Condition AlwaysTrue
+    Set res = ""
+    Set res2 = ""
+    do
+        Set res += A
+        rem print do..while %(res)
+    While res $!= "AAAAAA"
+    while res2 $!= "XXXX"
+        Set res2 += X
+        rem print while %(res2)
+    errorif.e "Do..while", res != "AAAAAA"
+    errorif.e "Do..while.e", res2 != "XXXX"
+    Print Finish while
+else
+    print false
+
+if Condition AlwaysFalse
+    Set res = ""
+    do
+        Set res += A
+    While res $!= "AAAAA"
+    errorif.e "Do..while", res != "AAAAA"
+else
+    print false
+
+// demo new eval forms for let and while
+
+let i = n3
+while.e i > 0
+    print loop %(i)
+    let  i = i-1
+print loop over
+
+
+
+
+// 30 introduced errorif.e
+Print check erroriff
+ErrorIf.E "Errorif Expr", n3+0!=3
 
 Set array[1] = One
 Set array[2] = Two
@@ -229,67 +345,63 @@ ErrorIf "F", %roundscale(0.0000000001,3,"0.###",10,2.0) $!= 0.0000000002
 ErrorIf "F", %eval(10+10) != 20
 ErrorIf "F", %eval(10+a10,try) $!= Nan
 
-set v1 = jim 1
-set v2 = "Fred,\"Jim 1\",Sheila  "
-if v1 IsOneOf "%(v2)"
-    print IsOneOf 1 Passed
-else
+Set v1 = jim 1
+Set v2 = "Fred,\"Jim 1\",Sheila  "
+If v1 IsOneOf %(v2)
+    Print IsOneOf 1 Passed
+Else 
     ErrorIf "OneOf", Condition AlwaysTrue
 
-if v1 NotOneOf "%(v2)"
+If v1 NotOneOf %(v2)
     ErrorIf "NotOneOf", Condition AlwaysTrue
-else
-    print NotOneOf 1 Passed
+Else 
+    Print NotOneOf 1 Passed
 
+Set v3 = "notjim,\"Jim 1\""
 
-set v3 = "notjim,\"Jim 1\""
-
-if v3 AnyOfAny "%(v2)"
-    print Is AnyOfAny Passed
-else
+If v3 AnyOfAny %(v2)
+    Print Is AnyOfAny Passed
+Else 
     ErrorIf "AnyOfAny", Condition AlwaysTrue
 
-if v3 NotAnyOfAny "%(v2)"
+If v3 NotAnyOfAny %(v2)
     ErrorIf "NotAnyOfAny", Condition AlwaysTrue
-else
-    print NotAnyOfAny Passed
+Else 
+    Print NotAnyOfAny Passed
 
+Set v4 = jim
 
-set v4 = jim
-
-if v4 MatchSemicolon "sheila ;george;jim"
-    print MatchSemicolon Passed
-else
+If v4 MatchSemicolon "sheila ;george;jim"
+    Print MatchSemicolon Passed
+Else 
     ErrorIf "MatchSemicolon", Condition AlwaysTrue
 
-if v4 NotMatchSemicolon "sheila ;george;jim"
+If v4 NotMatchSemicolon "sheila ;george;jim"
     ErrorIf "NotMatchSemicolon", Condition AlwaysTrue
-else
-    print NotMatchSemicolon Passed
+Else 
+    Print NotMatchSemicolon Passed
 
+Set v5 = Set phasers to stun
 
-set v5 = Set phasers to stun
-
-if v5 MatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
-    print MatchSemicolonList Passed
-else
+If v5 MatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
+    Print MatchSemicolonList Passed
+Else 
     ErrorIf "MatchSemicolonList", Condition AlwaysTrue
 
-if v5 NotMatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
+If v5 NotMatchSemicolonList "Set|Calibrate phasers to empty;Set|Calibrate phasers to stun"
     ErrorIf "NotMatchSemicolonList", Condition AlwaysTrue
-else
-    print NotMatchSemicolonList Passed
+Else 
+    Print NotMatchSemicolonList Passed
 
-if v5 MatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
-    print MatchCommaList Passed
-else
+If v5 MatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
+    Print MatchCommaList Passed
+Else 
     ErrorIf "MatchCommaList", Condition AlwaysTrue
 
-if v5 NotMatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
+If v5 NotMatchCommaList "Set|Calibrate phasers to empty,Set|Calibrate phasers to stun"
     ErrorIf "NotMatchCommaList", Condition AlwaysTrue
-else
-    print NotMatchCommaList Passed
-
+Else 
+    Print NotMatchCommaList Passed
 
 Print Test Complete %datetimenow(longdatetime;culture:en-GB)
 

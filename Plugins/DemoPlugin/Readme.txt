@@ -5,17 +5,17 @@ This Folder contains:
 config.json
 -----------
 
-Contains configuration for how to launch the plugin.
+Contains configuration for how to launch the plugin.  
     The "Python" section is used to tell it that the panel is python and the launch parameters, and what modules should be installed if checkmodules.py fails.
         Version: "3.13" : Force this version of python to be used. Optional
         ModulesCheck: "modulecheck.py" : Run this module check script before running the python main program.
         Modules: [ "module1", "module2"] : If modules check fail, install this list of modules
         Start: "DemoPlugin.py" : Start this script
-        CreateNoWindow : true/false : If true, no python window is created.
+        CreateNoWindow : true/false : If true, no python window is created.  Default is false
 
     The "Panel" section is used to configure the EDD form.
-        SupportTransparency : True/False (Default if not Present) : TBD
-        DefaultTransparent : True/False (Default if not Present) : TBD
+        SupportTransparency : True/False (Default false if not Present) 
+        DefaultTransparent : True/False (Default false if not Present)
         Hidden : True/False (False if not Present):
             If set true, hide the EDD pop out window when python connects. You must have PopOutOnly True set below in PlugInPanel ACT file in the V1 folder (see below)
             This allows a headless EDD panel to run a python plugin in GUI/Text mode, instead of using the EDD panel as the UI.
@@ -38,11 +38,14 @@ gridfill.py is a helper to demopython.py
 Action Scripts
 --------------
 
-Plugins use Action scripts to set up the UI.  You can have as many .act files as you want.  One of them should have the EVENT onStartup, onStartup, "", Condition AlwaysTrue set up.
+Plugins use Action scripts to set up the UI.  You can have as many .act files as you want.  
+
+One of them should have the EVENT onStartup, onStartup, "", Condition AlwaysTrue set up.
 
 Action scripts for a plugin run in their own controller instance and do not interact with the standard action system or with each other.
 
 UIInterface.act
+    This must be present.
     This has the OnStartup Action script which gets run as the panel is created, so you can create the UI using action. See the action doc.
     Also has helper programs for the python interface to produce various UI elements
 
@@ -68,12 +71,12 @@ Visual Studio Debugging files
         create the python panel, it will wait until the python program connects
     Run the python program in visual studio.  The program will connect to EDD and you can debug the plugin
 
-Additional Action File Required
---------------------------------
+Additional Action File Required in the standard Appdata\Actions Folder
+-------------------------------------------------------------
 
-In ActionFiles\V1 you need a action file for this plugin.
+In ActionFiles\V1 you need a action file for this plugin, which is the file which appears on the Manage Add on Dialogs, and describes this python plugin.
 
-This action file needs to have the following statements:
+This action file needs to have the following statement types (with updated data):
 
 ACTIONFILE V4
 ENABLED True
@@ -83,8 +86,8 @@ INSTALL Version=0.1.0.0
 INSTALL MinEDVersion=18.1.0.0
 INSTALL Location=Actions
 
-REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a panel type
-REM then followed by the type which must be at present ZMQPanel
+REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a specific panel, unique to the plugin
+REM then followed by the type which must be at present be EDDiscovery.UserControls.UserControlZMQPanel
 REM then wintitle, refname (for DB), Description, icon filename (relative to plugin folder), Plugin Folder in AppData structure where config.json is located, Pop Out Only (True/False)
 
 INSTALL PlugInPanel=DemoPythonPanelUniqueNameKey,EDDiscovery.UserControls.UserControlZMQPanel,"Demo Python Addon Panel",DemoPythonv1,"Demonstration of a python script interacting with EDD","snake.png","Plugins\DemoPlugin",false
@@ -94,7 +97,7 @@ INSTALL DownloadFolder=Plugins/DemoPlugin;Plugins\DemoPlugin
 
 Then optionally OnStartup/OnInstall statements to present info to the user.
 
-The plugin cannot call programs in this action file, or any main action files, as noted above.
+The plugin cannot call programs in this V1 action file, or any main action files, as noted above.
 
 ZMQ Interface is documented in UserControlZMQPanel ZMQInterface.txt
 

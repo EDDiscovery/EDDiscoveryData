@@ -1,9 +1,14 @@
 {
   "Panel": {
+    "_TransparencyComments" :  "Set these to configure transparency enable/state",
     "SupportTransparency": true,
-    "DefaultTransparent": false
+    "DefaultTransparent": false,
+
+    "_HiddenComment": "Set this to true to hide the EDD panel, and must only be used in conjunction with the ACT File indicating PopOutOnly=True",
+    "Hidden": false
   },
   "Python": {
+    "_VersionComment" : "Set Version to a value to force a particular python to be used as the interpreter (here it is Disabled)",
     "_DisabledVersion": "3.13",
 
     "_ModulesCheckComment": "Set this variable below to run a python program which imports all the modules your app needs",
@@ -12,7 +17,10 @@
     "_ModulesComment": "Set this array below to the list of modules that EDD installs if checkmodules.py fails",
     "Modules": [ "zmq", "keyboard" ],
 
+    "_StartComment": "Set this to the starting python file",
     "Start": "DemoPlugin.py",
+
+    "_CreateNoWindowComment": "Set to try to prevent the console window for the python instance to be created, false for debugging. Default is false",
     "CreateNoWindow": false
   }
 }
