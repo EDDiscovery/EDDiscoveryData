@@ -2,10 +2,10 @@ ACTIONFILE V4
 
 ENABLED True
 
-INSTALL LongDescription="Python Panel Demo. This demonstrates a downloadable Python add in.\r\nYou need to have Python3 installed to run this."
+INSTALL LongDescription="Python Panel Demo. This demonstrates a downloadable Python add in.\r\nYou need to have Python3.13+ installed to run this."
 INSTALL ShortDescription="Python Panel Demo"
-INSTALL Version=0.1.0.0
-INSTALL MinEDVersion=18.1.0.0
+INSTALL Version=1.0.0.0
+INSTALL MinEDVersion=19.0.0.0
 INSTALL Location=Actions
 
 REM Here we declare the plugin panel to EDD.  First is a unique key used by EDD to recognise a panel type
