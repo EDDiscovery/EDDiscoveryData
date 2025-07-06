@@ -18,9 +18,9 @@ PROGRAM onInstall
 
 If UpdateList IsPresent
 	If UpdateList Contains "EDDCanonnPanel;"
-		MessageBox "Updated EDD Canonn Panel Plugin. This version sends data to Canonn. This plugin should have disabled the old Canonn DLL in EDD. If you're using the EDMC version deactivate the plugin by adding '.disabled' to the folder name, see 'Settings -> Plugins'. Restart EDD to activate the new version.","EDD Canonn Panel"
+		MessageBox "Updated EDD Canonn Panel Plugin. This version sends data to Canonn.\r\nThis plugin should have disabled the old Canonn DLL in EDD.\r\n If you're using the EDMC version deactivate the plugin by adding '.disabled' to the folder name, see 'Settings -> Plugins'.\r\nRestart EDD to activate the new version.","EDD Canonn Panel"
 	else if InstallList Contains "EDDCanonnPanel;"
-		MessageBox "Installed EDD Canonn Panel Plugin. This version sends data to Canonn. This plugin should have disabled the old Canonn DLL in EDD. If you're using the EDMC version deactivate the plugin by adding '.disabled' to the folder name, see 'Settings -> Plugins'. Restart EDD to activate it.  When EDD asks for permission to run the EDDCanonnPanel.DLL, allow it","EDD Canonn Panel"
+		MessageBox "Installed EDD Canonn Panel Plugin. This version sends data to Canonn.\r\nThis plugin should have disabled the old Canonn DLL in EDD.\r\n If you're using the EDMC version deactivate the plugin by adding '.disabled' to the folder name, see 'Settings -> Plugins'.\r\nRestart EDD to activate it.  When EDD asks for permission to run the EDDCanonnPanel.DLL, allow it","EDD Canonn Panel"
 
 
 END PROGRAM
