@@ -1,11 +1,11 @@
-﻿ACTIONFILE V4
+ACTIONFILE V4
 
 ENABLED True
 
-INSTALL LongDescription="Esta es la versión 23 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
+INSTALL LongDescription="Esta es la versión 24 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=23.2.0.1
-INSTALL MinEDVersion=18.1.6.0
+INSTALL Version=24.0.0.0
+INSTALL MinEDVersion=18.1.20.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -29,6 +29,7 @@ INSTALL DisableOther19=SpanishVoicePackV19
 INSTALL DisableOther20=SpanishVoicePackV20
 INSTALL DisableOther21=SpanishVoicePackV21
 INSTALL DisableOther22=SpanishVoicePackV22
+INSTALL DisableOther23=SpanishVoicePackV23
 INSTALL OtherFile1=npcmix.mp3;Sounds
 INSTALL OtherFile2=npcprefix.mp3;Sounds
 INSTALL OtherFile3=npcpostfix.mp3;Sounds
@@ -1164,7 +1165,7 @@ If SpeechControls NotPresent
 If NPCVoiceNames NotPresent
     Perform voicenames                                          // we set this up to static since the user has not selected them explicitly.. when they do its a PerisistentGlobal
     Static NPCVoiceNames = %(VoiceNames)
-    Rem Print Temp init of %(NPCVoiceNames)
+    Print Temp init of %(NPCVoiceNames)
 
 Static DockingMusic = 0
 
@@ -2111,20 +2112,21 @@ If MenuName Contains ConfigureNPCVoices
     Perform voicenames                                          // get the current list.. VoiceNames is quoted
     Let voicecount = %WordListCount(VoiceNames)
     Let i = 0
-    Let vpos = 30
     Let width = 300
+    Set dvar_panelcontainer = "PC,PanelVertScroll,\"\",4,30,%(width),600"
+    Let vpos = 5
     While i < %(voicecount)
         Set voicename = %WordListEntry(VoiceNames,i)
         Let present = 0
         If NPCVoiceNames Contains "\"%(voicename)\""
             Let present = 1
         Rem print Voice %(voicename)
-        Set dvar%(i) = "%(i),CheckBox,\"%(voicename)\",10,%(vpos),%eval(%(width)-10-10),20,\"Seleccionar\",%(present)"
+        Set dvar%(i) = "%(i),CheckBox,\"%(voicename)\",In:PC,10,%(vpos),%eval(%(width)-32),20,\"Seleccionar\",%(present)"
         Let vpos = %(vpos) + 24
         Let i = %(i)+1
 
-    Set dvarok = "OK,Button,\"OK\",%eval(%(width)-100),+40,80,20,\"Presiona para OK\""
-    Set dvarcancel = "Cancel,Button,\"Cancelar\",%eval(%(width)-200),+0,80,20,\"Presiona para Cancelar\""
+    Set dvarok = "OK,Button,\"OK\",%eval(%(width)-80),650,80,20,\"Presiona para OK\""
+    Set dvarcancel = "Cancel,Button,\"Cancelar\",%eval(%(width)-180),650,80,20,\"Presiona para Cancelar\""
 
     Rem pragma dumpvars dvar*
 
@@ -2167,88 +2169,127 @@ If MenuName Contains ConfigureVerbosity
     Set ls = +30
     Set lsm = +40
     Set width = 1000
+    Set vpanelh = 800
+
+    Set dvar_panelcontainer = "PC,PanelVertScroll,\"\",4,30,%(width),%(vpanelh)"
+
     Set Def = ""
-    Set dvar1a = "L2,Label,\"Archivo de voz\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",%(col1),+0,%(colw),20,\"Vacío significa que no hay archivo de voz, de lo contrario, ingrese al archivo o use navegar\""
-    Set dvar1c = "BBROWSE,Button,Explorar,%(col2),+0,78,20,\"Seleccione el archivo en el que se escribirá la salida de voz\""
+    Set dvar1a = "L2,Label,\"Archivo de voz\",In:PC,%(lab),8,%(labw),20,\"\""
+    Set dvar1b = "TBLF,TextBox,\"%existsdefault(SpeechLog,Def)\",In:PC,%(col1),+0,%(colw),20,\"Vacío significa que no hay archivo de voz, de lo contrario, ingrese al archivo o use navegar\""
+    Set dvar1c = "BBROWSE,Button,Explorar,In:PC,%(col2),+0,78,20,\"Seleccione el archivo en el que se escribirá la salida de voz\""
 
-    Set dvar2a = "CBPR,CheckBox,\"Imprimir fecha/hora en el log\",%(col1),%(ls),%(colw),20,\"Imprimir hora y fecha antes del texto\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
-    Set dvar2b = "CBLL,CheckBox,\"Registrar solo lo último\",%(col2),+0,%(colw),20,\"Borrar el registro antes de cada salida de voz\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
+    Set dvar2a = "CBPR,CheckBox,\"Imprimir fecha/hora en el log\",In:PC,%(col1),%(ls),%(colw),20,\"Imprimir hora y fecha antes del texto\",%IsPresent(SpeechControls,\"LogTimeDate;\",0)"
+    Set dvar2b = "CBLL,CheckBox,\"Registrar solo lo último\",In:PC,%(col2),+0,%(colw),20,\"Borrar el registro antes de cada salida de voz\",%IsPresent(SpeechControls,\"LogLastOnly;\",0)"
 
-    Set dvar3a = "L2,Label,\"General\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar3b = "CBD,CheckBox,\"Desactivar la salida de voz\",%(col1),+0,%(colw),20,\"Desactivar salida de voz, usar para mostrar solamente\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
-    Set dvar3c = "CBSSML,CheckBox,\"Desactivar SSML\",%(col2),+0,%(colw),20,\"Desactiva SSML (Requiere reiniciar ED)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
-    Set dvar3d = "CBWEL,CheckBox,\"Desactivar msg de bienvenida\",%(col3),+0,%(colw),20,\"Desactivar el mensaje de bienvenida\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
-    Set dvar3e = "CBSUB,CheckBox,\"Subtitulos\",%(col1),%(ls),%(colw),20,\"Activa caja de subtítulos\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
-    Set dvar4b = "CBFR,CheckBox,\"Desactivar estados de amigos\",%(col1),+0,%(colw),20,\"Estados Activo/Desactivo de amigos silenciado\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
+    Set dvar3a = "L2,Label,\"General\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar3b = "CBD,CheckBox,\"Desactivar la salida de voz\",In:PC,%(col1),+0,%(colw),20,\"Desactivar salida de voz, usar para mostrar solamente\",%IsPresent(SpeechControls,\"PrintOnly;\",0)"
+    Set dvar3c = "CBSSML,CheckBox,\"Desactivar SSML\",In:PC,%(col2),+0,%(colw),20,\"Desactiva SSML (Requiere reiniciar ED)\",%IsPresent(SpeechControls,\"SSMLDisable;\",0)"
+    Set dvar3d = "CBWEL,CheckBox,\"Desactivar msg de bienvenida\",In:PC,%(col3),+0,%(colw),20,\"Desactivar el mensaje de bienvenida\",%IsPresent(SpeechControls,\"WelcomeMessageDisable;\",1)"
+    Set dvar3e = "CBSUB,CheckBox,\"Subtitulos\",In:PC,%(col1),%(ls),%(colw),20,\"Activa caja de subtítulos\",%IsPresent(SpeechControls,\"Subtitles;\",1)"
+    Set dvar4b = "CBFR,CheckBox,\"Desactivar estados de amigos\",In:PC,%(col2),+0,%(colw),20,\"Estados Activo/Desactivo de amigos silenciado\",%IsPresent(SpeechControls,\"FriendsStatusDisable;\",1)"
 
-    Set dvar5a = "L3,Label,\"Textos\",%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar5a = "L3,Label,\"Textos\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
     Let npcdisable = "!%IsPresent(SpeechControls,\"NPCChatterDisable;\",0)"
 
-    Set dvar5b = "CBN1,CheckBox,\"Activar textos de los PNJ\",%(col1),+0,%(colw),20,\"Activa todos los textos de los PNJ\",%(npcdisable)"    // name kept for backwards compat
-    Set dvar5c = "CBNS,CheckBox,\"Desactivar sonidos de los PNJ\",%(col2),+0,%(colw),20,\"Deshabilita sonidos de Introducción y salida de los PNJ\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
-    Set dvar5d = "CBNMV,CheckBox,\"Diferentes voces para los PNJ\",%(col3),+0,%(colw),20,\"Elige diferentes voces para cada PNJ\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
-    Set dvar5z = "CBNTV,CheckBox,\"Diferentes voces para textos\",%(col1),%(ls),%(colw),20,\"Usa voces diferentes para cada mensaje de texto\",%IsPresent(SpeechControls,\"TEXTVoicesEnable;\",0)"
+    Set dvar5b = "CBN1,CheckBox,\"Activar textos de los PNJ\",In:PC,%(col1),+0,%(colw),20,\"Activa todos los textos de los PNJ\",%(npcdisable)"    // name kept for backwards compat
+    Set dvar5c = "CBNS,CheckBox,\"Desactivar sonidos de los PNJ\",In:PC,%(col2),+0,%(colw),20,\"Deshabilita sonidos de Introducción y salida de los PNJ\",%IsPresent(SpeechControls,\"NPCSoundsDisable;\",1)"
+    Set dvar5d = "CBNMV,CheckBox,\"Diferentes voces para los PNJ\",In:PC,%(col3),+0,%(colw),20,\"Elige diferentes voces para cada PNJ\",%IsPresent(SpeechControls,\"NPCVoicesEnable;\",1)"
+    Set dvar5z = "CBNTV,CheckBox,\"Diferentes voces para textos\",In:PC,%(col1),%(ls),%(colw),20,\"Usa voces diferentes para cada mensaje de texto\",%IsPresent(SpeechControls,\"TEXTVoicesEnable;\",0)"
 
-    Set dvar5e = "CBN2,CheckBox,\"Activar textos de Flota\",%(col1),%(ls),%(colw),20,\"Activa todos los textos de la Flota\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
-    Set dvar5f = "CBN3,CheckBox,\"Activar textos de Ala\",%(col2),+0,%(colw),20,\"Activa todos los textos de Ala\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
-    Set dvar5g = "CBN4,CheckBox,\"Activar textos locales\",%(col3),+0,%(colw),20,\"Activa todos los textos locales\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
+    Set dvar5e = "CBN2,CheckBox,\"Activar textos de Flota\",In:PC,%(col1),%(ls),%(colw),20,\"Activa todos los textos de la Flota\",%IsPresent(SpeechControls,\"SquadronTextsEnable;\",0)"
+    Set dvar5f = "CBN3,CheckBox,\"Activar textos de Ala\",In:PC,%(col2),+0,%(colw),20,\"Activa todos los textos de Ala\",%IsPresent(SpeechControls,\"WingTextsEnable;\",0)"
+    Set dvar5g = "CBN4,CheckBox,\"Activar textos locales\",In:PC,%(col3),+0,%(colw),20,\"Activa todos los textos locales\",%IsPresent(SpeechControls,\"LocalTextsEnable;\",0)"
 
-    Set dvar5h = "CBN5,CheckBox,\"Activar textos amigo\",%(col1),%(ls),%(colw),20,\"Habilita todos los textos amigos\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
-    Set dvar5j = "CBN6,CheckBox,\"Activar textos chat de voz\",%(col2),+0,%(colw),20,\"Habilita todos los textos del Chat de Voz\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
-    Set dvar5k = "CBN7,CheckBox,\"Activar textos Sistema\",%(col3),+0,%(colw),20,\"Habilita todos los textos del Sistema Estelar\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
+    Set dvar5h = "CBN5,CheckBox,\"Activar textos amigo\",In:PC,%(col1),%(ls),%(colw),20,\"Habilita todos los textos amigos\",%IsPresent(SpeechControls,\"FriendTextsEnable;\",0)"
+    Set dvar5j = "CBN6,CheckBox,\"Activar textos chat de voz\",In:PC,%(col2),+0,%(colw),20,\"Habilita todos los textos del Chat de Voz\",%IsPresent(SpeechControls,\"VoiceChatTextsEnable;\",0)"
+    Set dvar5k = "CBN7,CheckBox,\"Activar textos Sistema\",In:PC,%(col3),+0,%(colw),20,\"Habilita todos los textos del Sistema Estelar\",%IsPresent(SpeechControls,\"StarSystemTextsEnable;\",0)"
 
-    Set dvar5m = "CBN8,CheckBox,\"Activar textos de jugador\",%(col1),%(ls),%(colw),20,\"Habilita todos los textos del jugador\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
-    Set dvar5n = "CBN9,CheckBox,\"Activar cualquier otro texto\",%(col2),+0,%(colw),20,\"Habilita todos los textos de otros tipos\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
+    Set dvar5m = "CBN8,CheckBox,\"Activar textos de jugador\",In:PC,%(col1),%(ls),%(colw),20,\"Habilita todos los textos del jugador\",%IsPresent(SpeechControls,\"PlayerTextsEnable;\",0)"
+    Set dvar5n = "CBN9,CheckBox,\"Activar cualquier otro texto\",In:PC,%(col2),+0,%(colw),20,\"Habilita todos los textos de otros tipos\",%IsPresent(SpeechControls,\"AnyOtherTextsEnable;\",0)"
 
-    Set dvar6a = "L3,Label,\"Salto MDD \",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar6b = "CBF,CheckBox,\"Información sistema solo en primer salto\",%(col1),+0,%(colw),20,\"Dice la información del sistema solo en el primer salto al sistema\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
-    Set dvar6c = "CBFL,CheckBox,\"Desactivar informes de combustible\",%(col2),+0,%(colw),20,\"Desactiva Informes de Nivel de Combustible\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
-    Set dvar6d = "CBFR,CheckBox,\"Desactivar informes de facciones\",%(col3),+0,%(colw),20,\"Deshabilita informes de facciones en saltos del MDD\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
+    Set dvar6a = "L3,Label,\"Salto MDD \",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar6b = "CBF,CheckBox,\"Información sistema solo en primer salto\",In:PC,%(col1),+0,%(colw),20,\"Dice la información del sistema solo en el primer salto al sistema\",%IsPresent(SpeechControls,\"FirstJumpOnly;\",0)"
+    Set dvar6c = "CBFL,CheckBox,\"Desactivar informes de combustible\",In:PC,%(col2),+0,%(colw),20,\"Desactiva Informes de Nivel de Combustible\",%IsPresent(SpeechControls,\"FuelLevelDisable;\",0)"
+    Set dvar6d = "CBFR,CheckBox,\"Desactivar informes de facciones\",In:PC,%(col3),+0,%(colw),20,\"Deshabilita informes de facciones en saltos del MDD\",%IsPresent(SpeechControls,\"FSDFactionDisable;\",0)"
 
-    Set dvar7a = "L3,Label,\"Excluir Tipos de Estrellas\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",%(col1),+0,%(colw),20,\"Excluir estas estrellas de la lectura de la información del sistema leída después de saltar, tipos de estrellas OBAFGKM, H, N, TTS, Wx, etc., separados por comas o espacios\""
+    Set dvar7a = "L3,Label,\"Excluir Tipos de Estrellas\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar7b = "TBSTAR,TextBox,\"%existsdefault(SpeechEDSMStarExclusion,Def)\",In:PC,%(col1),+0,%(colw),20,\"Excluir estas estrellas de la lectura de la información del sistema leída después de saltar, tipos de estrellas OBAFGKM, H, N, TTS, Wx, etc., separados por comas o espacios\""
 
-    Set dvar8a = "L3,Label,\"Escanear\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar8b = "CBSM,CheckBox,\"Desactivar Masa/Mag de Estrellas\",%(col1),+0,%(colw),20,\"Desactiva los informes de escaneo de masa y magnitud de las estrellas\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
-    Set dvar8c1 = "CBSAS,CheckBox,\"Activar Escaneo Automático \",%(col3),+0,%(colw),20,\"Habilita entradas escaneadas automáticamente\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
+    Set dvar8a = "L3,Label,\"Escanear\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar8b = "CBSM,CheckBox,\"Desactivar Masa/Mag de Estrellas\",In:PC,%(col1),+0,%(colw),20,\"Desactiva los informes de escaneo de masa y magnitud de las estrellas\",%IsPresent(SpeechControls,\"ScanStarMassDisable;\",0)"
+    Set dvar8c1 = "CBSAS,CheckBox,\"Activar Escaneo Automático \",In:PC,%(col3),+0,%(colw),20,\"Habilita decir entradas escaneadas automáticamente\",%IsPresent(SpeechControls,\"ScanAutoScanEnable;\",0)"
 
-    Set dvar8d = "CBPB,CheckBox,\"Desactivar Planeta Básico\",%(col1),%(ls),%(colw),20,\"Desactiva de los informes de exploración de planetas aterrizable el estado, atmósfera\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
-    Set dvar8e = "CBPCR,CheckBox,\"Desactivar Créditos\",%(col2),+0,%(colw),20,\"Desactiva informes de crédito\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
-    Set dvar8f = "CBPDS,CheckBox,\"Desactivar Distancia\",%(col3),+0,%(colw),20,\"Desactiva informes de distancia\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
+    Set dvar8d = "CBPB,CheckBox,\"Desactivar Planeta Básico\",In:PC,%(col1),%(ls),%(colw),20,\"Desactiva de los informes de exploración de planetas aterrizable el estado, atmósfera\",%IsPresent(SpeechControls,\"ScanPlanetBasicInformationDisable;\",0)"
+    Set dvar8e = "CBPCR,CheckBox,\"Desactivar Créditos\",In:PC,%(col2),+0,%(colw),20,\"Desactiva informes de crédito\",%IsPresent(SpeechControls,\"ScanPlanetCreditsDisable;\",0)"
+    Set dvar8f = "CBPDS,CheckBox,\"Desactivar Distancia\",In:PC,%(col3),+0,%(colw),20,\"Desactiva informes de distancia\",%IsPresent(SpeechControls,\"ScanPlanetDistanceDisable;\",0)"
 
-    Set dvar8g = "CBPF,CheckBox,\"Activar Planeta Extendido\",%(col1),%(ls),%(colw),20,\"Activa información extendida de informes de exploración de planetas\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
-    Set dvar8h = "CBPM,CheckBox,\"Activar Materiales de Planeta\",%(col2),+0,%(colw),20,\"Activa reporte de información sobre materiales del escaneo planetario\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
-    Set dvar8i = "CBBC,CheckBox,\"Activar Cinturón Asteroides\",%(col3),+0,%(colw),20,\"Activa los informes de escaneo de los cinturones de asteroides\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
+    Set dvar8g = "CBPF,CheckBox,\"Activar Planeta Extendido\",In:PC,%(col1),%(ls),%(colw),20,\"Activa información extendida de informes de exploración de planetas\",%IsPresent(SpeechControls,\"ScanPlanetExtendedInformationEnable;\",0)"
+    Set dvar8h = "CBPM,CheckBox,\"Activar Materiales de Planeta\",In:PC,%(col2),+0,%(colw),20,\"Activa reporte de información sobre materiales del escaneo planetario\",%IsPresent(SpeechControls,\"ScanPlanetMaterialInformationEnable;\",0)"
+    Set dvar8i = "CBBC,CheckBox,\"Activar Cinturón Asteroides\",In:PC,%(col3),+0,%(colw),20,\"Activa los informes de escaneo de los cinturones de asteroides\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
-    Set dvar8j = "L3,Label,\"Valor Mínimo:\",%(col1),%(ls),80,20,\"\""
+    Set dvar8j = "L3,Label,\"Valor Mínimo:\",In:PC,%(col1),%(ls),80,20,\"\""
     Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Establecer el valor mínimo de escaneos sobre los que informar\""
-    Set dvar8l = "CBDF,CheckBox,\"No Descubierto\",%(col2),+0,%(colw),20,\"Solo reportar escaneos no descubiertos\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
-    Set dvar8m = "CBMF,CheckBox,\"No Mapeado\",%(col3),+0,%(colw),20,\"Solo reportar escaneos no mapeados\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
+    Set dvar8l = "CBDF,CheckBox,\"No Descubierto\",In:PC,%(col2),+0,%(colw),20,\"Solo reportar escaneos no descubiertos\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
+    Set dvar8m = "CBMF,CheckBox,\"No Mapeado\",In:PC,%(col3),+0,%(colw),20,\"Solo reportar escaneos no mapeados\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
     Set dvar9a = "L3,Label,\"EDSM/SPANSH\",10,%(lsm),80,20,\"\""
-    Set dvar9b = "CBED,CheckBox,\"Desactivar EDSM/SPANSH info\",%(col1),+0,%(colw),20,\"Desactiva toda la búsqueda de información del sistema en EDSM y SPANSH\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
-    Set dvar9c = "CBES,CheckBox,\"Resumen breve\",%(col2),+0,%(colw),20,\"Produce un resumen en lugar de la información completa\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
-    Set dvar9d = "CBEM,CheckBox,\"Información de lunas\",%(col3),+0,%(colw),20,\"Da la información de luna\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
-    Set dvar9e = "CBESM,CheckBox,\"Información Sub-lunas\",%(col1),%(ls),%(colw),20,\"Da la información de la sub-luna\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
-    Set dvar9f = "CBEAT,CheckBox,\"Información de Atmósfera\",%(col2),+0,%(colw),20,\"Da la información de la atmósfera de los planetas\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
-    Set dvar9g = "CBEVC,CheckBox,\"Información de Vulcanismos\",%(col3),+0,%(colw),20,\"Da la información de los vulcanismos en los planetas\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
-    Set dvar9h = "CBEMA,CheckBox,\"Información de Materiales\",%(col1),%(ls),%(colw),20,\"Da la información de los materiales en los planetas\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
-    Set dvar9i = "CBEMFD,CheckBox,\"Desactivar Primer Descubrimiento EDSM \",%(col2),+0,%(colw),20,\"Desactiva los mensajes de primer descubrimiento en EDSM\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
+    Set dvar9b = "CBED,CheckBox,\"Desactivar EDSM/SPANSH info\",In:PC,%(col1),+0,%(colw),20,\"Desactiva toda la búsqueda de información del sistema en EDSM y SPANSH\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
+    Set dvar9c = "CBES,CheckBox,\"Resumen breve\",In:PC,%(col2),+0,%(colw),20,\"Produce un resumen en lugar de la información completa\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
+    Set dvar9d = "CBEM,CheckBox,\"Información de lunas\",In:PC,%(col3),+0,%(colw),20,\"Da la información de luna\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
+    Set dvar9e = "CBESM,CheckBox,\"Información Sub-lunas\",In:PC,%(col1),%(ls),%(colw),20,\"Da la información de la sub-luna\",%IsPresent(SpeechControls,\"EDSMSubMoonsEnable;\",0)"
+    Set dvar9f = "CBEAT,CheckBox,\"Información de Atmósfera\",In:PC,%(col2),+0,%(colw),20,\"Da la información de la atmósfera de los planetas\",%IsPresent(SpeechControls,\"EDSMAtmosphereEnable;\",1)"
+    Set dvar9g = "CBEVC,CheckBox,\"Información de Vulcanismos\",In:PC,%(col3),+0,%(colw),20,\"Da la información de los vulcanismos en los planetas\",%IsPresent(SpeechControls,\"EDSMVolcanismEnable;\",1)"
+    Set dvar9h = "CBEMA,CheckBox,\"Información de Materiales\",In:PC,%(col1),%(ls),%(colw),20,\"Da la información de los materiales en los planetas\",%IsPresent(SpeechControls,\"EDSMMaterialsEnable;\",0)"
+    Set dvar9i = "CBEMFD,CheckBox,\"Desactivar Primer Descubrimiento EDSM \",In:PC,%(col2),+0,%(colw),20,\"Desactiva los mensajes de primer descubrimiento en EDSM\",%IsPresent(SpeechControls,\"EDSMFDDisable;\",0)"
 
-    Set dvar10a = "L3,Label,\"Baliza de Navegación\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",%(col1),+0,%(colw),20,\"Seleccione que se habla después de escanear la baliza de navegación\",Summary,No Speech on Scan,Full Scan Speech"
+    Set dvar10a = "L3,Label,\"Baliza de Navegación\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar10b = "CBXNav,ComboBox,\"%ExistsDefault(SpeechNavBeacon,'Summary')\",In:PC,%(col1),+0,%(colw),20,\"Seleccione que se habla después de escanear la baliza de navegación\",Summary,No Speech on Scan,Full Scan Speech"
 
-    Set dvar11a = "L3,Label,\"Selección Objetivos\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar11b = "CBTarget,CheckBox,\"Desactivar los informes de objetivos\",%(col1),+0,%(colw),20,\"Desactiva todos los informes de naves objetivo\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
+    Set dvar11a = "L3,Label,\"Selección Objetivos\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar11b = "CBTarget,CheckBox,\"Desactivar los informes de objetivos\",In:PC,%(col1),+0,%(colw),20,\"Desactiva todos los informes de naves objetivo\",%IsPresent(SpeechControls,\"TargetReportingDisabled;\",0)"
 
-    Set dvar12a = "L3,Label,\"Odyssey\",%(lab),%(lsm),%(labw),20,\"\""
-    Set dvar12b = "CBODYSW,CheckBox,\"Desactivar arma seleccionada\",%(col1),+0,%(colw),20,\"Deshabilita el mensaje de arma seleccionada\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
+    Set dvar12a = "L3,Label,\"Odyssey\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
+    Set dvar12b = "CBODYSW,CheckBox,\"Desactivar arma seleccionada\",In:PC,%(col1),+0,%(colw),20,\"Deshabilita el mensaje de arma seleccionada\",%IsPresent(SpeechControls,\"ODYDisSelWeapon;\",0)"
 
-    Set dvarok = "OK,Button,\"Aceptar\",%eval(%(width)-140),%(lsm),120,20,\"Presione para aceptar\""
-    Set dvarcancel = "Cancel,Button,\"Cancelar\",%eval(%(width)-280),+0,120,20,\"Presione para cancelar\""
+    Set dvar14a = "L3,Label,\"Surveyor\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
 
-    Dialog D1, "Configuración del paquete de voz", "%(width),750", dvar
+    Rem naming of Sur is aligned with TTxx in usercontrolsurveyor
+
+    DialogEntry dvar,SurMiningSignals, CheckBox, "Desactivar \"Señales de minería", %(col1), +0, %(colw), 20, "Deshabilita la \"salida de señales de minería del agrimensor", PC, , , , "%IsPresent(SpeechControls,"SurMiningSignals;",0)"
+    DialogEntry dvar,SurGeoSignals,CheckBox,"Desactivar señales geológicas",%(col2),+0,%(colw),20,"Deshabilita la salida de señales geológicas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurGeoSignals;",0)'
+    DialogEntry dvar,SurBioSignals,CheckBox,"Desactivar señales biológicas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales biológicas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurBioSignals;",0)'
+
+    DialogEntry dvar,SurThargoidSignals,CheckBox,"Desactivar señales Thargoide",%(col1),%(ls),%(colw),20,"Deshabilita la salida de señales Thargoide del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurThargoidSignals;",0)'
+    DialogEntry dvar,SurGuardianSignals,CheckBox,"Desactivar señales Guardián",%(col2),+0,%(colw),20,"Deshabilita la salida de señales Guardián del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurGuardianSignals;",0)'
+    DialogEntry dvar,SurHumanSignals,CheckBox,"Desactivar señales Humanas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales bio-humanas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHumanSignals;",0)'
+
+    DialogEntry dvar,SurOtherSignals,CheckBox,"Desactivar otras señales",%(col1),%(ls),%(colw),20,"Deshabilita la salida de otras señales del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurOtherSignals;",0)'
+
+    DialogEntry dvar,SurTerraformable,CheckBox,"Desactivar salida de terraformable ",%(col1),%(ls),%(colw),20,"Deshabilita la salida para terraformables del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurTerraformable;",0)'
+    DialogEntry dvar,SurLandable,CheckBox,"Desactivar salida de atterizables",%(col2),+0,%(colw),20,"Deshabilita la salida de  planetas aterrizables del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurLandable;",0)'
+    DialogEntry dvar,SurVolcanism,CheckBox,"Desactivar salida de volcanismo",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con volcanismo del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurVolcanism;",0)'
+
+    DialogEntry dvar,SurRings,CheckBox,"Desactivar salida de anillos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de anillos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurRings;",0)'
+    DialogEntry dvar,SurBelts,CheckBox,"Desactivar salida de Cinturones",%(col2),+0,%(colw),20,"Deshabilita la salida de cinturones de asteroides del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurBelts;",0)'
+    DialogEntry dvar,SurEccentric,CheckBox,"Desactivar orbitas excéntricas",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos con órbitas excéntricas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurEccentric;",0)'
+
+    DialogEntry dvar, SurTinyPlanetRadius, CheckBox, "Desactivar radio pequeño", %(col1), %(ls), %(colw), 20, "Deshabilitar la salida de planetas diminutos del agrimensor", PC, "", "", "", "%IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)"
+    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Desactivar radio enorme",%(col2),+0,%(colw),20,"Deshabilita la salida de planetas enormes del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)'
+    DialogEntry dvar,SurAtmosphere,CheckBox,"Desactivar salida de atmósferas",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con atmósfera del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurAtmosphere;",0)'
+
+    DialogEntry dvar,SurDiscovery,CheckBox,"Desactivar todos los reportes de descubrimiento",%(col1),%(ls),%(colw),20,"Deshabilita la salida de busqueda de descubrimientos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurDiscovery;",0)'
+    DialogEntry dvar,SurHighGravity,CheckBox,"Desactivar salida de gravedad alta",%(col2),+0,%(colw),20,"Deshabilita la salida de cuerpos con graveda alta del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHighGravity;",0)'
+    DialogEntry dvar,SurEarthlike,CheckBox,"Desactivar salida de similares a la tierra",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos como la tierra del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurEarthlike;",0)'
+
+    DialogEntry dvar,SurWaterWorld,CheckBox,"Desactivar salida de mundos acuáticos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de mundos acuáticos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurWaterWorld;",0)'
+    DialogEntry dvar, SurAmmoniaWorld, CheckBox, "Desactivar salida de mundos de amoniaco", %(col2), +0, %(colw), 20, "Deshabilita la salida para mundos de amoniaco del agrimensor", PC,,,, "%IsPresent(SpeechControls,"SurAmmoniaWorld;",0)"
+
+    DialogEntry dvar,OK,Button,"OK",%(width)-120,%(vpanelh)+60,120,20,"Presiona para OK"
+    DialogEntry dvar,Cancel,Button,"Cancelar",%(width)-260,+0,120,20,"Presiona para Cancelar"
+
+    Rem pragma dumpvars dvar*
+
+    Dialog D1, "Configuración del paquete de voz", "100,100", dvar
 
     While D1 $!= Cancel And D1 $!= Escape
         If D1 $== BBROWSE
@@ -2309,11 +2350,33 @@ If MenuName Contains ConfigureVerbosity
             Call SetSO(ctrl="CBEMA",flag="EDSMMaterialsEnable;")
             Call SetSO(ctrl="CBEMFD",flag="EDSMFDDisable;")
 
+            Call SetSO2(ctrl="SurMiningSignals")
+            Call SetSO2(ctrl="SurGeoSignals")
+            Call SetSO2(ctrl="SurBioSignals")
+            Call SetSO2(ctrl="SurThargoidSignals")
+            Call SetSO2(ctrl="SurGuardianSignals")
+            Call SetSO2(ctrl="SurHumanSignals")
+            Call SetSO2(ctrl="SurOtherSignals")
+            Call SetSO2(ctrl="SurTerraformable")
+            Call SetSO2(ctrl="SurLandable")
+            Call SetSO2(ctrl="SurVolcanism")
+            Call SetSO2(ctrl="SurRings")
+            Call SetSO2(ctrl="SurBelts")
+            Call SetSO2(ctrl="SurEccentric")
+            Call SetSO2(ctrl="SurTinyPlanetRadius")
+            Call SetSO2(ctrl="SurHugePlanetRadius")
+            Call SetSO2(ctrl="SurAtmosphere")
+            Call SetSO2(ctrl="SurDiscovery")
+            Call SetSO2(ctrl="SurHighGravity")
+            Call SetSO2(ctrl="SurEarthlike")
+            Call SetSO2(ctrl="SurWaterWorld")
+            Call SetSO2(ctrl="SurAmmoniaWorld")
+
             Call SetSO(ctrl="CBTarget",flag="TargetReportingDisabled;")
 
             Call SetSO(ctrl="CBODYSW",flag="ODYDisSelWeapon;")
 
-            Rem print Result %(SpeechControls)
+            // print Result %(SpeechControls)
 
             DialogControl D1,Get TBSTAR
             PersistentGlobal SpeechEDSMStarExclusion = %(DialogResult)
@@ -2361,6 +2424,20 @@ If State NotPresent
 DialogControl D1,Get %(ctrl)
 If DialogResult == %(State)
     PersistentGlobal SpeechControls += %(flag)
+
+END PROGRAM
+
+//*************************************************************
+// SetSO2
+// Events: None
+//*************************************************************
+PROGRAM SetSO2
+
+If State NotPresent
+    Let State = 1
+DialogControl D1,Get %(ctrl)
+If DialogResult == %(State)
+    PersistentGlobal SpeechControls += "%(ctrl);"
 
 END PROGRAM
 
@@ -2534,15 +2611,16 @@ END PROGRAM
 // Events: CrewHire, CrewLaunchFighter, CrewMemberJoins, CrewMemberRoleChange, CrewMemberQuits, EndCrewSession, JoinACrew
 // Events: KickCrewMember, NpcCrewPaidWage, NpcCrewRank, QuitACrew, EngineerApply, EngineerCraft, EngineerContribution, EngineerProgress
 // Events: EngineerLegacyConvert, Synthesis, TechnologyBroker, BuyExplorationData, CodexEntry, DiscoveryScan, FSSDiscoveryScan
-// Events: ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested, DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000)
-// Events: JetConeBoost, JetConeDamage, LaunchSRV, Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked
-// Events: USSDrop, MissionAbandoned, MissionAccepted, MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked
-// Events: MiningRefined, MaterialCollected, MaterialDiscarded, MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan
-// Events: DatalinkVoucher, DataScanned, Promotion, Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect
-// Events: PowerplayDefect, PowerplayDeliver, PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote
-// Events: PowerplayVoucher, AfmuRepairs, BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore
-// Events: ModuleBuy, ModuleRetrieve, ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName
-// Events: ShipyardBuy, ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
+// Events: SAAScanComplete, SAASignalsFound, ApproachSettlement(QueueLimit=20000), Docked, DockingDenied, DockingRequested
+// Events: DockingTimeout, DockSRV, FuelScoop(QueueLimit=3000), JetConeBoost, JetConeDamage, LeaveBody(QueueLimit=5000), LaunchSRV
+// Events: Liftoff, StartJump(Priority=HighClear), SupercruiseEntry, Touchdown, Undocked, USSDrop, MissionAbandoned, MissionAccepted
+// Events: MissionCompleted, MissionFailed, MissionRedirected, AsteroidCracked, MiningRefined, MaterialCollected, MaterialDiscarded
+// Events: MaterialDiscovered, MaterialTrade, ClearSavedGame, Died, DatalinkScan, DatalinkVoucher, DataScanned, Promotion
+// Events: Resurrect, ScientificResearch, Screenshot, SearchAndRescue, SendText, PowerplayCollect, PowerplayDefect, PowerplayDeliver
+// Events: PowerplayFastTrack, PowerplayJoin, PowerplayLeave, PowerplaySalary, PowerplayVote, PowerplayVoucher, AfmuRepairs
+// Events: BuyDrones, FetchRemoteModule, HeatDamage, HeatWarning, LaunchDrone, MassModuleStore, ModuleBuy, ModuleRetrieve
+// Events: ModuleSell, ModuleSellRemote, ModuleStore, ModuleSwap, SellShipOnRebuy, SellDrones, SetUserShipName, ShipyardBuy
+// Events: ShipyardNew, ShipyardSell, ShipyardSwap, ShipyardTransfer, SRVDestroyed, RebootRepair, RefuelAll, RefuelPartial
 // Events: Repair, RepairDrone, RepairAll, RestockVehicle, SelfDestruct, SystemsShutdown, VehicleSwitch, AppliedToSquadron
 // Events: DisbandedSquadron, InvitedToSquadron, JoinedSquadron, KickedFromSquadron, LeftSquadron, SharedBookmarkToSquadron
 // Events: SquadronCreated, SquadronDemotion, SquadronPromotion, WonATrophyForSquadron, BuyTradeData, CargoDepot, EjectCargo
@@ -2785,9 +2863,13 @@ END PROGRAM
 //*************************************************************
 PROGRAM SurveyorPanel
 
-Rem print VoicePack Surveyor Panel run `%(Body)` `%(BodyShortName)`
-Rem pragma dumpvars EventName*
-Rem pragma dumpvars Value*
+Rem we get System, Body, BodyShortName.
+Rem we get EventName<N> = event name, one of the TTNames in usercontrolsurveyor
+Rem and we get Value<N> if applicable (ones with : in TTName, currenlty Discovery, HighGravity)
+
+rem Print VoicePack Surveyor Panel run `%(Body)` `%(BodyShortName)`
+rem Pragma dumpvars EventName*
+rem Pragma dumpvars Value*
 
 Set speech = ""
 
@@ -2795,10 +2877,13 @@ ForEach eventn in EventName*
     Set data = %indirect("Value%(Index)")
     Set eventid = %indirect(eventn)
 
-    Rem print .. Event %(Index) : %(eventid) : '%(data)'
-
     If "%exist(\"say_surveyor_%(eventid)\")" IsTrue
+        set disablekey = Sur%(eventid);
+        If SpeechControls Notcontains "%(disablekey)"
+            rem print .. Surveyor vocalise %(Index) : %(eventid) : disablekey '%(disablekey)' '%(data)'
         Set speech += %expand("say_surveyor_%(eventid)")
+        else
+            rem print .. Surveyor disabled %(Index) : %(eventid) : disablekey '%(disablekey)' '%(data)'
     Else 
         Rem print "Rejected saying %(eventid)"
 
