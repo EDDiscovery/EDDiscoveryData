@@ -2,10 +2,10 @@
 
 ENABLED True
 
-INSTALL LongDescription="This is the version 24 of the voice pack for EDD, for version 18.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
+INSTALL LongDescription="This is the version 24 of the voice pack for EDD, for version 19.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=24.0.0.1
-INSTALL MinEDVersion=18.1.20.0
+INSTALL Version=24.0.1.0
+INSTALL MinEDVersion=19.0.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -1998,35 +1998,35 @@ If MenuName Contains ConfigureVerbosity
     Set dvar14a = "L3,Label,\"Surveyor\",In:PC,%(lab),%(lsm),%(labw),20,\"\""
 
     Rem naming of Sur is aligned with TTxx in usercontrolsurveyor
+    
+    DialogEntry dvar,SurMiningSignals, CheckBox, "Disable Mining signals", %(col1), +0, %(colw), 20, "Disable the surveyor mining signal output", PC, , , , %IsPresent(SpeechControls,"SurMiningSignals;",0)
+    DialogEntry dvar,SurGeoSignals,CheckBox,"Disable Geo signals",%(col2),+0,%(colw),20,"Disable the surveyor geo signal output","PC",,,,%IsPresent(SpeechControls,"SurGeoSignals;",0)
+    DialogEntry dvar,SurBioSignals,CheckBox,"Disable Bio signals",%(col3),+0,%(colw),20,"Disable the surveyor bio signal output","PC",,,,%IsPresent(SpeechControls,"SurBioSignals;",0)
 
-    DialogEntry dvar,SurMiningSignals, CheckBox, "Disable \"Mining signals", %(col1), +0, %(colw), 20, "Disable the \"surveyor mining signal output", PC, , , , "%IsPresent(SpeechControls,"SurMiningSignals;",0)"
-    DialogEntry dvar,SurGeoSignals,CheckBox,"Disable Geo signals",%(col2),+0,%(colw),20,"Disable the surveyor geo signal output","PC",,,,'%IsPresent(SpeechControls,"SurGeoSignals;",0)'
-    DialogEntry dvar,SurBioSignals,CheckBox,"Disable Bio signals",%(col3),+0,%(colw),20,"Disable the surveyor bio signal output","PC",,,,'%IsPresent(SpeechControls,"SurBioSignals;",0)'
+    DialogEntry dvar,SurThargoidSignals,CheckBox,"Disable Thargoid signals",%(col1),%(ls),%(colw),20,"Disable the surveyor thargoid signal output","PC",,,,%IsPresent(SpeechControls,"SurThargoidSignals;",0)
+    DialogEntry dvar,SurGuardianSignals,CheckBox,"Disable Guardian signals",%(col2),+0,%(colw),20,"Disable the surveyor guardian signal output","PC",,,,%IsPresent(SpeechControls,"SurGuardianSignals;",0)
+    DialogEntry dvar,SurHumanSignals,CheckBox,"Disable Human signals",%(col3),+0,%(colw),20,"Disable the surveyor bio human output","PC",,,,%IsPresent(SpeechControls,"SurHumanSignals;",0)
 
-    DialogEntry dvar,SurThargoidSignals,CheckBox,"Disable Thargoid signals",%(col1),%(ls),%(colw),20,"Disable the surveyor thargoid signal output","PC",,,,'%IsPresent(SpeechControls,"SurThargoidSignals;",0)'
-    DialogEntry dvar,SurGuardianSignals,CheckBox,"Disable Guardian signals",%(col2),+0,%(colw),20,"Disable the surveyor guardian signal output","PC",,,,'%IsPresent(SpeechControls,"SurGuardianSignals;",0)'
-    DialogEntry dvar,SurHumanSignals,CheckBox,"Disable Human signals",%(col3),+0,%(colw),20,"Disable the surveyor bio human output","PC",,,,'%IsPresent(SpeechControls,"SurHumanSignals;",0)'
+    DialogEntry dvar,SurOtherSignals,CheckBox,"Disable Other signals",%(col1),%(ls),%(colw),20,"Disable the surveyor other signal output","PC",,,,%IsPresent(SpeechControls,"SurOtherSignals;",0)
 
-    DialogEntry dvar,SurOtherSignals,CheckBox,"Disable Other signals",%(col1),%(ls),%(colw),20,"Disable the surveyor other signal output","PC",,,,'%IsPresent(SpeechControls,"SurOtherSignals;",0)'
+    DialogEntry dvar,SurTerraformable,CheckBox,"Disable terraformable output ",%(col1),%(ls),%(colw),20,"Disable the surveyor output for terraformables","PC",,,,%IsPresent(SpeechControls,"SurTerraformable;",0)
+    DialogEntry dvar,SurLandable,CheckBox,"Disable landable output",%(col2),+0,%(colw),20,"Disable the surveyor output for landable planets","PC",,,,%IsPresent(SpeechControls,"SurLandable;",0)
+    DialogEntry dvar,SurVolcanism,CheckBox,"Disable volcanic output",%(col3),+0,%(colw),20,"Disable the surveyor output for volcanic planets","PC",,,,%IsPresent(SpeechControls,"SurVolcanism;",0)
 
-    DialogEntry dvar,SurTerraformable,CheckBox,"Disable terraformable output ",%(col1),%(ls),%(colw),20,"Disable the surveyor output for terraformables","PC",,,,'%IsPresent(SpeechControls,"SurTerraformable;",0)'
-    DialogEntry dvar,SurLandable,CheckBox,"Disable landable output",%(col2),+0,%(colw),20,"Disable the surveyor output for landable planets","PC",,,,'%IsPresent(SpeechControls,"SurLandable;",0)'
-    DialogEntry dvar,SurVolcanism,CheckBox,"Disable volcanic output",%(col3),+0,%(colw),20,"Disable the surveyor output for volcanic planets","PC",,,,'%IsPresent(SpeechControls,"SurVolcanism;",0)'
+    DialogEntry dvar,SurRings,CheckBox,"Disable rings output",%(col1),%(ls),%(colw),20,"Disable the surveyor output for rings","PC",,,,%IsPresent(SpeechControls,"SurRings;",0)
+    DialogEntry dvar,SurBelts,CheckBox,"Disable belts output",%(col2),+0,%(colw),20,"Disable the surveyor output for belts","PC",,,,%IsPresent(SpeechControls,"SurBelts;",0)
+    DialogEntry dvar,SurEccentric,CheckBox,"Disable eccentric orbits",%(col3),+0,%(colw),20,"Disable the surveyor output for eccentric orbital bodies","PC",,,,%IsPresent(SpeechControls,"SurEccentric;",0)
 
-    DialogEntry dvar,SurRings,CheckBox,"Disable rings output",%(col1),%(ls),%(colw),20,"Disable the surveyor output for rings","PC",,,,'%IsPresent(SpeechControls,"SurRings;",0)'
-    DialogEntry dvar,SurBelts,CheckBox,"Disable belts output",%(col2),+0,%(colw),20,"Disable the surveyor output for belts","PC",,,,'%IsPresent(SpeechControls,"SurBelts;",0)'
-    DialogEntry dvar,SurEccentric,CheckBox,"Disable eccentric orbits",%(col3),+0,%(colw),20,"Disable the surveyor output for eccentric orbital bodies","PC",,,,'%IsPresent(SpeechControls,"SurEccentric;",0)'
+    DialogEntry dvar,SurTinyPlanetRadius, CheckBox, "Disable tiny radius", %(col1), %(ls), %(colw), 20, "Disable the surveyor output for tiny planet", PC, "", "", "", %IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)
+    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Disable huge radius",%(col2),+0,%(colw),20,"Disable the surveyor output for hugh planet","PC",,,,%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)
+    DialogEntry dvar,SurAtmosphere,CheckBox,"Disable atmosphere output",%(col3),+0,%(colw),20,"Disable the surveyor output for plantes with atmosphere","PC",,,,%IsPresent(SpeechControls,"SurAtmosphere;",0)
 
-    DialogEntry dvar, SurTinyPlanetRadius, CheckBox, "Disable tiny radius", %(col1), %(ls), %(colw), 20, "Disable the surveyor output for tiny planet", PC, "", "", "", "%IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)"
-    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Disable huge radius",%(col2),+0,%(colw),20,"Disable the surveyor output for hugh planet","PC",,,,'%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)'
-    DialogEntry dvar,SurAtmosphere,CheckBox,"Disable atmosphere output",%(col3),+0,%(colw),20,"Disable the surveyor output for plantes with atmosphere","PC",,,,'%IsPresent(SpeechControls,"SurAtmosphere;",0)'
+    DialogEntry dvar,SurDiscovery,CheckBox,"Disable all discovery reports",%(col1),%(ls),%(colw),20,"Disable the surveyor output for search discovery outputs","PC",,,,%IsPresent(SpeechControls,"SurDiscovery;",0)
+    DialogEntry dvar,SurHighGravity,CheckBox,"Disable high gravity output",%(col2),+0,%(colw),20,"Disable the surveyor output for high gravity bodies","PC",,,,%IsPresent(SpeechControls,"SurHighGravity;",0)
+    DialogEntry dvar,SurEarthlike,CheckBox,"Disable earthlike output",%(col3),+0,%(colw),20,"Disable the surveyor output for earthlike bodies","PC",,,,%IsPresent(SpeechControls,"SurEarthlike;",0)
 
-    DialogEntry dvar,SurDiscovery,CheckBox,"Disable all discovery reports",%(col1),%(ls),%(colw),20,"Disable the surveyor output for search discovery outputs","PC",,,,'%IsPresent(SpeechControls,"SurDiscovery;",0)'
-    DialogEntry dvar,SurHighGravity,CheckBox,"Disable high gravity output",%(col2),+0,%(colw),20,"Disable the surveyor output for high gravity bodies","PC",,,,'%IsPresent(SpeechControls,"SurHighGravity;",0)'
-    DialogEntry dvar,SurEarthlike,CheckBox,"Disable earthlike output",%(col3),+0,%(colw),20,"Disable the surveyor output for earthlike bodies","PC",,,,'%IsPresent(SpeechControls,"SurEarthlike;",0)'
-
-    DialogEntry dvar,SurWaterWorld,CheckBox,"Disable water worlds output",%(col1),%(ls),%(colw),20,"Disable the surveyor output for water worlds","PC",,,,'%IsPresent(SpeechControls,"SurWaterWorld;",0)'
-    DialogEntry dvar, SurAmmoniaWorld, CheckBox, "Disable ammonia worlds output", %(col2), +0, %(colw), 20, "Disable the surveyor output for ammonia worlds", PC,,,, "%IsPresent(SpeechControls,"SurAmmoniaWorld;",0)"
+    DialogEntry dvar,SurWaterWorld,CheckBox,"Disable water worlds output",%(col1),%(ls),%(colw),20,"Disable the surveyor output for water worlds","PC",,,,%IsPresent(SpeechControls,"SurWaterWorld;",0)
+    DialogEntry dvar, SurAmmoniaWorld, CheckBox, "Disable ammonia worlds output", %(col2), +0, %(colw), 20, "Disable the surveyor output for ammonia worlds", PC,,,, %IsPresent(SpeechControls,"SurAmmoniaWorld;",0)
 
     DialogEntry dvar,OK,Button,"OK",%(width)-120,%(vpanelh)+60,120,20,"Press for OK"
     DialogEntry dvar,Cancel,Button,"Cancel",%(width)-260,+0,120,20,"Press for Cancel"
