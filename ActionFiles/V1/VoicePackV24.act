@@ -4,8 +4,8 @@ ENABLED True
 
 INSTALL LongDescription="This is the version 24 of the voice pack for EDD, for version 19.1+\r\n***This will disable all previous voice packs***\r\n\r\nIt vocalises most events which are received, and welcomes you at the start and exit of the program. \nCertain events are not vocalised if they don't contain any information relevant to the user or if they only appear on start up.\r\n\r\nSpeech control and voice selection can be accomplished through the menu option in Add-Ons.\r\n\r\nThe ED Discovery team hope you enjoy this feature.\r\n\r\nMore voices can be purchased online.  Ivona voices which are commonly used since they are compatible with SAPI 5 interface can be purchased from www.textaloud.com individually.  Voices must be SAPI 5 compatible to be used with EDDiscovery.\r\nNPC background sounds (C) Frontier Developments"
 INSTALL ShortDescription="Voice file for ED"
-INSTALL Version=24.0.1.0
-INSTALL MinEDVersion=19.0.0.0
+INSTALL Version=24.1.0.0
+INSTALL MinEDVersion=19.1.0.0
 INSTALL Location=Actions
 INSTALL DisableOther1=VoicePackV1
 INSTALL DisableOther2=VoicePackV2
@@ -1913,7 +1913,8 @@ If MenuName Contains ConfigureVerbosity
     Set ls = +30
     Set lsm = +40
     Set width = 1000
-    Set vpanelh = 800
+    perform mainwindowscreendimensions
+    Let vpanelh = DUWAHeight-300
 
     Set dvar_panelcontainer = "PC,PanelVertScroll,\"\",4,30,%(width),%(vpanelh)"
 
@@ -1972,11 +1973,11 @@ If MenuName Contains ConfigureVerbosity
     Set dvar8i = "CBBC,CheckBox,\"Enable Belt Clusters\",In:PC,%(col3),+0,%(colw),20,\"Enable Scan reports of Belt Clusters\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
     Set dvar8j = "L3,Label,\"Min Value:\",In:PC,%(col1),%(ls),80,20,\"\""
-    Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Set minimum value of scans to report on\""
+    Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",In:PC,230,+0,120,20,\"Set minimum value of scans to report on\""
     Set dvar8l = "CBDF,CheckBox,\"Not Discovered\",In:PC,%(col2),+0,%(colw),20,\"Only report on scans with discovered flag off\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
     Set dvar8m = "CBMF,CheckBox,\"Not Mapped\",In:PC,%(col3),+0,%(colw),20,\"Only report on scans with mapped flag off\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
-    Set dvar9a = "L3,Label,\"EDSM/SPANSH\",10,%(lsm),80,20,\"\""
+    Set dvar9a = "L3,Label,\"EDSM/SPANSH\",In:PC,10,%(lsm),80,20,\"\""
     Set dvar9b = "CBED,CheckBox,\"Disable EDSM/SPANSH info\",In:PC,%(col1),+0,%(colw),20,\"Disable all EDSM and SPANSH lookup of system info\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
     Set dvar9c = "CBES,CheckBox,\"Short Summary\",In:PC,%(col2),+0,%(colw),20,\"Produce a short summary instead of the full info\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
     Set dvar9d = "CBEM,CheckBox,\"Moon information\",In:PC,%(col3),+0,%(colw),20,\"Say moon information\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
