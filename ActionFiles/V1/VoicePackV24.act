@@ -2017,8 +2017,8 @@ If MenuName Contains ConfigureVerbosity
     DialogEntry dvar,SurBelts,CheckBox,"Disable belts output",%(col2),+0,%(colw),20,"Disable the surveyor output for belts","PC",,,,%IsPresent(SpeechControls,"SurBelts;",0)
     DialogEntry dvar,SurEccentric,CheckBox,"Disable eccentric orbits",%(col3),+0,%(colw),20,"Disable the surveyor output for eccentric orbital bodies","PC",,,,%IsPresent(SpeechControls,"SurEccentric;",0)
 
-    DialogEntry dvar,SurTinyPlanetRadius, CheckBox, "Disable tiny radius", %(col1), %(ls), %(colw), 20, "Disable the surveyor output for tiny planet", PC, "", "", "", %IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)
-    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Disable huge radius",%(col2),+0,%(colw),20,"Disable the surveyor output for hugh planet","PC",,,,%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)
+    DialogEntry dvar,SurTinyPlanetRadius, CheckBox, "Disable tiny radius output", %(col1), %(ls), %(colw), 20, "Disable the surveyor output for tiny planet", PC, "", "", "", %IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)
+    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Disable landable/large output",%(col2),+0,%(colw),20,"Disable the surveyor output for large landable planets","PC",,,,%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)
     DialogEntry dvar,SurAtmosphere,CheckBox,"Disable atmosphere output",%(col3),+0,%(colw),20,"Disable the surveyor output for plantes with atmosphere","PC",,,,%IsPresent(SpeechControls,"SurAtmosphere;",0)
 
     DialogEntry dvar,SurDiscovery,CheckBox,"Disable all discovery reports",%(col1),%(ls),%(colw),20,"Disable the surveyor output for search discovery outputs","PC",,,,%IsPresent(SpeechControls,"SurDiscovery;",0)
