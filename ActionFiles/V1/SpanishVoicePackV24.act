@@ -2,10 +2,10 @@ ACTIONFILE V4
 
 ENABLED True
 
-INSTALL LongDescription="Esta es la versión 24 del paquete de voz para EDD, para la versión 18.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
+INSTALL LongDescription="Esta es la versión 24 del paquete de voz para EDD, para la versión 19.0.1+\r\n***Esto deshabilitará todos los paquetes de voz anteriores***\r\n\r\nVocaliza la mayoría de los eventos que se reciben y le da la bienvenida al principio y al final del programa. \nAlgunos eventos no se vocalizan si no contienen ninguna información relevante para el usuario o si sólo aparecen en la puesta en marcha.\r\n\r\nEl control del habla y la selección de voz se pueden realizar a través de la opción de menú en Add-Ons.\r\n\r\nEl equipo de ED Discovery espera que disfrute de esta función.\r\n\r\nSe pueden comprar más voces en línea.  Las voces de Ivona que son de uso común, ya que son compatibles con la interfaz SAPI 5, se pueden adquirir en www.textaloud.com individualmente.  Las voces deben ser compatibles con SAPI 5 para ser usadas con EDDiscovery.\r\nSonidos de fondo de los PNJ (C) Frontier Developments"
 INSTALL ShortDescription="Archivo de voz para ED"
-INSTALL Version=24.0.0.0
-INSTALL MinEDVersion=18.1.20.0
+INSTALL Version=24.1.0.0
+INSTALL MinEDVersion=19.0.1.0
 INSTALL Location=Actions
 INSTALL DisableOther1=SpanishVoicePackV1
 INSTALL DisableOther2=SpanishVoicePackV2
@@ -2169,7 +2169,8 @@ If MenuName Contains ConfigureVerbosity
     Set ls = +30
     Set lsm = +40
     Set width = 1000
-    Set vpanelh = 800
+    perform mainwindowscreendimensions
+    Let vpanelh = DUWAHeight-300
 
     Set dvar_panelcontainer = "PC,PanelVertScroll,\"\",4,30,%(width),%(vpanelh)"
 
@@ -2228,11 +2229,11 @@ If MenuName Contains ConfigureVerbosity
     Set dvar8i = "CBBC,CheckBox,\"Activar Cinturón Asteroides\",In:PC,%(col3),+0,%(colw),20,\"Activa los informes de escaneo de los cinturones de asteroides\",%IsPresent(SpeechControls,\"ScanPlanetBeltClusters;\",0)"
 
     Set dvar8j = "L3,Label,\"Valor Mínimo:\",In:PC,%(col1),%(ls),80,20,\"\""
-    Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",230,+0,120,20,\"Establecer el valor mínimo de escaneos sobre los que informar\""
+    Set dvar8k = "TBSV,TextBox,\"%existsdefault(SpeechMinScanValue,'0')\",In:PC,230,+0,120,20,\"Establecer el valor mínimo de escaneos sobre los que informar\""
     Set dvar8l = "CBDF,CheckBox,\"No Descubierto\",In:PC,%(col2),+0,%(colw),20,\"Solo reportar escaneos no descubiertos\",%IsPresent(SpeechControls,\"ScanNotDiscovered;\",0)"
     Set dvar8m = "CBMF,CheckBox,\"No Mapeado\",In:PC,%(col3),+0,%(colw),20,\"Solo reportar escaneos no mapeados\",%IsPresent(SpeechControls,\"ScanNotMapped;\",0)"
 
-    Set dvar9a = "L3,Label,\"EDSM/SPANSH\",10,%(lsm),80,20,\"\""
+    Set dvar9a = "L3,Label,\"EDSM/SPANSH\",In:PC,10,%(lsm),80,20,\"\""
     Set dvar9b = "CBED,CheckBox,\"Desactivar EDSM/SPANSH info\",In:PC,%(col1),+0,%(colw),20,\"Desactiva toda la búsqueda de información del sistema en EDSM y SPANSH\",%IsPresent(SpeechControls,\"EDSMInformationDisable;\",0)"
     Set dvar9c = "CBES,CheckBox,\"Resumen breve\",In:PC,%(col2),+0,%(colw),20,\"Produce un resumen en lugar de la información completa\",%IsPresent(SpeechControls,\"EDSMSummaryEnable;\",0)"
     Set dvar9d = "CBEM,CheckBox,\"Información de lunas\",In:PC,%(col3),+0,%(colw),20,\"Da la información de luna\",%IsPresent(SpeechControls,\"EDSMMoonsEnable;\",0)"
@@ -2255,34 +2256,34 @@ If MenuName Contains ConfigureVerbosity
 
     Rem naming of Sur is aligned with TTxx in usercontrolsurveyor
 
-    DialogEntry dvar,SurMiningSignals, CheckBox, "Desactivar \"Señales de minería", %(col1), +0, %(colw), 20, "Deshabilita la \"salida de señales de minería del agrimensor", PC, , , , "%IsPresent(SpeechControls,"SurMiningSignals;",0)"
-    DialogEntry dvar,SurGeoSignals,CheckBox,"Desactivar señales geológicas",%(col2),+0,%(colw),20,"Deshabilita la salida de señales geológicas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurGeoSignals;",0)'
-    DialogEntry dvar,SurBioSignals,CheckBox,"Desactivar señales biológicas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales biológicas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurBioSignals;",0)'
+    DialogEntry dvar,SurMiningSignals, CheckBox, "Desactivar señales de minería", %(col1), +0, %(colw), 20, "Deshabilita la salida de señales de minería del agrimensor", PC, , , , %IsPresent(SpeechControls,"SurMiningSignals;",0)
+    DialogEntry dvar,SurGeoSignals,CheckBox,"Desactivar señales geológicas",%(col2),+0,%(colw),20,"Deshabilita la salida de señales geológicas del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurGeoSignals;",0)
+    DialogEntry dvar,SurBioSignals,CheckBox,"Desactivar señales biológicas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales biológicas del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurBioSignals;",0)
 
-    DialogEntry dvar,SurThargoidSignals,CheckBox,"Desactivar señales Thargoide",%(col1),%(ls),%(colw),20,"Deshabilita la salida de señales Thargoide del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurThargoidSignals;",0)'
-    DialogEntry dvar,SurGuardianSignals,CheckBox,"Desactivar señales Guardián",%(col2),+0,%(colw),20,"Deshabilita la salida de señales Guardián del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurGuardianSignals;",0)'
-    DialogEntry dvar,SurHumanSignals,CheckBox,"Desactivar señales Humanas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales bio-humanas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHumanSignals;",0)'
+    DialogEntry dvar,SurThargoidSignals,CheckBox,"Desactivar señales Thargoide",%(col1),%(ls),%(colw),20,"Deshabilita la salida de señales Thargoide del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurThargoidSignals;",0)
+    DialogEntry dvar,SurGuardianSignals,CheckBox,"Desactivar señales Guardián",%(col2),+0,%(colw),20,"Deshabilita la salida de señales Guardián del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurGuardianSignals;",0)
+    DialogEntry dvar,SurHumanSignals,CheckBox,"Desactivar señales Humanas",%(col3),+0,%(colw),20,"Deshabilita la salida de señales bio-humanas del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurHumanSignals;",0)
 
-    DialogEntry dvar,SurOtherSignals,CheckBox,"Desactivar otras señales",%(col1),%(ls),%(colw),20,"Deshabilita la salida de otras señales del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurOtherSignals;",0)'
+    DialogEntry dvar,SurOtherSignals,CheckBox,"Desactivar otras señales",%(col1),%(ls),%(colw),20,"Deshabilita la salida de otras señales del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurOtherSignals;",0)
 
-    DialogEntry dvar,SurTerraformable,CheckBox,"Desactivar salida de terraformable ",%(col1),%(ls),%(colw),20,"Deshabilita la salida para terraformables del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurTerraformable;",0)'
-    DialogEntry dvar,SurLandable,CheckBox,"Desactivar salida de atterizables",%(col2),+0,%(colw),20,"Deshabilita la salida de  planetas aterrizables del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurLandable;",0)'
-    DialogEntry dvar,SurVolcanism,CheckBox,"Desactivar salida de volcanismo",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con volcanismo del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurVolcanism;",0)'
+    DialogEntry dvar,SurTerraformable,CheckBox,"Desactivar salida de terraformable ",%(col1),%(ls),%(colw),20,"Deshabilita la salida para terraformables del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurTerraformable;",0)
+    DialogEntry dvar,SurLandable,CheckBox,"Desactivar salida de atterizables",%(col2),+0,%(colw),20,"Deshabilita la salida de  planetas aterrizables del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurLandable;",0)
+    DialogEntry dvar,SurVolcanism,CheckBox,"Desactivar salida de volcanismo",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con volcanismo del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurVolcanism;",0)
 
-    DialogEntry dvar,SurRings,CheckBox,"Desactivar salida de anillos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de anillos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurRings;",0)'
-    DialogEntry dvar,SurBelts,CheckBox,"Desactivar salida de Cinturones",%(col2),+0,%(colw),20,"Deshabilita la salida de cinturones de asteroides del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurBelts;",0)'
-    DialogEntry dvar,SurEccentric,CheckBox,"Desactivar orbitas excéntricas",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos con órbitas excéntricas del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurEccentric;",0)'
+    DialogEntry dvar,SurRings,CheckBox,"Desactivar salida de anillos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de anillos del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurRings;",0)
+    DialogEntry dvar,SurBelts,CheckBox,"Desactivar salida de Cinturones",%(col2),+0,%(colw),20,"Deshabilita la salida de cinturones de asteroides del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurBelts;",0)
+    DialogEntry dvar,SurEccentric,CheckBox,"Desactivar orbitas excéntricas",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos con órbitas excéntricas del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurEccentric;",0)
 
-    DialogEntry dvar, SurTinyPlanetRadius, CheckBox, "Desactivar radio pequeño", %(col1), %(ls), %(colw), 20, "Deshabilitar la salida de planetas diminutos del agrimensor", PC, "", "", "", "%IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)"
-    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Desactivar radio enorme",%(col2),+0,%(colw),20,"Deshabilita la salida de planetas enormes del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)'
-    DialogEntry dvar,SurAtmosphere,CheckBox,"Desactivar salida de atmósferas",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con atmósfera del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurAtmosphere;",0)'
+    DialogEntry dvar,SurTinyPlanetRadius, CheckBox, "Desactivar salida de radio pequeño", %(col1), %(ls), %(colw), 20, "Deshabilitar la salida de planetas diminutos del agrimensor", PC, "", "", "", %IsPresent(SpeechControls,"SurTinyPlanetRadius;",0)
+    DialogEntry dvar,SurHugePlanetRadius,CheckBox,"Desactivar salida de aterrizables de radio enorme",%(col2),+0,%(colw),20,"Deshabilita la salida de planetas aterrizables enormes del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurHugePlanetRadius;",0)
+    DialogEntry dvar,SurAtmosphere,CheckBox,"Desactivar salida de atmósferas",%(col3),+0,%(colw),20,"Deshabilita la salida de planetas con atmósfera del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurAtmosphere;",0)
 
-    DialogEntry dvar,SurDiscovery,CheckBox,"Desactivar todos los reportes de descubrimiento",%(col1),%(ls),%(colw),20,"Deshabilita la salida de busqueda de descubrimientos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurDiscovery;",0)'
-    DialogEntry dvar,SurHighGravity,CheckBox,"Desactivar salida de gravedad alta",%(col2),+0,%(colw),20,"Deshabilita la salida de cuerpos con graveda alta del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurHighGravity;",0)'
-    DialogEntry dvar,SurEarthlike,CheckBox,"Desactivar salida de similares a la tierra",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos como la tierra del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurEarthlike;",0)'
+    DialogEntry dvar,SurDiscovery,CheckBox,"Desactivar todos los reportes de descubrimiento",%(col1),%(ls),%(colw),20,"Deshabilita la salida de busqueda de descubrimientos del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurDiscovery;",0)
+    DialogEntry dvar,SurHighGravity,CheckBox,"Desactivar salida de gravedad alta",%(col2),+0,%(colw),20,"Deshabilita la salida de cuerpos con graveda alta del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurHighGravity;",0)
+    DialogEntry dvar,SurEarthlike,CheckBox,"Desactivar salida de similares a la tierra",%(col3),+0,%(colw),20,"Deshabilita la salida de cuerpos como la tierra del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurEarthlike;",0)
 
-    DialogEntry dvar,SurWaterWorld,CheckBox,"Desactivar salida de mundos acuáticos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de mundos acuáticos del agrimensor","PC",,,,'%IsPresent(SpeechControls,"SurWaterWorld;",0)'
-    DialogEntry dvar, SurAmmoniaWorld, CheckBox, "Desactivar salida de mundos de amoniaco", %(col2), +0, %(colw), 20, "Deshabilita la salida para mundos de amoniaco del agrimensor", PC,,,, "%IsPresent(SpeechControls,"SurAmmoniaWorld;",0)"
+    DialogEntry dvar,SurWaterWorld,CheckBox,"Desactivar salida de mundos acuáticos",%(col1),%(ls),%(colw),20,"Deshabilita la salida de mundos acuáticos del agrimensor","PC",,,,%IsPresent(SpeechControls,"SurWaterWorld;",0)
+    DialogEntry dvar, SurAmmoniaWorld, CheckBox, "Desactivar salida de mundos de amoniaco", %(col2), +0, %(colw), 20, "Deshabilita la salida para mundos de amoniaco del agrimensor", PC,,,, %IsPresent(SpeechControls,"SurAmmoniaWorld;",0)
 
     DialogEntry dvar,OK,Button,"OK",%(width)-120,%(vpanelh)+60,120,20,"Presiona para OK"
     DialogEntry dvar,Cancel,Button,"Cancelar",%(width)-260,+0,120,20,"Presiona para Cancelar"
