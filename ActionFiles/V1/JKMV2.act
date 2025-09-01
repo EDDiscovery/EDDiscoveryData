@@ -1,6 +1,6 @@
 ACTIONFILE V4
 
-ENABLED False
+ENABLED True
 
 INSTALL LongDescription="This is the second edition of the Joystick,Keyboard, Mouse pack for EDD, for version 8.3+\r\n\r\nIt vocalises events caused by joystick, key and mouse bindings."
 INSTALL ShortDescription="JKM Pack for ED"
