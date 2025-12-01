@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Items>
+
+<NotificationsV2>
+
+<Entry StartUTC="2025-12-01T00:00:00Z"  Type="Popup" PointSize="18" VersionMax="19.0.11.0" AlwaysShow="1">
+<Body Caption="Update EDD Now" Lang="en">
+
+Update EDD Now if you are going to buy the Caspian Explorer
+
+The new ship causes a crash in the ships and modules panel due to its new class of hyperdrive
+
+If you plan to buy one when it launches, please immediately update EDD to 19.0.12+
+</Body>
+</Entry>
+
+</NotificationsV2>
+</Items>
