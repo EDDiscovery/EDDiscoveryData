@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Items>
+
+<NotificationsV3>
+
+<Comment Note="Updated 26/9/26 for 20.0 check for new packs" />
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"
+            VersionMin="20.0.0.0"
+            ConditionActionPackPresentEnabledOldVersion="VoicePackV24,24.9.9.9">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost.
+</Body>
+</Entry>
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"
+            VersionMin="20.0.0.0"
+            ConditionActionPackPresentEnabledOldVersion="JKMV2,2.9.9.9">
+<Body Caption="JKM Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Joystick, Mouse, Keyboard Pack is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost.
+</Body>
+</Entry>
+
+<Entry StartUTC="2025-02-20T13:00:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"
+            VersionMin="20.0.0.0"
+            ConditionActionPackPresentEnabledOldVersion="KeyPressesV6,6.9.9.9">
+<Body Caption="Key Presses Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Key Presses Pack is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost.
+</Body>
+</Entry>
+
+
+<Comment Note="Older entries below" />
+
+
+<Entry StartUTC="2025-02-20T13:00:10Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="VoicePackV23German,23.0.0.0">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost.
+</Body>
+<Body Caption="Voice Pack Out Of Date" Lang="de">
+*** NEU !!! ***
+
+Wir haben bemerkt, dass deine Version des Voice Packs veraltet ist.
+
+Öffne das AddOn-Menü und benutze den AddOn-Manager um dein Voice Pack zu aktualisieren.
+
+Beachte: Beim Updaten des Voice Packs gehen sämtliche vorgenommenen VP-Einstellungen, wie etwa deaktivierte Ereignisse, verloren.
+</Body>
+</Entry>
+
+<Entry StartUTC="2025-02-20T13:00:20Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="SpanishVoicePackV23,23.2.0.0">
+<Body Caption="Voice Pack Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your Voice Pack is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+Note: By installing this new version any changes you made to the previous pack, such as turning off events, will be lost.
+</Body>
+<Body Caption="Voice Pack Out Of Date" Lang="es">
+*** NUEVO !!! ***
+
+Hemos notado que tu versión del Paquete de Voz está desactualizada. Una nueva versión se encuentra disponible.
+
+Ve al menú de Complementos y selecciona Administrar Complementos para actualizar tu paquete.
+
+Nota: Al instalar esta nueva versión, cualquier cambio que hayas hecho en el paquete anterior, como desactivar eventos, se perderá.
+</Body>
+
+</Entry>
+
+
+<Entry StartUTC="2025-09-16T21:15:00Z" EndUTC="2030-01-01T23:00:00Z" Type="Popup" PointSize="16"  ConditionActionPackPresentEnabledOldVersion="EDDCanonnPanel,0.5.16.1">
+<Body Caption="EDD Canonn Panel Out Of Date" Lang="en">
+*** NEW !!! ***
+
+We noticed your EDD Canonn panel is out of date. A new version is now available.
+
+Go to the AddOn menu and select Manage Add-Ons to update your pack.
+
+</Body>
+</Entry>
+
+
+
+</NotificationsV3>
+</Items>

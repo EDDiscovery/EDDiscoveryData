@@ -1,0 +1,389 @@
+ACTIONFILE V4
+
+ENABLED True
+
+INSTALL LongDescription="This is the 3rd edition of the Joystick,Keyboard, Mouse pack for EDD, for version 20+\r\n\r\nIt vocalises events caused by joystick, key and mouse bindings."
+INSTALL ShortDescription="JKM Pack for ED"
+INSTALL Version=3.1.0.0
+INSTALL MinEDVersion=20.0.0.0
+INSTALL Location=Actions
+INSTALL DisableOther1=JKMV1
+INSTALL DisableOther2=JKMV2
+
+EVENT onStartup, onStartup, "", Condition AlwaysTrue
+EVENT onPostStartup, onPostStartup, "", Condition AlwaysTrue
+EVENT onInstall, onInstall, "", Condition AlwaysTrue
+EVENT onMenuItem, Menus, "", MenuName Contains jkmMenu
+EVENT onEliteInput, TurnOn, "", Condition AlwaysTrue
+EVENT onSayFinished, FinishSpeech, "", EventName $== JKMFinish
+EVENT onEliteInputRaw, RawInput, "", Condition AlwaysTrue
+EVENT UIOverallStatus, OverallStatus, "", Condition AlwaysTrue
+
+//*************************************************************
+// SetUpLanguageEnglish
+// Events: None
+//*************************************************************
+PROGRAM SetUpLanguageEnglish
+
+Static jkm_install $= You have installed Elite Dangerous Discovery, Joystick, Keyboard, Mouse Pack 2, English version
+
+Rem jkm_mode_binding
+Rem prefixes are LandingGear, NormalSpace, Docked, Supercruise_0 (no SCO), Supercruise_1 (SCO), Landed, SRV, Fighter, OnFoot (checked first)
+Rem then Vehicle prefix is checked if prefix was NormalSpace,SRV,Supercruise
+Rem then Ship prefix is checked if prefix was NormalSpace,Supercruise
+Rem also All prefix is checked as a last check
+
+Static jkm_powerbindings $= IncreaseEnginesPower_Buggy,IncreaseSystemsPower_Buggy,IncreaseWeaponsPower_Buggy,ResetPowerDistribution_Buggy,IncreaseEnginesPower,IncreaseWeaponsPower,IncreaseSystemsPower,ResetPowerDistribution
+Static jkm_Vehicle_Power = Adjusting power;Changing power allocation
+
+// normal supercruise (then vehicle then ship then all is checked)
+
+Static jkm_Supercruise_0_TargetNextRouteSystem $= Selected existing route
+Static jkm_Supercruise_0_OrbitLinesToggle $= Toggle orbit lines
+Static jkm_Supercruise_0_EngineColourToggle $= Toggling engine colour
+Static jkm_Supercruise_0_UseBoostJuice $= Overdrive on;Overdrive, Hold onto your hat Commander;Overdrive Activated
+Static jkm_Supercruise_0_WingNavLock $= Toggle wing man navigational lock
+
+//  SCO supercruise (no others are checked)
+
+Static jkm_Supercruise_1_UseBoostJuice $= Overdrive off;Normal Supercruise Commander
+Static jkm_Supercruise_1_FocusLeftPanel $= Toggling target panel; Target Panel toggle; Target Panel
+Static jkm_Supercruise_1_SelectTarget $= Selecting target
+
+// Normal space (then vehicle then ship then all is checked)
+
+Static jkm_NormalSpace_CycleNextSubsystem $= Next target subsystem
+Static jkm_NormalSpace_CyclePreviousSubsystem $= Previous target subsystem
+Static jkm_NormalSpace_UseBoostJuice $= Boosting;Boost Juice;Boost On
+
+Static jkm_NormalSpace_UseShieldCell $= Discharging Shield Cell
+Static jkm_NormalSpace_DeployHeatSink $= Fire heatsink
+Static jkm_NormalSpace_FireChaffLauncher $= Fire chaff
+Static jkm_NormalSpace_ChargeECM $= Charging ECM
+
+Static jkm_NormalSpace_OrderRequestDock $= Request Fighter dock; Fighter request docking
+Static jkm_NormalSpace_OrderDefensiveBehaviour $= Defensive mode; defensive mode
+Static jkm_NormalSpace_OrderAggressiveBehaviour $= Agressive mode; Attack Now
+Static jkm_NormalSpace_OrderFocusTarget $= Attack selected target; Attack selected target
+Static jkm_NormalSpace_OrderHoldFire $= Hold fire; Stop firing; Desist attack
+Static jkm_NormalSpace_OrderHoldPosition $= Hold position; Hold position and cease attack
+Static jkm_NormalSpace_OrderFollow $= Follow me; Follow my direction
+Static jkm_NormalSpace_OpenOrders $= Open orders
+
+Static jkm_NormalSpace_CycleNextHostileTarget $= Next Hostile
+Static jkm_NormalSpace_CyclePreviousHostileTarget $= Previous Hostile
+Static jkm_NormalSpace_SelectHighestThreat $= Highest Threat
+
+Static jkm_NormalSpace_SelectTargetsTarget $= Select wing man target;Selected target of current wingman
+
+// checked after Supercruise_0, NormalSpace, SRV.  
+
+Static jkm_Vehicle_SetSpeedMinus100 $= Full astern
+Static jkm_Vehicle_SetSpeedMinus75 $= 75 percent astern
+Static jkm_Vehicle_SetSpeedMinus50 $= 50 percent astern
+Static jkm_Vehicle_SetSpeedMinus25 $= 25 percent astern
+Static jkm_Vehicle_SetSpeedZero $= Engines off
+Static jkm_Vehicle_SetSpeed25 $= 25 percent ahead;Quarter speed captain
+Static jkm_Vehicle_SetSpeed50 $= 50 percent ahead;Half ahead captain
+Static jkm_Vehicle_SetSpeed75 $= 75 percent ahead;Three quarters Ahead captain
+Static jkm_Vehicle_SetSpeed100 $= Full ahead;Full speed
+
+Static jkm_Vehicle_FocusLeftPanel $= Toggling target panel; Target Panel toggle; Target Panel
+Static jkm_Vehicle_FocusRightPanel $= Toggling system panel; System Panel toggle; System Panel
+Static jkm_Vehicle_FocusRadarPanel $= Toggling role panel; Role Panel toggle; Role Panel
+Static jkm_Vehicle_QuickCommsPanel $= Quick Communication panel; Quick Communication;Quick Comms
+Static jkm_Vehicle_FocusCommsPanel $= Communication panel; Toggle Communication Panel; Comms
+Static jkm_Vehicle_FriendsMenu $= Toggle Friend menu
+Static jkm_Vehicle_HeadLookToggle $= Toggle head look
+
+Static jkm_Vehicle_SelectTarget $= Selecting target
+Static jkm_Vehicle_CycleNextTarget $= Next target
+Static jkm_Vehicle_CyclePreviousTarget $= Previous target
+
+// checked after Vehicle failed for Normalspace/Supercruise_0
+
+Static jkm_Ship_TargetWingman0 $= Select wing man 1;Wing man 1 targetted
+Static jkm_Ship_TargetWingman1 $= Select wing man 2;Wing man 2 targetted
+Static jkm_Ship_TargetWingman2 $= Select wing man 3;Wing man 3 targetted
+Static jkm_Ship_WeaponColourToggle $= Toggline weapons colour
+
+// Final all
+
+Static jkm_All_GalaxyMapOpen $= Toggle galaxy map
+Static jkm_All_SystemMapOpen $= Toggle system map
+Static jkm_All_MicrophoneMute $= Toggling microphone mute
+Static jkm_All_PhotoCameraToggle $= Toggle camera mode
+Static jkm_All_UIFocus $= Toggle panel
+
+// other setups
+
+Static jkmSpeechCulture = en-gb
+
+END PROGRAM
+
+//*************************************************************
+// SetUpLanguage
+// Events: None
+//*************************************************************
+PROGRAM SetUpLanguage
+
+Rem do these.. If %(CurrentCulture) Contains sv
+Call SetUpLanguageEnglish
+
+Static Guimode = 0
+
+END PROGRAM
+
+//*************************************************************
+// onStartup
+// Events: onStartup
+//*************************************************************
+PROGRAM onStartup
+
+Print JKM Pack installed, running on EDD Version %version(1).%version(2).%version(3).%version(4)
+
+Call SetUpLanguage
+Call Initialise
+
+END PROGRAM
+
+//*************************************************************
+// onPostStartup
+// Events: onPostStartup
+//*************************************************************
+PROGRAM onPostStartup
+
+MenuItem VoiceMenuConfigureVoice                                // see of voice menu installed..
+If MenuPresent IsFalse
+    MenuItem jkmMenuVoice,add-ons,"Voice Synthesis Configuration",speaker
+
+END PROGRAM
+
+//*************************************************************
+// onInstall
+// Events: onInstall
+//*************************************************************
+PROGRAM onInstall
+
+If InstallList Contains JKMV
+    Call SetUpLanguage
+    Call Initialise
+    Say %(jkm_install)
+    MenuItem jkmMenuVoice,add-ons,"Voice Synthesis Configuration",speaker
+
+END PROGRAM
+
+//*************************************************************
+// Initialise
+// Events: None
+//*************************************************************
+PROGRAM Initialise
+
+Perform EnableEliteInputNoAxis
+Static jkm_lastbinding = None
+Static jkm_lastbindingtime = 0
+Static jkm_speaking = 0
+
+static jkm_repeat_time = 3000              // don't say same event more often
+static jkm_speechqueuelimit = 3000
+
+static majormode = none
+static fullmode = none
+Static GUIFocus = 0
+Static LandingGear = 0
+Static CameraMode = 0
+Static CargoDeployed = 0
+Static Overdrive = 0
+
+Perform listeliteinput
+Print %(EliteInputCheck)
+
+END PROGRAM
+
+//*************************************************************
+// Menus
+// Events: onMenuItem?(MenuName Contains jkmMenu)
+//*************************************************************
+PROGRAM Menus
+
+If MenuName Contains jkmMenuVoice
+    Perform ConfigureVoice "Configure Voice Synthesis"
+
+END PROGRAM
+
+//*************************************************************
+// RawInput
+//*************************************************************
+
+PROGRAM RawInput
+
+if Pressed IsTrue
+    rem print Raw Input %(Device) %(EventName) %(Pressed) %(Value)
+    rem pragma dumplocalvars *
+    rem print -----
+END PROGRAM
+
+//*************************************************************
+// RawInput
+//*************************************************************
+
+PROGRAM OverallStatus
+
+static majormode = %(EventClass_UIMode_MajorMode)
+static fullmode = %(EventClass_UIMode_Mode)
+Static GUIFocus = %(Status_GUIFocus)
+Static LandingGear = %(Status_LandingGear)
+Static CargoDeployed = %(Status_CargoScoopDeployed)
+Static Overdrive = %(Status_SupercruiseOverdrive)
+
+rem pragma dumplocalvars Status_*
+
+rem print Major %(majormode) Minor %(fullmode) : gui %(GUIFocus) lg %(LandingGear)
+
+END PROGRAM
+
+//*************************************************************
+// TurnOn
+// Events: onEliteInput
+//*************************************************************
+PROGRAM TurnOn
+
+if Device $!= "Mouse"
+    rem pragma dumplocalvars *
+
+rem Print Run
+rem print
+rem Print %(Device), `%(Binding)`, List: %(BindingList), EventName:%(EventName) Pressed:%(Pressed) Value:%(Value)
+rem Print JMK Hit: %(Device), %(Binding), %(majormode), %(fullmode), GUI Focus Checked %(GUIFocus) Landing Gear %(LandingGear)
+
+If Binding $== PhotoCameraToggle
+    StaticLet CameraMode = !%(CameraMode)
+    Print Camera mode is %(CameraMode)
+
+If %(CameraMode) == 1 And Binding $!= PhotoCameraToggle         // No GUI focus from those frontier people so have to do something nasty
+    Set Binding = PhotoCamera
+
+If Binding IsOneOf %(jkm_powerbindings)                         // if power binding, alter to generic name
+    Set Binding = Power
+
+// can't do these..
+
+rem print nofocus
+
+If GUIFocus $== NoFocus                                         // must be active and not in a sub window
+    Rem UI fullmode contains  MainShipNormalSpace,MainShipDockedStarPort,MainShipDockedPlanet,MainShipSupercruise,MainShipLanded,SRV,Fighter,
+    Rem OnFootStarPortHangar,OnFootStarPortSocialSpace,OnFootPlantaryPortHangar,OnFootPlantaryPortSocialSpace,OnFootInstallationInside,OnFootPlanet
+    
+    rem results in these prefix's. 
+
+    If fullmode Contains Docked                                   // remove all taxi/multicrew stuff. Fighter is passed thru
+        Set prefix = "Docked"
+    Else If fullmode Contains Landed
+        Set prefix = "Landed"
+    else If LandingGear IsTrue
+        Set prefix = "LandingGear"
+    Else If fullmode Contains NormalSpace
+        Set prefix = "NormalSpace"
+    Else If fullmode Contains Supercruise
+        Set prefix = "Supercruise_%(Overdrive)"                     // supercruise_0 is normal, _1 is SCO
+    Else If fullmode Contains SRV
+        Set prefix = "SRV"
+    Else If fullmode Contains OnFoot
+        Set prefix = "OnFoot"
+    Else If fullmode Contains Fighter
+        Set prefix = "Fighter"
+    Else
+        print Failed to find operational mode - fail JMK
+
+    Set v = jkm_%(prefix)_%(Binding)                            // make up variable name from the state and event name
+
+    rem print First Prefix %(prefix) : Lookup %(v) 
+
+    if Binding $== "UseBoostJuice" 
+        If CargoDeployed IsTrue
+            end
+        If prefix $== "Supercruise_0"
+            Ship Current                                        // get current ship (new 20.0 ed)
+            if %FindInArray(SH_Ship_Module,"_Item","(SCO)",0,10000,"contains") == -1        // find any item with SCO in it, if not, no SCO, no boost
+                rem print no sco Prefix %(prefix) : Lookup %(v) 
+                end
+
+    If %(v) NotPresent
+        If prefix $== NormalSpace Or prefix $== Supercruise_0 Or prefix $== SRV    // if vehicle
+            Set v = jkm_Vehicle_%(Binding)                      // make up variable name from the state and event name
+            rem print Next1 Lookup %(v)
+
+    If %(v) NotPresent
+        If prefix $== NormalSpace Or prefix $== Supercruise_0
+            Set v = jkm_Ship_%(Binding)                         // make up variable name from the state and event name
+            rem print Next2 Lookup %(v)
+
+    If %(v) NotPresent
+        Set v = jkm_All_%(Binding)                              // make up variable name from the state and event name
+        rem print Next3 Lookup %(v)
+
+    If %(v) IsPresent And %(v) IsNotEmpty                       // we have a binding
+        rem print BINGO on %(v)
+        If Binding $!= %(jkm_lastbinding) Or "%eval(\"%TickCount()-%(jkm_lastbindingtime)\")" > %(jkm_repeat_time)
+            Set speech = "%phrase(\"%indirect(v)\")"            // now expand any phrases in it
+            Call speak(speech="%(speech)",Priority="Normal")
+            // print Say %(speech)  %TickCount() %(jkm_lastbindingtime)
+            Static jkm_lastbinding = %(Binding)
+            Static jkm_lastbindingtime = %TickCount()
+        Else 
+            Static jkm_lastbindingtime = %TickCount()
+            // Print rejected due to duplicate binding in less than X second %TickCount() %(jkm_lastbindingtime)
+
+END PROGRAM
+
+//*************************************************************
+// speak
+// Events: None
+//*************************************************************
+PROGRAM speak
+
+Rem speech always, optional: Volume, Priority, FinishEvent, Wait
+
+Set speech = "%replacevar(speech,\"jkm_tx\")"
+
+Set ds = 0
+If SpeechOptions IsPresent And SpeechOptions Contains PrintOnly;
+    Set ds = 1
+
+// Real time with queue limit
+
+rem print Would say %(speech)
+Say %(speech), QueueLimit=%(jkm_speechqueuelimit), Literal=1, Volume="%existsdefault(Volume,\"-999\")", Priority="%existsdefault(Priority,\"Normal\")", DontSpeak="%(ds)", FinishEvent="JKMFinish" , Wait="%existsdefault(Wait,\"0\")"
+
+Static jkm_speaking = 1
+
+Rem Print JKM Say %(speech)
+
+If SpeechLog IsPresent And SpeechLog IsNotEmpty
+    If SpeechOptions IsPresent And SpeechOptions Contains LogLastOnly;
+        Let success = %openfile(h1,SpeechLog,create)
+    Else 
+        Let success = %openfile(h1,SpeechLog,append)
+
+    If success IsTrue
+        If SpeechOptions IsPresent And SpeechOptions Contains LogTimeDate;
+            Expr %write(h1,"%datetimenow(tolocal):")
+
+        Expr %writeline(h1,speech)
+        Expr %closefile(h1)
+    Else 
+        Print Cannot write to speech log file '%(SpeechLog)'
+
+END PROGRAM
+
+//*************************************************************
+// FinishSpeech
+// Events: onSayFinished?(EventName $== JKMFinish)
+//*************************************************************
+PROGRAM FinishSpeech
+
+// Holding this for later work
+Static jkm_speaking = 0
+
+END PROGRAM
+
